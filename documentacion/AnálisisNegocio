@@ -1,152 +1,419 @@
-El proyecto consiste en una aplicación web la cual permitirá a un usuario de atención al público
-, la introducción de incidencias.
-
-En el sistema nos encontramos con 3 tipos de distintos de usuario: usuarios de 
-atención al público, usuarios de tipo supervisor y usuarios de tipo técnico.
-Una vez introducida la incidencia, con los datos mínimos necesarios, en el sistema
-ésta será reasignará a un usuario encargado de solucionarla. Un
-supervisor podrá llevar a cabo la asignación de forma manual.
-
-Las incidencias sólo podrán ser asignadas a usuarios de tipo técnico.
-
-El técnico encargado de solucionar la incidencia podrá asignar el tiempo dedicado a
-su resolución.
-
-Por otro lado, el cliente podrá consultar el estado de su incidencia en cualquier
-momento, incluso podrá recibir novedades en su correo o aportar más
-información a la incidencia si así se le permite en la configuración del sistema.(ver)
-
-Por último, los administradores del sistema podrán revisar una serie de informes para
-conocer que carga de trabajo se tiene; ya sea por cliente, por recurso o por servicio
-para poder conocer y llevar un mayor control sobre el sistema y así tomar decisiones
-tácticas adecuadas para mejorar el servicio ofrecido. 
+El Proyecto consiste en un sistema de manejo de incidencias web (en adelante El Sistema), el cual permitirá gestionar las consultas, propuestas y problemas de usuarios (clientes), por los Operadores de El Sistema.
+Los Operadores representan al Staff de la companía que implementa y usa El Sistema para gestionar los pedidos y solicitudes de sus clientes. 
+Estos Clientes son empresas con personal que podrán tener múltiples Usuarios en el sistema. Éstos usuarios podrán acceder mediante el front-end y gestionar sus inquietudes.
 
 
 OBJETIVOS
 
- Poder registrar todas las incidencias de los diferentes sistemas ofrecidos a
-nuestros clientes así como el tiempo invertido en la resolución de las mismas.
+ Poder registrar todas las incidencias, consultas y sugerencias (en adelante Tickets) de los diferentes sistemas y sercivios ofrecidos por la companía a clientes.
 
- Permitir al cliente conocer el estado de su incidencia en cualquier momento y
-la fecha estimada de resolución así como, opcionalmente, opinar sobre el
-servicio dado una vez resuelta.
+ Permitir al cliente conocer el estado y avance de sus Tickets en cualquier momento y poder mantener una comunicación escrita para avanzar hacia la resolución del mismo.
 
- Poder monitorizar el estado de todas las incidencias del sistema, los tiempos
-de respuesta, incidencias por cliente, incidencias por recurso…. gracias a una
-serie de informes ideados con tal propósito.
+ Poder monitorizar el estado de todas las incidencias del sistema, los tiempos de respuesta, incidencias por cliente, incidencias por temática y realizar una serie de informes ideados con tal propósito.
+
+ Permitir al staff de la Companía (Operadores del Sistema) ordenar el trabajo pendiente, gestionar los tickets, y medir el trabajo realizado para la resolución de los mismos.
+
+ Gerarar un canal de comunicación independiente para los clientes de la companía.
+
+
+FUNCIONALIDADES:
+# //TODO: Aca hay que agregar unas cuantas más!
+
+ Gestión de usuarios del sistema. Dar de alta, modificar y eliminar los diferentes usuarios del sistema así como sus perfiles.
+
+ Consultar el estado de un Ticket, añadir comentarios y recibir en el email una alerta cuando su incidencia ha registrado un cambio, ha sido resuelta o exista alguna respuesta.
+
+ Gestión de incidencias: Poder dar de alta incidencias, consultarlas, cambiar su estado, insertar las horas dedicadas, añadir comentarios visibles para el
+cliente
+
+ Gestión de clientes. Poder llevar a cabo una gestión de clientes dando de alta sus datos básicos así como los programas/servicios que tiene contratados.
+
+ Listado de informes. Se tendrían los siguientes informes:
+número de incidencias por cliente,número de incidencias por técnico, número de incidencias por tipo y/o programa, incidencias fuera de planificación e informe entre tiempo estimado y tiempo real en la resolución. 
+
+
+REQUISITOS:
+
+El sistema contará con 2 accesos. Un fron-end para el acceso de los Usuarios, que podrán abrir, modificar y cerrar tickets, entre otras funcionalidades a las que tendrán acceso en la modalidad de usuario.
+Y por otra parte, se contará con un Back-end, para el acceso de los Operadores. Éstos según el perfil de permisos que cuenten, podrán configurar el sistema, trabajar con los tickets, y otras funcionalidades que se detallan en el presente documento.
+
+
+Las Empresas: 
+    Son los elementos de agrupación de Usuarios, que permitirán separar a los usuarios de diferentes empresas al momento de querer referirse a los usuarios de un cliente en particular.
+
+El Perfil de Usuario:
+Será una agrupación extra que permita a los usuarios de una empresa:
+    Asignar caracteristicas y permisos.
+    Acceder a los departamentos semi-publicos al momento de ingresar un Ticket. (Ejemplo, no cualquier usuario puede contactar al departamento administrativo).
+    Poder administrar la visibilidad por las categorias de los anuncios que lleguen a la empresa.
+El Perfil de Usuario, es una funcionalidad que solo podrá ser configurada desde el Back-End.
+
+El Usuario:
+Es el personal de la empresa cliente con acceso al Front-end de el Sistema para gestionar tickets.
+podrá:
+    Solamente acceder al Front-end.
+    Solicitar acceso al sistema, en caso de no ser un Usuario registrado.
+    Acceder a su configuración personal, y podrá actualizarla en cualquier mometno.
+    Leer los anuncios que sean publicados para su Empresa.
+    Crear tickets a los departamentos a los que tenga visibilidad.
+    Ver el estado, ubicación y avance de sus tickets.
+    Agregar mensajes en sus tickets, para responder o aportar mas información al mismo.
+    Adjuntar documentos a los tickets y mensajes al momento de crearlos.
+    Poner en copia a otro usuario, al momento de crear un ticket o mensaje para que éste pueda realizar el seguimiento conjunto del mismo. (En otras palabras 2 o mas usuarios tendrán acceso a este ticket para el seguimiento).
+    Recibir información sobre su cuenta y sus tickets via Mail.
+Los datos de la configuración personal del Usuario serán:
+    Nombre y Apellido completos
+    Nombre de Usuario.
+    Clave.
+    Foto o Avatar.
+    Empresa
+    Dirección de Mail.
+    Pais
+    Y datos opcionales como:
+        Dirección.
+        Codigo Postal.
+        Ciudad.
+        Teléfono
+        Mail Adicional.
+        
+    
+Los Operadores:
+Son el Staff que usará El Sistema para atender los requerimientos de los Usuarios, y otras funcionalidades.
+Por defecto, podrán:
+    Acceder a su configuración personal, y podrán actualizarla en cualquier momento.
+    Acceder a un Dashboard, con la información principal de utilidad y gestión.
+    Recibir información sobre su cuenta, novedades en los departamentos y sus tickets asignados via Mail
+Para el resto de las funcionalidades, deberán contar con los persmisos requeridos para las mismas.
+Los permisos para las funcionalidades se asignarán a los operadores mediante un Perfil de Operador. En el cual estarán asignados los permisos que dicho perfil tendrá sobre las funcionalidades de El Sistema.
+Con el permiso adecuado podrán:
+    Acceder a la configuración general del sistema.
+    Administrar Usuarios:
+        ABM de Usuarios.
+        ABM de Empresas.
+        ABM de Perfiles de Usuarios.
+        Listar Usuarios.
+        Ver Historial de tickets de un Usuario.
+        Registrar o validar la registración de usuairos.
+    Administrar Operadores:
+        ABM Operadores.
+        ABM Perfiles de Operadores
+    Administrar elementos:
+        ABM Prioridades.
+        ABM Estados.
+        ABM SLA's.
+        ABM Departamentos.
+        ABM Campos Personalizados.
+        ABM Filtros de Tickets.
+        Plantillas de Correo.
+        ABM Tipo de Ticket. (ver)
+    Administar Anuncios.
+        ABM Anuncioas.
+        ABM Categorias de Anuncios
+        Publicar Anuncios.
+    Administrar Respuestas enlatadas.
+        ABM Categorias de Respuestas enlatadas.
+        ABM Respuestas.
+    Acceder a Informes.
+    Administrar Tickets.
+        Crear ticket Internos.
+        Crear tickets en nombre de usuarios.
+        Ver tickets.
+        Eliminar Tickets.
+        Crear Notas internas.
+        Editar Notas Internas.
+        Eliminar Notas Internas.
+Los datos de la configuración personal del Operador serán:
+    Nombre y Apellido
+    Mail
+    Nombre de Usuario
+    Clave.
+    Foto / Avatar.
+    Zona Horaria (ver)
+    Firma. (para utilizar al momento de responder un ticket).
+Desde la configuración personal del Operador, de deberá poder cambiar la clave del Operador logueado en el sistema.
+        
+Los Departamentos:
+Son las áreas temáticas que sirven para agrupar los tickets según el área de interes predefinida. En otras palabras son contenedores para catalogar tickets. (Por ejemplo, si una companía posee un área de administración, una de soporte y una de atención al público, estas podrian ser muy bien los departamentos a los cuales un usuario puede direcciónar una solicitud).
+Pueden ser Privados, Públicos y Semi-Públicos. Los Privados, solo serán para utilizar en el Back-end, mientras que los Publicos, podrán ser visibles para los Usuarios en el Front-end.
+La visibilidad de los departamentos Públicos en el Front-end, podrá ser limitada mediante la configuración de perfiles de Usuario, en donde se podrá restringir la visibilidad a un grupo de usuarios de una empresa, de ser requerido por el cliente. (Semi-Públicos)
+Permitirán crear el ticket en un área temática determinada. Y conocer donde se encuentra a medida que avanza el ciclo de vida del mismo.
+Deberán:
+    Poseer un nombre único y descriptivo.
+    Posibilitar la asignación de un operador responsable por defecto.
+    poseer jerarquía. Siendo ésta la posibilidad de que un Departamento padre contenga a otros Departamentos hijos.
+    Limitar la visibilidad de sus tickets a los operarios que tengan agignado el departamento. (no es heredable el permiso a los departamentos hijos).
+    Limitar el acceso a la información estadística a los operadores que tengan asignado el departamento en cuestión.
+    Informár en el tablero de contról, la cantidad de tickets según los estados. (no recursivo).
+
+    
+Los Tickets:
+Son el elemento que vincula al usuario, su necesidar y la gestión de los operadores relacionados para su resolución.
+Podrán ser creados por usuarios u operadores. Siendo estos ultimos propios de los operadores o en nombre de algún usuario. (Por ejemplo al plasmar una inquietud de un usuario que se comunicó por teléfono).
+deberá:
+    Identificarse univocamente.
+    Registrar al Creador. (ya sea Usuario/Operador)
+    Pertenecer a un departamento. Ya que éste indica el lugar en el cual se está tratando el tema.
+    Poseer un Estado y una Prioridad.
+    Contar con un Asunto para referenciar la temática del mismo.
+    Indicar el momento de creación.
+    Tener un tipo de ticket pre-definido. (ver)
+podrá tener:
+    Campos personalizados.
+    Un mensaje. (texto descriptivo del asunto)
+    Operador/es Asignado/s.
+    Adjuntos.
+    Un SLA Asignado
+    Mensajes. (de usuarios/operadores).
+    Usuarios con visibilidad.
+Los Tipo de Tickets, pueden utilizarse para diferenciar la naturaleza de la solicitud. (Siendo posible generar diferentes tipos de tickets como por ejemplo Pedidos - Consultas - Problemas - Mejoras)
+podrán
+    los Operadores y SLA's: 
+        Derivarlo a otro departamento.
+        Cambiar el estado o Prioridad.
+        Asignar a 1 o más Operadores para el seguimiento.
+    los Operadores:
+        Crear y/o borrar tickets.
+        Agregar Notas visibles solo para los Operadores.
+        Unir o dividir 2 o más tickets.
+        Ver el registro de eventos relacionados al mismo (log).
+    Los Usuarios y Operadores:
+        Responder los mensajes mediantes Mensajes.
+        Poner en copia a otros usuarios (dar visibilidad a otros usuarios a el ticket en cuestion).
+    Los Usuarios
+        Crear tickets.
+        Cambiarles el estado.
+        
+
+Los Mensajes:
+Son los elementos que sirven para comunicarse entre los usuarios y los operadores que están relacionados en un mismo ticket. 
+Permiten por ejemplo, ampliar información, realizar consultas y solicitudes y quedan relacionados y documentados en el ticket.
+Son parte de los tickets y tendrán los siguientes elementos:
+    Un Creador (Usuario u Operador).
+    Un mensaje (texto descriptivo del asunto).
+    Momento de creación.
+Y pueden contener Adjuntos.
+
+Los Estados:
+Sirven para indicar una situación en la que se encuentra un Ticket. 
+Categorizar el ticket según el estado.
+Permiten establecer un ciclo de vida de un ticket. 
+Los Estados tendrán:
+    Un nombre para indicar la situación.
+    Un color para destacarlo.
+    Una característica que indique si es un estado Inicial, de Cierre o ninguno de los anteriores.
+Además los estados sirven para la utilización de SLA´s.
+
+Las Prioridades:
+Sirven para indicar niveles de importancia de los Tickets.
+Permitirán a los usuarios destacar los temas mas importantes para priorizar la gestión.
+Las Prioridades tendrán:
+    Un nombre.
+    Un color para destacarlas.
+    
+Los Campos Personalizados:
+Son campos para solicitar información extra al momento de crear un ticket según el departamento.
+Se porán crear desde el Back-end y asignar a el o los departamentos que sean necesarios.
+Existirán diferentes tipos de campos personalizados para crear.
+Los mismos serán del tipo:
+    Texto,
+    Texto extendido, (mas de 1 linea)
+    Fecha,
+    Boleano,
+    Casilla de Verificación,
+    Opciones,
+    Opciones Múltiples,
+    Contraseña,
+    Botones de radio.
+Se podrá ademas:
+    Asignar a donde se verán (Front-end / Back-end)
+    Si es obligatorio o no.
+    Si es encriptado o no. (no visible para usuarios con visibilidad).
+    Y asignar a los Departamentos en los que se utilizará.
+    
+Los SLA (Acuerdos de Nivel de Servicio):
+Son reglas que se podrán generar para que el sistema tome acciones automáticas según las características de un Ticket.
+Éstos acuerdos deben poder ser completamente configurables, en donde se especifique la situación en la que deberán encontrarse los tickets, y la acción que se realizará de complirse la situación.
+La situación se basará en las opciones de:
+    El Departamento,
+    El estado,
+    La Prioridad,
+    El tiempo transcurrido desde:
+        Su creación.
+        Ultima modificación.
+        Ultima modificación de Operador.
+Y las acciones posibles serán: (Se pueden aplicar más de una).
+    Derivar a un Departamento
+    Agregar a un Operador a las asignaciónes del ticket.
+    Cambiar de Prioridad.
+    Cambiar Estado.
+Todo lo que realice un SLA, deberá quedar registrado en los eventos del ticket. 
+
+Los Informes:
+Permiten a los Operadores obtener información sobre el volúmen de tickets de El Sistema.
+Deberán:
+    Ser accesibles para los operadores con permisos en su Perfil de Operador.
+    Limitar la información a la de los departamentos que el Operador tiene visibilidad.
+    Permitir la limitación del informé:
+        en un período de tiempo.
+        de Operadores determinados.
+        la selección de Departamentos determinados.
+    Informar sin restricciones:
+        Cantidad de:
+            Usuarios total por Empresas.
+            Tickets por empresa.
+            Tickets por estados y Empresa.
+    Informár con resticciones: (de visibilidad)
+        Cantidades de:
+            Tickets atendidos por Departamento. (en período de tiempo | Asignados a Operadores determinados | Departamentos determinados)
+            Tickets según estados. (en período de tiempo | asignados a Operadores determinados | Departamentos determinados)
+            Tickets según Prioridades. (en período de tiempo | Departamentos determinados)
+            Tiempos de respuesta promedios. (en período de tiempo | de Operadores determinados | Departamentos determinados)
+            Tiempos de resolución promedios. (en período de tiempo | de Operadores determinados | Departamentos determinados)
+        
+
+Los Filtros de Tickets:
+Permitirán a los Operadores crear vistas rápidas para organizar su trabajo diario.
+Éstos serán propios de cada óperador. Y solo visibles para sí mismos.
+Permitirán genera un resultádo con todos los tickets que cumplan con las características del filtro.
+Las características que podrán configurarse son:
+    Los departamentos.
+    Los estados.
+    Las prioridades.
+    Los Operadores.
+Éstas características son parcial o totalmente opcionales.
+    
+
+Las Plantillas de Correo:
+Son los mensajes que el sistema enviará a los Usuarios y/o Operadores según el evento que suceda.
+Los eventos son:
+    Hacia los Usuarios:
+        Bienvenida al Usuario.
+        Cambio de clave.
+        Nuevo Ticket.
+        Nueva Respuesta.
+        Cambio de estado.
+        Cambio de Departamento.
+    Hacia los Operadores.
+        Bienvenida al Operador.
+        Cambio de clave.
+        Nuevo ticket en departamento.
+        Novedades en ticket asignado.
+        
+
+Los Anuncios:
+Son publicaciónes que la companía quiera anunciar a las empresas clientes. (Por ejemplo nuevas funcionalidades, nuevos servicios, etc).
+Las publicaciónes son textos de longitud determinada y texto enriquecido; y una imagen opcional para ser mostrada en el front-end de los usuarios.
+Se podrán limitar a empresas determinadas.
+Y la creación, modificación y publicación serán limitadas por permisos diferentes que los Operadores deberán contar para poder operar con ellas.
+
+
+Las Respuestas Enlatadas:
+Permiten a los operadores evitar repetir respuestas que son frecuentes para los Usuarios. 
+Los Operadores podrán responder a un ticket, y en el momento guardar la respuesta como una respuesta enlatada. Para posteriormente usarla en otro ticket al momento de responder.
+Las respuestas enlatadas deberán:
+    Tener un Nombre distintivo.
+    Poder ser clasificadas en categorias.
+    Poder ser visibles para el creador y/o todos los operadores de los departamentos pre-determinados.
+
+Funcionalidades para una proxíma versión:
+Etiquetas para Tickets.
+Vinculación con LDAP o Active-Directory (pasiva: solo importación).
+
+
+    
+# // De aquí en adelante quitaria todo....
+# // Dejé el texto de Brian por si quieren tomar algo de ahi. (yo saqué las ideas que me parecieron más útiles).
+# // Lo que no supe poner en el documetno son los Objetivos, que me parece que deberían estar en el inicio. y faltarian algunos mas de los que detalla brian. 
+# // El tiempo de Resolución para mi es automatico, y va desde q se crea el ticket, hasta que se cierra definitivamente.
+
+
+
+En el sistema nos encontramos con 3 tipos de distintos de usuario: usuarios de atención al público, usuarios de tipo supervisor y usuarios de tipo técnico.
+Una vez introducida la incidencia, con los datos mínimos necesarios, en el sistema ésta será reasignará a un usuario encargado de solucionarla. Un supervisor podrá llevar a cabo la asignación de forma manual.
+
+Las incidencias sólo podrán ser asignadas a usuarios de tipo técnico.
+
+El técnico encargado de solucionar la incidencia podrá asignar el tiempo dedicado a su resolución.
+
+Por otro lado, el cliente podrá consultar el estado de su incidencia en cualquier momento, incluso podrá recibir novedades en su correo o aportar más información a la incidencia si así se le permite en la configuración del sistema.(ver)
+
+Por último, los administradores del sistema podrán revisar una serie de informes para conocer que carga de trabajo se tiene; ya sea por cliente, por recurso o por servicio para poder conocer y llevar un mayor control sobre el sistema y así tomar decisiones tácticas adecuadas para mejorar el servicio ofrecido. 
+
+
+OBJETIVOS
+
+ Poder registrar todas las incidencias de los diferentes sistemas ofrecidos a nuestros clientes así como el tiempo invertido en la resolución de las mismas.
+
+ Permitir al cliente conocer el estado de su incidencia en cualquier momento y la fecha estimada de resolución así como, opcionalmente, opinar sobre el servicio dado una vez resuelta.
+
+ Poder monitorizar el estado de todas las incidencias del sistema, los tiempos de respuesta, incidencias por cliente, incidencias por recurso…. gracias a una serie de informes ideados con tal propósito.
 
 
 Funcionalidades
- Gestión de usuarios del sistema. Dar de alta, modificar y eliminar los
-diferentes usuarios del sistema así como sus perfiles.
+ Gestión de usuarios del sistema. Dar de alta, modificar y eliminar los diferentes usuarios del sistema así como sus perfiles.
 
- Los diferentes tipos de incidencias ylas distintas opciones ofrecidas a 
-los clientes para interactuar con el sistema:
-consultar el estado de una incidencia, añadir comentarios y recibir en el email 
-una alerta cuando su incidencia ha sido resuelta o exista alguna respuesta.
+ Los diferentes tipos de incidencias ylas distintas opciones ofrecidas a los clientes para interactuar con el sistema:
+consultar el estado de una incidencia, añadir comentarios y recibir en el email una alerta cuando su incidencia ha sido resuelta o exista alguna respuesta.
 
- Gestión de incidencias: Poder dar de alta incidencias, consultarlas, cambiar su
-estado, insertar las horas dedicadas, añadir comentarios visibles para el
+ Gestión de incidencias: Poder dar de alta incidencias, consultarlas, cambiar su estado, insertar las horas dedicadas, añadir comentarios visibles para el
 cliente
 
- Gestión de clientes. Poder llevar a cabo una gestión de clientes dando
-de alta sus datos básicos así como los programas/servicios que tiene
-contratados.
+ Gestión de clientes. Poder llevar a cabo una gestión de clientes dando de alta sus datos básicos así como los programas/servicios que tiene contratados.
 
  Listado de informes. Se tendrían los siguientes informes:
-número de incidencias por cliente,número de incidencias por técnico
-, número de incidencias por tipo y/o programa, incidencias fuera de planificación
-e informe entre tiempo estimado y tiempo real en la resolución. 
+número de incidencias por cliente,número de incidencias por técnico, número de incidencias por tipo y/o programa, incidencias fuera de planificación e informe entre tiempo estimado y tiempo real en la resolución. 
 
 
 
 Requisitos
 
-1. El sistema se compondrá de dos subsistemas: un sistema de administración y
-gestión de incidencias al que podrán acceder sólo los usuarios propios de éste; y otro
-sistema de consulta de incidencias por parte de los clientes.
+1. El sistema se compondrá de dos subsistemas: un sistema de administración y gestión de incidencias al que podrán acceder sólo los usuarios propios de éste; y otro sistema de consulta de incidencias por parte de los clientes.
 
-2. El sistema diferenciará cuatro tipos de usuarios: usuario de atención al público,
-técnico, supervisor y cliente.
+2. El sistema diferenciará cuatro tipos de usuarios: usuario de atención al público, técnico, supervisor y cliente.
 
-3. A la primera parte del sistema, expuesta en el punto 1, sólo podrán acceder
-usuarios activos de atención al público, técnicos y supervisores previa identificación
-por medio de un usuario y contraseña.
+3. A la primera parte del sistema, expuesta en el punto 1, sólo podrán acceder usuarios activos de atención al público, técnicos y supervisores previa identificación por medio de un usuario y contraseña.
 
-4. Este sistema se compondrá de 4 módulos diferentes: gestión de usuarios del
-sistema, gestión de clientes y servicios, gestión de incidencias e informes.
+4. Este sistema se compondrá de 4 módulos diferentes: gestión de usuarios del sistema, gestión de clientes y servicios, gestión de incidencias e informes.
 
 
 
 Sistema gestor de incidencias
 
 Gestión de Usuarios del Sistema
--El sistema debe permitir dar de alta y modificar usuarios del sistema. Esta
-acción sólo puede ser llevada a cabo por un usuario de tipo supervisor.
+-El sistema debe permitir dar de alta y modificar usuarios del sistema. Esta acción sólo puede ser llevada a cabo por un usuario de tipo supervisor.
 -El sistema debe permitir listar y consultar los diferentes usuarios del sistema.
-Esta acción puede ser llevada a cabo por supervisores, técnicos y usuarios de
-atención al público. (VER)
--La ficha de un usuario incluirá los siguientes campos: login, contraseña,
-nombre, email, tipo de usuario, activo.
--El campo tipo de usuario podrá tener tres posibles valores: usuario de
-atención al público, supervisor y técnico
+Esta acción puede ser llevada a cabo por supervisores, técnicos y usuarios de atención al público. (VER)
+-La ficha de un usuario incluirá los siguientes campos: login, contraseña, nombre, email, tipo de usuario, activo.
+-El campo tipo de usuario podrá tener tres posibles valores: usuario de atención al público, supervisor y técnico 
 -El sistema debe permitir a un usuario cambiar su propia contraseña
 
 
 Gestión de incidencias
-+Una incidencia tendrá los siguientes campos: asunto, descripción,
-comentarios, cliente que notificó la incidencia, programa al que se refiere, fecha
-de creación, usuario que creo la incidencia, fecha de resolución, estado, técnico
-asignado, tiempo estimado de resolución, tiempo real de resolución, fecha de
-resolución estimada y fecha final de resolución.
-+ Los posibles estados de las incidencias son los siguientes: Pendiente de
-asignación, Pendientes de resolución, Iniciada y Resuelta.
-+ El sistema debe permitir a un usuario de atención al público abrir una
-incidencia.
-+ Al abrir una incidencia se deberán rellenar siempre los campos de: cliente,
-programa asociado o servicio al que se refiere, asunto y una descripción del
-problema
-+ El campo fecha de creación lo establecerá automáticamente el sistema en el
-momento de abrirse la incidencia
-+ El sistema al asignar una incidencia a un técnico establecerá el estado de la
-misma como Pendiente de resolución.
-+ El sistema al asignar una incidencia a la cola de pendientes de asignación
-establecerá el estado de la misma como Pendiente de asignación.
-+ El sistema debe permitir a un supervisor asignar manualmente una incidencia
-a un técnico. 
-+ El sistema debe permitir supervisores y usuarios de atención al público
-consultar cualquier incidencia del sistema, esté resuelta o no.
-+ El sistema debe permitir a técnicos consultar cualquier incidencia asignada a
-su usuario, esté resuelta o no.
-+. El sistema debe permitir a supervisores o usuarios de atención al público
-cambiar el estado de una incidencia de Resuelta a Pendiente de resolución.
-+ El sistema debe permitir a un técnico cambiar el estado de una incidencia
-asignada a su usuario de Pendiente de resolución a Iniciada y de Iniciada a
-Resuelta.
-+ El sistema debe permitir a supervisores cambiar el estado de una incidencia
-de Iniciada a Resuelta.
++Una incidencia tendrá los siguientes campos: asunto, descripción, comentarios, cliente que notificó la incidencia, programa al que se refiere, fecha de creación, usuario que creo la incidencia, fecha de resolución, estado, técnico asignado, tiempo estimado de resolución, tiempo real de resolución, fecha de resolución estimada y fecha final de resolución.
++ Los posibles estados de las incidencias son los siguientes: Pendiente de asignación, Pendientes de resolución, Iniciada y Resuelta.
++ El sistema debe permitir a un usuario de atención al público abrir una incidencia.
++ Al abrir una incidencia se deberán rellenar siempre los campos de: cliente, programa asociado o servicio al que se refiere, asunto y una descripción del problema
++ El campo fecha de creación lo establecerá automáticamente el sistema en el momento de abrirse la incidencia 
++ El sistema al asignar una incidencia a un técnico establecerá el estado de la misma como Pendiente de resolución.
++ El sistema al asignar una incidencia a la cola de pendientes de asignación establecerá el estado de la misma como Pendiente de asignación.
++ El sistema debe permitir a un supervisor asignar manualmente una incidencia a un técnico. 
++ El sistema debe permitir supervisores y usuarios de atención al público consultar cualquier incidencia del sistema, esté resuelta o no.
++ El sistema debe permitir a técnicos consultar cualquier incidencia asignada a su usuario, esté resuelta o no.
++ El sistema debe permitir a supervisores o usuarios de atención al público cambiar el estado de una incidencia de Resuelta a Pendiente de resolución.
++ El sistema debe permitir a un técnico cambiar el estado de una incidencia asignada a su usuario de Pendiente de resolución a Iniciada y de Iniciada a Resuelta.
++ El sistema debe permitir a supervisores cambiar el estado de una incidencia de Iniciada a Resuelta.
 + El sistema debe permitir a los usuarios añadir comentarios a las incidencias.
-+ El sistema debe permitir a los supervisores establecer o cambiar el tiempo
-estimado de resolución y establecer o cambiar la fecha estimada de resolución.
-+ El sistema debe permitir a los técnicos establecer o cambiar el tiempo
-dedicado a la incidencia.
-+ El sistema debe permitir a usuarios de atención y supervisores al público
-filtrar y ordenar las incidencias del sistema por técnico asignado, estado y fecha
-estimada de resolución incluyendo las asignadas a la cola de pendientes de
-asignar.
-+ El sistema debe permitir a los técnicos filtrar y ordenar sus incidencias
-asignadas por estado y fecha final de resolución. 
++ El sistema debe permitir a los supervisores establecer o cambiar el tiempo estimado de resolución y establecer o cambiar la fecha estimada de resolución.
++ El sistema debe permitir a los técnicos establecer o cambiar el tiempo dedicado a la incidencia.
++ El sistema debe permitir a usuarios de atención y supervisores al público filtrar y ordenar las incidencias del sistema por técnico asignado, estado y fecha estimada de resolución incluyendo las asignadas a la cola de pendientes de asignar.
++ El sistema debe permitir a los técnicos filtrar y ordenar sus incidencias asignadas por estado y fecha final de resolución. 
 
 
 Gestión de clientes y servicios
 
-* El sistema debe permitir a los supervisores dar de alta y modificar los datos
-de clientes.
-* El sistema debe facilitar diferentes informes para conocer el estado de las
-incidencias así como de los tiempos estimados y dedicados.
-Estos informes solo serán visibles por supervisores.
-* El informe ofrecerá la posibilidad de filtrar y/o agrupar las incidencias
-por los siguientes criterios: cliente, servicio y técnico.
+* El sistema debe permitir a los supervisores dar de alta y modificar los datos de clientes.
+* El sistema debe facilitar diferentes informes para conocer el estado de las incidencias así como de los tiempos estimados y dedicados. 
+Estos informes solo serán visibles por supervisores. 
+* El informe ofrecerá la posibilidad de filtrar y/o agrupar las incidencias por los siguientes criterios: cliente, servicio y técnico.
 Se mostrará el tiempo dedicado a cada incidencia contra el tiempo estimado en ella.
-También debe mostrar el tiempo real total y el tiempo dedicado total de las
-incidencias filtradas.
+También debe mostrar el tiempo real total y el tiempo dedicado total de las incidencias filtradas.
