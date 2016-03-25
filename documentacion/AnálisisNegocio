@@ -1,0 +1,152 @@
+El proyecto consiste en una aplicación web la cual permitirá a un usuario de atención al público
+, la introducción de incidencias.
+
+En el sistema nos encontramos con 3 tipos de distintos de usuario: usuarios de 
+atención al público, usuarios de tipo supervisor y usuarios de tipo técnico.
+Una vez introducida la incidencia, con los datos mínimos necesarios, en el sistema
+ésta será reasignará a un usuario encargado de solucionarla. Un
+supervisor podrá llevar a cabo la asignación de forma manual.
+
+Las incidencias sólo podrán ser asignadas a usuarios de tipo técnico.
+
+El técnico encargado de solucionar la incidencia podrá asignar el tiempo dedicado a
+su resolución.
+
+Por otro lado, el cliente podrá consultar el estado de su incidencia en cualquier
+momento, incluso podrá recibir novedades en su correo o aportar más
+información a la incidencia si así se le permite en la configuración del sistema.(ver)
+
+Por último, los administradores del sistema podrán revisar una serie de informes para
+conocer que carga de trabajo se tiene; ya sea por cliente, por recurso o por servicio
+para poder conocer y llevar un mayor control sobre el sistema y así tomar decisiones
+tácticas adecuadas para mejorar el servicio ofrecido. 
+
+
+OBJETIVOS
+
+ Poder registrar todas las incidencias de los diferentes sistemas ofrecidos a
+nuestros clientes así como el tiempo invertido en la resolución de las mismas.
+
+ Permitir al cliente conocer el estado de su incidencia en cualquier momento y
+la fecha estimada de resolución así como, opcionalmente, opinar sobre el
+servicio dado una vez resuelta.
+
+ Poder monitorizar el estado de todas las incidencias del sistema, los tiempos
+de respuesta, incidencias por cliente, incidencias por recurso…. gracias a una
+serie de informes ideados con tal propósito.
+
+
+Funcionalidades
+ Gestión de usuarios del sistema. Dar de alta, modificar y eliminar los
+diferentes usuarios del sistema así como sus perfiles.
+
+ Los diferentes tipos de incidencias ylas distintas opciones ofrecidas a 
+los clientes para interactuar con el sistema:
+consultar el estado de una incidencia, añadir comentarios y recibir en el email 
+una alerta cuando su incidencia ha sido resuelta o exista alguna respuesta.
+
+ Gestión de incidencias: Poder dar de alta incidencias, consultarlas, cambiar su
+estado, insertar las horas dedicadas, añadir comentarios visibles para el
+cliente
+
+ Gestión de clientes. Poder llevar a cabo una gestión de clientes dando
+de alta sus datos básicos así como los programas/servicios que tiene
+contratados.
+
+ Listado de informes. Se tendrían los siguientes informes:
+número de incidencias por cliente,número de incidencias por técnico
+, número de incidencias por tipo y/o programa, incidencias fuera de planificación
+e informe entre tiempo estimado y tiempo real en la resolución. 
+
+
+
+Requisitos
+
+1. El sistema se compondrá de dos subsistemas: un sistema de administración y
+gestión de incidencias al que podrán acceder sólo los usuarios propios de éste; y otro
+sistema de consulta de incidencias por parte de los clientes.
+
+2. El sistema diferenciará cuatro tipos de usuarios: usuario de atención al público,
+técnico, supervisor y cliente.
+
+3. A la primera parte del sistema, expuesta en el punto 1, sólo podrán acceder
+usuarios activos de atención al público, técnicos y supervisores previa identificación
+por medio de un usuario y contraseña.
+
+4. Este sistema se compondrá de 4 módulos diferentes: gestión de usuarios del
+sistema, gestión de clientes y servicios, gestión de incidencias e informes.
+
+
+
+Sistema gestor de incidencias
+
+Gestión de Usuarios del Sistema
+-El sistema debe permitir dar de alta y modificar usuarios del sistema. Esta
+acción sólo puede ser llevada a cabo por un usuario de tipo supervisor.
+-El sistema debe permitir listar y consultar los diferentes usuarios del sistema.
+Esta acción puede ser llevada a cabo por supervisores, técnicos y usuarios de
+atención al público. (VER)
+-La ficha de un usuario incluirá los siguientes campos: login, contraseña,
+nombre, email, tipo de usuario, activo.
+-El campo tipo de usuario podrá tener tres posibles valores: usuario de
+atención al público, supervisor y técnico
+-El sistema debe permitir a un usuario cambiar su propia contraseña
+
+
+Gestión de incidencias
++Una incidencia tendrá los siguientes campos: asunto, descripción,
+comentarios, cliente que notificó la incidencia, programa al que se refiere, fecha
+de creación, usuario que creo la incidencia, fecha de resolución, estado, técnico
+asignado, tiempo estimado de resolución, tiempo real de resolución, fecha de
+resolución estimada y fecha final de resolución.
++ Los posibles estados de las incidencias son los siguientes: Pendiente de
+asignación, Pendientes de resolución, Iniciada y Resuelta.
++ El sistema debe permitir a un usuario de atención al público abrir una
+incidencia.
++ Al abrir una incidencia se deberán rellenar siempre los campos de: cliente,
+programa asociado o servicio al que se refiere, asunto y una descripción del
+problema
++ El campo fecha de creación lo establecerá automáticamente el sistema en el
+momento de abrirse la incidencia
++ El sistema al asignar una incidencia a un técnico establecerá el estado de la
+misma como Pendiente de resolución.
++ El sistema al asignar una incidencia a la cola de pendientes de asignación
+establecerá el estado de la misma como Pendiente de asignación.
++ El sistema debe permitir a un supervisor asignar manualmente una incidencia
+a un técnico. 
++ El sistema debe permitir supervisores y usuarios de atención al público
+consultar cualquier incidencia del sistema, esté resuelta o no.
++ El sistema debe permitir a técnicos consultar cualquier incidencia asignada a
+su usuario, esté resuelta o no.
++. El sistema debe permitir a supervisores o usuarios de atención al público
+cambiar el estado de una incidencia de Resuelta a Pendiente de resolución.
++ El sistema debe permitir a un técnico cambiar el estado de una incidencia
+asignada a su usuario de Pendiente de resolución a Iniciada y de Iniciada a
+Resuelta.
++ El sistema debe permitir a supervisores cambiar el estado de una incidencia
+de Iniciada a Resuelta.
++ El sistema debe permitir a los usuarios añadir comentarios a las incidencias.
++ El sistema debe permitir a los supervisores establecer o cambiar el tiempo
+estimado de resolución y establecer o cambiar la fecha estimada de resolución.
++ El sistema debe permitir a los técnicos establecer o cambiar el tiempo
+dedicado a la incidencia.
++ El sistema debe permitir a usuarios de atención y supervisores al público
+filtrar y ordenar las incidencias del sistema por técnico asignado, estado y fecha
+estimada de resolución incluyendo las asignadas a la cola de pendientes de
+asignar.
++ El sistema debe permitir a los técnicos filtrar y ordenar sus incidencias
+asignadas por estado y fecha final de resolución. 
+
+
+Gestión de clientes y servicios
+
+* El sistema debe permitir a los supervisores dar de alta y modificar los datos
+de clientes.
+* El sistema debe facilitar diferentes informes para conocer el estado de las
+incidencias así como de los tiempos estimados y dedicados.
+Estos informes solo serán visibles por supervisores.
+* El informe ofrecerá la posibilidad de filtrar y/o agrupar las incidencias
+por los siguientes criterios: cliente, servicio y técnico.
+Se mostrará el tiempo dedicado a cada incidencia contra el tiempo estimado en ella.
+También debe mostrar el tiempo real total y el tiempo dedicado total de las
+incidencias filtradas.
