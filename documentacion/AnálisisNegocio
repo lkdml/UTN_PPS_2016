@@ -5,7 +5,7 @@ Estos Clientes son empresas con personal que podrán tener múltiples Usuarios e
 
 OBJETIVOS
 
- Poder registrar todas las incidencias, consultas y sugerencias (en adelante Tickets) de los diferentes sistemas y sercivios ofrecidos por la companía a clientes.
+ Poder registrar todas las incidencias, consultas y sugerencias (en adelante Tickets) de los diferentes sistemas y servicios ofrecidos por la companía a clientes.
 
  Permitir al cliente conocer el estado y avance de sus Tickets en cualquier momento y poder mantener una comunicación escrita para avanzar hacia la resolución del mismo.
 
@@ -13,7 +13,7 @@ OBJETIVOS
 
  Permitir al staff de la Companía (Operadores del Sistema) ordenar el trabajo pendiente, gestionar los tickets, y medir el trabajo realizado para la resolución de los mismos.
 
- Gerarar un canal de comunicación independiente para los clientes de la companía.
+ Generar un canal de comunicación independiente para los clientes de la companía.
 
 
 FUNCIONALIDADES:
@@ -29,7 +29,7 @@ cliente
  Gestión de clientes. Poder llevar a cabo una gestión de clientes dando de alta sus datos básicos así como los programas/servicios que tiene contratados.
 
  Listado de informes. Se tendrían los siguientes informes:
-número de incidencias por cliente,número de incidencias por técnico, número de incidencias por tipo y/o programa, incidencias fuera de planificación e informe entre tiempo estimado y tiempo real en la resolución. 
+número de incidencias por cliente, número de incidencias por técnico, número de incidencias por tipo y/o programa, incidencias fuera de planificación e informe entre tiempo estimado y tiempo real en la resolución. 
 
 
 REQUISITOS:
@@ -43,9 +43,9 @@ Las Empresas:
 
 El Perfil de Usuario:
 Será una agrupación extra que permita a los usuarios de una empresa:
-    Asignar caracteristicas y permisos.
+    Asignar características y permisos.
     Acceder a los departamentos semi-publicos al momento de ingresar un Ticket. (Ejemplo, no cualquier usuario puede contactar al departamento administrativo).
-    Poder administrar la visibilidad por las categorias de los anuncios que lleguen a la empresa.
+    Poder administrar la visibilidad por las categorías de los anuncios que lleguen a la empresa.
 El Perfil de Usuario, es una funcionalidad que solo podrá ser configurada desde el Back-End.
 
 El Usuario:
@@ -53,14 +53,14 @@ Es el personal de la empresa cliente con acceso al Front-end de el Sistema para 
 podrá:
     Solamente acceder al Front-end.
     Solicitar acceso al sistema, en caso de no ser un Usuario registrado.
-    Acceder a su configuración personal, y podrá actualizarla en cualquier mometno.
+    Acceder a su configuración personal, y podrá actualizarla en cualquier momento.
     Leer los anuncios que sean publicados para su Empresa.
     Crear tickets a los departamentos a los que tenga visibilidad.
     Ver el estado, ubicación y avance de sus tickets.
-    Agregar mensajes en sus tickets, para responder o aportar mas información al mismo.
+    Agregar mensajes en sus tickets, para responder o aportar más información al mismo.
     Adjuntar documentos a los tickets y mensajes al momento de crearlos.
-    Poner en copia a otro usuario, al momento de crear un ticket o mensaje para que éste pueda realizar el seguimiento conjunto del mismo. (En otras palabras 2 o mas usuarios tendrán acceso a este ticket para el seguimiento).
-    Recibir información sobre su cuenta y sus tickets via Mail.
+    Poner en copia a otro usuario, al momento de crear un ticket o mensaje para que éste pueda realizar el seguimiento conjunto del mismo. (En otras palabras 2 o más usuarios tendrán acceso a este ticket para el seguimiento).
+    Recibir información sobre su cuenta y sus tickets vía Mail.
 Los datos de la configuración personal del Usuario serán:
     Nombre y Apellido completos
     Nombre de Usuario.
@@ -68,10 +68,10 @@ Los datos de la configuración personal del Usuario serán:
     Foto o Avatar.
     Empresa
     Dirección de Mail.
-    Pais
+    País
     Y datos opcionales como:
         Dirección.
-        Codigo Postal.
+        Código Postal.
         Ciudad.
         Teléfono
         Mail Adicional.
@@ -82,8 +82,8 @@ Son el Staff que usará El Sistema para atender los requerimientos de los Usuari
 Por defecto, podrán:
     Acceder a su configuración personal, y podrán actualizarla en cualquier momento.
     Acceder a un Dashboard, con la información principal de utilidad y gestión.
-    Recibir información sobre su cuenta, novedades en los departamentos y sus tickets asignados via Mail
-Para el resto de las funcionalidades, deberán contar con los persmisos requeridos para las mismas.
+    Recibir información sobre su cuenta, novedades en los departamentos y sus tickets asignados vía Mail
+Para el resto de las funcionalidades, deberán contar con los permisos requeridos para las mismas.
 Los permisos para las funcionalidades se asignarán a los operadores mediante un Perfil de Operador. En el cual estarán asignados los permisos que dicho perfil tendrá sobre las funcionalidades de El Sistema.
 Con el permiso adecuado podrán:
     Acceder a la configuración general del sistema.
@@ -93,7 +93,7 @@ Con el permiso adecuado podrán:
         ABM de Perfiles de Usuarios.
         Listar Usuarios.
         Ver Historial de tickets de un Usuario.
-        Registrar o validar la registración de usuairos.
+        Registrar o validar la registración de usuarios.
     Administrar Operadores:
         ABM Operadores.
         ABM Perfiles de Operadores
@@ -107,11 +107,11 @@ Con el permiso adecuado podrán:
         Plantillas de Correo.
         ABM Tipo de Ticket. (ver)
     Administar Anuncios.
-        ABM Anuncioas.
-        ABM Categorias de Anuncios
+        ABM Anuncios.
+        ABM Categorías de Anuncios
         Publicar Anuncios.
     Administrar Respuestas enlatadas.
-        ABM Categorias de Respuestas enlatadas.
+        ABM Categorías de Respuestas enlatadas.
         ABM Respuestas.
     Acceder a Informes.
     Administrar Tickets.
@@ -133,23 +133,23 @@ Los datos de la configuración personal del Operador serán:
 Desde la configuración personal del Operador, de deberá poder cambiar la clave del Operador logueado en el sistema.
         
 Los Departamentos:
-Son las áreas temáticas que sirven para agrupar los tickets según el área de interes predefinida. En otras palabras son contenedores para catalogar tickets. (Por ejemplo, si una companía posee un área de administración, una de soporte y una de atención al público, estas podrian ser muy bien los departamentos a los cuales un usuario puede direcciónar una solicitud).
-Pueden ser Privados, Públicos y Semi-Públicos. Los Privados, solo serán para utilizar en el Back-end, mientras que los Publicos, podrán ser visibles para los Usuarios en el Front-end.
+Son las áreas temáticas que sirven para agrupar los tickets según el área de interés predefinida. En otras palabras son contenedores para catalogar tickets. (Por ejemplo, si una companía posee un área de administración, una de soporte y una de atención al público, estas podrían ser muy bien los departamentos a los cuales un usuario puede direccionar una solicitud).
+Pueden ser Privados, Públicos y Semi-Públicos. Los Privados, solo serán para utilizar en el Back-end, mientras que los Públicos, podrán ser visibles para los Usuarios en el Front-end.
 La visibilidad de los departamentos Públicos en el Front-end, podrá ser limitada mediante la configuración de perfiles de Usuario, en donde se podrá restringir la visibilidad a un grupo de usuarios de una empresa, de ser requerido por el cliente. (Semi-Públicos)
 Permitirán crear el ticket en un área temática determinada. Y conocer donde se encuentra a medida que avanza el ciclo de vida del mismo.
 Deberán:
     Poseer un nombre único y descriptivo.
     Posibilitar la asignación de un operador responsable por defecto.
-    poseer jerarquía. Siendo ésta la posibilidad de que un Departamento padre contenga a otros Departamentos hijos.
-    Limitar la visibilidad de sus tickets a los operarios que tengan agignado el departamento. (no es heredable el permiso a los departamentos hijos).
+    Poseer jerarquía. Siendo ésta la posibilidad de que un Departamento padre contenga a otros Departamentos hijos.
+    Limitar la visibilidad de sus tickets a los operarios que tengan asignado el departamento. (no es heredable el permiso a los departamentos hijos).
     Limitar el acceso a la información estadística a los operadores que tengan asignado el departamento en cuestión.
-    Informár en el tablero de contról, la cantidad de tickets según los estados. (no recursivo).
+    Informar en el tablero de control, la cantidad de tickets según los estados. (no recursivo).
 
     
 Los Tickets:
-Son el elemento que vincula al usuario, su necesidar y la gestión de los operadores relacionados para su resolución.
-Podrán ser creados por usuarios u operadores. Siendo estos ultimos propios de los operadores o en nombre de algún usuario. (Por ejemplo al plasmar una inquietud de un usuario que se comunicó por teléfono).
-deberá:
+Son el elemento que vincula al usuario, su necesidad y la gestión de los operadores relacionados para su resolución.
+Podrán ser creados por usuarios u operadores. Siendo estos últimos propios de los operadores o en nombre de algún usuario. (Por ejemplo al plasmar una inquietud de un usuario que se comunicó por teléfono).
+Deberá:
     Identificarse univocamente.
     Registrar al Creador. (ya sea Usuario/Operador)
     Pertenecer a un departamento. Ya que éste indica el lugar en el cual se está tratando el tema.
@@ -157,7 +157,7 @@ deberá:
     Contar con un Asunto para referenciar la temática del mismo.
     Indicar el momento de creación.
     Tener un tipo de ticket pre-definido. (ver)
-podrá tener:
+Podrá tener:
     Campos personalizados.
     Un mensaje. (texto descriptivo del asunto)
     Operador/es Asignado/s.
@@ -166,19 +166,19 @@ podrá tener:
     Mensajes. (de usuarios/operadores).
     Usuarios con visibilidad.
 Los Tipo de Tickets, pueden utilizarse para diferenciar la naturaleza de la solicitud. (Siendo posible generar diferentes tipos de tickets como por ejemplo Pedidos - Consultas - Problemas - Mejoras)
-podrán
-    los Operadores y SLA's: 
+Podrán
+    Los Operadores y SLA's: 
         Derivarlo a otro departamento.
         Cambiar el estado o Prioridad.
         Asignar a 1 o más Operadores para el seguimiento.
-    los Operadores:
+    Los Operadores:
         Crear y/o borrar tickets.
         Agregar Notas visibles solo para los Operadores.
         Unir o dividir 2 o más tickets.
         Ver el registro de eventos relacionados al mismo (log).
     Los Usuarios y Operadores:
         Responder los mensajes mediantes Mensajes.
-        Poner en copia a otros usuarios (dar visibilidad a otros usuarios a el ticket en cuestion).
+        Poner en copia a otros usuarios (dar visibilidad a otros usuarios a el ticket en cuestión).
     Los Usuarios
         Crear tickets.
         Cambiarles el estado.
@@ -205,26 +205,26 @@ Además los estados sirven para la utilización de SLA´s.
 
 Las Prioridades:
 Sirven para indicar niveles de importancia de los Tickets.
-Permitirán a los usuarios destacar los temas mas importantes para priorizar la gestión.
+Permitirán a los usuarios destacar los temas más importantes para priorizar la gestión.
 Las Prioridades tendrán:
     Un nombre.
     Un color para destacarlas.
     
 Los Campos Personalizados:
 Son campos para solicitar información extra al momento de crear un ticket según el departamento.
-Se porán crear desde el Back-end y asignar a el o los departamentos que sean necesarios.
+Se podrán crear desde el Back-end y asignar a el o los departamentos que sean necesarios.
 Existirán diferentes tipos de campos personalizados para crear.
 Los mismos serán del tipo:
     Texto,
     Texto extendido, (mas de 1 linea)
     Fecha,
-    Boleano,
+    Booleano,
     Casilla de Verificación,
     Opciones,
     Opciones Múltiples,
     Contraseña,
     Botones de radio.
-Se podrá ademas:
+Se podrá además:
     Asignar a donde se verán (Front-end / Back-end)
     Si es obligatorio o no.
     Si es encriptado o no. (no visible para usuarios con visibilidad).
@@ -232,49 +232,49 @@ Se podrá ademas:
     
 Los SLA (Acuerdos de Nivel de Servicio):
 Son reglas que se podrán generar para que el sistema tome acciones automáticas según las características de un Ticket.
-Éstos acuerdos deben poder ser completamente configurables, en donde se especifique la situación en la que deberán encontrarse los tickets, y la acción que se realizará de complirse la situación.
+Éstos acuerdos deben poder ser completamente configurables, en donde se especifique la situación en la que deberán encontrarse los tickets, y la acción que se realizará de cumplirse la situación.
 La situación se basará en las opciones de:
     El Departamento,
     El estado,
     La Prioridad,
     El tiempo transcurrido desde:
         Su creación.
-        Ultima modificación.
-        Ultima modificación de Operador.
+        Última modificación.
+        Última modificación de Operador.
 Y las acciones posibles serán: (Se pueden aplicar más de una).
     Derivar a un Departamento
-    Agregar a un Operador a las asignaciónes del ticket.
+    Agregar a un Operador a las asignaciones del ticket.
     Cambiar de Prioridad.
     Cambiar Estado.
 Todo lo que realice un SLA, deberá quedar registrado en los eventos del ticket. 
 
 Los Informes:
-Permiten a los Operadores obtener información sobre el volúmen de tickets de El Sistema.
+Permiten a los Operadores obtener información sobre el volumen de tickets de El Sistema.
 Deberán:
     Ser accesibles para los operadores con permisos en su Perfil de Operador.
     Limitar la información a la de los departamentos que el Operador tiene visibilidad.
     Permitir la limitación del informé:
-        en un período de tiempo.
-        de Operadores determinados.
-        la selección de Departamentos determinados.
+        En un período de tiempo.
+        De Operadores determinados.
+        La selección de Departamentos determinados.
     Informar sin restricciones:
         Cantidad de:
             Usuarios total por Empresas.
             Tickets por empresa.
             Tickets por estados y Empresa.
-    Informár con resticciones: (de visibilidad)
+    Informar con resticciones: (de visibilidad)
         Cantidades de:
-            Tickets atendidos por Departamento. (en período de tiempo | Asignados a Operadores determinados | Departamentos determinados)
-            Tickets según estados. (en período de tiempo | asignados a Operadores determinados | Departamentos determinados)
-            Tickets según Prioridades. (en período de tiempo | Departamentos determinados)
-            Tiempos de respuesta promedios. (en período de tiempo | de Operadores determinados | Departamentos determinados)
-            Tiempos de resolución promedios. (en período de tiempo | de Operadores determinados | Departamentos determinados)
+            Tickets atendidos por Departamento. (En período de tiempo | Asignados a Operadores determinados | Departamentos determinados)
+            Tickets según estados. (En período de tiempo | asignados a Operadores determinados | Departamentos determinados)
+            Tickets según Prioridades. (En período de tiempo | Departamentos determinados)
+            Tiempos de respuesta promedios. (En período de tiempo | de Operadores determinados | Departamentos determinados)
+            Tiempos de resolución promedios. (En período de tiempo | de Operadores determinados | Departamentos determinados)
         
 
 Los Filtros de Tickets:
 Permitirán a los Operadores crear vistas rápidas para organizar su trabajo diario.
-Éstos serán propios de cada óperador. Y solo visibles para sí mismos.
-Permitirán genera un resultádo con todos los tickets que cumplan con las características del filtro.
+Éstos serán propios de cada operador. Y solo visibles para sí mismos.
+Permitirán genera un resultado con todos los tickets que cumplan con las características del filtro.
 Las características que podrán configurarse son:
     Los departamentos.
     Los estados.
@@ -301,8 +301,8 @@ Los eventos son:
         
 
 Los Anuncios:
-Son publicaciónes que la companía quiera anunciar a las empresas clientes. (Por ejemplo nuevas funcionalidades, nuevos servicios, etc).
-Las publicaciónes son textos de longitud determinada y texto enriquecido; y una imagen opcional para ser mostrada en el front-end de los usuarios.
+Son publicaciones que la companía quiera anunciar a las empresas clientes. (Por ejemplo nuevas funcionalidades, nuevos servicios, etc).
+Las publicaciones son textos de longitud determinada y texto enriquecido; y una imagen opcional para ser mostrada en el front-end de los usuarios.
 Se podrán limitar a empresas determinadas.
 Y la creación, modificación y publicación serán limitadas por permisos diferentes que los Operadores deberán contar para poder operar con ellas.
 
@@ -312,19 +312,19 @@ Permiten a los operadores evitar repetir respuestas que son frecuentes para los 
 Los Operadores podrán responder a un ticket, y en el momento guardar la respuesta como una respuesta enlatada. Para posteriormente usarla en otro ticket al momento de responder.
 Las respuestas enlatadas deberán:
     Tener un Nombre distintivo.
-    Poder ser clasificadas en categorias.
+    Poder ser clasificadas en categorías.
     Poder ser visibles para el creador y/o todos los operadores de los departamentos pre-determinados.
 
-Funcionalidades para una proxíma versión:
+Funcionalidades para una próxima versión:
 Etiquetas para Tickets.
 Vinculación con LDAP o Active-Directory (pasiva: solo importación).
 
 
     
-# // De aquí en adelante quitaria todo....
-# // Dejé el texto de Brian por si quieren tomar algo de ahi. (yo saqué las ideas que me parecieron más útiles).
-# // Lo que no supe poner en el documetno son los Objetivos, que me parece que deberían estar en el inicio. y faltarian algunos mas de los que detalla brian. 
-# // El tiempo de Resolución para mi es automatico, y va desde q se crea el ticket, hasta que se cierra definitivamente.
+# // De aquí en adelante quitaría todo....
+# // Dejé el texto de Brian por si quieren tomar algo de ahí. (yo saqué las ideas que me parecieron más útiles).
+# // Lo que no supe poner en el documento son los Objetivos, que me parece que deberían estar en el inicio. y faltarian algunos mas de los que detalla brian. 
+# // El tiempo de Resolución para mi es automático, y va desde q se crea el ticket, hasta que se cierra definitivamente.
 
 
 
