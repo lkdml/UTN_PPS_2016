@@ -1,15 +1,15 @@
 Glosario:
-Anuncios: Porción de texto html creado por Operadores para informár algo específico a una o varias empresas.
+Anuncios: Porción de texto HTML creado por Operadores para informar algo específico a una o varias empresas.
 Back-End: Parte del sistema a la cual pueden acceder los solo los operadores.
 Front-End: Parte del sistema al cual pueden acceder los usuarios. Es el acceso definido por defecto.
-Ticket: Tematica e inquietud de un usuario enviada a un departamento específico para el seguimiento por parte de los operadores del sistema.
+Ticket: Temática e inquietud de un usuario enviada a un departamento específico para el seguimiento por parte de los operadores del sistema.
 Tickets: Plural de Ticket.
 Mensaje: Utilizado para las respuestas por parte de operadores y usuarios, de un ticket.
 Mensajes: Plural de Mensaje.
-Reportes: Información estadistica emitida por el sistema bajo un criterio pre-establecido.
+Reportes: Información estadística emitida por el sistema bajo un criterio pre-establecido.
 
 Sistema de manejo de incidencias: Sistema que permite ingresar solicitudes, gestionarlas y controlar el avance de éstas hasta su resolución. 
 Empresa: Representa a un cliente y todos sus usuarios y bienes.
 Usuario: Personal de una empresa con acceso al Front-end del sistema. 
-Operador: Persona con acceso al Back-End que puede realizar actividades de configuración del sistema, gestion de tickets, obtención de reportes, y envío de anuncios.
+Operador: Persona con acceso al Back-End que puede realizar actividades de configuración del sistema, gestión de tickets, obtención de reportes, y envío de anuncios.
 Operadores: Plural de Operador.
