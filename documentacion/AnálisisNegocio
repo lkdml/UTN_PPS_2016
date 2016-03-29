@@ -31,6 +31,9 @@ cliente
  Listado de informes. Se tendrían los siguientes informes:
 número de incidencias por cliente, número de incidencias por técnico, número de incidencias por tipo y/o programa, incidencias fuera de planificación e informe entre tiempo estimado y tiempo real en la resolución. 
 
+ //TODO Agregar la funcionalidad de comunicacion via MAIL de los eventos que sucedan en el sistema.
+
+ // TODO Barrer los requisitos y agregar funcionalidades.
 
 REQUISITOS:
 
@@ -89,11 +92,11 @@ Con el permiso adecuado podrán:
     Acceder a la configuración general del sistema.
     Administrar Usuarios:
         ABM de Usuarios.
+            
         ABM de Empresas.
         ABM de Perfiles de Usuarios.
         Listar Usuarios.
         Ver Historial de tickets de un Usuario.
-        Registrar o validar la registración de usuarios.
     Administrar Operadores:
         ABM Operadores.
         ABM Perfiles de Operadores
@@ -105,7 +108,7 @@ Con el permiso adecuado podrán:
         ABM Campos Personalizados.
         ABM Filtros de Tickets.
         Plantillas de Correo.
-        ABM Tipo de Ticket. (ver)
+        ABM Tipo de Ticket. (ver. 2)
     Administar Anuncios.
         ABM Anuncios.
         ABM Categorías de Anuncios
@@ -156,7 +159,7 @@ Deberá:
     Poseer un Estado y una Prioridad.
     Contar con un Asunto para referenciar la temática del mismo.
     Indicar el momento de creación.
-    Tener un tipo de ticket pre-definido. (ver)
+    Tener un tipo de ticket pre-definido. (2da Version.)
 Podrá tener:
     Campos personalizados.
     Un mensaje. (texto descriptivo del asunto)
@@ -165,7 +168,9 @@ Podrá tener:
     Un SLA Asignado
     Mensajes. (de usuarios/operadores).
     Usuarios con visibilidad.
+// Esto es una futura versión
 Los Tipo de Tickets, pueden utilizarse para diferenciar la naturaleza de la solicitud. (Siendo posible generar diferentes tipos de tickets como por ejemplo Pedidos - Consultas - Problemas - Mejoras)
+// 
 Podrán
     Los Operadores y SLA's: 
         Derivarlo a otro departamento.
@@ -314,10 +319,13 @@ Las respuestas enlatadas deberán:
     Tener un Nombre distintivo.
     Poder ser clasificadas en categorías.
     Poder ser visibles para el creador y/o todos los operadores de los departamentos pre-determinados.
+    
+//TODO Agregar requisitos de envio de Mails
 
 Funcionalidades para una próxima versión:
 Etiquetas para Tickets.
 Vinculación con LDAP o Active-Directory (pasiva: solo importación).
+Extender la funcionalidad de Tickets a Tipos de Tickets
 
 
     
