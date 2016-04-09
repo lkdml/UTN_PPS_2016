@@ -46,6 +46,8 @@ La empresa requiere:
 	11. Generar informes sobre:
 		A. Cantidades de pedidos atendidas por departamentos / operadores en un periodo de tiempo.
 		B. Tiempos promedios de acción por parte de los operadores.
+	12. Mantener una vision activa de la cantidad de trabajo pendiente en cada área de la empresa.
+	
 		
 --------------------------------
 
