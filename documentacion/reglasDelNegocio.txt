@@ -1,0 +1,38 @@
+ANEXO Reglas del Negocio Modelo :
+Actualizado 3/04/2016
+
+Alcance de la documentación:
+
+Si bien nuestro sistema apunta a ser totalmente personalizable de acuerdo a la necesidad de cada cliente, la siguiente documentación establece reglas de negocio modelo. En nuestro Sistema, estas reglas actuarán como reglas de negocio por defecto, en caso que no se establezcan reglas al momento del alta.
+La investigación para estas “reglas por defecto” se basaron en sistemas de Incidencias actualmente utilizados en empresas multinacionales, con alto caudal de requerimientos ampliamente diversificado.
+
+Detalle de documentación:
+
+.Máquina de estados SLA: Estados por los que pasa el SLA de un tipo de ticket. Hay dos tipos de resultados finales. Favorable : el cálculo de SLA final genera el estado “Cumplido”. Desfavorable :  el cálculo de SLA final genera el estado “Incumplido”.
+
+.Cálculo de SLA (en desarrollo):
+El SLA se calcula tomando como parámetros la fecha de creación del ticket y su fecha de resolución. Dependerá de las reglas de negocio asociadas con la prioridad de un ticket.
+El SLA puede pausarse (se detiene el contador temporalmente) o cancelarse  (el estado final es cancelado).
+
+.Máquina de estados Incidencia: Estados (por defecto)  por los que pasa el tipo de ticket “Incidencia”. Se dice que una incidencia es un flujo de funcionamiento anormal en el desarrollo de un proceso, el resultado de una incidencia es la resolución del incidente, es decir la recuperación del flujo normal de trabajo.
+SLA (por defecto)  de una Incidencia según prioridad:
+.Prioridad Baja: 5 días
+.Prioridad Media: 3 días
+.Prioridad Alta: 8 Horas
+.Prioridad Crítica: 4 Horas (con actualización de ticket cada una hora)
+
+.Máquina de estados Tarea:Estados (por defecto) por los que pasa el tipo de ticket “Tarea”. Se dice que una tarea es un pedido por parte del cliente para la ejecución de una operación en un determinado tiempo, previamente estipulado. El resultado de una tarea es la tarea completada.
+SLA (por defecto)  de una Tarea según prioridad:
+.Prioridad Baja: 10 días
+.Prioridad Media: 5 días
+.Prioridad Alta: 3 días
+
+Las tareas pueden o no requerir que se adjunte una aprobación para la ejecución de la misma. 
+
+
+
+
+
+
+
+
