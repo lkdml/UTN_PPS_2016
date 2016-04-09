@@ -3,8 +3,51 @@ Actualizado 3/04/2016
 
 Alcance de la documentación:
 
-Si bien nuestro sistema apunta a ser totalmente personalizable de acuerdo a la necesidad de cada cliente, la siguiente documentación establece reglas de negocio modelo. En nuestro Sistema, estas reglas actuarán como reglas de negocio por defecto, en caso que no se establezcan reglas al momento del alta.
+Si bien nuestro sistema apunta a ser totalmente personalizable de acuerdo a la necesidad de cada empresa que lo implemente, la siguiente documentación establece reglas de negocio modelo. En nuestro Sistema, estas reglas actuarán como reglas de negocio por defecto, en caso que no se establezcan reglas al momento del alta.
 La investigación para estas “reglas por defecto” se basaron en sistemas de Incidencias actualmente utilizados en empresas multinacionales, con alto caudal de requerimientos ampliamente diversificado.
+En adelante hablaremos de "La Empresa" o "BJM" como la empresa implementadora, y utilizaremos "Cliente" para referirnos a los clientes de BJM.
+
+Al implementar el sistema la empresa BJM requiere realizar una serie de configuraciónes que le permitirán establecer sus reglas de negocio.
+
+La empresa requiere:
+	1. Configurar su nombre de fantasía en el portal de acceso para sus clientes e incluir una imagen con su logotipo.
+	2. Configurar las áreas que usarán el sistema para la gestión de los pedidos. De entre las cuales se encuentran:
+		A. Soporte N1.
+		B. Soporte N2. *
+		C. Ventas
+		D. Administración.
+		* El área de soporte N2, es un área a la cual no podrán llegar pedidos de clientes que no fueran previamente tratados por Soporte N1. 
+	3. Reconocer en que instancia se encuentra el pedido realizado por sus clientes. (puede variar según el área en el que se encuentren). (ver)
+	//El especificar estados que no sean soportados en todos los departamentos nos va a traer el problema de manejar el que cuando un ticket pase de un departamento en estado "en curso" a otro que no mantenga ese estado, se deberá cambiar el estado a uno por defecto. (manejando un estado x defecto en el estado en si).
+		A. Abierto
+		B. Respondido
+		C. En progreso
+		D. Cerrado
+	4. Poder establecer diferentes prioridades para el tratamiento de los pedidos de los clientes, permitiendo identificar pedidos que sean más importantes que otros.
+	// No estaría mal poner un flag mas en las prioridades para establecer si la prioridad es visible o no en el front-end.
+		A. Baja
+		B. Media
+		C. Alta
+		D. Critica
+	5. Alertar a los responsables ante cualquier cambio que suceda durante el tratamiento de la solicitud del cliente.
+	6. Detectar y tomar acciones automáticas si:
+		A. Un pedido de prioridad baja, que no fue tomado por ningun operador desde su envió, en un período mayor a 24 hs, pasarlo a prioridad a Media. 
+		B. Un pedido de prioridad Media, que no fue tomado por ningun operador desde su envío, en un periordo mayor a 16hs, pasarlo a prioridad a Alta.
+		C. Un pedido de prioridad Alta, que no fue tomado por ningun operador desde su envío, en un periordo mayor a 8hs, sea derivado al jefe del departamento y pasarlo a prioridad crítica
+		D. Un pedido de prioridad Critica, que no fue tomado por ningun operador desde su envío, en un periordo mayor a 4hs, sea derivado al jefe del departamento.		
+		E. Un pedido que fue respondido hace mas de 2 dias, que el sistema lo cierre automáticamente.
+	7. Tener pre-definidas algunas respuestas que suelen ser comúnes para un mismo tipo de solicitudes.
+	8. Se debe poder notificar a los clientes diferentes cuestiones de indole administrativo, técnico e informativo general.
+	9. Las notificaciones deben ser publicas para todos los clientes o específicas para un cliente en particular.
+	10. Permitir configurar diferentes vistas para ordenar los pedidos de formas diferentes.
+		A. Por estados.
+		B. Por Prioridades.
+		C. Por responsables.
+	11. Generar informes sobre:
+		A. Cantidades de pedidos atendidas por departamentos / operadores en un periodo de tiempo.
+		B. Tiempos promedios de acción por parte de los operadores.
+		
+--------------------------------
 
 Detalle de documentación:
 
