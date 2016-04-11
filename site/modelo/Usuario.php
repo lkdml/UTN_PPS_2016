@@ -16,7 +16,7 @@ class Usuario {
 	private $_Perfil_ID;
 	private $_Empresa_ID;
 	private $_Ultima_Actualizacion;
-	private $_Ultima_Actividad
+	private $_Ultima_Actividad;
 	private $_Activo;
 	private $_Eliminado;
 
@@ -42,7 +42,7 @@ class Usuario {
 		//Constructor Default
 	function __construct($Usuario_ID) 
 	{
-		$this->_Usuario_ID=$Usuario_ID
+		$this->_Usuario_ID=$Usuario_ID;
 	}
 	
 	private function Obtener_Usuario()
@@ -67,6 +67,8 @@ class Usuario {
 						,Eliminado
 				from usuarios
 				where Usuario_ID=?";
+		
+		/*VER DE HACERLO EN TXT LA CONSULTA Y LEVANTARLO DESDE RESOURCES*/
 				
 		if ($result = $conexion->RetornarConsulta($query)) {
 			
@@ -84,18 +86,18 @@ class Usuario {
 
 		    /* fetch object array */
 		    while ($obj = $result->fetch_object()) {
-				$this->_Nombre_Usuario=$obj->Nombre_Usuario
-				$this->_Nombre=$obj->Nombre
-				$this->_Apellido=$obj->Apellido
-				$this->_Email=$obj->Email
-				$this->_FotoHash=$obj->FotoHash
-				$this->_Direccion=$obj->Direccion
-				$this->_Codigo_Postal=$obj->Codigo_Postal
-				$this->_Ciudad_ID=$obj->Ciudad_ID
-				$this->_Telefono=$obj->Telefono
-				$this->_Mail_Adicional=$obj->Mail_Adicional
-				$this->_Perfil_ID=$obj->Perfil_ID
-				$this->_Empresa_ID=$obj->Empresa_ID
+				$this->_Nombre_Usuario=$obj->Nombre_Usuario;
+				$this->_Nombre=$obj->Nombre;
+				$this->_Apellido=$obj->Apellido;
+				$this->_Email=$obj->Email;
+				$this->_FotoHash=$obj->FotoHash;
+				$this->_Direccion=$obj->Direccion;
+				$this->_Codigo_Postal=$obj->Codigo_Postal;
+				$this->_Ciudad_ID=$obj->Ciudad_ID;
+				$this->_Telefono=$obj->Telefono;
+				$this->_Mail_Adicional=$obj->Mail_Adicional;
+				$this->_Perfil_ID=$obj->Perfil_ID;
+				$this->_Empresa_ID=$obj->Empresa_ID;
 				$this->_Ultima_Actualizacion=$obj->Ultima_Actualizacion
 				$this->_Ultima_Actividad=$obj->Ultima_Actividad
 				$this->_Activo=$obj->Activo
