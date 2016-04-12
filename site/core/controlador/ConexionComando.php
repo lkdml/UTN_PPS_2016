@@ -1,15 +1,22 @@
 <?php
-
+require_once('../../configuracion.php');
 class ConexionComando 
 {
 	public static $objetoDatos;
 	public $objetoMysqli;
 
+	
 	public function __construct()
 	{
 	    try
 	    {
-	        $this->objetoMysqli=  new mysqli('mysql:host=localhost;dbname=practicafinal;charset=utf8','root','');
+	    
+		    
+	        $this->objetoMysqli=  new mysqli(\CORE\Controlador\Config::getPublic('MySQL_Host')
+	        						, \CORE\Controlador\Config::getPublic('MySQL_User')
+	        						, \CORE\Controlador\Config::getPublic('MySQL_Pass')
+	        						, \CORE\Controlador\Config::getPublic('MySQL_DB')
+	        						, \CORE\Controlador\Config::getPublic('MySQL_Port'));
 	
 	        
 	    }
