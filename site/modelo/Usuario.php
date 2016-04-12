@@ -4,6 +4,7 @@ class Usuario {
  	
  	private $_Usuario_ID;
 	private $_Nombre_Usuario;
+	private $_Clave;
 	private $_Nombre;
 	private $_Apellido;
 	private $_Email;
@@ -34,24 +35,19 @@ class Usuario {
 	return $this;
 	}
 	
-	
+
 	//Constructor Default
 	function __construct() 
 	{}
 	
-		//Constructor Default
-	function __construct($Usuario_ID) 
-	{
-		$this->_Usuario_ID=$Usuario_ID;
-	}
-	
-	private function Obtener_Usuario()
+	private function Obtener_Usuario($Usuario_ID)
 	{
 		//Tener lista la conexion para ver este tema
 		$conexion=ConexionComando::Obtener_Instancia();
 		$query="Select Nombre_Usuario
 						,Nombre
 						,Apellido
+						,Clave
 						,Email
 						,FotoHash
 						,Direccion
@@ -80,15 +76,17 @@ class Usuario {
 			b	la variable correspondiente es un blob y se envía en paquetes
 			*/
 			
-			if (!$result->bind_param("i", $this->_Usuario_ID)) {
+			if (!$result->bind_param("i", $this->$Usuario_ID)) {
 			    echo "Binding parameters failed: (" . $result->errno . ") " . $result->error;
 			}
 
 		    /* fetch object array */
 		    while ($obj = $result->fetch_object()) {
+		    	$this->_Usuario_ID=$Usuario_ID;
 				$this->_Nombre_Usuario=$obj->Nombre_Usuario;
 				$this->_Nombre=$obj->Nombre;
 				$this->_Apellido=$obj->Apellido;
+				$this->_Clave=$obj->Clave;
 				$this->_Email=$obj->Email;
 				$this->_FotoHash=$obj->FotoHash;
 				$this->_Direccion=$obj->Direccion;
@@ -98,10 +96,10 @@ class Usuario {
 				$this->_Mail_Adicional=$obj->Mail_Adicional;
 				$this->_Perfil_ID=$obj->Perfil_ID;
 				$this->_Empresa_ID=$obj->Empresa_ID;
-				$this->_Ultima_Actualizacion=$obj->Ultima_Actualizacion
-				$this->_Ultima_Actividad=$obj->Ultima_Actividad
-				$this->_Activo=$obj->Activo
-				$this->_Eliminado=$obj->Eliminado
+				$this->_Ultima_Actualizacion=$obj->Ultima_Actualizacion;
+				$this->_Ultima_Actividad=$obj->Ultima_Actividad;
+				$this->_Activo=$obj->Activo;
+				$this->_Eliminado=$obj->Eliminado;
 		    }
 		
 		    
@@ -111,6 +109,120 @@ class Usuario {
 		/* cierro conexion */
 		$conexion->close();
 	
+	}
+	
+	private function Alta()
+	{
+		//Tener lista la conexion para ver este tema
+		$conexion=ConexionComando::Obtener_Instancia();
+		$query="Insert into usuarios (Nombre_Usuario
+						,Nombre
+						,Apellido
+						,Clave
+						,Email
+						,FotoHash
+						,Direccion
+						,Codigo_Postal
+						,Ciudad_ID
+						,Telefono
+						,Mail_Adicional
+						,Perfil_ID
+						,Empresa_ID
+						,Activo
+						,Eliminado)
+					Values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		if ($result = $conexion->RetornarConsulta($query)) {
+			
+			/*
+			BIND PARAMETROS
+			i	la variable correspondiente es de tipo entero
+			d	la variable correspondiente es de tipo double
+			s	la variable correspondiente es de tipo string
+			b	la variable correspondiente es un blob y se envía en paquetes
+			*/
+			try
+			{
+				$result->bind_param("s", $this->_Nombre_Usuario);
+				$result->bind_param("s", $this->_Nombre);
+				$result->bind_param("s", $this->_Apellido);
+				$result->bind_param("s", $this->_Clave);
+				$result->bind_param("s", $this->_Email);
+				$result->bind_param("i", $this->_FotoHash);
+				$result->bind_param("s", $this->_Direccion);
+				$result->bind_param("s", $this->_Codigo_Postal);
+				$result->bind_param("i", $this->_Ciudad_ID);
+				$result->bind_param("s", $this->_Telefono);
+				$result->bind_param("s", $this->_Mail_Adicional);
+				$result->bind_param("i", $this->_Perfil_ID);
+				$result->bind_param("i", $this->_Empresa_ID);
+				$result->bind_param("i", $this->_Activo);	
+				$result->bind_param("i", $this->_Eliminado);
+			}
+			catch(Exception $e)
+			{
+				print "Error!: " . $e->getMessage(); 
+			}
+		
+		}
+		$result->execute();
+	}
+	
+	private function Baja()
+	{
+		$conexion=ConexionComando::Obtener_Instancia();
+		$query="Update usuarios set Activo=0,Eliminado=1 where Usuario_ID=?";
+		if ($result = $conexion->RetornarConsulta($query)) {
+		
+			try
+			{
+				$result->bind_param("i", $this->_Usuario_ID);
+			}
+			catch(Exception $e)
+			{
+				print "Error!: " . $e->getMessage(); 
+			}
+		
+		}
+		$result->execute();
+	}
+	
+	private function Modificar()
+	{
+		$conexion=ConexionComando::Obtener_Instancia();
+		$query="Update usuarios set 
+						Nombre=?
+						,Apellido=?
+						,Clave=?
+						,FotoHash=?
+						,Direccion=?
+						,Codigo_Postal=?
+						,Ciudad_ID=?
+						,Telefono=?
+						,Mail_Adicional=?
+						,Ultima_Actualizacion=GETDATE()
+					where Usuario_ID=?";
+		if ($result = $conexion->RetornarConsulta($query)) {
+		
+			try
+			{
+				$result->bind_param("s", $this->_Nombre);
+				$result->bind_param("s", $this->_Apellido);
+				$result->bind_param("s", $this->_Clave);
+				$result->bind_param("i", $this->_FotoHash);
+				$result->bind_param("s", $this->_Direccion);
+				$result->bind_param("s", $this->_Codigo_Postal);
+				$result->bind_param("i", $this->_Ciudad_ID);
+				$result->bind_param("s", $this->_Telefono);
+				$result->bind_param("s", $this->_Mail_Adicional);
+				$result->bind_param("i", $this->_Usuario_ID);
+			}
+			catch(Exception $e)
+			{
+				print "Error!: " . $e->getMessage(); 
+			}
+		
+		}
+		$result->execute();
 	}
 
 }
