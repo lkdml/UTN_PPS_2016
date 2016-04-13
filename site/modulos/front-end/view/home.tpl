@@ -1,4 +1,4 @@
-{include file="head.tpl"
+{include file="header.tpl"
 css=''
 js=''
 }
@@ -173,5 +173,6 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
-</body>
-</html>
+
+
+{include file='footer.tpl'}

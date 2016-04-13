@@ -24,4 +24,5 @@ session_start();
   $vm = new ViewManager(\CORE\Controlador\Config::getPublic('LogIn_SMARTY_TemplateDir'),null);
   $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Front').'css/',\CORE\Controlador\Config::getPublic('Ruta_Front').'js/',\CORE\Controlador\Config::getPublic('Ruta_Front').'imagenes/');
 
-  $vm->display('principal.tpl');
+  $vm->display('404.tpl');
+?>

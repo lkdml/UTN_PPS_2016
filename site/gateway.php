@@ -11,7 +11,10 @@ if (!isset($_GET['modulo'])) {
     require_once(\CORE\Controlador\Config::getPublic('Ruta_Front').'login.php');
   
 }   else {  
-
-    require_once(\CORE\Controlador\Config::getPublic('Ruta_Front').$_GET['modulo'].'.php');
+    if (file_exists(\CORE\Controlador\Config::getPublic('Ruta_Front').$_GET['modulo'].'.php')) {
+        require_once(\CORE\Controlador\Config::getPublic('Ruta_Front').$_GET['modulo'].'.php');
+    } else {
+        require_once(\CORE\Controlador\Config::getPublic('Ruta_Front').'404.php');
+    }
 }
 ?>
