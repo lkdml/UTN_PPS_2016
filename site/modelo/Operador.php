@@ -119,11 +119,14 @@ class Operador {
 						,Activo
 						,Deptos_Habilitados
 						,Habilita_Notificaciones_Mail
-						,Filtro_Ticket_ID
+						,Filtro_Ticket_ID 
 						,HashFoto
 						,Eliminado)
 					Values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		if ($result = $conexion->RetornarConsulta($query)) {
+					
+					//FIXME REVISAR SI FILTRO TICKETS ES NECESARIO PARA EL ALTA
+					
+			if ($result = $conexion->RetornarConsulta($query)) {
 			
 			/*
 			BIND PARAMETROS
