@@ -47,7 +47,7 @@ js=''
             </ul>
             
               <div class="tab-pane" id="#settings">
-                <form class="form-horizontal">
+                <form action="{$rutaCSS}../controlador/modifUserAction.php" method="post" class="form-horizontal">
                   <div class="form-group">
                     <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
 
@@ -107,9 +107,7 @@ js=''
                   <br>
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                      <form action="{$rutaCSS}../controlador/modifUserAction.php" method="post" >
                         <button type="submit" class="btn btn-warning">Modificar</button>
-                      </form>
                     </div>
                   </div>
                 
