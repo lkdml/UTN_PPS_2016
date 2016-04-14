@@ -27,9 +27,6 @@ js=''
 
               <ul class="list-group list-group-unbordered">
                 <li class="list-group-item">
-                  <b>Perfil</b> <a class="pull-right">Administrador</a>
-                </li>
-                <li class="list-group-item">
                   <b>Empresa</b> <a class="pull-right">TMH S.A</a>
                 </li>
                 <li class="list-group-item">
@@ -129,4 +126,16 @@ js=''
 
     </section>
     <!-- /.content -->
+    <!-- jQuery 2.2.0 -->
+<script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="{$rutaJS}bootstrap.min.js"></script>
+<!-- SlimScroll -->
+<script src="{$rutaJS}jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="{$rutaJS}fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="{$rutaJS}app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{$rutaJS}demo.js"></script>
  {include file="footer.tpl"}

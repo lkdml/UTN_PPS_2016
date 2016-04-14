@@ -28,7 +28,7 @@
         {$js|default:''}
 </head>
 <!-- ADD THE CLASS layout-boxed TO GET A BOXED LAYOUT -->
-<body class="hold-transition skin-blue layout-boxed sidebar-mini">
+<body class="hold-transition skin-blue layout-boxed sidebar-collapse">
 <!-- Site wrapper -->
 <div class="wrapper">
 
@@ -70,7 +70,8 @@
           </li>
                     <li class="dropdown notifications-menu">
             
-            <a href="/index.php?modulo=registro" class="dropdown-toggle" ><button type="button" class="btn btn-block btn-primary btn-xs">Registrarse</button></a>
+            <a href="#" class="dropdown-toggle" ><button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="control-sidebar">Registrarse</button></a>
+
             
           </li>
           <li>

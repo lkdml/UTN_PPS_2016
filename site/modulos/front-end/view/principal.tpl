@@ -8,6 +8,7 @@ js=''
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -15,19 +16,19 @@ js=''
         <small>Ultimas novedades de T.H.M.</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Home</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i>Principal</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
- 
-        <div class="col-md-14">
+
+        <div class="">
           <ul class="timeline">
           
               <!-- timeline time label -->
               <li class="time-label">
-                  <span class="bg-red">
+                  <span class="bg-blue">
                       10 Feb. 2016
                   </span>
               </li>
@@ -111,7 +112,38 @@ js=''
                       </div>
                   </div>
               </li>
-              ...
+              <li class="time-label">
+                  <span class="bg-red">
+                      2 Feb. 2016
+                  </span>
+              </li>
+              <!-- /.timeline-label -->
+          
+              <!-- timeline item -->
+              <li>
+                  <!-- timeline icon -->
+                  <i class="fa fa-envelope bg-blue"></i>
+                  <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+          
+                      <h3 class="timeline-header"><a href="#">Support Team</a> ...</h3>
+          
+                      <div class="timeline-body">
+                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                          when an unknown printer took a galley of type and scrambled it to make a type 
+                          specimen book. It has survived not only five centuries, but also the leap into 
+                          electronic typesetting, remaining essentially unchanged. It was popularised in the 
+                          1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more 
+                          recently with desktop publishing software like Aldus PageMaker including versions 
+                          of Lorem Ipsum.
+                      </div>
+          
+                      <div class="timeline-footer">
+                          <a class="btn btn-primary btn-xs">...</a>
+                      </div>
+                  </div>
+              </li>
           
           </ul>
           <!-- /.box -->
@@ -122,19 +154,62 @@ js=''
     <!-- /.content -->
     
   </div>
- 
-  <!-- Add the sidebar's background. This div must be placed
-       immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
-</div>
+<!-- The Right Sidebar -->
+<aside class="control-sidebar control-sidebar-light">
+
+
+    <div class="register-box-body">
+      <i><h3>Bienvenido a TMH</span><br></h3> <br></i>
+    <p class="login-box-msg"> Por favor, ingrese los siguientes datos para registrarse:</p>
+
+    <form action="{$rutaCSS}../controlador/registroAction.php" method="post">
+      <div class="form-group has-feedback">
+        <input class="form-control" placeholder="Nombre" type="text">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input class="form-control" placeholder="Apellido" type="text">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input class="form-control" placeholder="Email" type="email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input class="form-control" placeholder="Clave" type="password">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input class="form-control" placeholder="Re-Ingrese la clave" type="password">
+        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+      </div>
+      <div class="row">
+        <div class="col-xs-8">
+          <div class="checkbox icheck">
+            <label class="">
+              Acepto los <a href="#">terminos y condiciones.</a>
+            </label>
+          </div>
+        </div>
+      </div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Registrar</button>
+    </div>
+  </form>
+</aside>
+<!-- The sidebar's background -->
+<!-- This div must placed right after the sidebar for it to work-->
+<div class="control-sidebar-bg"></div>
+
+
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.0 -->
 <script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{$rutaJS}bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="{$rutaJS}jquery.slimscroll.min.js"></script>
+<!-- SlimScroll
+<script src="{$rutaJS}jquery.slimscroll.min.js"></script> -->
 <!-- FastClick -->
 <script src="{$rutaJS}fastclick.js"></script>
 <!-- AdminLTE App -->
