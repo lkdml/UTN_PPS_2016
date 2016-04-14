@@ -107,10 +107,12 @@ js=''
                   <br>
                   <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                      <button type="submit" class="btn btn-warning">Modificar</button>
+                      <form action="{$rutaCSS}../controlador/modifUserAction.php" method="post" >
+                        <button type="submit" class="btn btn-warning">Modificar</button>
+                      </form>
                     </div>
                   </div>
-            
+                
                 </form>
                 <br>
               </div>
