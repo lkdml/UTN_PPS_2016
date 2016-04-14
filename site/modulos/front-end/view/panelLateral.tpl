@@ -17,7 +17,7 @@
       <ul class="sidebar-menu">
         <li class="header">Navegación</li>
         <li class="treeview">
-          <a href="../../index.html">
+          <a href="/index.php?modulo=home">
             <i class="fa fa-dashboard"></i> <span>Home</span>
           </a>
         </li>
