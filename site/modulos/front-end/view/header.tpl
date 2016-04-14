@@ -89,7 +89,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Configuración</a>
+                  <a href="/index.php?modulo=perfil" class="btn btn-default btn-flat">Configuración</a>
                 </div>
                 <div class="pull-right">
                   <a href="/index.php" class="btn btn-default btn-flat">Salir</a>

@@ -20,7 +20,9 @@ class Perfil {
 	
 	return $this;
 	}
-
+	
+	
+	
 }
 
 ?>
