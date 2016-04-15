@@ -1,24 +1,27 @@
 <?php
+namespace CORE\controlador;
 require_once('../../configuracion.php');
+
+use \mysqli as mysqli;
+use \CORE\Controlador\Config as Config;
+
 class ConexionComando 
 {
-	public static $objetoDatos;
+	private static $objetoDatos;
 	public $objetoMysqli;
 
 	
-	public function __construct()
+	protected function __construct()
 	{
 	    try
 	    {
-	    
-		    
-	        $this->objetoMysqli=  new mysqli(\CORE\Controlador\Config::getPublic('MySQL_Host')
-	        						, \CORE\Controlador\Config::getPublic('MySQL_User')
-	        						, \CORE\Controlador\Config::getPublic('MySQL_Pass')
-	        						, \CORE\Controlador\Config::getPublic('MySQL_DB')
-	        						, \CORE\Controlador\Config::getPublic('MySQL_Port'));
-	
-	        
+
+	        $this->objetoMysqli=  new mysqli(Config::getPublic('MySQL_Host')
+	        						, Config::getPublic('MySQL_User')
+	        						, Config::getPublic('MySQL_Pass')
+	        						, Config::getPublic('MySQL_DB')
+	        						, Config::getPublic('MySQL_Port'));
+    
 	    }
 	     catch (mysqli_sql_exception  $e) { 
             print "Error!: " . $e->getMessage(); 
@@ -26,6 +29,7 @@ class ConexionComando
         }
 			
 	}
+	
 
 	public static function Obtener_Instancia()
 	{
@@ -40,6 +44,12 @@ class ConexionComando
 	public function RetornarConsulta($sql)
 	{
 		return $this->objetoMysqli->prepare($sql);
+	}
+	
+	public function RetornarConsultaExtendida($sql)
+	{
+		return $this->objetoMysqli->query($sql,MYSQLI_USE_RESULT);
+		
 	}
 	
 	

@@ -10,10 +10,6 @@
         
 $FullPathCore = str_replace('\\', '/',dirname(__FILE__) .'/'); //Ruta absoluta desde el core.       
 
-require_once($FullPathCore.'controlador/Config.php');
-
-
-
  //rutas absolutas
                
  \CORE\Controlador\Config::setPublic('Ruta_Core',$FullPathCore);

@@ -1,5 +1,5 @@
 <?php
-namespace CORE;
+namespace CORE\Controlador;
   /**
   * @author lkdml
   * @version Core 1.0

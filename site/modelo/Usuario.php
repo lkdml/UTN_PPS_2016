@@ -1,4 +1,7 @@
 <?php
+namespace Modelo;
+require_once($_SERVER["DOCUMENT_ROOT"].'/core/controlador/AutoLoaderClass.php');
+
 
 class Usuario {
  	
@@ -43,7 +46,7 @@ class Usuario {
 	private function Obtener_Usuario($Usuario_ID)
 	{
 		//Tener lista la conexion para ver este tema
-		$conexion=ConexionComando::Obtener_Instancia();
+		$conexion=\CORE\Controlador\ConexionComando::Obtener_Instancia();
 		$query="Select Nombre_Usuario
 						,Nombre
 						,Apellido
@@ -114,7 +117,7 @@ class Usuario {
 	private function Alta()
 	{
 		//Tener lista la conexion para ver este tema
-		$conexion=ConexionComando::Obtener_Instancia();
+		$conexion=\CORE\Controlador\ConexionComando::Obtener_Instancia();
 		$query="Insert into usuarios (Nombre_Usuario
 						,Nombre
 						,Apellido
@@ -169,7 +172,7 @@ class Usuario {
 	
 	private function Baja()
 	{
-		$conexion=ConexionComando::Obtener_Instancia();
+		$conexion=\CORE\Controlador\ConexionComando::Obtener_Instancia();
 		$query="Update usuarios set Activo=0,Eliminado=1 where Usuario_ID=?";
 		if ($result = $conexion->RetornarConsulta($query)) {
 		
@@ -188,7 +191,7 @@ class Usuario {
 	
 	private function Modificar()
 	{
-		$conexion=ConexionComando::Obtener_Instancia();
+		$conexion=\CORE\Controlador\ConexionComando::Obtener_Instancia();
 		$query="Update usuarios set 
 						Nombre=?
 						,Apellido=?
@@ -224,6 +227,35 @@ class Usuario {
 		}
 		$result->execute();
 	}
+	
+		public function ListarUsuarios()
+	{
+		$conexion=\CORE\Controlador\ConexionComando::Obtener_Instancia();
+		$query="Select * from Configuracion_Global";
+		if ($result = $conexion->RetornarConsulta($query)) {
+		
+			try
+			{
+			
+				
+			}
+			catch(Exception $e)
+			{
+				print "Error!: " . $e->getMessage(); 
+			}
+		
+		}
+			var_dump($result);die;
+		$result->execute();
+	}
+	
+	public function autoLoad($clase){
+      if (file_exists($className . '.php')) {
+          require_once $className . '.php';
+          return true;
+      }
+      return false;
+	} 
 
 }
 

@@ -6,14 +6,14 @@
 * Aquí se cargan todos los parametros de configuración que requiera la Aplicación. 
 */
 
-$FullPath = str_replace('\\', '/',dirname(__FILE__) .'/'); //Ruta absoluta desde site
-
+define('RAIZ', str_replace('\\', '/',dirname(__FILE__) .'/'));  //Ruta absoluta desde site
+require_once($FullPath.'core/controlador/AutoLoaderClass.php');
 require_once($FullPath.'core/configuracion.php');
 require_once($FullPath.'modulos/configuracion.php');
 
  //rutas absolutas
                
- \CORE\Controlador\Config::setPublic('Ruta_App',$FullPath);
+ \CORE\Controlador\Config::setPublic('Ruta_App','/');
  \CORE\Controlador\Config::setPublic('Ruta_Modulos',\CORE\Controlador\Config::getPublic('Ruta_App').'modulos'.'/');
  
  

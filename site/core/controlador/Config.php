@@ -47,13 +47,7 @@ abstract class Config extends Singleton {
    }
 
    
-   public function autoLoad($clase){
-      if (file_exists($className . '.php')) {
-          require_once $className . '.php';
-          return true;
-      }
-      return false;
-} 
+ 
    
   
     
