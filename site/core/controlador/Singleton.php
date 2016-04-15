@@ -16,9 +16,10 @@ class Singleton
      */
     public static function getInstancia()
     {
+      
       if (  !self::$instancia instanceof self)
       {
-         self::$instancia = new self;
+         self::$instancia = new static();
       }
       return self::$instancia;
     }

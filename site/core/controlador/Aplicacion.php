@@ -7,7 +7,13 @@ class Aplicacion extends Singleton {
         public $session;
         private $userID;
         private $loggedIn;
+        private $EM;
 
+        public function setEM($EntityManager){
+                $this->em = $EntityManager;
+        }
+        
+        public function getEM(){return $this->$EM;}
 
 
         /**

@@ -12,7 +12,7 @@ spl_autoload_register(function ($nombre_clase) {
     if ($parts[0] == 'CORE' || $parts[0] == 'Modelo' || $parts[0] == 'Modulo'){
         $path = strtolower(implode('\\',$parts).'\\');
         $filename = str_replace('\\', '/', $path).$Class . '.php';
-        include $_SERVER["DOCUMENT_ROOT"].'/'.$filename;
+        include dirname(dirname(__DIR__)).'/'.$filename;
     }
 });
 
