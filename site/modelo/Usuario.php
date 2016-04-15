@@ -1,261 +1,134 @@
 <?php
 namespace Modelo;
-require_once($_SERVER["DOCUMENT_ROOT"].'/core/controlador/AutoLoaderClass.php');
 
-
+/**
+ * @Entity @Table(name="Usuario")
+ **/
 class Usuario {
+ 	/** 
+ 	 * @Id @Column(type="integer") @GeneratedValue 
+ 	 * @var int
+ 	 */
+ 	protected $Usuario_ID;
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 */
+	protected $Nombre_Usuario;
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 */
+	protected $Clave;
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 */
+	protected $Nombre;
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 */
+	protected $Apellido;
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 */
+	protected $Email;
+	/**
+	 * @Column(type="string" , nullable=true)
+	 * @var string
+	 */
+	protected $FotoHash;
+	/**
+	 * @Column(type="string", nullable=true)
+	 * @var string
+	 */
+	protected $Direccion;
+	/**
+	 * @Column(type="integer" , nullable=true)
+	 * @var int
+	 */
+	protected $Codigo_Postal;
+	/**
+	 * @Column(type="integer", nullable=true)
+	 * @var int
+	 */
+	protected $Ciudad_ID;
+	/**
+	 * @Column(type="string", nullable=true)
+	 * @var string
+	 */
+	protected $Telefono;
+	/**
+	 * @Column(type="string", nullable=true)
+	 * @var string
+	 */
+	protected $Mail_Adicional;
+	/**
+	 * @OneToOne (targetEntity="Empresa", mappedBy="Empresa_ID") 
+	 */
+	protected $Empresa_ID;
+	/**
+	 * @Column(type="integer", nullable=true)
+	 * @var integer
+	 */
+	protected $Ultima_Actualizacion;
+	/**
+	 * @Column(type="integer", nullable=true)
+	 * @var integer
+	 */
+	protected $Ultima_Actividad;
+	/**
+	 * @Column(type="boolean", nullable=true)
+	 * @var boolean
+	 */
+	protected $Activo;
+	/**
+	 * @Column(type="boolean", nullable=true)
+	 * @var boolean
+	 */
+	protected $Eliminado;
+
+
+
+
+
+ 	public function getUsuario_ID(){return $this->Usuario_ID;}
+ 	public function getNombre_Usuario(){return $this->Nombre_Usuario;}
+ 	public function getClave(){return $this->Clave;}
+ 	public function getNombre(){return $this->Nombre;}
+ 	public function getApellido(){return $this->Apellido;} 	
+ 	public function getEmail(){return $this->Email;} 	
+ 	public function getFotoHash(){return $this->FotoHash;} 	
+ 	public function getDireccion(){return $this->Direccion;} 	
+ 	public function getCodigo_Postal(){return $this->Codigo_Postal;} 	
+ 	public function getCiudad_ID(){return $this->Ciudad_ID;} 	
+ 	public function getTelefono(){return $this->Telefono;} 	
+ 	public function getMail_Adicional(){return $this->Mail_Adicional;} 	
+ 	public function getEmpresa_ID(){return $this->Empresa_ID;} 	
+ 	public function getUltima_Actualizacion(){return $this->Ultima_Actualizacion;}
+ 	public function getUltima_Actividad(){return $this->Ultima_Actividad;}
+ 	public function getActivo(){return $this->Activo;}
+ 	public function getEliminado(){return $this->Eliminado;}
  	
- 	private $_Usuario_ID;
-	private $_Nombre_Usuario;
-	private $_Clave;
-	private $_Nombre;
-	private $_Apellido;
-	private $_Email;
-	private $_FotoHash;
-	private $_Direccion;
-	private $_Codigo_Postal;
-	private $_Ciudad_ID;
-	private $_Telefono;
-	private $_Mail_Adicional;
-	private $_Perfil_ID;
-	private $_Empresa_ID;
-	private $_Ultima_Actualizacion;
-	private $_Ultima_Actividad;
-	private $_Activo;
-	private $_Eliminado;
-
-	public function __get($property) {
-	if (property_exists($this, $property)) {
-	  return $this->$property;
-	}
-	}
+ 	public function setNombre_Usuario($username){ $this->Nombre_Usuario = $username;}
+ 	public function setClave($Clave){ $this->Clave = $Clave;}
+ 	public function setNombre($nombre){ $this->Nombre = $nombre;}
+ 	public function setApellido($apellido){ $this->Apellido = $apellido;} 	
+ 	public function setEmail($email){ $this->Email = $email;} 	
+ 	public function setFotoHash($fotoHash){ $this->FotoHash = $fotoHash;} 	
+ 	public function setDireccion($direccion){ $this->Direccion = $direccion;} 	
+ 	public function setCodigo_Postal($cp){ $this->Codigo_Postal = $cp;} 	
+ 	public function setCiudad_ID($id){ $this->Ciudad_ID = $id;} 	
+ 	public function setTelefono($telefono){ $this->Telefono = $telefono;} 	
+ 	public function setMail_Adicional($mail2){ $this->Mail_Adicional = $mail2;} 	
+ 	//public function setEmpresa_ID($id){ $this->Empresa_ID = $id;} 	
+ 	public function setUltima_Actualizacion($ultimaActualizacion){ $this->Ultima_Actualizacion = $ultimaActualizacion;}
+ 	public function setUltima_Actividad($ultimaActividad){ $this->Ultima_Actividad = $ultimaActividad;}
+ 	public function setActivo($bool){ $this->Activo = $bool;}
+ 	public function setEliminado($bool){ $this->Eliminado = $bool;}	
 	
-	public function __set($property, $value) {
-	if (property_exists($this, $property)) {
-	  $this->$property = $value;
-	}
-	
-	return $this;
-	}
-	
-
-	//Constructor Default
-	function __construct() 
-	{}
-	
-	private function Obtener_Usuario($Usuario_ID)
-	{
-		//Tener lista la conexion para ver este tema
-		$conexion=\CORE\Controlador\ConexionComando::Obtener_Instancia();
-		$query="Select Nombre_Usuario
-						,Nombre
-						,Apellido
-						,Clave
-						,Email
-						,FotoHash
-						,Direccion
-						,Codigo_Postal
-						,Ciudad_ID
-						,Telefono
-						,Mail_Adicional
-						,Perfil_ID
-						,Empresa_ID
-						,Ultima_Actualizacion
-						,Ultima_Actividad
-						,Activo
-						,Eliminado
-				from usuarios
-				where Usuario_ID=?";
-		
-		/*VER DE HACERLO EN TXT LA CONSULTA Y LEVANTARLO DESDE RESOURCES*/
-				
-		if ($result = $conexion->RetornarConsulta($query)) {
-			
-			/*
-			BIND PARAMETROS
-			i	la variable correspondiente es de tipo entero
-			d	la variable correspondiente es de tipo double
-			s	la variable correspondiente es de tipo string
-			b	la variable correspondiente es un blob y se envía en paquetes
-			*/
-			
-			if (!$result->bind_param("i", $this->$Usuario_ID)) {
-			    echo "Binding parameters failed: (" . $result->errno . ") " . $result->error;
-			}
-
-		    /* fetch object array */
-		    while ($obj = $result->fetch_object()) {
-		    	$this->_Usuario_ID=$Usuario_ID;
-				$this->_Nombre_Usuario=$obj->Nombre_Usuario;
-				$this->_Nombre=$obj->Nombre;
-				$this->_Apellido=$obj->Apellido;
-				$this->_Clave=$obj->Clave;
-				$this->_Email=$obj->Email;
-				$this->_FotoHash=$obj->FotoHash;
-				$this->_Direccion=$obj->Direccion;
-				$this->_Codigo_Postal=$obj->Codigo_Postal;
-				$this->_Ciudad_ID=$obj->Ciudad_ID;
-				$this->_Telefono=$obj->Telefono;
-				$this->_Mail_Adicional=$obj->Mail_Adicional;
-				$this->_Perfil_ID=$obj->Perfil_ID;
-				$this->_Empresa_ID=$obj->Empresa_ID;
-				$this->_Ultima_Actualizacion=$obj->Ultima_Actualizacion;
-				$this->_Ultima_Actividad=$obj->Ultima_Actividad;
-				$this->_Activo=$obj->Activo;
-				$this->_Eliminado=$obj->Eliminado;
-		    }
-		
-		    
-		    $result->close();
-		}
-		
-		/* cierro conexion */
-		$conexion->close();
-	
-	}
-	
-	private function Alta()
-	{
-		//Tener lista la conexion para ver este tema
-		$conexion=\CORE\Controlador\ConexionComando::Obtener_Instancia();
-		$query="Insert into usuarios (Nombre_Usuario
-						,Nombre
-						,Apellido
-						,Clave
-						,Email
-						,FotoHash
-						,Direccion
-						,Codigo_Postal
-						,Ciudad_ID
-						,Telefono
-						,Mail_Adicional
-						,Perfil_ID
-						,Empresa_ID
-						,Activo
-						,Eliminado)
-					Values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-		if ($result = $conexion->RetornarConsulta($query)) {
-			
-			/*
-			BIND PARAMETROS
-			i	la variable correspondiente es de tipo entero
-			d	la variable correspondiente es de tipo double
-			s	la variable correspondiente es de tipo string
-			b	la variable correspondiente es un blob y se envía en paquetes
-			*/
-			try
-			{
-				$result->bind_param("s", $this->_Nombre_Usuario);
-				$result->bind_param("s", $this->_Nombre);
-				$result->bind_param("s", $this->_Apellido);
-				$result->bind_param("s", $this->_Clave);
-				$result->bind_param("s", $this->_Email);
-				$result->bind_param("i", $this->_FotoHash);
-				$result->bind_param("s", $this->_Direccion);
-				$result->bind_param("s", $this->_Codigo_Postal);
-				$result->bind_param("i", $this->_Ciudad_ID);
-				$result->bind_param("s", $this->_Telefono);
-				$result->bind_param("s", $this->_Mail_Adicional);
-				$result->bind_param("i", $this->_Perfil_ID);
-				$result->bind_param("i", $this->_Empresa_ID);
-				$result->bind_param("i", $this->_Activo);	
-				$result->bind_param("i", $this->_Eliminado);
-			}
-			catch(Exception $e)
-			{
-				print "Error!: " . $e->getMessage(); 
-			}
-		
-		}
-		$result->execute();
-	}
-	
-	private function Baja()
-	{
-		$conexion=\CORE\Controlador\ConexionComando::Obtener_Instancia();
-		$query="Update usuarios set Activo=0,Eliminado=1 where Usuario_ID=?";
-		if ($result = $conexion->RetornarConsulta($query)) {
-		
-			try
-			{
-				$result->bind_param("i", $this->_Usuario_ID);
-			}
-			catch(Exception $e)
-			{
-				print "Error!: " . $e->getMessage(); 
-			}
-		
-		}
-		$result->execute();
-	}
-	
-	private function Modificar()
-	{
-		$conexion=\CORE\Controlador\ConexionComando::Obtener_Instancia();
-		$query="Update usuarios set 
-						Nombre=?
-						,Apellido=?
-						,Clave=?
-						,FotoHash=?
-						,Direccion=?
-						,Codigo_Postal=?
-						,Ciudad_ID=?
-						,Telefono=?
-						,Mail_Adicional=?
-						,Ultima_Actualizacion=GETDATE()
-					where Usuario_ID=?";
-		if ($result = $conexion->RetornarConsulta($query)) {
-		
-			try
-			{
-				$result->bind_param("s", $this->_Nombre);
-				$result->bind_param("s", $this->_Apellido);
-				$result->bind_param("s", $this->_Clave);
-				$result->bind_param("i", $this->_FotoHash);
-				$result->bind_param("s", $this->_Direccion);
-				$result->bind_param("s", $this->_Codigo_Postal);
-				$result->bind_param("i", $this->_Ciudad_ID);
-				$result->bind_param("s", $this->_Telefono);
-				$result->bind_param("s", $this->_Mail_Adicional);
-				$result->bind_param("i", $this->_Usuario_ID);
-			}
-			catch(Exception $e)
-			{
-				print "Error!: " . $e->getMessage(); 
-			}
-		
-		}
-		$result->execute();
-	}
-	
-		public function ListarUsuarios()
-	{
-		$conexion=\CORE\Controlador\ConexionComando::Obtener_Instancia();
-		$query="Select * from Configuracion_Global";
-		if ($result = $conexion->RetornarConsulta($query)) {
-		
-			try
-			{
-			
-				
-			}
-			catch(Exception $e)
-			{
-				print "Error!: " . $e->getMessage(); 
-			}
-		
-		}
-			var_dump($result);die;
-		$result->execute();
-	}
-	
-	public function autoLoad($clase){
-      if (file_exists($className . '.php')) {
-          require_once $className . '.php';
-          return true;
-      }
-      return false;
-	} 
 
 }
 

@@ -1,20 +1,21 @@
 <?php
 namespace Modelo;
 /**
- * @Entity @Table(name="Configuracion_Global")
+ * @Entity @Table(name="Categoria_Anuncio")
  **/
-class Configuracion_Global {
+class Categoria_Anuncio {
  
-	/**
-	 * @Id @Column(type="string") @GeneratedValue 
-	 * @var string
-	 */
- 	 protected $Nombre;
+  	/** 
+ 	 * @Id @Column(type="integer") @GeneratedValue 
+ 	 * @var int
+ 	 */
+ 	 protected $Categoria_ID;
 	/**
 	 * @Column(type="string")
 	 * @var string
 	 */
-	protected $Valor; 	 
+	protected $Nombre; 	 
+ 	
 
 	public function __get($property) {
 		if (property_exists($this, $property)) {
@@ -28,6 +29,7 @@ class Configuracion_Global {
 		}
 		return $this;
 	}
+
 
 }
 

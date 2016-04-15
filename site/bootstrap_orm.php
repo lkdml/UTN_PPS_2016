@@ -4,7 +4,6 @@ require_once("configuracion.php");
 require_once(__DIR__.'/core/controlador/AutoLoaderClass.php');
 require_once(__DIR__."/core/libs/vendor/autoload.php");
 use \CORE\Controlador\Config as Config;
-use \CORE\Controlador\Aplicacion as Aplicacion ;
 use \CORE\Controlador\Entity_Manager as Entity_Manager ;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
