@@ -164,23 +164,23 @@ js=''
 
     <form action="{$rutaCSS}../controlador/registroAction.php" method="post">
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Nombre" type="text">
+        <input class="form-control" name="Nombre" placeholder="Nombre" type="text">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Apellido" type="text">
+        <input class="form-control" name="Apellido" placeholder="Apellido" type="text">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Email" type="email">
+        <input class="form-control" name="Email" placeholder="Email" type="email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Clave" type="password">
+        <input class="form-control" name="Clave1" placeholder="Clave" type="password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Re-Ingrese la clave" type="password">
+        <input class="form-control" name="Clave2" placeholder="Re-Ingrese la clave" type="password">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="row">

@@ -1,196 +1,81 @@
 <?php
-
+namespace Modelo;
+/**
+ * @Entity @Table(name="Empresa")
+ **/
 class Empresa {
  
-    private $_Empresa_ID;
-    private $_Razon_Social;
-    private $_Pais;
-    private $_Direccion;
-    private $_Ciudad;
-    private $_Codigo_Postal;
-    private $_Telefono;
-    private $_Web;
-    private $_Ultima_Actualizacion;
-    private $_Sla_Plan_ID;
-    private $_Perfil_Default_ID;
-    private $_Anuncios;
+  	/** 
+ 	 * @Id @Column(type="integer") @GeneratedValue 
+ 	 * @var int
+ 	 */
+    protected $Empresa_ID;
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 */
+	protected $Razon_Social;
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 */
+	protected $Pais;
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 */
+	protected $Direccion;
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 */
+	protected $Ciudad;
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 */
+    protected $Codigo_Postal;
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 */
+    protected $Telefono;
+	/**
+	 * @Column(type="string")
+	 * @var string
+	 */
+	protected $Web;
+	/**
+	 * @Column(type="datetime")
+	 * @var datetime
+	 */
+	protected $Ultima_Actualizacion;
+	/**
+	 * @ManyToMany (targetEntity="Anuncio", mappedBy="Anuncio_ID") 
+	 */
+    protected $Anuncios;
     
 
-	public function __get($property) {
-	if (property_exists($this, $property)) {
-	  return $this->$property;
-	}
-	}
-	
-	public function __set($property, $value) {
-	if (property_exists($this, $property)) {
-	  $this->$property = $value;
-	}
-	
-	return $this;
-	}
-	
-		private function Obtener_Empresa($Empresa_ID)
-	{
-		//Tener lista la conexion para ver este tema
-		$conexion=ConexionComando::Obtener_Instancia();
-		$query="Select Razon_Social
-		                ,Pais
-		                ,Direccion
-		                ,Ciudad
-		                ,Codigo_Postal
-		                ,Telefono
-		                ,Web
-		                ,Ultima_Actualizacion
-		                ,SLA_Plan_ID
-				from empresas
-				where Empresa_ID=?";
-		
-		/*VER DE HACERLO EN TXT LA CONSULTA Y LEVANTARLO DESDE RESOURCES*/
-				
-		if ($result = $conexion->RetornarConsulta($query)) {
-			
-			/*
-			BIND PARAMETROS
-			i	la variable correspondiente es de tipo entero
-			d	la variable correspondiente es de tipo double
-			s	la variable correspondiente es de tipo string
-			b	la variable correspondiente es un blob y se envía en paquetes
-			*/
-			
-			if (!$result->bind_param("i", $this->$Empresa_ID)) {
-			    echo "Binding parameters failed: (" . $result->errno . ") " . $result->error;
-			}
-
-		    /* fetch object array */
-		    while ($obj = $result->fetch_object()) {
-		    	$this->_Empresa_ID=$Empresa_ID;
-				$this->_Razon_Social=$obj->Razon_Social;
-				$this->_Pais=$obj->Pais;
-				$this->_Direccion=$obj->Direccion;
-				$this->_Ciudad=$obj->Ciudad;
-				$this->_Codigo_Postal=$obj->Codigo_Postal;
-				$this->_Telefono=$obj->Telefono;
-				$this->_Web=$obj->Web;
-				$this->_Ultima_Actualizacion=$obj->Ultima_Actualizacion;
-				$this->_SLA_Plan_ID=$obj->SLA_Plan_ID;
-				$this->_Perfil_Default_ID=$obj->Perfil_Default_ID;
-				
-		    }
-		
-		    
-		    $result->close();
-		}
-		
-		/* cierro conexion */
-		$conexion->close();
-	
-	}
-	
-	private function Alta()
-	{
-		//Tener lista la conexion para ver este tema
-		$conexion=ConexionComando::Obtener_Instancia();
-		$query="Insert into empresas (Razon_Social
-						,Pais
-						,Direccion
-						,Ciudad
-						,Codigo_Postal
-						,Telefono
-						,Web
-						,SLA_Plan_ID
-						,Perfil_Default_ID)
-					Values(?,?,?,?,?,?,?,?,?)";
-		if ($result = $conexion->RetornarConsulta($query)) {
-			
-			/*
-			BIND PARAMETROS
-			i	la variable correspondiente es de tipo entero
-			d	la variable correspondiente es de tipo double
-			s	la variable correspondiente es de tipo string
-			b	la variable correspondiente es un blob y se envía en paquetes
-			*/
-			try
-			{
-				$result->bind_param("s", $this->_Razon_Social);
-				$result->bind_param("s", $this->_Pais);
-				$result->bind_param("s", $this->_Direccion);
-				$result->bind_param("s", $this->_Ciudad);
-				$result->bind_param("s", $this->_Codigo_Postal);
-				$result->bind_param("s", $this->_Telefono);
-				$result->bind_param("s", $this->_Web);
-				$result->bind_param("i", $this->_SLA_Plan_ID);
-				$result->bind_param("i", $this->_Perfil_Default_ID);
-		
-			}
-			catch(Exception $e)
-			{
-				print "Error!: " . $e->getMessage(); 
-			}
-		
-		}
-		$result->execute();
-	}
-	
-	private function Baja()
-	{
-		$conexion=ConexionComando::Obtener_Instancia();
-		$query="Delete from empresas where Empresa_ID=?";
-		if ($result = $conexion->RetornarConsulta($query)) {
-		
-			try
-			{
-				$result->bind_param("i", $this->_Empresa_ID);
-			}
-			catch(Exception $e)
-			{
-				print "Error!: " . $e->getMessage(); 
-			}
-		
-		}
-		$result->execute();
-	}
-	
-	private function Modificar()
-	{
-		$conexion=ConexionComando::Obtener_Instancia();
-		$query="Update usuarios set 
-						Razon_Social=?
-						,Pais=?
-						,Direccion=?
-						,Ciudad=?
-						,Codigo_Postal=?
-						,Telefono=?
-						,Web=?
-						,SLA_Plan_ID=?
-						,Perfil_Default_ID=?
-						,Ultima_Actualizacion=GETDATE()
-					where Empresa_ID=?";
-		if ($result = $conexion->RetornarConsulta($query)) {
-		
-			try
-			{
-				$result->bind_param("s", $this->_Razon_Social);
-				$result->bind_param("s", $this->_Pais);
-				$result->bind_param("s", $this->_Direccion);
-				$result->bind_param("s", $this->_Ciudad);
-				$result->bind_param("s", $this->_Codigo_Postal);
-				$result->bind_param("s", $this->_Telefono);
-				$result->bind_param("s", $this->_Web);
-				$result->bind_param("i", $this->_Sla_Plan_ID);
-				$result->bind_param("i", $this->_Perfil_Default_ID);
-				$result->bind_param("i", $this->_Empresa_ID);
-			}
-			catch(Exception $e)
-			{
-				print "Error!: " . $e->getMessage(); 
-			}
-		
-		}
-		$result->execute();
-	}
-
-
+    public function getEmpresa_Id() {return $this->Empresa_ID;}
+	public function getRazon_Social() {return $this->Razon_Social;}
+	public function getPais() {return $this->Pais;}
+	public function getDireccion() {return $this->Direccion;}
+	public function getCiudad() {return $this->Ciudad;}
+    public function getCodigo_Postal() {return $this->Codigo_Postal;}
+    public function getTelefono() {return $this->Telefono;}
+	public function getWeb() {return $this->Web;}
+	public function getUltima_Actualizacion() {return $this->Ultima_Actualizacion;}
+    public function getAnuncios() {return $this->Anuncios;}
+    
+	public function setRazon_Social($Razon_Social) { $this->Razon_Social = $Razon_Social;}
+	public function setPais($Pais) { $this->Pais = $Pais;}
+	public function setDireccion($Direccion) { $this->Direccion = $Direccion;}
+	public function setCiudad($Ciudad) { $this->Ciudad = $Ciudad;}
+    public function setCodigo_Postal($Codigo_Postal) { $this->Codigo_Postal = $Codigo_Postal;}
+    public function setTelefono($Telefono) { $this->Telefono = $Telefono;}
+	public function setWeb($Web) { $this->Web = $Web;}
+	public function setUltima_Actualizacion($Ultima_Actualizacion) { $this->Ultima_Actualizacion = $Ultima_Actualizacion;}
+    public function setAnuncios($Anuncios) { $this->Anuncios = $Anuncios;}
 }
 
 ?>
