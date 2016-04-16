@@ -27,107 +27,130 @@ js=''
             <!-- form start -->
             <form class="form-horizontal">
               <div class="box-body">
-                <div class="form-group">
-                  <label for="comboDepto" class="col-sm-2 control-label">Departamento</label>
-                  <div class="col-sm-10">
-                   <select class="form-control select2" style="width: 100%;">
-                      <option selected="selected">Sistemas</option>
-                      <option>Depto2</option>
-                      <option>Depto3</option>
-                      <option>Depto4</option>
-                      <option>Depto5</option>
-                      <option>Depto6</option>
-                      <option>Depto7</option>
-                    </select>
+                <div class="box">
+                    <div class="form-group">
+                      <div class="box-body pad">
+                        <label for="comboDepto" class="col-sm-2 control-label">Departamento</label>
+                          <div class="col-sm-10">
+                           <select class="form-control select2" style="width: 100%;">
+                              <option selected="selected">Sistemas</option>
+                              <option>Depto2</option>
+                              <option>Depto3</option>
+                              <option>Depto4</option>
+                              <option>Depto5</option>
+                              <option>Depto6</option>
+                              <option>Depto7</option>
+                            </select>
+                          </div>
+                        </div>  
+                   </div>
+                      <div class="form-group">
+                        <div class="box-body pad">
+                          <label for="comboTipo" class="col-sm-2 control-label">Tipo</label>
+                          <div class="col-sm-10">
+                           <select class="form-control select2" style="width: 100%;">
+                              <option selected="selected">Soporte</option>
+                              <option>Tipo2</option>
+                              <option>Tipo3</option>
+                              <option>Tipo4</option>
+                              <option>Tipo5</option>
+                              <option>Tipo6</option>
+                              <option>Tipo7</option>
+                            </select>
+                          </div>
+                        </div>
+                       </div>
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="comboTipo" class="col-sm-2 control-label">Tipo</label>
-                  <div class="col-sm-10">
-                   <select class="form-control select2" style="width: 100%;">
-                      <option selected="selected">Soporte</option>
-                      <option>Tipo2</option>
-                      <option>Tipo3</option>
-                      <option>Tipo4</option>
-                      <option>Tipo5</option>
-                      <option>Tipo6</option>
-                      <option>Tipo7</option>
-                    </select>
-                  </div>
-                 
-                </div>
-               <div class="form-group">
-                <label for="inputAsunto" class="col-sm-2 control-label">Asunto</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputAsunto">
-                  </div>
-                </div>
-               
+                </div><!-- /.box-body Datos Principales -->
+                
+                <div class="box-body"><!-- /.box-body Campos Custom -->
+                  <div class="box">
+                    <div class="box-header">
+                      <h3 class="box-title">Campos Personalizados
+                      </h3>
+                    </div>
+                    <!-- /.box-header -->
 
-                <div class="form-group">
-                  <label for="titulo" class="col-sm-2 control-label">Sistema Operativo</label>
-                  <div class="col-md-4 radio">
-                      <label>
-                        <input type="radio" name="optionsRadios" id="optnWin" value="optnWindows" checked>
-                        Windows
-                      </label>
-                  </div>
-                  <div class="col-md-4 radio">
-                      <label>
-                        <input type="radio" name="optionsRadios" id="optnLinux" value="optnLinux">
-                        Linux
-                      </label>
-                  </div>
-                </div>
+                    <div class="form-group">
+                      <label for="titulo" class="col-sm-2 control-label">Sistema Operativo</label>
+                      <div class="col-md-4 radio">
+                          <label>
+                            <input type="radio" name="optionsRadios" id="optnWin" value="optnWindows" checked>
+                            Windows
+                          </label>
+                      </div>
+                      <div class="col-md-4 radio">
+                          <label>
+                            <input type="radio" name="optionsRadios" id="optnLinux" value="optnLinux">
+                            Linux
+                          </label>
+                      </div>
+                    </div>
   
                 
-                <div class="form-group">
-                  <label for="comboTipo" class="col-sm-2 control-label">Tipo Evento</label>
-                  <div class="col-sm-10">
-                   <select class="form-control select2" style="width: 100%;">
-                      <option selected="selected">Evento1</option>
-                      <option>Evento1</option>
-                      <option>Evento3</option>
-                      <option>Evento4</option>
-                      <option>Evento5</option>
-                      <option>Evento6</option>
-                      <option>Evento7</option>
-                    </select>
-                  </div>
+                    <div class="form-group">
+                      <label for="comboTipo" class="col-sm-2 control-label">Tipo Evento</label>
+                      <div class="col-sm-10">
+                       <select class="form-control select2" style="width: 100%;">
+                          <option selected="selected">Evento1</option>
+                          <option>Evento1</option>
+                          <option>Evento3</option>
+                          <option>Evento4</option>
+                          <option>Evento5</option>
+                          <option>Evento6</option>
+                          <option>Evento7</option>
+                        </select>
+                      </div>
+                     
+                    </div>
+            
+                    <div class="form-group">
+                      <label for="lblTelefono" class="col-sm-2 control-label">Teléfono</label>
+                      <div class="col-sm-10">
+                        <div class="col-sm-4 input-group">
+                          <div class="input-group-addon">
+                            <i class="fa fa-phone"></i>
+                          </div>
+                          <input type="text" class="form-control" data-inputmask='"mask": "9-999-9999"' data-mask>
+                          </div>
+                      </div>
+                    </div>
+                    <br>
+                </div><!-- /.box-body Campos Custom -->
+              </div>
+                <div class="box-body"><!-- /.box-body Asunto Descripcion y Adjuntos -->
+                    <div class="box">
+                      <div class="box-header">
+                        <h3 class="box-title">Descripción
+                        </h3>
+                      </div>
+                        <!-- /.box-header -->
+
+                      <div class="form-group">
+                        <div class="box-body pad">
+                          <label for="inputAsunto" class="col-sm-2 control-label">Asunto</label>
+                          <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputAsunto">
+                          </div>
+                        </div>  
+                        <div class="box-body pad">
+                            <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
+                            
+                                <div class="col-sm-10">
+                                  <textarea class="textarea" placeholder="Ingrese una Descripción" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
+                                <!--  -->
+                                </div>
+                            
+                            <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
+                            <input class="col-sm-10" type="file" id="archivo">
+                         </div> 
+                      </div>
+                    </div>
+                    
+                  </div><!-- /.box-body Asunto Descripcion y Adjuntos -->
                  
-                </div>
+              </div>
               
-                <div class="form-group">
-                  <label for="lblTelefono" class="col-sm-2 control-label">Teléfono</label>
-                  <div class="col-sm-10">
-                    <div class="col-sm-4 input-group">
-                      <div class="input-group-addon">
-                        <i class="fa fa-phone"></i>
-                      </div>
-                      <input type="text" class="form-control" data-inputmask='"mask": "9-999-9999"' data-mask>
-                      </div>
-                  </div>
-                </div>
-                
-                
-            <div class="box">
-                <div class="box-header">
-                  <h3 class="box-title">Descripción
-                  
-                  </h3>
-                </div>
-                  <!-- /.box-header -->
-              <div class="box-body pad">
-                  <form>
-                    <textarea class="textarea" placeholder="Ingrese una Descripción" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                  </form>
-                </div>
-              </div>
-        </div>
-                
-                
-              </div>
-              <!-- /.box-body -->
               <div class="box-footer">
                 <button type="submit" class="btn btn-info pull-right">Enviar</button>
               </div>

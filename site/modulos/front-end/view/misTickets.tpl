@@ -23,7 +23,7 @@ js=''
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <a href="/index.php?modulo=nuevoTicket" class="btn btn-primary btn-block margin-bottom">Nuevo Ticket</a>
+          <!--<a href="/index.php?modulo=nuevoTicket" class="btn btn-primary btn-block margin-bottom">Nuevo Ticket</a>-->
 
           <div class="box box-solid">
             <div class="box-header with-border">
