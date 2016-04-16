@@ -22,13 +22,14 @@ js=''
 
     <!-- Main content -->
     <section class="content">
-
-        <div class="">
+      
+      <div class="row">
+        <div class="col-md-12">
+        <!--<div class="">-->
           <ul class="timeline">
-          
               <!-- timeline time label -->
               <li class="time-label">
-                  <span class="bg-blue">
+                  <span class="bg-red">
                       10 Feb. 2016
                   </span>
               </li>
