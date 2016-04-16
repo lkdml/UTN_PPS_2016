@@ -52,7 +52,8 @@
           <!-- Notifications: style can be found in dropdown.less -->
           <li class="dropdown notifications-menu">
             
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><button type="button" class="btn btn-block btn-primary btn-xs">Ingresar</button>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <button type="button" class="btn btn-block btn-primary btn-xs">Ingresar</button>
             </a>
             <ul class="dropdown-menu">
               <li class="header">Ingrese sus dados:</li>
@@ -72,7 +73,9 @@
           </li>
                     <li class="dropdown notifications-menu">
             
-            <a href="#" class="dropdown-toggle" ><button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="control-sidebar">Registrarse</button></a>
+            <a href="#" class="dropdown-toggle" >
+              <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="control-sidebar">Registrarse</button>
+            </a>
 
             
           </li>

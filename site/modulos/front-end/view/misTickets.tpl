@@ -10,12 +10,11 @@ js=''
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Mis Tickets
-        <small></small>
+        Mis Tickets <small>Lista de todos los tickets creados</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Mis Tickets</li>
+        <li class="active">Mis Tickets</li><small>Listado de todos los tickets</small>
       </ol>
     </section>
 
@@ -23,12 +22,9 @@ js=''
     <section class="content">
       <div class="row">
         <div class="col-md-3">
-          <!--<a href="/index.php?modulo=nuevoTicket" class="btn btn-primary btn-block margin-bottom">Nuevo Ticket</a>-->
-
           <div class="box box-solid">
             <div class="box-header with-border">
               <h3 class="box-title">Carpetas</h3>
-
               <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -48,7 +44,6 @@ js=''
           <div class="box box-solid">
             <div class="box-header with-border">
               <h3 class="box-title">Prioridades</h3>
-
               <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -123,7 +118,6 @@ js=''
               </table>
             </div>
           </div>
-          </div>
           <!-- /. box -->
         </div>
         <!-- /.col -->
@@ -133,6 +127,16 @@ js=''
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+  <!-- jQuery 2.2.0 -->
+<script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="{$rutaJS}bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="{$rutaJS}fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="{$rutaJS}app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{$rutaJS}demo.js"></script>
   
   
    {include file="footer.tpl"}
