@@ -25,7 +25,7 @@ js=''
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form class="form-horizontal">
+            <form action="{$rutaCSS}../controlador/nuevoTicketAction.php" class="form-horizontal">
               <div class="box-body">
                 <div class="box">
                     <div class="form-group">
