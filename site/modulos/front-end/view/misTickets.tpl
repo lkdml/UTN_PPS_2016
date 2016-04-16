@@ -92,13 +92,15 @@ js=''
                   <th>Status</th>
                   <th>Reason</th>
                 </tr>
+                 
                 <tr>
-                  <td>183</td>
+                  <td><a href="/index.php?modulo=vistaTicket">67890</a></td>
                   <td>John Doe</td>
                   <td>11-7-2014</td>
                   <td><span class="label label-success">Approved</span></td>
                   <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
                 </tr>
+               
                 <tr>
                   <td>219</td>
                   <td>Alexander Pierce</td>
