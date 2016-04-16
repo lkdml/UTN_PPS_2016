@@ -129,5 +129,13 @@ js=''
 
 
 
-
+<script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="{$rutaJS}bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="{$rutaJS}fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="{$rutaJS}app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{$rutaJS}demo.js"></script>
 {include file="footer.tpl"}
