@@ -13,10 +13,10 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{$rutaCSS}AdminLTE.min.css">
+  <link rel="stylesheet" href="{$rutaCSS}AdminLTE.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="{$rutaCSS}css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="{$rutaCSS}_all-skins.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

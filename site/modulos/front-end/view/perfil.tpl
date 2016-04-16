@@ -131,7 +131,7 @@ js=''
 <!-- Bootstrap 3.3.6 -->
 <script src="{$rutaJS}bootstrap.min.js"></script>
 <!-- SlimScroll -->
-<script src="{$rutaJS}jquery.slimscroll.min.js"></script>
+<script src="{$rutaJS}jquery.slimscroll.js"></script>
 <!-- FastClick -->
 <script src="{$rutaJS}fastclick.js"></script>
 <!-- AdminLTE App -->
