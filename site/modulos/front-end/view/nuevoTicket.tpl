@@ -137,7 +137,7 @@ js=''
                             <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                             
                                 <div class="col-sm-10">
-                                  <textarea class="textarea" placeholder="Ingrese una Descripción" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
+                                  <textarea class="textarea_msg" placeholder="Ingrese una Descripción" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
                                 <!--  -->
                                 </div>
                             
@@ -157,18 +157,29 @@ js=''
               <!-- /.box-footer -->
             </form>
           </div>
+          
+          
+           
+ <link rel="stylesheet" href="{$rutaCSS}bootstrap3-wysihtml5.min.css">
 
- <!--<link rel="stylesheet" href="../../plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
- FALTA AGREGAR EL CCS Y EL JS
-  -->
+</div>
+<script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="{$rutaJS}bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="{$rutaJS}fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="{$rutaJS}app.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="{$rutaJS}demo.js"></script>
 
-<script src="{$rutaCSS}bootstrap3-wysihtml5.min.css"></script>
-<script src="{$rutaJS}bootstrap3-wysihtml5.all.min.js"></script>
-<!-- <script>
+<script src="{$rutaJS}bootstrap3-wysihtml5.all.js"></script>
+
+{literal} <script>
   $(function () {
     //bootstrap WYSIHTML5 - text editor
-    $(".textarea").wysihtml5();
+    $(".textarea_msg").wysihtml5();
   });
 </script>
--->
+{/literal}
 {include file="footer.tpl"}
