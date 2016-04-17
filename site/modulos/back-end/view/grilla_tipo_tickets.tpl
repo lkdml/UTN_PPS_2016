@@ -14,12 +14,12 @@ js=''
         <!-- Content Header (Page header) -->
         <section class="content-header">
       <h1>
-        Prioridades
+        Tipo de Tickets
         <small>Altas - Modificaciones - Bajas</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Administración</a></li>
-        <li class="active">Lista Prioridades</li>
+        <li class="active">Lista Tipo de Tickets</li>
       </ol>
     </section>
    <!-- /Content Header (Page header) -->  
@@ -55,39 +55,23 @@ js=''
                 <th>_</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
-                <th>Color</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Baja</td>
-                <td>Prioridad por defecto para todos</td>
-                <td><small class="label glyphicon glyphicon-flag bg-green"> </small></td>
+                <td>Consultas</td>
+                <td>Consultas varias</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Media</td>
-                <td>Prioridad Media - Atención dentro de las 48 hs</td>
-                <td><small class="label glyphicon glyphicon-flag bg-yellow"> </small></td>
+                <td>Problema</td>
+                <td>Problemas o errores a tratar.</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Alta</td>
-                <td>Prioridad Alta - Atención menor a 24 hs</td>
-                <td><small class="label glyphicon glyphicon-flag bg-orange"> </small></td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Critica</td>
-                <td>Prioridad Crítica - Atención menor a 12 hs</td>
-                <td><small class="label glyphicon glyphicon-flag bg-red"> </small></td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Urgente</td>
-                <td>Prioridad Urgente - Atención inmediata</td>
-                <td><small class="label glyphicon glyphicon-flag bg-purple"> </small></td>
+                <td>Presupuesto</td>
+                <td>Solicitud de presupuestos</td>
             </tr>
         </tbody>
     </table>
@@ -124,8 +108,7 @@ js=''
 $(document).ready( function () {
     $('#grilla').DataTable({
   "columnDefs": [
-    { "width": "5px", "targets": 0 },
-    { "width": "10px", "targets": 3 }
+    { "width": "5px", "targets": 0 }
   ]
 });
 } );

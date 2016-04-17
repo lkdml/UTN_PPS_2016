@@ -14,12 +14,12 @@ js=''
         <!-- Content Header (Page header) -->
         <section class="content-header">
       <h1>
-        Prioridades
+        Usuarios
         <small>Altas - Modificaciones - Bajas</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Administración</a></li>
-        <li class="active">Lista Prioridades</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Usuarios</a></li>
+        <li class="active">Lista Usuarios</li>
       </ol>
     </section>
    <!-- /Content Header (Page header) -->  
@@ -53,42 +53,115 @@ js=''
         <thead>
             <tr>
                 <th>_</th>
+                <th>Usuario</th>
                 <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Color</th>
+                <th>Apellido</th>
+                <th>Correo</th>
+                <th>Empresa</th>
+                <th>Activo</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Baja</td>
-                <td>Prioridad por defecto para todos</td>
-                <td><small class="label glyphicon glyphicon-flag bg-green"> </small></td>
+                <td>Br1ann</td>
+                <td>Brian</td>
+                <td>Ducca</td>
+                <td>Brian.ducca@gmail.com</td>
+                <td>T.M.H.</td>
+                <td>Si</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Media</td>
-                <td>Prioridad Media - Atención dentro de las 48 hs</td>
-                <td><small class="label glyphicon glyphicon-flag bg-yellow"> </small></td>
+                <td>lbockor</td>
+                <td>Lucas Daniel</td>
+                <td>Bockor</td>
+                <td>Lbockor@gmail.com</td>
+                <td>T.M.H.</td>
+                <td>Si</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Alta</td>
-                <td>Prioridad Alta - Atención menor a 24 hs</td>
-                <td><small class="label glyphicon glyphicon-flag bg-orange"> </small></td>
+                <td>lkdml</td>
+                <td>Mariano</td>
+                <td>López Senés</td>
+                <td>marianolopezsenes@gmail.com</td>
+                <td>T.M.H.</td>
+                <td>Si</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Critica</td>
-                <td>Prioridad Crítica - Atención menor a 12 hs</td>
-                <td><small class="label glyphicon glyphicon-flag bg-red"> </small></td>
+                <td>glopez</td>
+                <td>Gasón</td>
+                <td>López</td>
+                <td>glopez@gmail.com</td>
+                <td>sadaic sa</td>
+                <td>no</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Urgente</td>
-                <td>Prioridad Urgente - Atención inmediata</td>
-                <td><small class="label glyphicon glyphicon-flag bg-purple"> </small></td>
+                <td>gperez</td>
+                <td>Gerardo</td>
+                <td>perez</td>
+                <td>gperez@hotmail.com</td>
+                <td></td>
+                <td>no</td>
             </tr>
+            <tr>
+                <td><input type="checkbox"></input></td>
+                <td>gperez</td>
+                <td>Walter</td>
+                <td>cassin</td>
+                <td>wcassin@elmetro.com.ar</td>
+                <td>El Metro</td>
+                <td>Si</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></input></td>
+                <td>rsalcedo</td>
+                <td>Ricadro</td>
+                <td>Salcedo</td>
+                <td>rsalcedo@elmetro.com.ar</td>
+                <td>El Metro</td>
+                <td>Si</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></input></td>
+                <td>vtomada</td>
+                <td>Victoria</td>
+                <td>Tomada</td>
+                <td>vtomada@elmetro.com.ar</td>
+                <td>El Metro</td>
+                <td>Si</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></input></td>
+                <td>Sgonzales</td>
+                <td>Sofia</td>
+                <td>Gonzalez</td>
+                <td>sgonzales@elmetro.com.ar</td>
+                <td>El Metro</td>
+                <td>si</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></input></td>
+                <td>Valeria</td>
+                <td>Valeria</td>
+                <td>ottero</td>
+                <td>valeria.ottero@nestle.com</td>
+                <td>nestle S.A.</td>
+                <td>Si</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></input></td>
+                <td>Cvaldon</td>
+                <td>Carlos</td>
+                <td>valdon</td>
+                <td>cvaldon@nestle.com</td>
+                <td>nestle S.A.</td>
+                <td>Si</td>
+            </tr>
+            
         </tbody>
     </table>
 
@@ -124,8 +197,7 @@ js=''
 $(document).ready( function () {
     $('#grilla').DataTable({
   "columnDefs": [
-    { "width": "5px", "targets": 0 },
-    { "width": "10px", "targets": 3 }
+    { "width": "5px", "targets": 0 }
   ]
 });
 } );

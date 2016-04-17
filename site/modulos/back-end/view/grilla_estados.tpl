@@ -19,7 +19,7 @@ js=''
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Administración</a></li>
-        <li class="active">Lista Prioridades</li>
+        <li class="active">Lista Estados</li>
       </ol>
     </section>
    <!-- /Content Header (Page header) -->  

@@ -60,7 +60,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Ver Usuarios</a></li>
+                <li><a href="/operador.php?modulo=usuarios">Ver Usuarios</a></li>
                 <li><a href="#">Nuevo Usuario</a></li>
               </ul>
             </li>
@@ -81,14 +81,14 @@
                 <li><a href="/operador.php?modulo=departamentos">Departamentos </a></li>
                 <li><a href="/operador.php?modulo=estados">Estados </a></li>
                 <li><a href="/operador.php?modulo=prioridades">Prioridades </a></li>
-                <li><a href="#">Tipo de Ticket </a></li>
+                <li><a href="/operador.php?modulo=tipo_tickets">Tipo de Ticket </a></li>
                 <li class="divider"></li>
-                <li><a href="#">Operadores </a></li>
-                <li><a href="#">Perfiles Operador </a></li>
+                <li><a href="/operador.php?modulo=operadores">Operadores </a></li>
+                <li><a href="/operador.php?modulo=perfiles">Perfiles Operador </a></li>
                 <li class="divider"></li>
-                <li><a href="#">SLAs </a></li>
+                <li><a href="/operador.php?modulo=slas">SLAs </a></li>
                 <li class="divider"></li>
-                <li><a href="#">Campos Personalizados </a></li>
+                <li><a href="/operador.php?modulo=camposPersonalizados">Campos Personalizados </a></li>
               </ul>
             </li>
           </ul>

@@ -14,12 +14,12 @@ js=''
         <!-- Content Header (Page header) -->
         <section class="content-header">
       <h1>
-        Prioridades
+        SLAs
         <small>Altas - Modificaciones - Bajas</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Administración</a></li>
-        <li class="active">Lista Prioridades</li>
+        <li class="active">Lista SLAs</li>
       </ol>
     </section>
    <!-- /Content Header (Page header) -->  
@@ -55,39 +55,33 @@ js=''
                 <th>_</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
-                <th>Color</th>
+                <th>Departamentos</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Baja</td>
-                <td>Prioridad por defecto para todos</td>
-                <td><small class="label glyphicon glyphicon-flag bg-green"> </small></td>
+                <td>Por Defecto</td>
+                <td>SLA para todos los tickets nuevos.</td>
+                <td>Todos</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Media</td>
-                <td>Prioridad Media - Atención dentro de las 48 hs</td>
-                <td><small class="label glyphicon glyphicon-flag bg-yellow"> </small></td>
+                <td>24 hs</td>
+                <td>SLA para prioridades media a alta</td>
+                <td>Todos</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Alta</td>
-                <td>Prioridad Alta - Atención menor a 24 hs</td>
-                <td><small class="label glyphicon glyphicon-flag bg-orange"> </small></td>
+                <td>6hs</td>
+                <td>SLA para prioridades críticas</td>
+                <td>Todos</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Critica</td>
-                <td>Prioridad Crítica - Atención menor a 12 hs</td>
-                <td><small class="label glyphicon glyphicon-flag bg-red"> </small></td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Urgente</td>
-                <td>Prioridad Urgente - Atención inmediata</td>
-                <td><small class="label glyphicon glyphicon-flag bg-purple"> </small></td>
+                <td>auto-Cierre</td>
+                <td>Cierre automático posterior a las 72 hs de ausencia del usuario.</td>
+                <td>Todos</td>
             </tr>
         </tbody>
     </table>
@@ -124,8 +118,7 @@ js=''
 $(document).ready( function () {
     $('#grilla').DataTable({
   "columnDefs": [
-    { "width": "5px", "targets": 0 },
-    { "width": "10px", "targets": 3 }
+    { "width": "5px", "targets": 0 }
   ]
 });
 } );

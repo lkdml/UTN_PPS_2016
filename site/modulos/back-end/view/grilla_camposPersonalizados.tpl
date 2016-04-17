@@ -14,12 +14,12 @@ js=''
         <!-- Content Header (Page header) -->
         <section class="content-header">
       <h1>
-        Prioridades
+        Campos Personalizados
         <small>Altas - Modificaciones - Bajas</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Administración</a></li>
-        <li class="active">Lista Prioridades</li>
+        <li class="active">Lista Campos Personalizados</li>
       </ol>
     </section>
    <!-- /Content Header (Page header) -->  
@@ -54,40 +54,52 @@ js=''
             <tr>
                 <th>_</th>
                 <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Color</th>
+                <th>descripción</th>
+                <th>tipo</th>
+                <th>departamentos</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Baja</td>
-                <td>Prioridad por defecto para todos</td>
-                <td><small class="label glyphicon glyphicon-flag bg-green"> </small></td>
+                <td>Teléfono</td>
+                <td>Teléconos</td>
+                <td>text</td>
+                <td>Todos</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Media</td>
-                <td>Prioridad Media - Atención dentro de las 48 hs</td>
-                <td><small class="label glyphicon glyphicon-flag bg-yellow"> </small></td>
+                <td>Interno</td>
+                <td>Teléconos</td>
+                <td>text</td>
+                <td>Todos</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Alta</td>
-                <td>Prioridad Alta - Atención menor a 24 hs</td>
-                <td><small class="label glyphicon glyphicon-flag bg-orange"> </small></td>
+                <td>Aplicación</td>
+                <td>Especifique la aplicación</td>
+                <td>Opción</td>
+                <td>Soporte N2</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Critica</td>
-                <td>Prioridad Crítica - Atención menor a 12 hs</td>
-                <td><small class="label glyphicon glyphicon-flag bg-red"> </small></td>
+                <td>O.S.</td>
+                <td>Sistema Operativo</td>
+                <td>Opción</td>
+                <td>Soporte N2</td>
+            </tr><tr>
+                <td><input type="checkbox"></input></td>
+                <td>Nro Hardware</td>
+                <td>Número de identificación del equipamiento afectado</td>
+                <td>text</td>
+                <td>Soporte N1, Soporte N2</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Urgente</td>
-                <td>Prioridad Urgente - Atención inmediata</td>
-                <td><small class="label glyphicon glyphicon-flag bg-purple"> </small></td>
+                <td>Dirección</td>
+                <td>Dirección de envío</td>
+                <td>text</td>
+                <td>Administración</td>
             </tr>
         </tbody>
     </table>
@@ -124,8 +136,7 @@ js=''
 $(document).ready( function () {
     $('#grilla').DataTable({
   "columnDefs": [
-    { "width": "5px", "targets": 0 },
-    { "width": "10px", "targets": 3 }
+    { "width": "5px", "targets": 0 }
   ]
 });
 } );
