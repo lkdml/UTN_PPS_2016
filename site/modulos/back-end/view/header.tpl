@@ -62,6 +62,8 @@
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/operador.php?modulo=usuarios">Ver Usuarios</a></li>
                 <li><a href="#">Nuevo Usuario</a></li>
+                <li class="divider"></li>
+                <li><a href="/operador.php?modulo=empresas">Empresas</a></li>
               </ul>
             </li>
             <li class="dropdown">
@@ -69,6 +71,8 @@
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#">Nuevo Anuncio</a></li>
                 <li><a href="/operador.php?modulo=anuncios">Ver Anuncios</a></li>
+                <li class="divider"></li>
+                <li><a href="/operador.php?modulo=categorias">Categorias</a></li>
               </ul>
             </li>
             <li ><a href="#">Informes </a></li>
