@@ -27,10 +27,10 @@
       <li class="treeview">
         <a href="#"><i class="fa fa-th" ></i><span>Tickets</span> <small class="label pull-right bg-blue">20</small></a>
         <ul class="treeview-menu">
-          <li><a href="#">Abiertos<small class="label pull-right bg-green">5</small></li></a>
-          <li><a href="#">En Curso<small class="label pull-right bg-red">8</small></li></a>
-          <li><a href="#">Respondidos<small class="label pull-right bg-yellow">7</small></li></a>
-          <li><a href="#">Cerrados<small class="label pull-right bg-black">15</small></li></a>
+          <li><a href="/operador.php?modulo=tickets&estado=1">Abiertos<small class="label pull-right bg-green">5</small></li></a>
+          <li><a href="/operador.php?modulo=tickets&estado=2">En Curso<small class="label pull-right bg-red">8</small></li></a>
+          <li><a href="/operador.php?modulo=tickets&estado=3">Respondidos<small class="label pull-right bg-yellow">7</small></li></a>
+          <li><a href="/operador.php?modulo=tickets&estado=4">Cerrados<small class="label pull-right bg-black">15</small></li></a>
         </ul>
       </li>
       <li class="treeview">
@@ -39,19 +39,19 @@
           <li class="treeview">
             <a href="#"><i class="fa fa-th" ></i><span>Soporte N1</span> <small class="label pull-right bg-blue">10</small></a>
             <ul class="treeview-menu">
-              <li><a href="#">Abiertos<small class="label pull-right bg-green">2</small></li></a>
-              <li><a href="#">En Curso<small class="label pull-right bg-red">5</small></li></a>
-              <li><a href="#">Respondidos<small class="label pull-right bg-yellow">3</small></li></a>
-              <li><a href="#">Cerrados<small class="label pull-right bg-black">9</small></li></a>
+              <li><a href="/operador.php?modulo=tickets&departamento=1&estado=1">Abiertos<small class="label pull-right bg-green">2</small></li></a>
+              <li><a href="/operador.php?modulo=tickets&departamento=1&estado=2">En Curso<small class="label pull-right bg-red">5</small></li></a>
+              <li><a href="/operador.php?modulo=tickets&departamento=1&estado=3">Respondidos<small class="label pull-right bg-yellow">3</small></li></a>
+              <li><a href="/operador.php?modulo=tickets&departamento=1&estado=4">Cerrados<small class="label pull-right bg-black">9</small></li></a>
             </ul>
           </li>
           <li class="treeview">
             <a href="#"><i class="fa fa-th" ></i><span>Soporte N2</span> <small class="label pull-right bg-blue">10</small></a>
             <ul class="treeview-menu">
-              <li><a href="#">Abiertos<small class="label pull-right bg-green">1</small></li></a>
-              <li><a href="#">En Curso<small class="label pull-right bg-red">8</small></li></a>
-              <li><a href="#">Respondidos<small class="label pull-right bg-yellow">1</small></li></a>
-              <li><a href="#">Cerrados<small class="label pull-right bg-black">6</small></li></a>
+              <li><a href="/operador.php?modulo=tickets&departamento=2&estado=1">Abiertos<small class="label pull-right bg-green">1</small></li></a>
+              <li><a href="/operador.php?modulo=tickets&departamento=2&estado=2">En Curso<small class="label pull-right bg-red">8</small></li></a>
+              <li><a href="/operador.php?modulo=tickets&departamento=2&estado=3">Respondidos<small class="label pull-right bg-yellow">1</small></li></a>
+              <li><a href="/operador.php?modulo=tickets&departamento=2&estado=4">Cerrados<small class="label pull-right bg-black">6</small></li></a>
             </ul>
           </li>
         </ul>

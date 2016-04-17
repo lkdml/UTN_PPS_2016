@@ -52,7 +52,7 @@ js=''
     <table id="grilla" class="display">
         <thead>
             <tr>
-                <th>_</th>
+                <th><input type="checkbox"></input></th>
                 <th>Usuario</th>
                 <th>Nombre</th>
                 <th>Apellido</th>

@@ -14,12 +14,12 @@ js=''
         <!-- Content Header (Page header) -->
         <section class="content-header">
       <h1>
-        Operadores
+        Anuncios
         <small>Altas - Modificaciones - Bajas</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Administración</a></li>
-        <li class="active">Lista Operadores</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> Anuncios</a></li>
+        <li class="active">Lista Anuncios</li>
       </ol>
     </section>
    <!-- /Content Header (Page header) -->  
@@ -53,34 +53,49 @@ js=''
         <thead>
             <tr>
                 <th><input type="checkbox"></input></th>
-                <th>Usuario</th>
                 <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Correo</th>
+                <th>Empresas</th>
+                <th>Publicado</th>
+                <th>Fecha</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Br1ann</td>
-                <td>Brian</td>
-                <td>Ducca</td>
-                <td>Brian.ducca@gmail.com</td>
+                <td>Novedades Marzo 2016</td>
+                <td>Todas</td>
+                <td>Si</td>
+                <td>2016-03-01 12:40</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>lbockor</td>
-                <td>Lucas Daniel</td>
-                <td>Bockor</td>
-                <td>Lbockor@gmail.com</td>
+                <td>Actualización de Seguridad</td>
+                <td>Todas</td>
+                <td>Si</td>
+                <td>2016-03-02 11:50</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>lkdml</td>
-                <td>Mariano</td>
-                <td>López Senés</td>
-                <td>marianolopezsenes@gmail.com</td>
+                <td>Factura pendiente de pago</td>
+                <td>El Metro,Nestle</td>
+                <td>Si</td>
+                <td>2016-03-11 1:00</td>
             </tr>
+            <tr>
+                <td><input type="checkbox"></input></td>
+                <td>Nuevo sistema de Monitoreo</td>
+                <td>Todas</td>
+                <td>Si</td>
+                <td>2016-03-21 2:40</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></input></td>
+                <td>Novedades Abril 2016</td>
+                <td>Todas</td>
+                <td>Si</td>
+                <td>2016-04-01 12:35</td>
+            </tr>
+            
         </tbody>
     </table>
 

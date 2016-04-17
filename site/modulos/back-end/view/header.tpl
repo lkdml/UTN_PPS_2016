@@ -34,7 +34,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="/index.php?modulo=home" class="logo">
+    <a href="/operador.php?modulo=dashboard" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini">TMH</span>
       <!-- logo for regular state and mobile devices -->
@@ -53,7 +53,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tickets <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Ver Tickets</a></li>
+                <li><a href="/operador.php?modulo=tickets">Ver Tickets</a></li>
                 <li><a href="#">Nuevo Ticket</a></li>
               </ul>
             </li>
@@ -68,7 +68,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anuncios <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="#">Nuevo Anuncio</a></li>
-                <li><a href="#">Ver Anuncios</a></li>
+                <li><a href="/operador.php?modulo=anuncios">Ver Anuncios</a></li>
               </ul>
             </li>
             <li ><a href="#">Informes </a></li>
