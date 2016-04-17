@@ -1,7 +1,7 @@
 <?php
 
 
-$ejecutandoAPP = true;
+$modoOP = false;
 
 require_once('gateway.php');
 

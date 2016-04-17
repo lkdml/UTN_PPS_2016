@@ -23,14 +23,6 @@ js=''
     </section>
 
     <!-- Main content -->
-
-    
-    
-    
-    
-    
-    
-    
     <section class="content">
  
         <div class="col-md-14">

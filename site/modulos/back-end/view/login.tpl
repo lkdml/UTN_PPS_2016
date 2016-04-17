@@ -15,7 +15,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{$rutaCSS}AdminLTE.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="{$rutaCSS}iCheck/square/blue.css">
+  <link rel="stylesheet" href="{$rutaCSS}blue.css">
         {$css|default:''}
         {$js|default:''}
 
@@ -74,6 +74,7 @@
 <script src="{$rutaJS}bootstrap.min.js"></script>
 <!-- iCheck -->
 <script src="{$rutaJS}icheck.min.js"></script>
+{literal}
 <script>
   $(function () {
     $('input').iCheck({
@@ -83,6 +84,7 @@
     });
   });
 </script>
+{/literal}
 </body>
 </html>
 
