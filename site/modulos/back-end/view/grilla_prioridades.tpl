@@ -14,12 +14,12 @@ js=''
         <!-- Content Header (Page header) -->
         <section class="content-header">
       <h1>
-        Departamentos
+        Prioridades
         <small>Altas - Modificaciones - Bajas</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Administración</a></li>
-        <li class="active">Lista Departamentos</li>
+        <li class="active">Lista Prioridades</li>
       </ol>
     </section>
    <!-- /Content Header (Page header) -->  
@@ -52,31 +52,42 @@ js=''
     <table id="grilla" class="display">
         <thead>
             <tr>
-                <th> ID </th>
+                <th>_</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
+                <th>Color</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Soporte N1</td>
-                <td>Soporte a usuarios de primer nivel</td>
+                <td>Baja</td>
+                <td>Prioridad por defecto para todos</td>
+                <td><small class="label glyphicon glyphicon-flag bg-green"> </small></td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Soporte N2</td>
-                <td>Soporte a usuarios de primer nivel</td>
+                <td>Media</td>
+                <td>Prioridad Media - Atención dentro de las 48 hs</td>
+                <td><small class="label glyphicon glyphicon-flag bg-yellow"> </small></td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Administración</td>
-                <td>Administracion de TMH</td>
+                <td>Alta</td>
+                <td>Prioridad Alta - Atención menor a 24 hs</td>
+                <td><small class="label glyphicon glyphicon-flag bg-orange"> </small></td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Ventas</td>
-                <td>Equipo de Ventas de TMH</td>
+                <td>Critica</td>
+                <td>Prioridad Crítica - Atención menor a 12 hs</td>
+                <td><small class="label glyphicon glyphicon-flag bg-red"> </small></td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></input></td>
+                <td>Urgente</td>
+                <td>Prioridad Urgente - Atención inmediata</td>
+                <td><small class="label glyphicon glyphicon-flag bg-purple"> </small></td>
             </tr>
         </tbody>
     </table>

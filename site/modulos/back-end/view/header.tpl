@@ -78,9 +78,9 @@
                 <li><a href="#">Configuración General </a></li>
                 <li><a href="#">Plantillas Mails </a></li>
                 <li class="divider"></li>
-                <li><a href="/operador.php?modulo=g_deptos">Departamentos </a></li>
-                <li><a href="#">Estados </a></li>
-                <li><a href="#">Prioridades </a></li>
+                <li><a href="/operador.php?modulo=departamentos">Departamentos </a></li>
+                <li><a href="/operador.php?modulo=estados">Estados </a></li>
+                <li><a href="/operador.php?modulo=prioridades">Prioridades </a></li>
                 <li><a href="#">Tipo de Ticket </a></li>
                 <li class="divider"></li>
                 <li><a href="#">Operadores </a></li>

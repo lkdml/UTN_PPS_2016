@@ -14,12 +14,12 @@ js=''
         <!-- Content Header (Page header) -->
         <section class="content-header">
       <h1>
-        Departamentos
+        Estados
         <small>Altas - Modificaciones - Bajas</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Administración</a></li>
-        <li class="active">Lista Departamentos</li>
+        <li class="active">Lista Prioridades</li>
       </ol>
     </section>
    <!-- /Content Header (Page header) -->  
@@ -52,7 +52,7 @@ js=''
     <table id="grilla" class="display">
         <thead>
             <tr>
-                <th> ID </th>
+                <th>_</th>
                 <th>Nombre</th>
                 <th>Descripción</th>
             </tr>
@@ -60,23 +60,23 @@ js=''
         <tbody>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Soporte N1</td>
-                <td>Soporte a usuarios de primer nivel</td>
+                <td><small class="label bg-olive">Abierto</small></td>
+                <td>Estado para tickets nuevos o respondidos por usuario.</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Soporte N2</td>
-                <td>Soporte a usuarios de primer nivel</td>
+                <td><small class="label bg-red">En Curso</small></td>
+                <td>Estado para tickets nuevos o respondidos por usuario.</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Administración</td>
-                <td>Administracion de TMH</td>
+                <td><small class="label bg-blue">Respondido</small></td>
+                <td>Estado para tickets nuevos o respondidos por usuario.</td>
             </tr>
             <tr>
                 <td><input type="checkbox"></input></td>
-                <td>Ventas</td>
-                <td>Equipo de Ventas de TMH</td>
+                <td><small class="label bg-teal">Cerrado</small></td>
+                <td>Estado para tickets nuevos o respondidos por usuario.</td>
             </tr>
         </tbody>
     </table>
