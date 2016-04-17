@@ -28,7 +28,7 @@
         {$js|default:''}
 </head>
 <!-- ADD THE CLASS layout-boxed TO GET A BOXED LAYOUT -->
-<body class="hold-transition skin-blue layout-boxed sidebar-mini">
+<body class="skin-blue sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
 
@@ -49,7 +49,7 @@
       <!-- Botonera top -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Dashboard <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a href="/operador.php?modulo=dashboard">Dashboard <span class="sr-only">(current)</span></a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tickets <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
@@ -78,7 +78,7 @@
                 <li><a href="#">Configuración General </a></li>
                 <li><a href="#">Plantillas Mails </a></li>
                 <li class="divider"></li>
-                <li><a href="#">Departamentos </a></li>
+                <li><a href="/operador.php?modulo=g_deptos">Departamentos </a></li>
                 <li><a href="#">Estados </a></li>
                 <li><a href="#">Prioridades </a></li>
                 <li><a href="#">Tipo de Ticket </a></li>
