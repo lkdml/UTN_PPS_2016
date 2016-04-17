@@ -49,26 +49,49 @@
       <!-- Botonera top -->
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Link</a></li>
+            <li class="active"><a href="#">Dashboard <span class="sr-only">(current)</span></a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tickets <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="#">Ver Tickets</a></li>
+                <li><a href="#">Nuevo Ticket</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Ver Usuarios</a></li>
+                <li><a href="#">Nuevo Usuario</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anuncios <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Nuevo Anuncio</a></li>
+                <li><a href="#">Ver Anuncios</a></li>
+              </ul>
+            </li>
+            <li ><a href="#">Informes </a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administración <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#">Configuración General </a></li>
+                <li><a href="#">Plantillas Mails </a></li>
                 <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
+                <li><a href="#">Departamentos </a></li>
+                <li><a href="#">Estados </a></li>
+                <li><a href="#">Prioridades </a></li>
+                <li><a href="#">Tipo de Ticket </a></li>
                 <li class="divider"></li>
-                <li><a href="#">One more separated link</a></li>
+                <li><a href="#">Operadores </a></li>
+                <li><a href="#">Perfiles Operador </a></li>
+                <li class="divider"></li>
+                <li><a href="#">SLAs </a></li>
+                <li class="divider"></li>
+                <li><a href="#">Campos Personalizados </a></li>
               </ul>
             </li>
           </ul>
-          <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" id="navbar-search-input" placeholder="Search">
-            </div>
-          </form>
         </div>
       <!--Fin Botonera top -->  
         
