@@ -28,7 +28,7 @@
         {$js|default:''}
 </head>
 <!-- ADD THE CLASS layout-boxed TO GET A BOXED LAYOUT -->
-<body class="hold-transition skin-blue layout-boxed sidebar-mini">
+<body class="hold-transition skin-green-light  sidebar-mini">
 <!-- Site wrapper -->
 <div class="wrapper">
 

@@ -24,123 +24,134 @@ js=''
 
     <!-- Main content -->
     <section class="content">
+      
+            <div class="row">
+        <div class="col-md-12">
+        <!--<div class="">-->
+          <ul class="timeline">
+              <!-- timeline time label -->
+              <a ></a>
+
+              
+              <li class="time-label">
+                  <span class="bg-green">
+                      10 Feb. 2016
+                  </span>
+              </li>
+              
+              <!-- /.timeline-label -->
+          
+              <!-- timeline item -->
+              <li>
+                  <!-- timeline icon -->
+                  <i class="fa fa-clock-o bg-blue"></i>
+                  <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+          
+                      <h3 class="timeline-header"><a href="#">Support Team</a> ...</h3>
+          
+                      <div class="timeline-body">
+                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                          when an unknown printer took a galley of type and scrambled it to make a type 
+                          specimen book. It has survived not only five centuries, but also the leap into 
+                          electronic typesetting, remaining essentially unchanged. It was popularised in the 
+                          1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more 
+                          recently with desktop publishing software like Aldus PageMaker including versions 
+                          of Lorem Ipsum.
+                      </div>
+          
+                      <div class="timeline-footer">
+                          <a class="btn btn-primary btn-xs">...</a>
+                      </div>
+                  </div>
+              </li>
+              <!-- END timeline item -->
+              <li>
+                  <!-- timeline icon -->
+                  <i class="fa fa-bell-o bg-blue"></i>
+                  <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+          
+                      <h3 class="timeline-header"><a href="#">Support Team</a> ...</h3>
+          
+                      <div class="timeline-body">
+                          It is a long established fact that a reader will be distracted 
+                          by the readable content of a page when looking at its layout. 
+                          The point of using Lorem Ipsum is that it has a more-or-less normal 
+                          distribution of letters, as opposed to using 'Content here, content 
+                          here', making it look like readable English. Many desktop publishing 
+                          packages and web page editors now use Lorem Ipsum as their default 
+                          model text, and a search for 'lorem ipsum' will uncover many web sites 
+                          still in their infancy. Various versions have evolved over the years, 
+                          sometimes by accident, sometimes on purpose (injected humour and the like).
+                      </div>
+
+                  </div>
+              </li>
+              <li>
+                  <!-- timeline icon -->
+                  <i class="fa fa-flag-o bg-blue"></i>
+                  <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+          
+                      <h3 class="timeline-header"><a href="#">Support Team</a> ...</h3>
+          
+                      <div class="timeline-body">
+                          Contrary to popular belief, Lorem Ipsum is not simply random text. 
+                          It has roots in a piece of classical Latin literature from 45 BC, 
+                          making it over 2000 years old. Richard McClintock, a Latin professor 
+                          at Hampden-Sydney College in Virginia, looked up one of the more obscure 
+                          Latin words, consectetur, from a Lorem Ipsum passage, and going through 
+                          the cites of the word in classical literature, discovered the undoubtable 
+                          source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of 
+                          "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) 
+                          by Cicero, written in 45 BC. This book is a treatise on the theory of ethics,
+                          very popular during the Renaissance. The first line of Lorem Ipsum, 
+                          "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
+                      </div>
+          
  
-        <div class="col-md-14">
-          <!-- Box Comment -->
-          <div class="box box-widget">
-            <div class="box-header with-border">
-              <div class="user-block">
-                <img class="img-circle" src="{$rutaIMG}user1-128x128.jpg" alt="User Image">
-                <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                <span class="description">Shared publicly - 7:30 PM Today</span>
-              </div>
-              <!-- /.user-block -->
-              <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Mark as read">
-                  <i class="fa fa-circle-o"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-              <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <!-- post text -->
-              <p>Far far away, behind the word mountains, far from the
-                countries Vokalia and Consonantia, there live the blind
-                texts. Separated they live in Bookmarksgrove right at</p>
-
-              <p>the coast of the Semantics, a large language ocean.
-                A small river named Duden flows by their place and supplies
-                it with the necessary regelialia. It is a paradisematic
-                country, in which roasted parts of sentences fly into
-                your mouth.</p>
-
-              <!-- Attachment -->
-              <div class="attachment-block clearfix">
-                <img class="attachment-img" src="{$rutaIMG}photo1.png" alt="Attachment Image">
-
-                <div class="attachment-pushed">
-                  <h4 class="attachment-heading"><a href="http://www.lipsum.com/">Lorem ipsum text generator</a></h4>
-
-                  <div class="attachment-text">
-                    Description about the attachment can be placed here.
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry... <a href="#">more</a>
                   </div>
-                  <!-- /.attachment-text -->
-                </div>
-                <!-- /.attachment-pushed -->
-              </div>
-              <!-- /.attachment-block -->
-
-             
-            </div>
-            <!-- /.box-body -->
-            
-            <!-- /.box-footer -->
-           
-          </div>
+              </li>
+              <li class="time-label">
+                  <span class="bg-green">
+                      2 Feb. 2016
+                  </span>
+              </li>
+              <!-- /.timeline-label -->
+          
+              <!-- timeline item -->
+              <li>
+                  <!-- timeline icon -->
+                  <i class="fa fa-envelope bg-blue"></i>
+                  <div class="timeline-item">
+                      <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+          
+                      <h3 class="timeline-header"><a href="#">Support Team</a> ...</h3>
+          
+                      <div class="timeline-body">
+                          Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                          Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+                          when an unknown printer took a galley of type and scrambled it to make a type 
+                          specimen book. It has survived not only five centuries, but also the leap into 
+                          electronic typesetting, remaining essentially unchanged. It was popularised in the 
+                          1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more 
+                          recently with desktop publishing software like Aldus PageMaker including versions 
+                          of Lorem Ipsum.
+                      </div>
+          
+                      <div class="timeline-footer">
+                          <a class="btn btn-primary btn-xs">...</a>
+                      </div>
+                  </div>
+              </li>
+          
+          </ul>
           <!-- /.box -->
         </div>
-   
-        <div class="col-md-14">
-          <!-- Box Comment -->
-          <div class="box box-widget">
-            <div class="box-header with-border">
-              <div class="user-block">
-                <img class="img-circle" src="{$rutaIMG}user1-128x128.jpg" alt="User Image">
-                <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                <span class="description">Shared publicly - 7:30 PM Today</span>
-              </div>
-              <!-- /.user-block -->
-              <div class="box-tools">
-                <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="Mark as read">
-                  <i class="fa fa-circle-o"></i></button>
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-              <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <!-- post text -->
-              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-              Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown 
-              printer took a galley of type and scrambled it to make a type specimen book. </p>
-
-              <p>It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. 
-              It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus 
-              PageMaker including versions of Lorem Ipsum.</p>
-
-              <!-- Attachment -->
-              <div class="attachment-block clearfix">
-                <img class="attachment-img" src="{$rutaIMG}photo1.png" alt="Attachment Image">
-
-                <div class="attachment-pushed">
-                  <h4 class="attachment-heading"><a href="http://www.lipsum.com/">Lorem ipsum text generator</a></h4>
-
-                  <div class="attachment-text">
-                    Description about the attachment can be placed here.
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry... <a href="#">more</a>
-                  </div>
-                  <!-- /.attachment-text -->
-                </div>
-                <!-- /.attachment-pushed -->
-              </div>
-              <!-- /.attachment-block -->
-
-             
-            </div>
-            <!-- /.box-body -->
-            
-            <!-- /.box-footer -->
-           
-          </div>
-          <!-- /.box -->
-        </div>
-   
+        
+        
        
     </section>
     <!-- /.content -->

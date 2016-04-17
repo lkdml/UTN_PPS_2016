@@ -1,4 +1,4 @@
-{include file="header_login.tpl"
+{include file="header.tpl"
 css=''
 js=''
 }
