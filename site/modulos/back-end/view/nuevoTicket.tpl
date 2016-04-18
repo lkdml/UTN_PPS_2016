@@ -1,12 +1,12 @@
 {include file="header.tpl"
 css=''
-js=''
+js='' 
 }
 {include file="panelLateral.tpl"}
 
- <!-- =============================================== -->
- 
-  <div class="content-wrapper">
+  <!-- =============================================== -->
+  
+   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -44,18 +44,45 @@ js=''
                           </div>
                         </div>  
                    </div>
-                    <div class="form-group">
+                  <div class="form-group">
+                    <div class="box-body pad">
+                      <label for="comboTipo" class="col-sm-2 control-label">Tipo</label>
+                      <div class="col-sm-10">
+                       <select class="form-control select2" style="width: 100%;">
+                          <option selected="selected">Soporte</option>
+                          <option>Tipo2</option>
+                          <option>Tipo3</option>
+                          <option>Tipo4</option>
+                          <option>Tipo5</option>
+                          <option>Tipo6</option>
+                          <option>Tipo7</option>
+                        </select>
+                      </div>
+                    </div>
+                   </div>
+                   <div class="form-group">
                       <div class="box-body pad">
-                        <label for="comboTipo" class="col-sm-2 control-label">Tipo</label>
+                        <label for="comboPrioridad" class="col-sm-2 control-label">Prioridad</label>
                         <div class="col-sm-10">
                          <select class="form-control select2" style="width: 100%;">
-                            <option selected="selected">Soporte</option>
-                            <option>Tipo2</option>
-                            <option>Tipo3</option>
-                            <option>Tipo4</option>
-                            <option>Tipo5</option>
-                            <option>Tipo6</option>
-                            <option>Tipo7</option>
+                            <option selected="selected">Baja</option>
+                            <option>Media</option>
+                            <option>Alta</option>
+                            <option>Crítica</option>
+                            <option>Urgente</option>
+                          </select>
+                        </div>
+                      </div>
+                     </div>
+                     <div class="form-group">
+                      <div class="box-body pad">
+                        <label for="comboPrioridad" class="col-sm-2 control-label">SLA</label>
+                        <div class="col-sm-10">
+                         <select class="form-control select2" style="width: 100%;">
+                            <option selected="selected">Por Defecto</option>
+                            <option>24 hs</option>
+                            <option>6 hs</option>
+                            <option>Auto-Cierre</option>
                           </select>
                         </div>
                       </div>
@@ -182,4 +209,7 @@ js=''
   });
 </script>
 {/literal}
-{include file="footer.tpl"}
+  
+  
+  
+{include file='footer.tpl'}

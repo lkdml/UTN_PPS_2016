@@ -54,7 +54,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tickets <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/operador.php?modulo=tickets">Ver Tickets</a></li>
-                <li><a href="#">Nuevo Ticket</a></li>
+                <li><a href="/operador.php?modulo=nuevoTicket">Nuevo Ticket</a></li>
               </ul>
             </li>
             <li class="dropdown">

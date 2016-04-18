@@ -6,7 +6,7 @@ js=''
 
 
   <!-- =============================================== -->
-  
+ 
    <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -48,32 +48,34 @@ js=''
         
        
         <!-- /.col -->
-       
+       <form action="{$rutaCSS}../controlador/modifOperadorAction.php" method="post" class="form-horizontal">
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-              <li class="active"><a href="#settings" data-toggle="tab">Configuración de la Cuenta</a></li>
+              <li class="active"><a href="#configuracion" data-toggle="tab">Configuración de la Cuenta</a></li>
+              <li class=""><a href="#plantillaMail" data-toggle="tab">Plantilla Mail</a></li>
             </ul>
-            <form action="{$rutaCSS}../controlador/modifOperadorAction.php" method="post" class="form-horizontal">
-              <div class="tab-pane" id="#settings">
+          <div class="box-body">
+            <div class="tab-content">
+              <div class="tab-pane active" id="#configuracion">
                 <div class="box-body pad">
                   <div class="form-group">
                     <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
-
+    
                     <div class="col-sm-5">
                       <input class="form-control" id="inputNombre" placeholder="Brian">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputApellido" class="col-sm-2 control-label">Apellido</label>
-
+    
                     <div class="col-sm-5">
                       <input class="form-control" id="inputApellido" placeholder="Ducca">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputClave" class="col-sm-2 control-label">Clave</label>
-
+    
                     <div class="col-sm-5">
                       <input type="password" class="form-control" id="inputClave" placeholder="">
                     </div>
@@ -86,46 +88,55 @@ js=''
                   </div>
                   <div class="form-group">
                     <label for="inputCodigoPostal" class="col-sm-2 control-label">Codigo Postal</label>
-
+    
                     <div class="col-sm-5">
                       <input type="text" class="form-control" id="inputCodigoPostal" placeholder="1870">
                     </div>
                   </div>
                    <div class="form-group">
                     <label for="inputCiudad" class="col-sm-2 control-label">Ciudad</label>
-
+    
                     <div class="col-sm-5">
                       <input type="text" class="form-control" id="inputCiudad" placeholder="Buenos Aires">
                     </div>
                   </div>
                    <div class="form-group">
                     <label for="inputTelefono" class="col-sm-2 control-label">Telefono</label>
-
+    
                     <div class="col-sm-5">
                       <input type="text" class="form-control" id="inputTelefono" placeholder="42060483">
                     </div>
                   </div>
                    <div class="form-group">
                     <label for="inputEmailAdicional" class="col-sm-2 control-label">Email Adicional</label>
-
+    
                     <div class="col-sm-5">
                       <input type="Email" class="form-control" id="inputEmailAdicional" placeholder="prueba@prueba.com">
                     </div>
                   </div>
-                
+                </div>
               </div>
+
               <!-- /.tab-pane -->
-              </div>
-           
-             </form>
+                </div>
+        
+                <div class="tab-pane" id="#plantillaMail">
+                    <div class="box-body pad">
+                        <textarea id="editor1" name="editor1" rows="10" cols="80">
+                            Plantilla de mail 
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+         
             </div>
              
             <!-- /.tab-content -->
           </div>
           <!-- /.nav-tabs-custom -->
+          </form>   
       </div>
 
-    </section>
     <!-- /.content -->
     <!-- jQuery 2.2.0 -->
 <script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
@@ -139,4 +150,13 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+<!-- CK Editor -->
+<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+<script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1');
+  });
+</script>
  {include file="footer.tpl"}
