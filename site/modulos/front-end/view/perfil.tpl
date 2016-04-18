@@ -12,7 +12,7 @@ js=''
     <section class="content-header">
       
     </section>
-
+ <form action="{$rutaCSS}../controlador/modifUserAction.php" method="post" class="form-horizontal"> 
   <div class="box-body">
        
             <div class="col-md-3">
@@ -48,13 +48,12 @@ js=''
         
        
         <!-- /.col -->
-       
+
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#settings" data-toggle="tab">Configuración de la Cuenta</a></li>
             </ul>
-            <form action="{$rutaCSS}../controlador/modifOperadorAction.php" method="post" class="form-horizontal">
               <div class="tab-pane" id="#settings">
                 <div class="box-body pad">
                   <div class="form-group">
@@ -117,14 +116,15 @@ js=''
               <!-- /.tab-pane -->
               </div>
            
-             </form>
+           
             </div>
              
             <!-- /.tab-content -->
           </div>
           <!-- /.nav-tabs-custom -->
+      
       </div>
-
+  </form>
     </section>
     <!-- /.content -->
     <!-- jQuery 2.2.0 -->
