@@ -34,16 +34,17 @@ js=''
                       <b>Ultima Modificación</b> <a class="pull-right">14/04/2016</a>
                     </li>
                   </ul>
+              
                 </div>
             <!-- /.box-body -->
                 </div>
-                <div class="pull-left">
+               <!-- <div class="pull-left">
                     <div class="form-group">
                             <div class="pull-left">
                                 <button type="submit" class="btn btn-warning">Modificar</button>
                             </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         
        
@@ -111,9 +112,17 @@ js=''
                       <input type="Email" class="form-control" id="inputEmailAdicional" placeholder="prueba@prueba.com">
                     </div>
                   </div>
+                  
+                  
+                    
+                     <div class="col-sm-5 pull-right">
+                                  <button type="submit" class="btn btn-warning">Modificar</button>
+                              </div>
+                
                 
               </div>
               <!-- /.tab-pane -->
+                
               </div>
            
            
@@ -122,6 +131,8 @@ js=''
             <!-- /.tab-content -->
           </div>
           <!-- /.nav-tabs-custom -->
+          
+          </div>
       
       </div>
   </form>
@@ -139,4 +150,4 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
- {include file="footer.tpl"}
+{include file="footer.tpl"}
