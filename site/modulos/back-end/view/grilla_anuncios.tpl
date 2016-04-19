@@ -35,7 +35,7 @@ js=''
           </div><!-- /.box-tools -->
         </div><!-- /.box-header -->
         <div class="box-body">
-              <a class="btn btn-app ">
+              <a class="btn btn-app "  href="/operador.php?modulo=nuevoAnuncio">
                 <i class="fa fa-plus"></i> Nuevo
               </a>
               <a class="btn btn-app disabled">

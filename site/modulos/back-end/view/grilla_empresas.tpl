@@ -30,8 +30,8 @@ js=''
       <div class="box box-primary">
 
         <div class="box-body">
-              <a class="btn btn-app ">
-                <i class="fa fa-plus" href="/operador.php?modulo=nuevaEmpresa"></i> Nuevo
+              <a class="btn btn-app "  href="/operador.php?modulo=nuevaEmpresa">
+                <i class="fa fa-plus"></i> Nuevo
               </a>
               <a class="btn btn-app disabled">
                 <i class="fa fa-edit"></i> Editar
