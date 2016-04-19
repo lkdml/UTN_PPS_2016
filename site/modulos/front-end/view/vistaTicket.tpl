@@ -147,23 +147,74 @@
             <!-- Custom Tabs -->
             <div class="nav-tabs-custom">
              <ul class="nav nav-tabs">
-                <li class=""><a href="#tab_1" data-toggle="tab">Evolución</a></li>
-                <li class="active"><a href="#tab_2" data-toggle="tab">Agregar Comentario</a></li>
+                <li class="active"><a href="#tab_1" data-toggle="tab">Evolución</a></li>
+                <li class=""><a href="#tab_2" data-toggle="tab">Agregar Comentario</a></li>
                 
               </ul>
               <div class="tab-content">
-                <div class="tab-pane" id="tab_1">
+                <div class="tab-pane active" id="tab_1">
                  
-                 <!--Contenido TAB INCOMPLETO-->
+                 <!--Contenido TAB -->
                  
-                   <div class="box-body pad">
-                       
-                        <div class="pull-left image">
-                         <img src="{$rutaIMG}user2-160x160.jpg" class="img-circle" alt="User Image" height="60" width="60">
+                     
+                     <!-- Construct the box with style you want. Here we are using box-danger -->
+                        <!-- Then add the class direct-chat and choose the direct-chat-* contexual class -->
+                        <!-- The contextual class should match the box, so we are using direct-chat-danger -->
+                        <div class="box box-danger direct-chat direct-chat-danger">
+                          <div class="box-header with-border">
+                            <h3 class="box-title"></h3>
+                            <div class="box-tools pull-right">
+                              <span data-toggle="tooltip" title="2 Nuevas actividades" class="badge bg-red">2</span>
+                              <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            
+                            </div>
+                          </div><!-- /.box-header -->
+                          <div class="box-body">
+                            <!-- Conversations are loaded here -->
+                            <div class="direct-chat-messages">
+                              <!-- Message. Default to the left -->
+                              <div class="direct-chat-msg">
+                                <div class="direct-chat-info clearfix">
+                                  <span class="direct-chat-name pull-left"><font size = 5>Lucas Bockor</font></span>
+                                  <span class="direct-chat-timestamp pull-right">19 Abril 2:00 pm</span>
+                                </div><!-- /.direct-chat-info -->
+                                <img class="direct-chat-img" src="{$rutaIMG}avatar.png" alt="message user image"><!-- /.direct-chat-img -->
+                                <div class="direct-chat-text">
+                                  Is this template really for free? That's unbelievable!Lorem ipsum dolor sit amet, consectetur 
+                                  adipiscing elit. Maecenas leo leo, congue vel quam sit amet, viverra auctor eros. Ut vulputate
+                                  ac erat ac eleifend. Morbi malesuada pretium accumsan. Vestibulum tincidunt velit eget velit 
+                                  sodales, in hendrerit purus hendrerit. Integer auctor quis felis sed consectetur. 
+                                  Maecenas scelerisque orci lorem, nec vehicula diam tincidunt at. Sed ultrices dui eu 
+                                  hendrerit congue. Morbi iaculis sit amet erat at finibus. Integer sollicitudin pulvinar dolor id pharetra. 
+                                  Aenean eget elit dui.
+                                  
+                                  <p><a href="https://www.facebook.com/lukas77.25"><font size = 3>Adjunto 1</font></a></p>
+                                </div><!-- /.direct-chat-text -->
+                              </div><!-- /.direct-chat-msg -->
+                                 <!-- Message. Default to the left -->
+                              <div class="direct-chat-msg">
+                                <div class="direct-chat-info clearfix">
+                                  <span class="direct-chat-name pull-left"><font size = 5>Elizabeth DeWitt</font></span>
+                                  <span class="direct-chat-timestamp pull-right">19 Abril 1:30 pm</span>
+                                </div><!-- /.direct-chat-info -->
+                                <img class="direct-chat-img" src="{$rutaIMG}avatar2.png" alt="message user image"><!-- /.direct-chat-img -->
+                                <div class="direct-chat-text">
+                                  Is this template really for free? That's unbelievable!Lorem ipsum dolor sit amet, consectetur 
+                                  adipiscing elit. Maecenas leo leo, congue vel quam sit amet, viverra auctor eros. Ut vulputate
+                                  ac erat ac eleifend. Morbi malesuada pretium accumsan. Vestibulum tincidunt velit eget velit 
+                                  sodales, in hendrerit purus hendrerit. Integer auctor quis felis sed consectetur. 
+                                  Maecenas scelerisque orci lorem, nec vehicula diam tincidunt at. Sed ultrices dui eu 
+                                  hendrerit congue. Morbi iaculis sit amet erat at finibus. Integer sollicitudin pulvinar dolor id pharetra. 
+                                  Aenean eget elit dui.
+                                  
+                                  <p><a href="https://www.facebook.com/lukas77.25"><font size = 3>Adjunto 1</font></a></p>
+                                
+                                  
+                                </div><!-- /.direct-chat-text -->
+                              </div><!-- /.direct-chat-msg -->
+                        	 </div>
+                            </div>
                         </div>
-                        
-                      
-                     </div>
                  
                  
                  
@@ -172,7 +223,7 @@
                  
                  </div>
                  <!-- /.tab-pane -->
-                 <div class="tab-pane active" id="tab_2">
+                 <div class="tab-pane" id="tab_2">
                    <!--<div class="form-group">-->
                     <form action="{$rutaCSS}../controlador/enviarComentarioAction.php" class="form-horizontal">
                      <div class="box-body pad">
