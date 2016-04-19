@@ -32,7 +32,7 @@ js=''
 
               
               <li class="time-label">
-                  <span class="bg-red">
+                  <span class="bg-green">
                       10 Feb. 2016
                   </span>
               </li>
@@ -118,7 +118,7 @@ js=''
                   </div>
               </li>
               <li class="time-label">
-                  <span class="bg-red">
+                  <span class="bg-green">
                       2 Feb. 2016
                   </span>
               </li>
