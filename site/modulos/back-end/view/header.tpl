@@ -61,7 +61,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/operador.php?modulo=usuarios">Ver Usuarios</a></li>
-                <li><a href="#">Nuevo Usuario</a></li>
+                <li><a href="/operador.php?modulo=nuevoUsuario">Nuevo Usuario</a></li>
                 <li class="divider"></li>
                 <li><a href="/operador.php?modulo=empresas">Empresas</a></li>
               </ul>

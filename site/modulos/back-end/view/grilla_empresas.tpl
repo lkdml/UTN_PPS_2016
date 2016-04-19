@@ -31,7 +31,7 @@ js=''
 
         <div class="box-body">
               <a class="btn btn-app ">
-                <i class="fa fa-plus"></i> Nuevo
+                <i class="fa fa-plus" href="/operador.php?modulo=nuevaEmpresa"></i> Nuevo
               </a>
               <a class="btn btn-app disabled">
                 <i class="fa fa-edit"></i> Editar
