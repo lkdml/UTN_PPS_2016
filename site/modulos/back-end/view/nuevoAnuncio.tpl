@@ -22,7 +22,7 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/nuevoUserAction.php" class="form-horizontal">
+        <form action="{$rutaCSS}../controlador/nuevoAnuncioAction.php" class="form-horizontal">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
