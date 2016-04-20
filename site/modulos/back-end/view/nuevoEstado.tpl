@@ -81,9 +81,9 @@ js=''
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
 <!-- bootstrap color picker -->
-<script src="{$rutaJS}bootstrap-colorpicker.min.js"></script>
+<script src="{$rutaJS}bootstrap-colorpicker.js"></script>
 <!-- Bootstrap Color Picker -->
-<link rel="stylesheet" href="{$rutaCSS}bootstrap-colorpicker.min.css">
+<link rel="stylesheet" href="{$rutaCSS}bootstrap-colorpicker.css">
 {literal} <script>
   $(function () {
      $(".my-colorpicker1").colorpicker();
