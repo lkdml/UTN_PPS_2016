@@ -29,7 +29,7 @@ js=''
       <!-- 1 box Largo --> 
       <div class="box box-primary">
         <div class="box-body">
-              <a class="btn btn-app ">
+              <a class="btn btn-app " href="/operador.php?modulo=nuevoTicket">
                 <i class="fa fa-plus"></i> Nuevo
               </a>
               <a class="btn btn-app ">

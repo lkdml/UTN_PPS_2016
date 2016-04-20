@@ -54,14 +54,14 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tickets <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/operador.php?modulo=tickets">Ver Tickets</a></li>
-                <li><a href="#">Nuevo Ticket</a></li>
+                <li><a href="/operador.php?modulo=nuevoTicket">Nuevo Ticket</a></li>
               </ul>
             </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/operador.php?modulo=usuarios">Ver Usuarios</a></li>
-                <li><a href="#">Nuevo Usuario</a></li>
+                <li><a href="/operador.php?modulo=nuevoUsuario">Nuevo Usuario</a></li>
                 <li class="divider"></li>
                 <li><a href="/operador.php?modulo=empresas">Empresas</a></li>
               </ul>
@@ -69,7 +69,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anuncios <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Nuevo Anuncio</a></li>
+                <li><a href="/operador.php?modulo=nuevoAnuncio">Nuevo Anuncio</a></li>
                 <li><a href="/operador.php?modulo=anuncios">Ver Anuncios</a></li>
                 <li class="divider"></li>
                 <li><a href="/operador.php?modulo=categorias">Categorias</a></li>
