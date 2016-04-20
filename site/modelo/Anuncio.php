@@ -11,11 +11,13 @@ class Anuncio {
  	 */
  	private $Anuncio_ID;
 	/**
-	 * @MantToOne (targetEntity="Empresa", inversedBy="Empresa_ID") 
+	 * @ManyToOne (targetEntity="Empresa", inversedBy="Empresa_ID")
+     * @JoinTable(name="Anuncios_Empresas") 
 	 */
 	private $Empresa_ID;
 	/**
-	 * @MantToOne (targetEntity="Categoria_Anuncio", inversedBy="Categoria_ID") 
+	 * @ManyToOne (targetEntity="Categoria_Anuncio", inversedBy="Categoria_ID")
+     * @JoinTable(name="perfiles_roles") 
 	 */
 	private $Categoria_ID;
 	/**
@@ -44,7 +46,8 @@ class Anuncio {
 	 */
 	private $Fecha_Fin_Publicacion;
 	/**
-	 * @MantToOne (targetEntity="Operador", inversedBy="Operador_ID") 
+	 * @ManyToOne (targetEntity="Operador", inversedBy="Operador_ID") 
+     * 
 	 */
 	private $Operador_ID;
 
