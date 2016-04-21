@@ -1,225 +1,132 @@
 <?php
+namespace Modelo;
 
+/**
+ * @Entity @Table(name="Operador")
+ **/
 class Operador {
- 	
- 	private $_Operador_ID;
- 	private $_Perfil_ID;
- 	private $_Nombre;
- 	private $_Apellido;
- 	private $_Nombre_Usuario;
- 	private $_Clave;
- 	private $_Firma_Mensaje;
- 	private $_Email;
- 	private $_Celular;
- 	private $_Ultima_Actualizacion;
- 	private $_Ultima_Actividad;
- 	private $_Activo;
- 	private $_Deptos_Habilitados;
- 	private $_Habilita_Notificaciones_Mail;
- 	private $_Filtro_Ticket_ID;
- 	private $_HashFoto;
- 	private $_Eliminado;
+ 	/** 
+      * @Id @Column(type="integer") @GeneratedValue 
+      * @var int
+      */
+ 	protected $Operador_ID;
+    /**
+     * @ManyToOne(targetEntity="Perfil")
+     */
+ 	protected $Perfil_ID;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+ 	protected $Nombre;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+ 	protected $Apellido;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+ 	protected $Nombre_Usuario;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+ 	protected $Clave;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+ 	protected $Firma_Mensaje;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+ 	protected $Email;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+ 	protected $Celular;
+    /**
+     * @Column(type="datetimez")
+     * @var datetime
+     */
+ 	protected $Ultima_Actualizacion;
+    /**
+     * @Column(type="datetimez")
+     * @var datetime
+     */
+ 	protected $Ultima_Actividad;
+    /**
+     * @Column(type="boolean")
+     * @var boolean
+     */
+ 	protected $Activo;
+    /**
+     * @ManyToMany(targetEntity="Departamentos", inversedBy="Departamento_ID")
+     * @JoinTable(name="Operadores_Departamentos")
+     */
+ 	protected $Deptos_Habilitados;
+    /**
+     * @Column(type="boolean")
+     * @var boolean
+     */
+ 	protected $Habilita_Notificaciones_Mail;
+    /**
+     * @ManyToMany(targetEntity="Filtro_Ticket", inversedBy="Filtro_ID")
+     * @JoinTable(name="Operadores_Filtros")
+     */
+ 	protected $Filtro_Ticket_ID;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+ 	protected $HashFoto;
+    /**
+     * @Column(type="boolean")
+     * @var boolean
+     */
+ 	protected $Eliminado;
+    
+    
+    public function getOperador_ID() {return $this->Operador_ID;}
+    public function getPerfil_ID() {return $this->Perfil_ID;}
+    public function getNombre() {return $this->Nombre;}    
+    public function getApellido() {return $this->Apellido;}
+    public function getNombre_Usuario() {return $this->Nombre_Usuario;}
+    public function getClave() {return $this->Clave;}
+    public function getFirma_Mensaje() {return $this->Firma_Mensaje;}
+    public function getEmail() {return $this->Email;}
+    public function getCelular() {return $this->Celular;}
+    public function getUltima_Actualizacion() {return $this->Ultima_Actualizacion;}
+    public function getUltima_Actividad() {return $this->Ultima_Actividad;}
+    public function getActivo() {return $this->Activo;}
+    public function getDeptos_Habilitados() {return $this->Deptos_Habilitados;}
+    public function getHabilita_Notificaciones_Mail() {return $this->Habilita_Notificaciones_Mail;}
+    public function getFiltro_Ticket_ID() {return $this->Filtro_Ticket_ID;}
+    public function getHashFoto() {return $this->HashFoto;}
+    public function getEliminado() {return $this->Eliminado;}
+    
+    public function setPerfil_ID($id) {$this->Perfil_ID= $id;}
+    public function setNombre($nombre) {$this->Nombre =$nombre;}    
+    public function setApellido($apellido) {$this->Apellido = $apellido;}
+    public function setNombre_Usuario($usuario) {$this->Nombre_Usuario = $usuario;}
+    public function setClave($clave) {$this->Clave = $clave;}
+    public function setFirma_Mensaje($firma) {$this->Firma_Mensaje =$firma;}
+    public function setEmail($email) {$this->Email =$email;}
+    public function setCelular($celular) {$this->Celular =$celular;}
+    public function setUltima_Actualizacion($lastUpdate) {$this->Ultima_Actualizacion = $lastUpdate;}
+    public function setUltima_Actividad($lastActividad) {$this->Ultima_Actividad =$lastActividad;}
+    public function setActivo($activo) {$this->Activo = $activo;}
+    public function setDeptos_Habilitados($deptos) {$this->Deptos_Habilitados = $deptos;}
+    public function setHabilita_Notificaciones_Mail($bool) {$this->Habilita_Notificaciones_Mail = $bool;}
+    public function setFiltro_Ticket_ID($filtro) {$this->Filtro_Ticket_ID = $filtro;}
+    public function setHashFoto($hashFoto) {$this->HashFoto = $hashFoto;}
+    public function setEliminado($eliminado) {$this->Eliminado =$eliminado;}
 
-
-	public function __get($property) {
-	if (property_exists($this, $property)) {
-	  return $this->$property;
-	}
-	}
-	
-	public function __set($property, $value) {
-	if (property_exists($this, $property)) {
-	  $this->$property = $value;
-	}
-	
-	return $this;
-	}
-	
-	private function Obtener_Operador($Operador_ID)
-	{
-		//Tener lista la conexion para ver este tema
-		$conexion=ConexionComando::Obtener_Instancia();
-		$query="Select Perfil_ID
-						,Nombre
-						,Apellido
-						,Nombre_Usuario
-						,Clave
-						,Firma_Mensaje
-						,Email
-						,Celular
-						,Ultima_Actualizacion
-						,Ultima_Actividad
-						,Activo
-						,Deptos_Habilitados
-						,Habilita_Notificaciones_Mail
-						,Filtro_Ticket_ID
-						,HashFoto
-						,Eliminado
-				from operadores
-				where Operador_ID=?";
-		
-		/*VER DE HACERLO EN TXT LA CONSULTA Y LEVANTARLO DESDE RESOURCES*/
-				
-		if ($result = $conexion->RetornarConsulta($query)) {
-			
-			/*
-			BIND PARAMETROS
-			i	la variable correspondiente es de tipo entero
-			d	la variable correspondiente es de tipo double
-			s	la variable correspondiente es de tipo string
-			b	la variable correspondiente es un blob y se envía en paquetes
-			*/
-			
-			if (!$result->bind_param("i", $this->$Operador_ID)) {
-			    echo "Binding parameters failed: (" . $result->errno . ") " . $result->error;
-			}
-
-		    /* fetch object array */
-		    while ($obj = $result->fetch_object()) {
-		    	$this->_Operador_ID=$Operador_ID;
-				$this->_Perfil_ID=$obj->Perfil_ID;
-				$this->_Nombre=$obj->Nombre;
-				$this->_Apellido=$obj->Apellido;
-				$this->_Nombre_Usuario=$obj->Nombre_Usuario;
-				$this->_Clave=$obj->Clave;
-				$this->_Firma_Mensaje=$obj->Firma_Mensaje;
-				$this->_Email=$obj->Email;
-				$this->_Celular=$obj->Celular;
-				$this->_Ultima_Actualizacion=$obj->Ultima_Actualizacion;
-				$this->_Ultima_Actividad=$obj->Ultima_Actividad;
-				$this->_Activo=$obj->Activo;
-				$this->_Deptos_Habilitados=$obj->Deptos_Habilitados;
-				$this->_Habilita_Notificaciones_Mail=$obj->Habilita_Notificaciones_Mail;
-				$this->_Filtro_Ticket_ID=$obj->Filtro_Ticket_ID;
-				$this->_HashFoto=$obj->HashFoto;
-				$this->_Eliminado=$obj->Eliminado;
-		    }
-		
-		    
-		    $result->close();
-		}
-		
-		/* cierro conexion */
-		$conexion->close();
-	
-	}
-	
-	private function Alta()
-	{
-		//Tener lista la conexion para ver este tema
-		$conexion=ConexionComando::Obtener_Instancia();
-		$query="Insert into operadores (Perfil_ID
-						,Nombre
-						,Apellido
-						,Nombre_Usuario
-						,Clave
-						,Firma_Mensaje
-						,Email
-						,Celular
-						,Activo
-						,Deptos_Habilitados
-						,Habilita_Notificaciones_Mail
-						,Filtro_Ticket_ID 
-						,HashFoto
-						,Eliminado)
-					Values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-					
-					//FIXME REVISAR SI FILTRO TICKETS ES NECESARIO PARA EL ALTA
-					
-			if ($result = $conexion->RetornarConsulta($query)) {
-			
-			/*
-			BIND PARAMETROS
-			i	la variable correspondiente es de tipo entero
-			d	la variable correspondiente es de tipo double
-			s	la variable correspondiente es de tipo string
-			b	la variable correspondiente es un blob y se envía en paquetes
-			*/
-			try
-			{
-				$result->bind_param("i", $this->_Perfil_ID);
-				$result->bind_param("s", $this->_Nombre);
-				$result->bind_param("s", $this->_Apellido);
-				$result->bind_param("s", $this->_Nombre_Usuario);
-				$result->bind_param("s", $this->_Clave);
-				$result->bind_param("s", $this->_Firma_Mensaje);
-				$result->bind_param("s", $this->_Email);
-				$result->bind_param("s", $this->_Celular);
-				$result->bind_param("i", $this->_Activo);
-				$result->bind_param("s", $this->_Deptos_Habilitados);
-				$result->bind_param("i", $this->_Habilita_Notificaciones_Mail);
-				$result->bind_param("i", $this->_Filtro_Ticket_ID);
-				$result->bind_param("s", $this->_HashFoto);	
-				$result->bind_param("i", $this->_Eliminado);
-			}
-			catch(Exception $e)
-			{
-				print "Error!: " . $e->getMessage(); 
-			}
-		
-		}
-		$result->execute();
-	}
-	
-	private function Baja()
-	{
-		$conexion=ConexionComando::Obtener_Instancia();
-		$query="Update operadores set Activo=0,Eliminado=1 where Operador_ID=?";
-		if ($result = $conexion->RetornarConsulta($query)) {
-		
-			try
-			{
-				$result->bind_param("i", $this->_Operador_ID);
-			}
-			catch(Exception $e)
-			{
-				print "Error!: " . $e->getMessage(); 
-			}
-		
-		}
-		$result->execute();
-	}
-	
-	private function Modificar()
-	{
-		$conexion=ConexionComando::Obtener_Instancia();
-		$query="Update operadores set 
-						Perfil_ID=?
-						,Nombre=?
-						,Apellido=?
-						,Clave=?
-						,Firma_Mensaje=?
-						,Celular=?
-						,Ultima_Actualizacion=GETDATE()
-						,Deptos_Habilitados=?
-						,Habilita_Notificaciones_Mail=?
-						,Filtro_Ticket_ID=?
-						,HashFoto=?
-					where Operador_ID=?";
-		if ($result = $conexion->RetornarConsulta($query)) {
-		
-			try
-			{
-				$result->bind_param("i", $this->_Perfil_ID);
-				$result->bind_param("s", $this->_Nombre);
-				$result->bind_param("s", $this->_Apellido);
-				$result->bind_param("s", $this->_Clave);
-				$result->bind_param("s", $this->_Firma_Mensaje);
-				$result->bind_param("s", $this->_Celular);
-				$result->bind_param("s", $this->_Deptos_Habilitados);
-				$result->bind_param("i", $this->_Habilita_Notificaciones_Mail);
-				$result->bind_param("i", $this->_Filtro_Ticket_ID);
-				$result->bind_param("i", $this->_HashFoto);
-			}
-			catch(Exception $e)
-			{
-				print "Error!: " . $e->getMessage(); 
-			}
-		
-		}
-		$result->execute();
-	}
-
+   
 
 
 }

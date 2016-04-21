@@ -1,25 +1,45 @@
 <?php
-
+namespace Modelo;
+/**
+ * @Entity @Table(name="Rol")
+ **/
 class Rol {
- 	
-	private $_Rol_ID;
-	private $_Nombre;
-	private $_Descripcion;
-	private $_Estado;
+ 	/** 
+     * @Id @Column(type="integer") @GeneratedValue 
+     * @var int
+     */
+	protected $Rol_ID;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+	protected $Nombre;
+    /**
+     * @Column(type="string")
+     * @var string
+     */
+	protected $Descripcion;
+    /**
+     * @Column(type="boolean")
+     * @var boolean
+     */
+	private $Estado;
+    /**
+     * @ManyToMany(targetEntity="Perfil", inversedBy="Perfil_ID")
+     * @JoinTable(name="perfiles_roles")
+     */
+    protected $Perfil_ID;
 
-	public function __get($property) {
-	if (property_exists($this, $property)) {
-	  return $this->$property;
-	}
-	}
-	
-	public function __set($property, $value) {
-	if (property_exists($this, $property)) {
-	  $this->$property = $value;
-	}
-	
-	return $this;
-	}
+    public function getRol_ID(){return $this->Rol_ID;} 
+    public function getNombre(){return $this->Nombre;} 
+    public function getDescripcion(){return $this->Descripcion; }
+    public function getEstado(){return $this->Estado;}
+    
+    public function setNombre($nombre){$this->Nombre;} 
+    public function setDescripcion($descripcion){$this->Descripcion;}
+    public function setEstado($estado){$this->Estado;}
+    
+    
 
 }
 
