@@ -18,7 +18,7 @@ js=''
         <small>Departamento: Soporte N1</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Tickets</a></li>
+        <li><a href="/operador.php?modulo=dashboard"><i class="fa fa-dashboard"></i> Tickets</a></li>
         <li class="active">Lista Tickets</li>
       </ol>
     </section>

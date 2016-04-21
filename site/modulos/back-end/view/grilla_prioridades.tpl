@@ -18,7 +18,7 @@ js=''
         <small>Altas - Modificaciones - Bajas</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Administración</a></li>
+        <li><a href="/operador.php?modulo=dashboard"><i class="fa fa-dashboard"></i> Administración</a></li>
         <li class="active">Lista Prioridades</li>
       </ol>
     </section>
@@ -35,7 +35,7 @@ js=''
           </div><!-- /.box-tools -->
         </div><!-- /.box-header -->
         <div class="box-body">
-              <a class="btn btn-app ">
+              <a class="btn btn-app "  href="/operador.php?modulo=nuevaPrioridad">
                 <i class="fa fa-plus"></i> Nuevo
               </a>
               <a class="btn btn-app disabled">
