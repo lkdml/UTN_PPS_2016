@@ -18,7 +18,7 @@ js=''
         <small>Altas - Modificaciones - Bajas</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Administración</a></li>
+        <li><a href="/operador.php?modulo=dashboard"><i class="fa fa-dashboard"></i> Administración</a></li>
         <li class="active">Lista Campos Personalizados</li>
       </ol>
     </section>

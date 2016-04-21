@@ -10,19 +10,19 @@ js=''
  <!-- Content Header (Page header) -->
  <section class="content-header">
    <h1>
-      <strong>Alta Nuevo Estado</strong>
+      <strong>Alta Nueva Prioridad</strong>
      <small></small>
    </h1>
    <ol class="breadcrumb">
      <li><a href="/operador.php?modulo=dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-     <li class="active">Administración > Estados > Nuevo Estado</li>
+     <li class="active">Administración > Prioridades > Nueva Prioridad</li>
    </ol>
  </section>
 
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/nuevoDepartamentoAction.php" class="form-horizontal">
+        <form action="{$rutaCSS}../controlador/nuevaPrioridadAction.php" class="form-horizontal">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">

@@ -10,12 +10,12 @@ js=''
  <!-- Content Header (Page header) -->
  <section class="content-header">
    <h1>
-      <strong>Alta Nuevo Anuncio</strong>
+      <strong>Alta Nuevo Departamento</strong>
      <small></small>
    </h1>
    <ol class="breadcrumb">
-     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-     <li class="active">Anuncio > Nuevo Anuncio</li>
+     <li><a href="/operador.php?modulo=dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
+     <li class="active">Administración > Departamentos > Nuevo Departamento</li>
    </ol>
  </section>
 
