@@ -10,26 +10,26 @@ js=''
  <!-- Content Header (Page header) -->
  <section class="content-header">
    <h1>
-      <strong>Alta Nueva Empresa</strong>
+      <strong>Modificación Empresa</strong>
      <small></small>
    </h1>
    <ol class="breadcrumb">
      <li><a href="/operador.php?modulo=dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-     <li class="active">Empresa > Nueva Empresa</li>
+     <li class="active">Empresa > Modificación Empresa</li>
    </ol>
  </section>
 
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/nuevaEmpresaAction.php" class="form-horizontal">
+        <form action="{$rutaCSS}../controlador/modificarEmpresaAction.php" class="form-horizontal">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
                         <div class="box-body pad">
                             <label for="inputRazonSocial" class="col-sm-2 control-label">Razon Social</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputNombre">
+                              <input type="text" class="form-control" id="inputNombre" placeholder="El Metro" disabled>
                             </div>
                         </div>
                         <!-- body pad end -->

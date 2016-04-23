@@ -10,40 +10,47 @@ js=''
  <!-- Content Header (Page header) -->
  <section class="content-header">
    <h1>
-      <strong>Alta Nueva Empresa</strong>
+      <strong>Modificar Usuario</strong>
      <small></small>
    </h1>
    <ol class="breadcrumb">
      <li><a href="/operador.php?modulo=dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-     <li class="active">Empresa > Nueva Empresa</li>
+     <li class="active">Usuarios > Modificar Usuario</li>
    </ol>
  </section>
 
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/nuevaEmpresaAction.php" class="form-horizontal">
+        <form action="{$rutaCSS}../controlador/modificarUsuario.php" class="form-horizontal">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
                         <div class="box-body pad">
-                            <label for="inputRazonSocial" class="col-sm-2 control-label">Razon Social</label>
+                            <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-5">
                               <input type="text" class="form-control" id="inputNombre">
                             </div>
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
-                            <label for="inputPais" class="col-sm-2 control-label">Pais</label>
+                            <label for="inputApellido" class="col-sm-2 control-label">Apellido</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputPais">
+                              <input type="text" class="form-control" id="inputApellido">
                             </div>
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
-                            <label for="inputCiudad" class="col-sm-2 control-label">Ciudad</label>
+                            <label for="inputClave" class="col-sm-2 control-label">Clave</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputCiudad">
+                              <input type="password" class="form-control" id="inputClave">
+                            </div>
+                        </div>
+                        <!-- body pad end -->
+                        <div class="box-body pad">
+                            <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-5">
+                              <input type="email" class="form-control" id="inputEmail">
                             </div>
                         </div>
                         <!-- body pad end -->
@@ -62,6 +69,13 @@ js=''
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
+                            <label for="inputCiudad" class="col-sm-2 control-label">Ciudad</label>
+                            <div class="col-sm-5">
+                              <input type="text" class="form-control" id="inputCiudad">
+                            </div>
+                        </div>
+                        <!-- body pad end -->
+                        <div class="box-body pad">
                             <label for="lblTelefono" class="col-sm-2 control-label">Teléfono</label>
                             <div class="col-sm-10">
                                 <div class="col-sm-4 input-group">
@@ -74,10 +88,30 @@ js=''
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
-                            <label for="inputWeb" class="col-sm-2 control-label">Web</label>
+                            <label for="inputEmailAdicional" class="col-sm-2 control-label">Email Adicional</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputWeb">
+                              <input type="text" class="form-control" id="inputEmailAdicional">
                             </div>
+                        </div>
+                        <!-- body pad end -->
+                        <div class="box-body pad">
+                            <label for="ComboEmpresa" class="col-sm-2 control-label">Empresa</label>
+                            <div class="col-sm-5">
+                                <select class="form-control select2" style="width: 100%;">
+                                    <option selected="selected">Empresa1</option>
+                                    <option>Empresa2</option>
+                                    <option>Empresa3</option>
+                                    <option>Empresa4</option>
+                                    <option>Empresa5</option>
+                                    <option>Empresa6</option>
+                                    <option>Empresa7</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- body pad end -->
+                        <div class="box-body pad">
+                            <label for="archivo" class="col-sm-2 control-label">Subir Foto Perfil</label>
+                            <input class="col-sm-10" type="file" id="archivo">
                         </div>
                         <!-- body pad end -->
                     </div>
