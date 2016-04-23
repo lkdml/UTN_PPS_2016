@@ -75,7 +75,7 @@
                 <li><a href="/operador.php?modulo=categorias">Categorias</a></li>
               </ul>
             </li>
-            <li ><a href="#">Informes </a></li>
+            <li ><a href="/operador.php?modulo=informes">Informes </a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administración <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
