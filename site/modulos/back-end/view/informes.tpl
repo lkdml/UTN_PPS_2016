@@ -2,7 +2,7 @@
 css=''
 js=''
 }
-{include file="panelLateral.tpl"}
+{include file="panelLateralInformes.tpl"}
 
 
   <!-- =============================================== -->

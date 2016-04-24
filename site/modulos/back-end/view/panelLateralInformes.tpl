@@ -15,13 +15,32 @@
       <br>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-        <li class="treeview">
-          <a href="/operador.php?modulo=dashboard">
-            <i class="fa fa-dashboard"></i> <span>Dash-Board</span>
-          </a>
-        </li>
+        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-dashboard"></i> <span>Dash-Board</span></a></li>
+        <li class="header">Informes - Total de:</li>
+        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-file-text-o"></i> <span>Usuarios por Empresas</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-file-text-o"></i> <span>Tickets por Empresa</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-file-text-o"></i> <span>Ticket por Estados/Empresas</span></a></li>
+
+        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-file-text-o"></i> <span>Ticket en departamentos</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-file-text-o"></i> <span>Tickets según estados</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-file-text-o"></i> <span>Tickets según prioridades</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-file-text-o"></i> <span>Tiempo de respuesta promedios</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-file-text-o"></i> <span>Tiempo de resolución promedio</span></a></li>
       </ul>
       
+ <!--         Informar sin restricciones:
+        Cantidad de:
+            Usuarios total por Empresas.
+            Tickets por empresa.
+            Tickets por estados y Empresa.
+    Informar con resticciones: (de visibilidad)
+        Cantidades de:
+            Tickets atendidos por Departamento. (En período de tiempo | Asignados a Operadores determinados | Departamentos determinados)
+            Tickets según estados. (En período de tiempo | asignados a Operadores determinados | Departamentos determinados)
+            Tickets según Prioridades. (En período de tiempo | Departamentos determinados)
+            Tiempos de respuesta promedios. (En período de tiempo | de Operadores determinados | Departamentos determinados)
+            Tiempos de resolución promedios. (En período de tiempo | de Operadores determinados | Departamentos determinados)
+     --> 
          <!-- Sidebar Menu -->
     <ul class="sidebar-menu">
       <li class="header">Tickets</li>
