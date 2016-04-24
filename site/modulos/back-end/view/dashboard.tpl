@@ -69,150 +69,159 @@ js=''
           </div>
         </div>
       </div>
-      <!-- Fin Datos de interes -->
+        
       
-      
-       <!-- Info-box -->
-       <div class="row">
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-              <span class="info-box-icon bg-acua"><i class="fa fa-envelope-o"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text">Pendientes </span>
-                <span class="info-box-number">20</span>
-              </div><!-- /.info-box-content -->
-            </div><!-- /.info-box -->
-          </div><!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-              <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text">Abiertos</span>
-                <span class="info-box-number">5</span>
-              </div><!-- /.info-box-content -->
-            </div><!-- /.info-box -->
-          </div><!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-              <span class="info-box-icon bg-red"><i class="fa fa-files-o"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text">En Curso</span>
-                <span class="info-box-number">8</span>
-              </div><!-- /.info-box-content -->
-            </div><!-- /.info-box -->
-          </div><!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-              <span class="info-box-icon bg-yellow"><i class="fa fa-star-o"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text">Respondidos</span>
-                <span class="info-box-number">7</span>
-              </div><!-- /.info-box-content -->
-            </div><!-- /.info-box -->
-          </div><!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box">
-              <span class="info-box-icon bg-black"><i class="fa fa-star-o"></i></span>
-              <div class="info-box-content">
-                <span class="info-box-text">Cerrados</span>
-                <span class="info-box-number">15</span>
-              </div><!-- /.info-box-content -->
-            </div><!-- /.info-box -->
-          </div><!-- /.col -->
-        </div>
 
-      <!-- /.info-box -->
-      
-      <!-- 1 box Largo --> 
-      <div class="box box-default">
-        <div class="box-header with-border">
-          <h3 class="box-title">Collapsable</h3>
-          <div class="box-tools pull-right">
-            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-          </div><!-- /.box-tools -->
-        </div><!-- /.box-header -->
-        <div class="box-body">
-          The body of the box
-        </div><!-- /.box-body -->
-      </div>
-      <!-- /1 box --> 
       
       
-      <!-- 2 box Largo --> 
-      <div class="row">
-          <div class="col-md-6">
-            <div class="box box-default">
-              <div class="box-header with-border">
-                <h3 class="box-title">Collapsable</h3>
-                <div class="box-tools pull-right">
-                  <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                </div><!-- /.box-tools -->
-              </div><!-- /.box-header -->
-              <div class="box-body">
-                The body of the box
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-          </div>
-          <div class="col-md-6">
-            <div class="box box-default">
-              <div class="box-header with-border">
-                <h3 class="box-title">Removable</h3>
-                <div class="box-tools pull-left">
-                  <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div><!-- /.box-tools -->
-              </div><!-- /.box-header -->
-              <div class="box-body">
-                The body of the box
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-          </div>
-      </div> 
-      <!--/ 2 box Largo --> 
-      
-      
-      <!-- 3 box Largo --> 
-      <div class="row">
-          <div class="col-md-4">
-            <div class="box box-default">
-              <div class="box-header with-border">
-                <h3 class="box-title">Collapsable</h3>
-                <div class="box-tools pull-right">
-                  <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                </div><!-- /.box-tools -->
-              </div><!-- /.box-header -->
-              <div class="box-body">
-                The body of the box
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-          </div>
-          <div class="col-md-4">
-            <div class="box box-default">
-              <div class="box-header with-border">
-                <h3 class="box-title">Removable</h3>
-                <div class="box-tools pull-right">
-                  <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div><!-- /.box-tools -->
-              </div><!-- /.box-header -->
-              <div class="box-body">
-                The body of the box
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-          </div>
-          <div class="col-md-4">
-            <div class="box box-default collapsed-box">
-              <div class="box-header with-border">
-                <h3 class="box-title">Expandable</h3>
-                <div class="box-tools pull-right">
-                  <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
-                </div><!-- /.box-tools -->
-              </div><!-- /.box-header -->
-              <div class="box-body">
-                The body of the box
-              </div><!-- /.box-body -->
-            </div><!-- /.box -->
-          </div>
-      </div> 
-      <!--/ 3 box Largo -->         
+     <div class="row">
+        <!--INICIO COLUMNA IZQUIERDA -->
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-4 col-sm-8 col-xs-12">
+                  <div class="info-box">
+                    <span class="info-box-icon bg-acua"><i class="fa fa-envelope-o"></i></span>
+                    <div class="info-box-content">
+                      <span class="info-box-text">Pendientes </span>
+                      <span class="info-box-number">20</span>
+                    </div><!-- /.info-box-content -->
+                  </div><!-- /.info-box -->
+                </div><!-- /.col -->
+                 
+                <div class="col-md-4 col-sm-8 col-xs-12">
+                  <div class="info-box">
+                    <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
+                    <div class="info-box-content">
+                      <span class="info-box-text">Abiertos</span>
+                      <span class="info-box-number">5</span>
+                    </div><!-- /.info-box-content -->
+                  </div><!-- /.info-box -->
+                </div><!-- /.col -->
+                 
+                <div class="col-md-4 col-sm-8 col-xs-12">
+                  <div class="info-box">
+                    <span class="info-box-icon bg-red"><i class="fa fa-files-o"></i></span>
+                    <div class="info-box-content">
+                      <span class="info-box-text">En Curso</span>
+                      <span class="info-box-number">8</span>
+                    </div><!-- /.info-box-content -->
+                  </div><!-- /.info-box -->
+                </div><!-- /.col -->
+                 
+                <div class="col-md-4 col-sm-8 col-xs-12">
+                  <div class="info-box">
+                    <span class="info-box-icon bg-yellow"><i class="fa fa-star-o"></i></span>
+                    <div class="info-box-content">
+                      <span class="info-box-text">Respondidos</span>
+                      <span class="info-box-number">7</span>
+                    </div><!-- /.info-box-content -->
+                  </div><!-- /.info-box -->
+                </div><!-- /.col -->
+               
+                <div class="col-md-4 col-sm-8 col-xs-12">
+                  <div class="info-box">
+                    <span class="info-box-icon bg-black"><i class="fa fa-star-o"></i></span>
+                    <div class="info-box-content">
+                      <span class="info-box-text">Cerrados</span>
+                      <span class="info-box-number">15</span>
+                    </div><!-- /.info-box-content -->
+                  </div><!-- /.info-box -->
+                </div><!-- /.col -->
+              </div>
+            <!-- AREA CHART -->
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Informe Tiempo Estimado vs Tiempo Real de Resolución</h3>
+    
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="chart">
+                        <canvas id="areaChart" style="height:250px"></canvas>
+                    </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+            
+            
+            
+            <!-- BAR  Chart Tiempo Primera Respuesta  -->
+            <div class="box box-success">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Informe Tiempo de Primera Respuesta</h3>
+        
+                  <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                    <canvas id="barChart" style="height:250px"></canvas>
+                  </div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box Chart Tiempo Primera Respuesta -->
+        </div>
+        <!-- columna Izquierda-->
+        
+        
+        <!--INICIO COLUMNA Derecha -->
+        <div class="col-md-6">
+            
+            <!-- DONUT CHART -->
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Informe Estado de Tickets</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                  <canvas id="pieChart" style="height:250px"></canvas>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+          
+            <!-- Radar CHART -->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Informe Tickets por Prioridad</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                  <canvas id="radarChart" style="height:250px"></canvas>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->          
+          
+
+        </div>
+        <!-- columna Derecha-->
+        
+        
+        
+        
+        
+    </div>
+    <!-- fin row -->
  
     </section>
     <!-- /.content -->
@@ -237,5 +246,11 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+<!-- ChartJS 1.0.1 -->
+<script src="{$rutaJS}Chart.min.js"></script>
+<script src="{$rutaJS}w-primera-respuesta.js"></script>
+<script src="{$rutaJS}w-ticket-prioridad.js"></script>
+<script src="{$rutaJS}w-ticket-estados.js"></script>
+<script src="{$rutaJS}w-tiempo-vs-tiempo.js"></script>
 
 {include file='footer.tpl'}
