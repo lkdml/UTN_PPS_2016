@@ -29,21 +29,50 @@ js=''
       <!-- 1 box Largo --> 
       <div class="box box-primary">
         <div class="box-body">
-              <a class="btn btn-app " href="/operador.php?modulo=nuevoTicket">
+          
+          
+          
+              <button class="btn btn-app "  id="btnNuevo" onclick="window.location.href='/operador.php?modulo=nuevoTicket'">
                 <i class="fa fa-plus"></i> Nuevo
-              </a>
-              <a class="btn btn-app ">
+              </button>
+              <button class="btn btn-app" id="btnVer" onclick="window.location.href='/operador.php?modulo=vistaTicket'" disabled>
                 <i class="fa fa-edit"></i> Ver
-              </a>
-              <a class="btn btn-app disabled">
+              </button>
+              <button class="btn btn-app" disabled>
                 <i class="fa fa-chain"></i> Unir
-              </a>
-              <a class="btn btn-app disabled">
+              </button>
+              <button class="btn btn-app " disabled>
                 <i class="fa fa-unlink"></i> Separar
-              </a>
-              <a class="btn btn-app disabled">
+              </button>
+               <button class="btn btn-app "id="btnBorrar" data-toggle="modal" data-target="#myModal" disabled>
                 <i class="fa fa-trash"></i> Borrar
-              </a>
+              </button>
+              
+              <!-- Modal para Borrar-->
+              <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+              
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Eliminar Tickets </h4></h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Esta acción eliminará los tickets seleccionados. ¿Esta seguro que desea continuar?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn btn-danger" data-dismiss="modal">Si, estoy seguro.</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
+                    </div>
+                  </div>
+              
+                </div>
+              </div> <!-- End Modal Content -->
+              
+              
+              
+              
         </div><!-- /.box-body -->
       </div>
       <!-- /1 box --> 
@@ -66,7 +95,7 @@ js=''
         </thead>
         <tbody>
             <tr>
-                <td><input type="checkbox"></input></td>
+                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
                 <td><small class="label glyphicon glyphicon-flag bg-blue"> </small></td>
                 <td>TKP-234</td>
                 <td>Error al imprimir</td>
@@ -139,6 +168,29 @@ js=''
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+
+<script>
+
+function manejoBotonPrueba(checkbox)
+{
+  
+ 
+    if (checkbox.checked)
+    {
+    document.getElementById("btnVer").disabled = false;
+    document.getElementById("btnBorrar").disabled = false;
+    document.getElementById("btnNuevo").disabled = true;
+    }
+    if (checkbox.checked == false)
+    {
+    document.getElementById("btnVer").disabled = true;
+    document.getElementById("btnBorrar").disabled = true;
+    document.getElementById("btnNuevo").disabled = false;
+    }
+    
+}
+
+</script>
 
 <!-- jQuery 2.2.0 -->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}jQuery-2.2.0.min.js"></script>
