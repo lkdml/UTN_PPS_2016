@@ -129,7 +129,7 @@ js=''
 
 <!-- prueba manejo de boton -->
 <!-- TODO: Terminar script para manejo por rows -->
-
+{literal}
 <script>
 
 function manejoBotonPrueba(checkbox)
@@ -152,7 +152,7 @@ function manejoBotonPrueba(checkbox)
 }
 
 </script>
-
+{/literal}
 
 <!-- prueba manejo de boton -->
 

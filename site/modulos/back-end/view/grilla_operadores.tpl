@@ -35,15 +35,15 @@ js=''
           </div><!-- /.box-tools -->
         </div><!-- /.box-header -->
         <div class="box-body">
-              <a class="btn btn-app ">
+              <button class="btn btn-app "  id="btnNuevo" onclick="window.location.href='/operador.php?modulo=nuevoOperador'">
                 <i class="fa fa-plus"></i> Nuevo
-              </a>
-              <a class="btn btn-app disabled">
+              </button>
+              <button class="btn btn-app " id="btnModificar" onclick="window.location.href='/operador.php?modulo=nuevoOperador&id=3'" disabled>
                 <i class="fa fa-edit"></i> Editar
-              </a>
-              <a class="btn btn-app disabled">
+              </button>
+              <button class="btn btn-app "id="btnBorrar" data-toggle="modal" data-target="#myModal" disabled>
                 <i class="fa fa-trash"></i> Borrar
-              </a>
+              </button>
         </div><!-- /.box-body -->
       </div>
       <!-- /1 box --> 
@@ -52,7 +52,7 @@ js=''
     <table id="grilla" class="display">
         <thead>
             <tr>
-                <th><input type="checkbox"></input></th>
+                <th><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></th>
                 <th>Usuario</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
@@ -61,21 +61,21 @@ js=''
         </thead>
         <tbody>
             <tr>
-                <td><input type="checkbox"></input></td>
+                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
                 <td>Br1ann</td>
                 <td>Brian</td>
                 <td>Ducca</td>
                 <td>Brian.ducca@gmail.com</td>
             </tr>
             <tr>
-                <td><input type="checkbox"></input></td>
+                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
                 <td>lbockor</td>
                 <td>Lucas Daniel</td>
                 <td>Bockor</td>
                 <td>Lbockor@gmail.com</td>
             </tr>
             <tr>
-                <td><input type="checkbox"></input></td>
+                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
                 <td>lkdml</td>
                 <td>Mariano</td>
                 <td>López Senés</td>
@@ -110,6 +110,31 @@ js=''
 <!-- DataTables -->
 
 <script type="text/javascript" charset="utf8" src="{$rutaJS}jquery.dataTables.js"></script>
+
+{literal}
+<script>
+
+function manejoBotonPrueba(checkbox)
+{
+  
+ 
+    if (checkbox.checked)
+    {
+    document.getElementById("btnModificar").disabled = false;
+    document.getElementById("btnBorrar").disabled = false;
+    document.getElementById("btnNuevo").disabled = true;
+    }
+    if (checkbox.checked == false)
+    {
+    document.getElementById("btnModificar").disabled = true;
+    document.getElementById("btnBorrar").disabled = true;
+    document.getElementById("btnNuevo").disabled = false;
+    }
+    
+}
+
+</script>
+{/literal}
 {literal}
 
 <script>
