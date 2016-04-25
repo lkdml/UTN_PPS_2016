@@ -139,6 +139,19 @@ js=''
                             </div>
                           </div>
                           <div class="form-group">
+                              <label for="inputNombre" class="col-sm-2 control-label">Perfil de Operador:</label>
+                            <div class="row">
+                                <div class="col-sm-9 box-body pad">
+                                    <select name="perfilOperador" class="form-control" >
+                                        <option value="1">Jefe</option>
+                                        <option value="2">técnico</option>
+                                        <option value="2">administrativo</option>
+                                        <option value="2">Admin</option>
+                                    </select>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group">
                               <label for="inputNombre" class="col-sm-2 control-label">Departamentos asociados</label>
                             <div class="row">
                                 <div class="col-xs-4">
