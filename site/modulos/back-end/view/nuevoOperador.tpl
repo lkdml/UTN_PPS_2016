@@ -78,7 +78,7 @@ js=''
                                 </div>
                             </div>
                         <div class="pull-right">
-                            <button type="submit" class="btn btn-warning">Enviar</button>
+                            <button type="submit" class="btn btn-warning">Cambiar</button>
                         </div>
                     </div>
                 <!-- /.box-body -->
@@ -138,9 +138,38 @@ js=''
                                 </textarea>
                             </div>
                           </div>
+                          <div class="form-group">
+                              <label for="inputNombre" class="col-sm-2 control-label">Departamentos asociados</label>
+                            <div class="row">
+                                <div class="col-xs-4">
+                                    <select name="from[]" id="multiselect" class="form-control" size="8" multiple="multiple">
+                                        <option value="1">Soporte N1</option>
+                                        <option value="2">Soporte N2</option>
+                                        <option value="2">Ventas</option>
+                                        <option value="2">Administración</option>
+                                        <option value="3">Stock</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="col-sm-1">
+                                    <button type="button" id="multiselect_rightAll" class="btn btn-block"><i class="glyphicon glyphicon-forward"></i></button>
+                                    <button type="button" id="multiselect_rightSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-right"></i></button>
+                                    <button type="button" id="multiselect_leftSelected" class="btn btn-block"><i class="glyphicon glyphicon-chevron-left"></i></button>
+                                    <button type="button" id="multiselect_leftAll" class="btn btn-block"><i class="glyphicon glyphicon-backward"></i></button>
+                                </div>
+                                
+                                <div class="col-xs-4">
+                                    <select name="to[]" id="multiselect_to" class="form-control" size="8" multiple="multiple"></select>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="pull-right">
+                            <button type="submit" class="btn btn-warning">Enviar</button>
+                          </div>
                         </div>
 
             </div>
+           
                 <!-- /.tab-content -->
         </form>
         <!-- form end -->
@@ -166,6 +195,13 @@ js=''
     CKEDITOR.replace('editor1');
   });
 </script>
+ <script src="{$rutaJS}multiselect.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $('#multiselect').multiselect();
+});
+</script>
+
 
 <!-- AdminLTE App -->
 <script src="{$rutaJS}app.min.js"></script>
