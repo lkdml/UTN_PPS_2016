@@ -17,15 +17,15 @@
       <ul class="sidebar-menu">
         <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-dashboard"></i> <span>Dash-Board</span></a></li>
         <li class="header">Informes - Total de:</li>
-        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-file-text-o"></i> <span>Usuarios por Empresas</span></a></li>
-        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-file-text-o"></i> <span>Tickets por Empresa</span></a></li>
-        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-file-text-o"></i> <span>Ticket por Estados/Empresas</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=informeUsuariosPorEmpresa"><i class="fa fa-file-text-o"></i> <span>Usuarios por Empresas</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=informeTicketPorEmpresa"><i class="fa fa-file-text-o"></i> <span>Tickets por Empresa</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=informeTicketPorEstadoEmpresa"><i class="fa fa-file-text-o"></i> <span>Ticket por Estados/Empresas</span></a></li>
 
-        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-file-text-o"></i> <span>Ticket en departamentos</span></a></li>
-        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-file-text-o"></i> <span>Tickets según estados</span></a></li>
-        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-file-text-o"></i> <span>Tickets según prioridades</span></a></li>
-        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-file-text-o"></i> <span>Tiempo de respuesta promedios</span></a></li>
-        <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-file-text-o"></i> <span>Tiempo de resolución promedio</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=informeTicketDepartamento"><i class="fa fa-file-text-o"></i> <span>Ticket en departamentos</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=informeTicketPorEstado"><i class="fa fa-file-text-o"></i> <span>Tickets según estados</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=informeTicketPorPrioridades"><i class="fa fa-file-text-o"></i> <span>Tickets según prioridades</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=informeTiempoRespuestaPromedio"><i class="fa fa-file-text-o"></i> <span>Tiempo de respuesta promedios</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=informeTiempoResolucionPromedio"><i class="fa fa-file-text-o"></i> <span>Tiempo de resolución promedio</span></a></li>
       </ul>
       
  <!--         Informar sin restricciones:

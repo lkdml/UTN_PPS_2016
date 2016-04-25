@@ -28,25 +28,37 @@ js=''
                 </div>
                 <form method="get" class="form-horizontal">
                     <div class="box-body">
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <label>Desde-Hasta:</label>
-                                <div class="input-group">
-                                  <div class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                  </div>
-                                  <input type="text" class="form-control" id="desdehasta">
-                                   
+                        
+                        <!--Row Desde Hasta -->
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <label for="desdehasta" class="col-md-2 control-label">Desde-Hasta</label>
+                                    <div class="col-md-4">
+                                        <div class="input-group">
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar"></i>
+                                            </div>
+                                            <input type="text" class="form-control" id="desdehasta">
+                                        </div>
+                                        <!-- /.input group -->
+                                    </div>
                                 </div>
-                                <!-- /.input group -->
-                                 
+                                <!-- /.div group -->
                             </div>
-                            <!-- /.form group -->
-                            <div class="col-md-6">
-                            <br>
-                             <button class="btn btn-info pull-right">Procesar</button>  
+                            <!--form end -->
+                        </div>
+                        <!--Row Desde Hasta -->
+        
+                        
+                        <!-- Row Procesar -->
+                        <div class="row">
+                            <div class="col-md-12">                           
+                                    <button class="btn btn-info pull-right">Procesar</button>  
                             </div>
                         </div>
+                       <!-- Row Procesar -->
+                       
                     </div>
                     <!-- /.box-body -->
                 </form>
