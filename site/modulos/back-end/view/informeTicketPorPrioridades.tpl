@@ -26,7 +26,7 @@ js=''
                 <div class="box-header with-border">
                     <h3 class="box-title">Filtros</h3>
                 </div>
-                <form method="get" class="form-horizontal">
+                <form action="{$rutaCSS}../controlador/procesarInformeAction.php" class="form-horizontal">
                     <div class="box-body">
                         
                         <!--Row Desde Hasta -->
