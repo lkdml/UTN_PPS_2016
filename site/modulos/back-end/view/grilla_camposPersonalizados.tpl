@@ -35,15 +35,41 @@ js=''
           </div><!-- /.box-tools -->
         </div><!-- /.box-header -->
         <div class="box-body">
-              <a class="btn btn-app ">
+              <button class="btn btn-app"  id="btnNuevo" onclick="window.location.href='/operador.php?modulo=nuevoCampoPersonalizado'">
                 <i class="fa fa-plus"></i> Nuevo
-              </a>
-              <a class="btn btn-app disabled">
+              </button>
+              <button class="btn btn-app" id="btnModificar" onclick="window.location.href='/operador.php?modulo=nuevoCampoPersonalizado&id=3'" disabled>
                 <i class="fa fa-edit"></i> Editar
-              </a>
-              <a class="btn btn-app disabled">
+              </button>
+              <button class="btn btn-app" id="btnBorrar" data-toggle="modal" data-target="#myModal" disabled>
                 <i class="fa fa-trash"></i> Borrar
-              </a>
+              </button>
+              
+              <!-- Modal para Borrar-->
+              <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+              
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Eliminar Campo Personalizado </h4></h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Esta acción eliminará el campo personalizado seleccionado. ¿Esta seguro que desea continuar?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn btn-danger" data-dismiss="modal">Si, estoy seguro.</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
+                    </div>
+                  </div>
+              
+                </div>
+              </div> <!-- End Modal Content -->
+              
+              
+              
+              
         </div><!-- /.box-body -->
       </div>
       <!-- /1 box --> 
@@ -52,7 +78,7 @@ js=''
     <table id="grilla" class="display">
         <thead>
             <tr>
-                <th><input type="checkbox"></input></th>
+                <th><input type="checkbox"  onclick="manejoBotonPrueba(this)"></input></th>
                 <th>Nombre</th>
                 <th>descripción</th>
                 <th>tipo</th>
@@ -61,41 +87,41 @@ js=''
         </thead>
         <tbody>
             <tr>
-                <td><input type="checkbox"></input></td>
+                <td><input type="checkbox"  onclick="manejoBotonPrueba(this)"></input></td>
                 <td>Teléfono</td>
                 <td>Teléconos</td>
                 <td>text</td>
                 <td>Todos</td>
             </tr>
             <tr>
-                <td><input type="checkbox"></input></td>
+                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
                 <td>Interno</td>
                 <td>Teléconos</td>
                 <td>text</td>
                 <td>Todos</td>
             </tr>
             <tr>
-                <td><input type="checkbox"></input></td>
+                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
                 <td>Aplicación</td>
                 <td>Especifique la aplicación</td>
                 <td>Opción</td>
                 <td>Soporte N2</td>
             </tr>
             <tr>
-                <td><input type="checkbox"></input></td>
+                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
                 <td>O.S.</td>
                 <td>Sistema Operativo</td>
                 <td>Opción</td>
                 <td>Soporte N2</td>
             </tr><tr>
-                <td><input type="checkbox"></input></td>
+                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
                 <td>Nro Hardware</td>
                 <td>Número de identificación del equipamiento afectado</td>
                 <td>text</td>
                 <td>Soporte N1, Soporte N2</td>
             </tr>
             <tr>
-                <td><input type="checkbox"></input></td>
+                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
                 <td>Dirección</td>
                 <td>Dirección de envío</td>
                 <td>text</td>
@@ -130,8 +156,34 @@ js=''
 <!-- DataTables -->
 
 <script type="text/javascript" charset="utf8" src="{$rutaJS}jquery.dataTables.js"></script>
-{literal}
 
+{literal}
+<script>
+
+function manejoBotonPrueba(checkbox)
+{
+  
+ 
+    if (checkbox.checked)
+    {
+    document.getElementById("btnModificar").disabled = false;
+    document.getElementById("btnBorrar").disabled = false;
+    document.getElementById("btnNuevo").disabled = true;
+    }
+    if (checkbox.checked == false)
+    {
+    document.getElementById("btnModificar").disabled = true;
+    document.getElementById("btnBorrar").disabled = true;
+    document.getElementById("btnNuevo").disabled = false;
+    }
+    
+}
+
+</script>
+{/literal}
+
+
+{literal}
 <script>
 $(document).ready( function () {
     $('#grilla').DataTable({
@@ -142,6 +194,7 @@ $(document).ready( function () {
 } );
 </script>
 {/literal}
+
 
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
