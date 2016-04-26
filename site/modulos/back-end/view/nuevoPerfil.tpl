@@ -49,24 +49,23 @@ js=''
                 </div>
                   <!-- Fin Nombre y Descripcion -->
                   <!-- Permisos sobre Tickets -->
+                
+                <h5>Permisos sobre Tickets</h5>
                 <div class="box box-primary">
-                    <div class="box-body box-profile">
-                      <h5>Permisos sobre Tickets</h5>
-                      <div class="box box-primary">
-                          <br>
-                            <div class="form-group">
-                              <div class="col-sm-11 checkbox">
-                                <label class="col-sm-2 control-label"><input type="checkbox"></input>Crear Ticket</label>
-                                <label class="col-sm-2 control-label"><input type="checkbox"></input>Ver Ticket</label>
-                                <label class="col-sm-2 control-label"><input type="checkbox"></input>Editar Ticket</label>
-                                <label class="col-sm-2 control-label"><input type="checkbox"></input>Asignar Ticket</label>
-                                <label class="col-sm-2 control-label"><input type="checkbox"></input>Cambiar Departamento</label>
-                                <label class="col-sm-2 control-label"><input type="checkbox"></input>Cambiar SLA</label>
-                              </div>
-                            </div>
+                    <br>
+                      <div class="form-group">
+                        <div class="col-sm-11  checkbox">
+                          <label class="checkbox-inline"><input type="checkbox"></input>Crear Ticket</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Ver Ticket</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Editar Ticket</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Asignar Ticket</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Cambiar Departamento</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Cambiar SLA</label>
+                        </div>
                       </div>
-                    </div>
+                      <br>
                 </div>
+                 
                 <!-- Fin Permisos sobre Tickets -->
                 <!-- Permisos sobre Informes -->
                 <h5>Permisos sobre Informes</h5>
@@ -74,12 +73,13 @@ js=''
                     <br>
                       <div class="form-group">
                         <div class="col-sm-11 checkbox">
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Ver Informes de usuarios</label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Ver Informes de operador</label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Ampliar a todos los departamentos</label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Habilitar Widgets</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Ver Informes de usuarios</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Ver Informes de operador</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Ampliar a todos los departamentos</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Habilitar Widgets</label>
                         </div>
                       </div>
+                      <br>
                 </div>  
                 <!-- Fin Permisos sobre Informes -->
                 <!-- Permisos sobre Anuncios -->
@@ -88,84 +88,86 @@ js=''
                     <br>
                       <div class="form-group">
                         <div class="col-sm-11 checkbox">
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Ver Anuncios</label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Crear Anuncio</label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Editar Anuncio</label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Eliminar Anuncio</label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Ver Categorias</label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Crear Categoría </label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Editar Categoría</label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Eliminar Categoría</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Ver Anuncios</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Crear Anuncio</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Editar Anuncio</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Eliminar Anuncio</label>
+                        </div>
+                        <div class="col-sm-11 checkbox">
+                          <label class="checkbox-inline"><input type="checkbox"></input>Ver Categorias</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Crear Categoría </label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Editar Categoría</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Eliminar Categoría</label>
                         </div>
                       </div>
+                      <br>
                 </div>
                 <!-- Fin Permisos sobre Anuncios -->
             </div> 
             <!-- Fin Columna Izquierda -->
             <!-- Columna Derecha -->
             <div class="col-md-6">
-                  <!-- Permisos sobre Usuarios -->
-                <div class="box box-primary">
-                    <h5>Datos del Perfil</h5>
-                    <div class="box box-primary">
-                        <br>
-                          <h5>Permisos sobre Usuarios</h5>
-                          <div class="box box-primary">
-                              <br>
-                                <div class="form-group">
-                                  <div class="col-sm-11 checkbox">
-                                    <label class="col-sm-2 control-label"><input type="checkbox"></input>Crear Usuario</label>
-                                    <label class="col-sm-2 control-label"><input type="checkbox"></input>Ver Usuarios</label>
-                                    <label class="col-sm-2 control-label"><input type="checkbox"></input>Editar Usuarios</label>
-                                    <label class="col-sm-2 control-label"><input type="checkbox"></input>Asignar Usuarios a Empresa</label>
-                                    <label class="col-sm-2 control-label"><input type="checkbox"></input>Crear Empresa</label>
-                                    <label class="col-sm-2 control-label"><input type="checkbox"></input>Editar Empresa</label>
-                                    <label class="col-sm-2 control-label"><input type="checkbox"></input>Ver Empresas</label>
-                                  </div>
-                                </div>
-                          </div>
-                          <br>
-                    </div>
-                </div>
-                  <!-- Fin Permisos sobre Usuarios -->
-                  <!-- Permisos sobre Operadores -->
-                <div class="box box-primary">
-                    <div class="box-body box-profile">
-                      <h5>Permisos sobre Operadores</h5>
-                      <div class="box box-primary">
-                          <br>
-                            <div class="form-group">
-                              <div class="col-sm-11 checkbox">
-                                <label class="col-sm-2 control-label"><input type="checkbox"></input>Ver Operadores</label>
-                                <label class="col-sm-2 control-label"><input type="checkbox"></input>Crear Operador</label>
-                                <label class="col-sm-2 control-label"><input type="checkbox"></input>Editar Operador</label>
-                                <label class="col-sm-2 control-label"><input type="checkbox"></input>Ver Perfiles</label>
-                                <label class="col-sm-2 control-label"><input type="checkbox"></input>Crear perfil</label>
-                                <label class="col-sm-2 control-label"><input type="checkbox"></input>editar Perfil</label>
-                              </div>
-                            </div>
-                      </div>
-                    </div>
-                </div>
-                <!-- Fin Permisos sobre Operadores -->
+              
                 <!-- Permisos Generales del sistema -->
                 <h5>Permisos Generales del sistema</h5>
                 <div class="box box-primary">
-                    <br>
                       <div class="form-group">
                         <div class="col-sm-11 checkbox">
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Configurar Parametros generales</label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Configurar Plantillas de mail</label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Configurar Departamentos</label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Configurar Prioridades</label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Configurar Estados</label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Configurar Tipos de Ticktes</label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Configurar SLA</label>
-                          <label class="col-sm-2 control-label"><input type="checkbox"></input>Configurar Campos Custom</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Configurar Parametros generales</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Configurar Plantillas de mail</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Configurar Departamentos</label>
+                        </div>
+                        <div class="col-sm-11 checkbox">
+                          <label class="checkbox-inline"><input type="checkbox"></input>Configurar Tipos de Ticktes</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Configurar Prioridades</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Configurar Estados</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Configurar SLA</label>
+                        </div>
+                        <div class="col-sm-11 checkbox">
+                          <label class="checkbox-inline"><input type="checkbox"></input>Configurar Campos Custom</label>
+                        </div>
+                      </div>
+                      <br>
+                </div>
+                <!-- Fin Permisos Generales del sistema -->
+                  <!-- Permisos sobre Usuarios -->
+
+                <h5>Permisos sobre Usuarios</h5>
+                <div class="box box-primary">
+                      <div class="form-group">
+                        <div class="col-sm-11 checkbox">
+                          <label class="checkbox-inline"><input type="checkbox"></input>Crear Usuario</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Ver Usuarios</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Editar Usuarios</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Asignar Usuarios a Empresa</label>
+                        </div>
+                        <div class="col-sm-11 checkbox">
+                          <label class="checkbox-inline"><input type="checkbox"></input>Crear Empresa</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Editar Empresa</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Ver Empresas</label>
                         </div>
                       </div>
                 </div>
-                <!-- Fin Permisos Generales del sistema -->
+
+                  <!-- Fin Permisos sobre Usuarios -->
+                  <!-- Permisos sobre Operadores -->
+                <h5>Permisos sobre Operadores</h5>
+                <div class="box box-primary">
+                      <div class="form-group">
+                        <div class="col-sm-11 checkbox">
+                          <label class="checkbox-inline"><input type="checkbox"></input>Ver Operadores</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Crear Operador</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Editar Operador</label>
+                        </div>
+                        <div class="col-sm-11 checkbox">  
+                          <label class="checkbox-inline"><input type="checkbox"></input>Ver Perfiles</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>Crear perfil</label>
+                          <label class="checkbox-inline"><input type="checkbox"></input>editar Perfil</label>
+                        </div>
+                      </div>
+                      <br>
+                </div>
+                <!-- Fin Permisos sobre Operadores -->
             </div>
             <!-- Fin Columna Derecha -->
  
