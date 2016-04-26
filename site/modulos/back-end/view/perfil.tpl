@@ -37,18 +37,12 @@ js=''
                 </div>
             <!-- /.box-body -->
                 </div>
-                <div class="pull-left">
-                    <div class="form-group">
-                            <div class="pull-left">
-                                <button type="submit" class="btn btn-warning">Modificar</button>
-                            </div>
-                    </div>
-                </div>
+                
             </div>
         
        
       <!-- /.col -->
-       <form action="{$rutaCSS}../controlador/modifOperadorAction.php" method="post" class="form-horizontal">
+       <form action="{$rutaCSS}../controlador/modifOperadorAction.php" class="form-horizontal">
         <div class="col-md-9">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
@@ -57,7 +51,7 @@ js=''
             </ul>
           <div class="box-body">
             <div class="tab-content">
-              <div class="tab-pane active" id="#configuracion">
+              <div class="tab-pane active" id="configuracion">
                 <div class="box-body pad">
                   <div class="form-group">
                     <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
@@ -117,10 +111,9 @@ js=''
                 </div>
               </div>
 
-              <!-- /.tab-pane -->
-                </div>
+              
         
-                <div class="tab-pane" id="#plantillaMail">
+                <div class="tab-pane" id="plantillaMail">
                     <div class="box-body pad">
                         <textarea id="editor1" name="editor1" rows="10" cols="80">
                             Plantilla de mail 
@@ -128,8 +121,17 @@ js=''
                     </div>
                     
                </div> 
+              <!-- /.tab-pane -->
+                </div>
+                <div class="box-body pad">
+                    <div class="form-group">
+                            <div class="pull-right">
+                                <button type="submit" class="btn btn-warning">Modificar</button>
+                            </div>
+                    </div>
+                </div>
             </div> 
-    </div>
+          </div>
 
           <!-- /.tab-content -->
          </div>
