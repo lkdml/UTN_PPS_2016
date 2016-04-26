@@ -35,15 +35,15 @@ js=''
           </div><!-- /.box-tools -->
         </div><!-- /.box-header -->
         <div class="box-body">
-              <a class="btn btn-app ">
+              <button class="btn btn-app "  id="btnNuevo" onclick="window.location.href='/operador.php?modulo=nuevoPerfil'">
                 <i class="fa fa-plus"></i> Nuevo
-              </a>
-              <a class="btn btn-app disabled">
+              </button>
+              <button class="btn btn-app " id="btnModificar" onclick="window.location.href='/operador.php?modulo=modificarPerfil'" disabled>
                 <i class="fa fa-edit"></i> Editar
-              </a>
-              <a class="btn btn-app disabled">
+              </button>
+              <button class="btn btn-app "id="btnBorrar" data-toggle="modal" data-target="#myModal" disabled>
                 <i class="fa fa-trash"></i> Borrar
-              </a>
+              </button>
         </div><!-- /.box-body -->
       </div>
       <!-- /1 box --> 
@@ -107,6 +107,31 @@ $(document).ready( function () {
   ]
 });
 } );
+</script>
+{/literal}
+
+{literal}
+<script>
+
+function manejoBotonPrueba(checkbox)
+{
+  
+ 
+    if (checkbox.checked)
+    {
+    document.getElementById("btnModificar").disabled = false;
+    document.getElementById("btnBorrar").disabled = false;
+    document.getElementById("btnNuevo").disabled = true;
+    }
+    if (checkbox.checked == false)
+    {
+    document.getElementById("btnModificar").disabled = true;
+    document.getElementById("btnBorrar").disabled = true;
+    document.getElementById("btnNuevo").disabled = false;
+    }
+    
+}
+
 </script>
 {/literal}
 
