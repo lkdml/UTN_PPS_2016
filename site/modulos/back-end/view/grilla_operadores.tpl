@@ -44,6 +44,33 @@ js=''
               <button class="btn btn-app "id="btnBorrar" data-toggle="modal" data-target="#myModal" disabled>
                 <i class="fa fa-trash"></i> Borrar
               </button>
+              
+              <!-- Modal para Borrar-->
+              <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+              
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Eliminar Operadores </h4></h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Esta acción eliminará los Operadores seleccionados. ¿Esta seguro que desea continuar?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn btn-danger" data-dismiss="modal">Si, estoy seguro.</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
+                    </div>
+                  </div>
+              
+                </div>
+              </div> <!-- End Modal Content -->
+              
+              
+              
+              
+              
         </div><!-- /.box-body -->
       </div>
       <!-- /1 box --> 
