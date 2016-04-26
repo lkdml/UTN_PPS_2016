@@ -47,11 +47,7 @@
       </div>
       <div class="row">
         <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label>
-              <input type="checkbox"> Recordarme
-            </label>
-          </div>
+          
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
@@ -61,13 +57,39 @@
       </div>
     </form>
 
-    <a href="#">Olvide mi clave</a><br>
-    <a href="register.html" class="text-center">Registrarme.</a>
+    <a  data-toggle="modal" data-target="#myModal">Olvide mi clave</a><br>
+    
 
   </div>
   <!-- /.login-box-body -->
 </div>
 <!-- /.login-box -->
+            <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+              
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Olvide mi contraseña </h4></h4>
+                    </div>
+                    <div class="modal-body">
+                      <div class="form-group">
+                        <div class="box-body pad">
+                            <label for="inputNombre" class="col-sm-2 control-label">Email</label>
+                            <div class="col-sm-5">
+                              <input type="text" class="form-control" id="inputNombre">
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn btn-danger" data-dismiss="modal">Enviar</button>
+                    </div>
+                  </div>
+              
+                </div>
+              </div> <!-- End Modal Content -->
 
 <!-- jQuery 2.2.0 -->
 <script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
