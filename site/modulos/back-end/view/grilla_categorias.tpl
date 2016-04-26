@@ -29,20 +29,40 @@ js=''
       <!-- 1 box Largo --> 
       <div class="box box-primary">
         <div class="box-body">
-              <a class="btn btn-app ">
+              <button class="btn btn-app "  id="btnNuevo" onclick="window.location.href='/operador.php?modulo=nuevaCategoria'" >
                 <i class="fa fa-plus"></i> Nuevo
-              </a>
-              <a class="btn btn-app disabled">
+              </button>
+              <button class="btn btn-app " id="btnModificar" onclick="window.location.href='/operador.php?modulo=nuevaCategoria'" disabled>
                 <i class="fa fa-edit"></i> Editar
-              </a>
-              <a class="btn btn-app disabled">
+              </button>
+              <button class="btn btn-app "id="btnBorrar" data-toggle="modal" data-target="#myModal" disabled>
                 <i class="fa fa-trash"></i> Borrar
-              </a>
         </div><!-- /.box-body -->
       </div>
       <!-- /1 box --> 
 
-      
+                  <!-- Modal para Borrar-->
+              <div id="myModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+              
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Eliminar Departamentos </h4></h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Esta acción eliminará los departamentos seleccionados. ¿Esta seguro que desea continuar?</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn btn-danger" data-dismiss="modal">Si, estoy seguro.</button>
+                      <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
+                    </div>
+                  </div>
+              
+                </div>
+              </div> <!-- End Modal Content -->
+              
     <table id="grilla" class="display">
         <thead>
             <tr>
@@ -53,7 +73,7 @@ js=''
         </thead>
         <tbody>
             <tr>
-                <td><input type="checkbox"></input></td>
+                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></td>
                 <td>Público</td>
                 <td>Para todas las empresas</td>
             </tr>
@@ -92,7 +112,28 @@ js=''
 
 <script type="text/javascript" charset="utf8" src="{$rutaJS}jquery.dataTables.js"></script>
 {literal}
+<script>
 
+function manejoBotonPrueba(checkbox)
+{
+  
+ 
+    if (checkbox.checked)
+    {
+    document.getElementById("btnModificar").disabled = false;
+    document.getElementById("btnBorrar").disabled = false;
+    document.getElementById("btnNuevo").disabled = true;
+    }
+    if (checkbox.checked == false)
+    {
+    document.getElementById("btnModificar").disabled = true;
+    document.getElementById("btnBorrar").disabled = true;
+    document.getElementById("btnNuevo").disabled = false;
+    }
+    
+}
+
+</script>
 <script>
 $(document).ready( function () {
     $('#grilla').DataTable({
