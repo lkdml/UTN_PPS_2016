@@ -121,7 +121,7 @@ js=''
             </div>
             <!-- /.box-header -->
             <div style="display: block;" class="box-body">
-              <form action="#" class="form-horizontal"> <!-- //TODO Poner vinculo jquery-->
+              <form action="{$rutaCSS}../controlador/guardarPlantillaAction.php" class="form-horizontal"> <!-- //TODO Poner vinculo jquery-->
                   <div class="box-body">
                       <div class="box">
                           <div class="form-group">
