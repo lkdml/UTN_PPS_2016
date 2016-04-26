@@ -49,6 +49,28 @@ js=''
                 </div>
                   <!-- Fin Nombre y Descripcion -->
                   <!-- Permisos sobre Tickets -->
+
+                 <!-- Estilos CheckBox inLine -->  
+                <Style>                  
+                .checkbox-inline,
+                .checkbox-inline + .checkbox-inline,
+                .checkbox-inline + .radio-inline,
+                .radio-inline,
+                .radio-inline + .radio-inline,
+                .radio-inline + .checkbox-inline {
+                    margin-left: 0;
+                    margin-right: 10px;
+                }
+                
+                .checkbox-inline:last-child,
+                .radio-inline:last-child {
+                    margin-right: 0;
+                }
+                </Style>
+                   
+                   
+                <!-- Estilos CheckBox inLine -->
+                
                 
                 <h5>Permisos sobre Tickets</h5>
                 <div class="box box-primary">

@@ -52,19 +52,19 @@ js=''
     <table id="grilla" class="display">
         <thead>
             <tr>
-                <th><input type="checkbox"></input></th>
+                <th><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></th>
                 <th>Nombre</th>
                 <th>Descripción</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><input type="checkbox"></input></td>
+                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
                 <td>Operador Básico</td>
                 <td>Operador Base, sin permisos de eliminación ni informes</td>
             </tr>
             <tr>
-                <td><input type="checkbox"></input></td>
+                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
                 <td>Operador Jefe</td>
                 <td>Operador Jefe, Con visibilidad a usuarios e Informes</td>
             </tr>
@@ -116,8 +116,8 @@ $(document).ready( function () {
 function manejoBotonPrueba(checkbox)
 {
   
- 
-    if (checkbox.checked)
+
+    if (checkbox.checked )
     {
     document.getElementById("btnModificar").disabled = false;
     document.getElementById("btnBorrar").disabled = false;

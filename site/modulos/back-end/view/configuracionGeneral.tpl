@@ -24,7 +24,7 @@ js=''
          <!-- form start -->
         <form action="{$rutaCSS}../controlador/configuracionGeneralAction.php" class="form-horizontal">
             <div class="box-body">
-                <h3>Alta / Modificación de Campos Personalizados</h3>
+                
                     <div class="form-group">
                         <div class="box-body">
                             
@@ -144,6 +144,8 @@ js=''
     </div>
     <!-- box info end-->
 </div>
+
+</div>
   
   
 <!-- jQuery 2.2.0 -->
@@ -166,4 +168,4 @@ $(document).ready(function(){
 </script>
 {/literal}
 
- {include file="footer.tpl"}
+{include file="footer.tpl"}

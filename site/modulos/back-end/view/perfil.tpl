@@ -47,7 +47,7 @@ js=''
             </div>
         
        
-        <!-- /.col -->
+      <!-- /.col -->
        <form action="{$rutaCSS}../controlador/modifOperadorAction.php" method="post" class="form-horizontal">
         <div class="col-md-9">
           <div class="nav-tabs-custom">
@@ -126,19 +126,19 @@ js=''
                             Plantilla de mail 
                         </textarea>
                     </div>
-                </div>
-            </div>
-         
-            </div>
-             
-            <!-- /.tab-content -->
-          </div>
+                    
+               </div> 
+            </div> 
+    </div>
+
+          <!-- /.tab-content -->
+         </div>
           <!-- /.nav-tabs-custom -->
           </form>   
       </div>
 
-    <!-- /.content -->
-    <!-- jQuery 2.2.0 -->
+<!-- /.content -->
+<!-- jQuery 2.2.0 -->
 <script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{$rutaJS}bootstrap.min.js"></script>
