@@ -61,9 +61,7 @@ js=''
                           of Lorem Ipsum.
                       </div>
           
-                      <div class="timeline-footer">
-                          <a class="btn btn-primary btn-xs">...</a>
-                      </div>
+                      
                   </div>
               </li>
               <!-- END timeline item -->
@@ -141,9 +139,7 @@ js=''
                           of Lorem Ipsum.
                       </div>
           
-                      <div class="timeline-footer">
-                          <a class="btn btn-primary btn-xs">...</a>
-                      </div>
+                      
                   </div>
               </li>
           

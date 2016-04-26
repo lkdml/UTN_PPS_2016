@@ -59,9 +59,7 @@ js=''
                           of Lorem Ipsum.
                       </div>
           
-                      <div class="timeline-footer">
-                          <a class="btn btn-primary btn-xs">...</a>
-                      </div>
+                      
                   </div>
               </li>
               <!-- END timeline item -->
@@ -85,9 +83,7 @@ js=''
                           sometimes by accident, sometimes on purpose (injected humour and the like).
                       </div>
           
-                      <div class="timeline-footer">
-                          <a class="btn btn-primary btn-xs">...</a>
-                      </div>
+                      
                   </div>
               </li>
               <li>
@@ -112,9 +108,7 @@ js=''
                           "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
                       </div>
           
-                      <div class="timeline-footer">
-                          <a class="btn btn-primary btn-xs">...</a>
-                      </div>
+                      
                   </div>
               </li>
               <li class="time-label">
@@ -144,9 +138,7 @@ js=''
                           of Lorem Ipsum.
                       </div>
           
-                      <div class="timeline-footer">
-                          <a class="btn btn-primary btn-xs">...</a>
-                      </div>
+                      
                   </div>
               </li>
           
