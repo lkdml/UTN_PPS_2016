@@ -1,5 +1,5 @@
 {include file="header.tpl"
-css=''
+css='<link rel="stylesheet" href="./modulos/back-end/css/bootstrap-timepicker.min.css">'
 js=''
 }
 {include file="panelLateral.tpl"}
@@ -51,16 +51,39 @@ js=''
                                           <input type="url" class="form-control" id="inputURL">
                                         </div>
                                     </div>
+                                    
+
                                     <div class="box-body pad">
-                                        <label for="inputURL" class="col-md-2 control-label" data-toggle="tooltip" title="El horario en cual opera la mesa de ayuda">Horario Semanal</label>
-                                        <div class="col-md-4">
-                                          <input type="text" class="form-control" id="inputURL">
+                                        <div class="bootstrap-timepicker">
+                                            <div class="form-group">
+                                                <label class="col-md-2 control-label" data-toggle="tooltip" title="El horario en cual opera la mesa de ayuda">Desde/Hasta</label>
+                                                
+                                                <div class="col-md-4">
+                                                       <div class="inline-group">
+                                                        
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-clock-o"></i>
+                                                            </div>
+                                                            
+                                                            <input type="text" class="form-control timepicker">
+                                                        
+                                                            <div class="input-group-addon">
+                                                                <i class="fa fa-clock-o"></i>
+                                                            </div>
+                                                            <input type="text" class="form-control timepicker">
+                                                        </div>
+                                                        </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+
+                                 
                                  
                                 </div>
                                 <!--Fin Contenido TAB-->  
-                                 
+                            
                                  
                                  <!--Contenido TAB 2 -->
                                 <div class="tab-pane" id="tab_2">
@@ -160,6 +183,8 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+<!-- TimePicker -->
+<script src="{$rutaJS}bootstrap-timepicker.min.js"></script>
 
 {literal} <script>
 $(document).ready(function(){
@@ -167,5 +192,13 @@ $(document).ready(function(){
 });
 </script>
 {/literal}
+{literal} <script>
+ //Timepicker
+    $(".timepicker").timepicker({
+      showInputs: false
+    });
+</script>
+{/literal}
+
 
 {include file="footer.tpl"}
