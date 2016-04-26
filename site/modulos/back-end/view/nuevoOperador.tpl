@@ -24,10 +24,11 @@ js=''
         <h3>Configuración de la Cuenta</h3>
         <br>
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/nuevoOperadoAction.php" class="form-horizontal">
+
             <div class="col-md-4">
                   <!-- Profile Image -->
                 <div class="box box-primary">
+                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php" class="form-horizontal">
                     <div class="box-body box-profile">
                       <img class="profile-user-img img-responsive img-circle" src="{$rutaIMG}user2-160x160.jpg" alt="User profile picture">
                 
@@ -43,16 +44,17 @@ js=''
                         </div>
                       </div>
                         <div class="pull-right">
-                            <button type="submit" class="btn btn-warning">Modificar</button>
+                            <button type="submit" class="btn btn-warning" onclick="window.location.href='/operador.php?modulo=operadores'">Modificar</button>
                         </div>
 
                     </div>
-                    
+                  </form>  
                 <!-- /.Profile Image -->
                 </div>
                     
                   <!-- Cambio Clave -->
                 <div class="box box-primary">
+                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php" class="form-horizontal">  
                     <div class="box-body box-profile">
                     
                       <h3 class="profile-username text-center">Contraseña</h3>
@@ -78,16 +80,18 @@ js=''
                                 </div>
                             </div>
                         <div class="pull-right">
-                            <button type="submit" class="btn btn-warning">Cambiar</button>
+                            <button type="submit" class="btn btn-warning" onclick="window.location.href='/operador.php?modulo=nuevaCategoria'">Cambiar</button>
                         </div>
                     </div>
-                <!-- /.box-body -->
+                  <!-- /.box-body -->
+                  </form>
                 </div>
   
             </div> 
             <div class="col-md-8">
                     <div class="box box-primary">
                         <br>
+                        <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php" class="form-horizontal">
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-9">
@@ -177,8 +181,9 @@ js=''
                             </div>
                           </div>
                           <div class="pull-right">
-                            <button type="submit" class="btn btn-warning">Enviar</button>
+                            <button type="submit" class="btn btn-warning" >Enviar</button>
                           </div>
+                          </form>
                         </div>
 
             </div>
