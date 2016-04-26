@@ -49,10 +49,10 @@ js=''
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Eliminar Departamentos </h4></h4>
+                      <h4 class="modal-title">Eliminar Categoría </h4></h4>
                     </div>
                     <div class="modal-body">
-                      <p>Esta acción eliminará los departamentos seleccionados. ¿Esta seguro que desea continuar?</p>
+                      <p>Esta acción eliminará las categorías seleccionados. ¿Esta seguro que desea continuar?</p>
                     </div>
                     <div class="modal-footer">
                       <button type="button" class="btn btn btn-danger" data-dismiss="modal">Si, estoy seguro.</button>
