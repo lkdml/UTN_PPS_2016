@@ -2,6 +2,6 @@
 require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php'); 
 
 
-header("location:/operador.php?modulo=usuarios");
+header("location:/operador.php?modulo=operadores");
 
 ?>
