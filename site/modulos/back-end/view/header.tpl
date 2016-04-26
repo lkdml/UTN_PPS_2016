@@ -79,7 +79,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administración <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Configuración General </a></li>
+                <li><a href="/operador.php?modulo=configuracionGeneral">Configuración General </a></li>
                 <li><a href="/operador.php?modulo=plantillas">Plantillas Mails </a></li>
                 <li class="divider"></li>
                 <li><a href="/operador.php?modulo=departamentos">Departamentos </a></li>
