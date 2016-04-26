@@ -21,7 +21,7 @@ js=''
 
 <section class="content">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-4">
             <div class="box box-primary">
                 <div class="box-header with-border">
                     <h3 class="box-title">Filtros</h3>
@@ -33,8 +33,8 @@ js=''
                         <div class="row">
                             <div class="form-group">
                                 <div class="col-md-12">
-                                    <label for="desdehasta" class="col-md-2 control-label">Desde-Hasta</label>
-                                    <div class="col-md-4">
+                                    <label for="desdehasta" class="col-md-4 control-label">Desde-Hasta</label>
+                                    <div class="col-md-6">
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
