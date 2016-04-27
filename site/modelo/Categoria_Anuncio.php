@@ -14,21 +14,13 @@ class Categoria_Anuncio {
 	 * @Column(type="string")
 	 * @var string
 	 */
-	protected $Nombre; 	 
- 	
-
-	public function __get($property) {
-		if (property_exists($this, $property)) {
-		  return $this->$property;
-		}
-	}
+	protected $Nombre; 
 	
-	public function __set($property, $value) {
-		if (property_exists($this, $property)) {
-		  $this->$property = $value;
-		}
-		return $this;
-	}
+	public function getCategoria_ID() { return $this->Categoria_ID;}
+	public function getNombre() { return $this->Anuncios;}
+	
+	public function setNombre() {$this->Nombre;}
+
 
 
 }

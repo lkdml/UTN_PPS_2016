@@ -12,6 +12,7 @@ class Operador {
  	protected $Operador_ID;
     /**
      * @ManyToOne(targetEntity="Perfil")
+     * @JoinColumn(name="Perfil_ID", referencedColumnName="Perfil_ID")
      */
  	protected $Perfil_ID;
     /**
@@ -50,12 +51,12 @@ class Operador {
      */
  	protected $Celular;
     /**
-     * @Column(type="datetimez")
+     * @Column(type="datetime")
      * @var datetime
      */
  	protected $Ultima_Actualizacion;
     /**
-     * @Column(type="datetimez")
+     * @Column(type="datetime")
      * @var datetime
      */
  	protected $Ultima_Actividad;
@@ -65,8 +66,12 @@ class Operador {
      */
  	protected $Activo;
     /**
-     * @ManyToMany(targetEntity="Departamentos", inversedBy="Departamento_ID")
-     * @JoinTable(name="Operadores_Departamentos")
+     * @ManyToMany(targetEntity="Departamento")
+     * @JoinTable(name="Operadores_Departamentos",
+     *      joinColumns={@JoinColumn(name="Operador_ID", referencedColumnName="Operador_ID")},
+     *      inverseJoinColumns={@JoinColumn(name="Departamento_ID", referencedColumnName="Departamento_ID")}
+     *      )
+     * @var Deptos_Habilitados[]
      */
  	protected $Deptos_Habilitados;
     /**
@@ -74,9 +79,11 @@ class Operador {
      * @var boolean
      */
  	protected $Habilita_Notificaciones_Mail;
+    //TODO
     /**
-     * @ManyToMany(targetEntity="Filtro_Ticket", inversedBy="Filtro_ID")
-     * @JoinTable(name="Operadores_Filtros")
+     * ManyToMany(targetEntity="Filtro_Ticket", inversedBy="Filtro_ID")
+     * JoinTable(name="Operadores_Filtros")
+     * @var Filtro_Ticket_ID[]
      */
  	protected $Filtro_Ticket_ID;
     /**
@@ -90,6 +97,10 @@ class Operador {
      */
  	protected $Eliminado;
     
+    public function __construct() {
+        $this->$Deptos_Habilitados = new \Doctrine\Common\Collections\ArrayCollection();
+        //$this->$Filtro_Ticket_ID = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     
     public function getOperador_ID() {return $this->Operador_ID;}
     public function getPerfil_ID() {return $this->Perfil_ID;}
@@ -126,7 +137,10 @@ class Operador {
     public function setHashFoto($hashFoto) {$this->HashFoto = $hashFoto;}
     public function setEliminado($eliminado) {$this->Eliminado =$eliminado;}
 
-   
+   public function asignarDepartamento(Departamento $depto) {
+       $depto->agregarOperador($this);
+       $this->Deptos_Habilitados = $depto;
+   }
 
 
 }

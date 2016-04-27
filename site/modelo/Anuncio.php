@@ -9,62 +9,69 @@ class Anuncio {
  	 * @Id @Column(type="integer") @GeneratedValue 
  	 * @var int
  	 */
- 	private $Anuncio_ID;
+ 	protected $Anuncio_ID;
 	/**
-	 * @ManyToOne (targetEntity="Empresa", inversedBy="Empresa_ID")
-     * @JoinTable(name="Anuncios_Empresas") 
+	 * @ManyToMany(targetEntity="Empresa")
+     * @JoinTable(name="Anuncios_Empresas",
+     *      joinColumns={@JoinColumn(name="Anuncio_ID", referencedColumnName="Anuncio_ID")},
+     *      inverseJoinColumns={@JoinColumn(name="Empresa_ID", referencedColumnName="Empresa_ID")}
+     *      )
+     * @var Empresa_ID[]
 	 */
-	private $Empresa_ID;
+	protected $Empresa_ID;
 	/**
-	 * @ManyToOne (targetEntity="Categoria_Anuncio", inversedBy="Categoria_ID")
-     * @JoinTable(name="perfiles_roles") 
+	 * @OneToOne (targetEntity="Categoria_Anuncio")
+     * @JoinColumn(name="Categoria_ID", referencedColumnName="Categoria_ID")
 	 */
-	private $Categoria_ID;
+	protected $Categoria_ID;
 	/**
 	 * @Column(type="string")
 	 * @var string
 	 */
-	private $Titulo;
+	protected $Titulo;
 	/**
 	 * @Column(type="string")
 	 * @var string
 	 */
-	private $Contenido;
+	protected $Contenido;
 	/**
 	 * @Column(type="datetime")
 	 * @var datetime
 	 */
-	private $Fecha_Creacion;
+	protected $Fecha_Creacion;
 	/**
 	 * @Column(type="boolean")
 	 * @var boolean
 	 */
-	private $Estado;
+	protected $Estado;
 	/**
 	 * @Column(type="datetime")
 	 * @var datetime
 	 */
-	private $Fecha_Fin_Publicacion;
-	/**
-	 * @ManyToOne (targetEntity="Operador", inversedBy="Operador_ID") 
-     * 
-	 */
-	private $Operador_ID;
+	protected $Fecha_Fin_Publicacion;
 
-	public function __get($property) {
-	if (property_exists($this, $property)) {
-	  return $this->$property;
-	}
-	}
+
+	public function getAnuncio_ID(){return $this->Anuncio_ID;}
+	public function getEmpresa_ID(){return $this->Empresa_ID;}
+	public function getCategoria_ID(){return $this->Categoria_ID;}
+	public function getTitulo(){return $this->Titulo;}
+	public function getContenido(){return $this->Contenido;}
+	public function getFecha_Creacion(){return $this->Fecha_Creacion;}
+	public function getEstado(){return $this->Estado;}
+	public function getFecha_Fin_Publicacion(){return $this->Fecha_Fin_Publicacion;}
 	
-	public function __set($property, $value) {
-	if (property_exists($this, $property)) {
-	  $this->$property = $value;
-	}
+	public function setEmpresa_ID($empresa_ID){ $this->Empresa_ID = $empresa_ID;}
+	public function setCategoria_ID($categoria_ID){ $this->Categoria_ID = $categoria_ID;}
+	public function setTitulo($titulo){ $this->Titulo = $titulo;}
+	public function setContenido($contenido){ $this->Contenido = $contenido;}
+	public function setFecha_Creacion($fecha_Creacion){$this->Fecha_Creacion = $fecha_Creacion;}
+	public function setEstado($estado){ $this->Estado = $estado;}
+	public function setFecha_Fin_Publicacion($fecha_Fin_Publicacion){ $this->Fecha_Fin_Publicacion = $fecha_Fin_Publicacion;}
 	
-	return $this;
-	}
-	
+	public function __construct() {
+        $this->Empresa_ID = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
 }
 
 ?>

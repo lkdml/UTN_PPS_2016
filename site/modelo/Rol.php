@@ -25,10 +25,14 @@ class Rol {
      */
 	private $Estado;
     /**
-     * @ManyToMany(targetEntity="Perfil", inversedBy="Perfil_ID")
-     * @JoinTable(name="perfiles_roles")
+     * @ManyToMany(targetEntity="Perfil", mappedBy="Perfil_ID")
+     * 
      */
     protected $Perfil_ID;
+    
+    public function __construct(){
+        $this->Perfil_ID = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     public function getRol_ID(){return $this->Rol_ID;} 
     public function getNombre(){return $this->Nombre;} 
@@ -39,7 +43,9 @@ class Rol {
     public function setDescripcion($descripcion){$this->Descripcion;}
     public function setEstado($estado){$this->Estado;}
     
-    
+    public function agregarPerfil(Perfil $perfil){
+        $this->Perfil_ID[] = Perfil;
+    }
 
 }
 

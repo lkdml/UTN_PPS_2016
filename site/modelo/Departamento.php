@@ -20,7 +20,9 @@ class Departamento {
      */
     protected $Descripcion;
     /**
-     * @ManyToOne(targetEntity="Departamento", inversedBy="Departamento_ID")
+     * OneToOne(targetEntity="Departamento")
+     * @JoinColumn(name="ID_Depto_Padre", referencedColumnName="Departamento_ID")
+     * 
      */
     protected $ID_Depto_Padre;
     /**
@@ -35,13 +37,23 @@ class Departamento {
     protected $Orden;
     /**
      * @ManyToMany(targetEntity="Operador")
-     * @JoinTable(name="Departamentos_OperadoresXDefecto",
-     *      joinColumns={@JoinColumn(name="Operador_Default_ID", referencedColumnName="Operador_Default_ID")},
+     * @JoinTable(name="OperadoresXDefecto_Departamentos",
+     *      joinColumns={@JoinColumn(name="Departamento_ID", referencedColumnName="Departamento_ID")},
      *      inverseJoinColumns={@JoinColumn(name="Operador_ID", referencedColumnName="Operador_ID")}
      *      )
      */
     protected $Operador_Default_ID;
+    /**
+     * @ManyToMany(targetEntity="Operador",mappedBy="Operador_ID")
+     * 
+     * 
+     */
+    protected $Operadores;
     
+    public function __construct() {
+        $this->Operadores = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->Operador_Default_ID = new \Doctrine\Common\Collections\ArrayCollection();
+    }
     
     public function getDepartamento_ID() {return $this->Departamento_ID; }
     public function getNombre() {return $this->Nombre;}
@@ -50,12 +62,18 @@ class Departamento {
     public function getVisibilidad_Usuario() {return $this->Visibilidad_Usuario;}
     public function getOrden() {return $this->Orden;}
     public function getOperador_Default_ID() {return $this->Operador_Default_ID;}
+    public function getOperadores() {return $this->Operadores;}
     
-    public function setNombre($nombre) {return $this->Nombre = $nombre;}
-    public function setDescripcion($desc) {return $this->Descripcion = $desc;}
-    public function setID_Depto_Padre($dpto_padre) {return $this->ID_Depto_Padre = $dpto_padre;}
-    public function setVisibilidad_Usuario($visible) {return $this->Visibilidad_Usuario =$visible;}
-    public function setOrden($orden) {return $this->Orden =$orden;}
-    public function setOperador_Default_ID($operadores_def) {return $this->Operador_Default_ID =$operadores_def;}
+    public function setNombre($nombre) { $this->Nombre = $nombre;}
+    public function setDescripcion($desc) { $this->Descripcion = $desc;}
+    public function setID_Depto_Padre($dpto_padre) { $this->ID_Depto_Padre = $dpto_padre;}
+    public function setVisibilidad_Usuario($visible) { $this->Visibilidad_Usuario =$visible;}
+    public function setOrden($orden) { $this->Orden =$orden;}
+    public function setOperador_Default_ID($operadores_def) { $this->Operador_Default_ID =$operadores_def;}
+    public function setOperadores( $operador) { $this->Operadores = $operador;}
+    
+    public function agregarOperador(Operador $operador) {
+      $this->Operadores[] = $operador;
+    }
 }
 ?>
