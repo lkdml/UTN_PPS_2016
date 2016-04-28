@@ -41,11 +41,12 @@ class Departamento {
      *      joinColumns={@JoinColumn(name="Departamento_ID", referencedColumnName="Departamento_ID")},
      *      inverseJoinColumns={@JoinColumn(name="Operador_ID", referencedColumnName="Operador_ID")}
      *      )
+     * @var $OperadorPorDefault[]
      */
-    protected $Operador_Default_ID;
+    protected $OperadorPorDefault;
     /**
      * @ManyToMany(targetEntity="Operador",mappedBy="Operador_ID")
-     * 
+     * @var Operadores[]
      * 
      */
     protected $Operadores;
@@ -61,7 +62,7 @@ class Departamento {
     public function getID_Depto_Padre() {return $this->ID_Depto_Padre;}
     public function getVisibilidad_Usuario() {return $this->Visibilidad_Usuario;}
     public function getOrden() {return $this->Orden;}
-    public function getOperador_Default_ID() {return $this->Operador_Default_ID;}
+    public function getOperadorPorDefault() {return $this->OperadorPorDefault;}
     public function getOperadores() {return $this->Operadores;}
     
     public function setNombre($nombre) { $this->Nombre = $nombre;}
@@ -69,11 +70,15 @@ class Departamento {
     public function setID_Depto_Padre($dpto_padre) { $this->ID_Depto_Padre = $dpto_padre;}
     public function setVisibilidad_Usuario($visible) { $this->Visibilidad_Usuario =$visible;}
     public function setOrden($orden) { $this->Orden =$orden;}
-    public function setOperador_Default_ID($operadores_def) { $this->Operador_Default_ID =$operadores_def;}
+    public function setOperadorPorDefault($operadores_def) { $this->OperadorPorDefault =$operadores_def;}
     public function setOperadores( $operador) { $this->Operadores = $operador;}
     
     public function agregarOperador(Operador $operador) {
       $this->Operadores[] = $operador;
+    }
+    
+    public function asignarOperadorPorDefecto($operador){
+      $this->Operadores[] = $operador
     }
 }
 ?>

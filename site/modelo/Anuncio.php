@@ -18,12 +18,12 @@ class Anuncio {
      *      )
      * @var Empresa_ID[]
 	 */
-	protected $Empresa_ID;
+	protected $Empresas;
 	/**
 	 * @OneToOne (targetEntity="Categoria_Anuncio")
      * @JoinColumn(name="Categoria_ID", referencedColumnName="Categoria_ID")
 	 */
-	protected $Categoria_ID;
+	protected $Categoria;
 	/**
 	 * @Column(type="string")
 	 * @var string
@@ -52,16 +52,16 @@ class Anuncio {
 
 
 	public function getAnuncio_ID(){return $this->Anuncio_ID;}
-	public function getEmpresa_ID(){return $this->Empresa_ID;}
-	public function getCategoria_ID(){return $this->Categoria_ID;}
+	public function getEmpresas(){return $this->Empresas;}
+	public function getCategoria(){return $this->Categoria;}
 	public function getTitulo(){return $this->Titulo;}
 	public function getContenido(){return $this->Contenido;}
 	public function getFecha_Creacion(){return $this->Fecha_Creacion;}
 	public function getEstado(){return $this->Estado;}
 	public function getFecha_Fin_Publicacion(){return $this->Fecha_Fin_Publicacion;}
 	
-	public function setEmpresa_ID($empresa_ID){ $this->Empresa_ID = $empresa_ID;}
-	public function setCategoria_ID($categoria_ID){ $this->Categoria_ID = $categoria_ID;}
+	public function setEmpresas($empresa_ID){ $this->Empresas = $empresa_ID;}
+	public function setCategoria($categoria_ID){ $this->Categoria = $categoria_ID;}
 	public function setTitulo($titulo){ $this->Titulo = $titulo;}
 	public function setContenido($contenido){ $this->Contenido = $contenido;}
 	public function setFecha_Creacion($fecha_Creacion){$this->Fecha_Creacion = $fecha_Creacion;}
@@ -69,7 +69,12 @@ class Anuncio {
 	public function setFecha_Fin_Publicacion($fecha_Fin_Publicacion){ $this->Fecha_Fin_Publicacion = $fecha_Fin_Publicacion;}
 	
 	public function __construct() {
-        $this->Empresa_ID = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->Empresa = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    public function asignarEmpresa(Empresa $empresa) {
+    	$empresa->agregarAnuncio(this);
+    	$this->Empresa[] = $empresa;
     }
     
 }

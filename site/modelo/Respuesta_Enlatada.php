@@ -19,7 +19,7 @@ class Respuesta_Enlatada {
      * @ManyToOne(targetEntity="Departamento")
      * @JoinColumn(name="Departamento_ID", referencedColumnName="Departamento_ID")
      */
-    protected $Departamento_ID;
+    protected $Departamento;
     
     
     public function getEnlatado_ID(){return $this->Enlatado_ID;}
@@ -29,6 +29,9 @@ class Respuesta_Enlatada {
     public function setRespuesta($rta){$this->Respuesta = $rta;}
     public function setDepartamento_ID($depto_id){$this->Departamento_ID =$depto_id;}
     
+    public function asignarDepartamento($depto){
+      $this->Departamento = $depto;
+    }
 }
 
 ?>
