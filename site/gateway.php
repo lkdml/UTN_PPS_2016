@@ -3,8 +3,6 @@
 require_once('configuracion.php');  
 require_once('./core/controlador/Aplicacion.php') ;
 
-    //\CORE\Controlador\Aplicacion::startSession();
-
 if ($modoOP) {
     if (!isset($_GET['modulo'])) {
         require_once(\CORE\Controlador\Config::getPublic('Ruta_Back').'login.php');

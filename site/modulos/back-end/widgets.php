@@ -1,6 +1,8 @@
 <?php
 require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php'); 
 
+use \CORE\Controlador\Aplicacion;
+Aplicacion::startSession(true);
 
 
 //      \CORE\Controlador\Aplicacion::starSession();

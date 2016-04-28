@@ -1,15 +1,6 @@
 <?php
 
 require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php');  
-//Define autoloader
-function __autoload($className) {
-      if (file_exists($className . '.php')) {
-          require_once $className . '.php';
-          return true;
-      }
-      return false;
-} 
-
 require_once (\CORE\Controlador\Config::getPublic('Ruta_Core_Controlador')."ViewManager.php");
 
 

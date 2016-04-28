@@ -9,6 +9,8 @@
     */
 require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php'); 
 
+use \CORE\Controlador\Aplicacion;
+Aplicacion::startSession(false,true);
 
 header("location:/index.php?modulo=home");
 

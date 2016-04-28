@@ -1,9 +1,6 @@
 <?php
 
 require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php');  
-//Define autoloader
-
-
 require_once (\CORE\Controlador\Config::getPublic('Ruta_Core_Controlador')."ViewManager.php");
 
 

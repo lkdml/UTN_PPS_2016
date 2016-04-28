@@ -9,6 +9,8 @@
     */
 require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php'); 
 
+use \CORE\Controlador\Aplicacion;
+Aplicacion::startSession(true,true);
 
 header("location:/operador.php?modulo=dashboard");
 

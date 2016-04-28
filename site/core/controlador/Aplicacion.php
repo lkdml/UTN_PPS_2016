@@ -9,53 +9,68 @@ class Aplicacion extends Singleton {
         private $loggedIn;
         private $EM;
 
-        public function setEM($EntityManager){
-                $this->em = $EntityManager;
-        }
-        
-        public function getEM(){return $this->$EM;}
-
-
         /**
         * Cargo las variables de session session_start(), pero antes verifico que el usuario este autenticado.
         * Si paso el parametro de autenticacion=true, creo las llaves de verificacion (utilizar luego de un login)
         *
         * @param boolean $autentica
         */
-        public static function startSession($autentica=false){
-                        if(!isset($_SESSION)) {
-                                           session_start();
-                                }
+        public static function startSession($backEnd=false,$autentica=false){
+                if(!isset($_SESSION)) {
+                           session_start();
+                }
                 //Si quiero autenticar al usuario
                 if ($autentica==true) {
-                    $_SESSION['tiempo']=strtotime('+10 minute') ;
-                    $_SESSION["autenticado"]=true;
-                    //\CORE\Aplicacion::isLoggedIn();
+                    \CORE\Controlador\Aplicacion::autenticarFrontOBack($backEnd);
                 }
                 //Si no esta authenticado,  mato todo
-                if (!(\CORE\Controlador\Aplicacion::isLoggedIn())) {
+                if (!(\CORE\Controlador\Aplicacion::isLoggedIn($backEnd))) {
                     session_destroy();
-                    echo 'Acceso no autorizado';die;
-                    header("location:/index.php");
+                    if ($backEnd){
+                            header("location:/operador.php");
+                    } else {
+                            header("location:/index.php");
+                    }
                     
                 }
-
-
-
+        }
+        
+        public static function autenticarFrontOBack($backend){
+                if ($backend==true) {
+                    $_SESSION['tiempo']=strtotime('+1 minute') ;
+                    $_SESSION["backAutenticado"]=true;
+                } else {
+                    $_SESSION['tiempo']=strtotime('+1 minute') ;
+                    $_SESSION["frontAutenticado"]=true;    
+                }
         }
 
-        public static function isLoggedIn(){
-                        $rta=false;
-                if ($_SESSION["autenticado"]==true) {
-                        if (isset($_SESSION['tiempo'])) {
-                        $vida_session = $_SESSION['tiempo'] - time();
-                                        if ($vida_session > $_SESSION['inactividadMax']) {
-                                                $_SESSION['tiempo'] = strtotime('+10 minute');
-                                                $rta=true;
-                                        }
+        public static function isLoggedIn($backend){
+                $rta=false;
+                if ($backend)
+                {
+                        if ($_SESSION["backAutenticado"]==true) {
+                                if (isset($_SESSION['tiempo'])) {
+                                $vida_session = $_SESSION['tiempo'] - time();
+                                                if ($vida_session > $_SESSION['inactividadMax']) {
+                                                        $_SESSION['tiempo'] = strtotime('+1 minute');
+                                                        $rta=true;
+                                                }
+                                }
+                        }
+                } else {
+                        if ($_SESSION["frontAutenticado"]==true) {
+                                if (isset($_SESSION['tiempo'])) {
+                                $vida_session = $_SESSION['tiempo'] - time();
+                                                if ($vida_session > $_SESSION['inactividadMax']) {
+                                                        $_SESSION['tiempo'] = strtotime('+1 minute');
+                                                        $rta=true;
+                                                }
+                                }
+                        
                         }
                 }
-                        return $rta;
+        return $rta;
         }
 
 //        private function crearHash(){
@@ -131,6 +146,13 @@ class Aplicacion extends Singleton {
                 return $the_ip;
 
         }
+        
+        public function setEM($EntityManager){
+                $this->em = $EntityManager;
+        }
+        
+        public function getEM(){return $this->$EM;}
+
 
         /**
          * @desc Extraigo desde un mail la parte anterior al @
