@@ -1,5 +1,5 @@
 {include file="header.tpl"
-css=''
+css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css">'
 js='' 
 }
 {include file="panelLateral.tpl"}
@@ -25,13 +25,13 @@ js=''
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form action="{$rutaCSS}../controlador/nuevoTicketAction.php" class="form-horizontal">
+            <form action="{$rutaCSS}../controlador/nuevoTicketAction.php" id="nuevoticketForm" class="form-horizontal">
               <div class="box-body">
                 <div class="box">
                     <div class="form-group">
                       <div class="box-body pad">
-                        <label for="comboDepto" class="col-sm-2 control-label">Departamento</label>
-                          <div class="col-sm-10">
+                        <label for="comboDepto" class="col-md-2 control-label">Departamento</label>
+                          <div class="col-md-5">
                            <select class="form-control select2" style="width: 100%;">
                               <option selected="selected">Sistemas</option>
                               <option>Depto2</option>
@@ -46,8 +46,8 @@ js=''
                    </div>
                   <div class="form-group">
                     <div class="box-body pad">
-                      <label for="comboTipo" class="col-sm-2 control-label">Tipo</label>
-                      <div class="col-sm-10">
+                      <label for="comboTipo" class="col-md-2 control-label">Tipo</label>
+                      <div class="col-md-5">
                        <select class="form-control select2" style="width: 100%;">
                           <option selected="selected">Soporte</option>
                           <option>Tipo2</option>
@@ -62,8 +62,8 @@ js=''
                    </div>
                    <div class="form-group">
                       <div class="box-body pad">
-                        <label for="comboPrioridad" class="col-sm-2 control-label">Prioridad</label>
-                        <div class="col-sm-10">
+                        <label for="comboPrioridad" class="col-md-2 control-label">Prioridad</label>
+                        <div class="col-md-5">
                          <select class="form-control select2" style="width: 100%;">
                             <option selected="selected">Baja</option>
                             <option>Media</option>
@@ -76,8 +76,8 @@ js=''
                      </div>
                      <div class="form-group">
                       <div class="box-body pad">
-                        <label for="comboPrioridad" class="col-sm-2 control-label">SLA</label>
-                        <div class="col-sm-10">
+                        <label for="comboPrioridad" class="col-md-2 control-label">SLA</label>
+                        <div class="col-md-5">
                          <select class="form-control select2" style="width: 100%;">
                             <option selected="selected">Por Defecto</option>
                             <option>24 hs</option>
@@ -99,7 +99,7 @@ js=''
                     <!-- /.box-header -->
 
                     <div class="form-group">
-                      <label for="titulo" class="col-sm-2 control-label">Sistema Operativo</label>
+                      <label for="titulo" class="col-md-2 control-label">Sistema Operativo</label>
                       <div class="col-md-4 radio">
                           <label>
                             <input type="radio" name="optionsRadios" id="optnWin" value="optnWindows" checked>
@@ -116,8 +116,8 @@ js=''
   
                 
                     <div class="form-group">
-                      <label for="comboTipo" class="col-sm-2 control-label">Tipo Evento</label>
-                      <div class="col-sm-10">
+                      <label for="comboTipo" class="col-md-2 control-label">Tipo Evento</label>
+                      <div class="col-md-5">
                        <select class="form-control select2" style="width: 100%;">
                           <option selected="selected">Evento1</option>
                           <option>Evento1</option>
@@ -132,8 +132,8 @@ js=''
                     </div>
             
                     <div class="form-group">
-                      <label for="lblTelefono" class="col-sm-2 control-label">Teléfono</label>
-                      <div class="col-sm-10">
+                      <label for="lblTelefono" class="col-md-2 control-label">Teléfono</label>
+                      <div class="col-md-7">
                         <div class="col-sm-4 input-group">
                           <div class="input-group-addon">
                             <i class="fa fa-phone"></i>
@@ -155,16 +155,16 @@ js=''
 
                       <div class="form-group">
                         <div class="box-body pad">
-                          <label for="inputAsunto" class="col-sm-2 control-label">Asunto</label>
-                          <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputAsunto">
+                          <label for="inputAsunto" class="col-md-2 control-label">Asunto</label>
+                          <div class="col-md-5">
+                            <input type="text" class="form-control" id="txtAsunto" name="txtAsunto">
                           </div>
                         </div>  
                         <div class="box-body pad">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                             
-                                <div class="col-sm-10">
-                                  <textarea class="textarea_msg" placeholder="Ingrese una Descripción" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
+                                <div class="col-md-10">
+                                  <textarea class="textarea_msg" name="txtDescripcion" id="txtDescripcion" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
                                 <!--  -->
                                 </div>
                             
@@ -199,7 +199,7 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
-
+<script src="{$rutaJS}jquery-validator-min.js"></script>
 <script src="{$rutaJS}bootstrap3-wysihtml5.all.js"></script>
 
 {literal} <script>
@@ -208,6 +208,44 @@ js=''
     $(".textarea_msg").wysihtml5();
   });
 </script>
+
+<script>
+  $().ready(function() {
+  
+    // Setup form validation on the #register-form element
+    $("#nuevoticketForm").validate({
+    
+        // Specify the validation rules
+        rules: {
+            txtAsunto: {
+              required:true,
+              minlength:5
+            },
+            txtDescripcion: {
+                required: true,
+                minlength:5
+            }
+        },
+        
+        // Specify the validation error messages
+        messages: {
+             txtAsunto: {
+                required: "Por favor ingresa un asunto",
+                minlength: "El asunto debe tener mas de 5 letras"
+            },
+            txtDescripcion: {
+               required: "Por favor ingresa una descripción",
+                minlength: "La descripción debe tener mas de 5 letras"
+            }
+        }
+    })
+    
+  });
+  
+  
+</script>
+
+
 {/literal}
   
   
