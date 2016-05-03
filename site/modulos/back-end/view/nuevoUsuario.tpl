@@ -1,9 +1,8 @@
 {include file="header.tpl"
-css=''
+css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css">'
 js=''
 }
 {include file="panelLateral.tpl"}
-
 
   <!-- =============================================== -->
 <div class="content-wrapper">
@@ -22,56 +21,56 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/nuevoUserAction.php" class="form-horizontal">
+        <form action="{$rutaCSS}../controlador/nuevoUserAction.php" id="nuevoUsuarioForm" class="form-horizontal">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
                         <div class="box-body pad">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputNombre">
+                              <input type="text" class="form-control" id="nombre" name="nombre">
                             </div>
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
                             <label for="inputApellido" class="col-sm-2 control-label">Apellido</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputApellido">
+                              <input type="text" class="form-control" id="apellido" name="apellido">
                             </div>
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
                             <label for="inputClave" class="col-sm-2 control-label">Clave</label>
                             <div class="col-sm-5">
-                              <input type="password" class="form-control" id="inputClave">
+                              <input type="password" class="form-control" id="clave" name="clave">
                             </div>
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
                             <label for="inputEmail" class="col-sm-2 control-label">Email</label>
                             <div class="col-sm-5">
-                              <input type="email" class="form-control" id="inputEmail">
+                              <input type="email" class="form-control" id="email" name="email">
                             </div>
                         </div>
                         <!-- body pad end -->
                        <div class="box-body pad">
                             <label for="inputDireccion" class="col-sm-2 control-label">Direccion</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputDireccion">
+                              <input type="text" class="form-control" id="direccion" name="direccion">
                             </div>
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
                             <label for="inputCodigoPostal" class="col-sm-2 control-label">Código Postal</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputCodigoPostal">
+                              <input type="text" class="form-control" id="cp" name="cp">
                             </div>
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
                             <label for="inputCiudad" class="col-sm-2 control-label">Ciudad</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputCiudad">
+                              <input type="text" class="form-control" id="ciudad" name="ciudad">
                             </div>
                         </div>
                         <!-- body pad end -->
@@ -82,7 +81,7 @@ js=''
                                   <div class="input-group-addon">
                                     <i class="fa fa-phone"></i>
                                   </div>
-                                  <input type="text" class="form-control" data-inputmask='"mask": "9-999-9999"' data-mask>
+                                  <input type="text" class="form-control" data-inputmask='"mask": "9-999-9999"' data-mask id="telefono" name="telefono">
                                 </div>
                             </div>
                         </div>
@@ -90,7 +89,7 @@ js=''
                         <div class="box-body pad">
                             <label for="inputEmailAdicional" class="col-sm-2 control-label">Email Adicional</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputEmailAdicional">
+                              <input type="email" class="form-control" id="emailadicional" name="emailadicional">
                             </div>
                         </div>
                         <!-- body pad end -->
@@ -144,4 +143,71 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+<script src="{$rutaJS}jquery-validator-min.js"></script>
+
+{literal}
+<script>
+  $().ready(function() {
+  
+    // Setup form validation on the #register-form element
+    $("#nuevoUsuarioForm").validate({
+    
+        // Specify the validation rules
+        rules: {
+            
+            nombre: {required:true},
+            apellido: {required:true},
+            clave: {
+                        required: true,
+                        pwcheck: true,
+                        minlength: 8
+                        },
+            email: {
+                required: true,
+                emailcheck:true
+            }
+            
+        },
+        
+        // Specify the validation error messages
+        messages: {
+             nombre: {
+                required: "Por favor, ingresa el nombre"},
+            apellido: {
+                required: "Por favor, ingresa el apellido"},
+            clave: {
+               required: "Por favor, ingresa una clave",
+                minlength: "La descripción debe tener mas de 8 caractéres",
+                pwcheck:"La clave debe contener una letra minuscula y un número"
+            },
+            email:{
+                required:"Por favor, ingrese un email",
+                email:"El email ingresado es inválido",
+                emailcheck:"El email ingresado es inválido"
+            },
+            emailadicional:{email:"El email ingresado es inválido"}
+           
+        }
+    })
+    
+  });
+ 
+</script>
+<script>
+//VALIDACION DE LA PASSWORD
+$.validator.addMethod("pwcheck", function(value) {
+   return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
+       && /[a-z]/.test(value) // has a lowercase letter
+       && /\d/.test(value) // has a digit
+});
+//VALIDACION DEL MAIL
+$.validator.addMethod("emailcheck",function(value) {
+  return /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value);
+});
+
+</script>
+{/literal}
+
+
+
  {include file="footer.tpl"}
