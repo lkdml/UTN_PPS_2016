@@ -16,7 +16,11 @@ class Perfil {
      * @var string
      */
     protected $Nombre;
-
+    /**
+     * @Column(type="string", nullable=true)
+     * @var string
+     */
+    protected $Descripcion;
     
     /**
      * @Column(type="boolean")

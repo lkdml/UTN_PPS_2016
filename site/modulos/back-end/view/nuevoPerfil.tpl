@@ -41,7 +41,7 @@ js=''
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Descripcion</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" name="Descripcion" placeholder="Descripcion del perfíl">
+                              <input class="form-control" id="inputNombre" name="Descripcion"  {if $Descripcion}value={$Descripcion}{/if} placeholder="Descripcion del perfíl">
                             </div>
                           </div>
                           <br>

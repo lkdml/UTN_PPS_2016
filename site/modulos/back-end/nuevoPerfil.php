@@ -32,7 +32,8 @@ switch(strtolower($_POST["accion"])){
   case ("editar"):
     //TODO: falta validar permisos para esta accion.
     $perfil = $em->getRepository('Modelo\Perfil')->find($_POST["perfil"][0]);
-    $vm->assign('Nombre', $perfil->getNombre());
+    $vm->assign('Nombre', '"'.$perfil->getNombre().'"');
+    $vm->assign('Descripcion','"'. $perfil->getDescripcion().'"');
     foreach ($perfil->getRoles() as $rol){
       $vm->assign($rol->getNombre(),true);
     }
@@ -48,13 +49,7 @@ switch(strtolower($_POST["accion"])){
     header("location:/operador.php?modulo=perfiles");
     break;
    default:
-    die;
+    header("location:/operador.php?modulo=perfiles");
     break;
-  
-  
-  
 }
-
-
-
-  $vm->display('nuevoPerfil.tpl');
+$vm->display('nuevoPerfil.tpl');

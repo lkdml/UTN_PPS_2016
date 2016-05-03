@@ -15,7 +15,6 @@ if (isset($_GET['perfil'])){
     $getPerfil =  $em->getRepository('Modelo\Perfil')->find($_GET["perfil"]);
         $Perfil = setearPerfil($getPerfil,$em);
         $em->merge($Perfil);
-        //$em->clear();
         $em->flush();
 } else {
    $Perfil = setearPerfil(new Perfil(),$em);
@@ -25,6 +24,7 @@ if (isset($_GET['perfil'])){
 
 function setearPerfil(Perfil $perfil,$em){
     $perfil->setNombre($_POST['Nombre']);
+    $perfil->setDescripcion($_POST['Descripcion']);
     $perfil->setEstado(true);
     $perfil->getRoles()->clear();
     foreach ($_POST['permisos'] as $permiso=>$valor){
