@@ -88,7 +88,7 @@ js=''
                   <tr>
                       <td><input class="case" type="checkbox" name="perfil[]" value="{$perfil->getId()}" ></input></td>
                       <td>{$perfil->getNombre()}</td>
-                      <td>{$perfil->getId()}</td>
+                      <td>{$perfil->getDescripcion()}</td>
                   </tr>
               {/foreach}
           </tbody>
