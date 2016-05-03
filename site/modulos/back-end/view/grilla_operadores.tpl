@@ -142,8 +142,9 @@ js=''
 <script type="text/javascript" charset="utf8" src="{$rutaJS}jquery.dataTables.js"></script>
 
 <!-- Baja Visual -->
-
 <script type="text/javascript" charset="utf8" src="{$rutaJS}bajaVisual.js"></script>
+
+<!-- Manejador de botones y Checkbox-->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}chkboxManager.js"></script>
 <script type="text/javascript" charset="utf8" src="{$rutaJS}checkAll.js"></script>
 
