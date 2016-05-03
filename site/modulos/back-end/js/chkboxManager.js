@@ -10,14 +10,12 @@ var checkboxes = document.getElementsByTagName('input');
 
     if ( checkboxes[i].type === 'checkbox' && checkboxes[i].id !== "checkAll") {
             checkboxes[i].onclick = function (){
-                //TODO terminar de resolver lógica
-             
-             
+                
                   var selchbox = [];// Array que va a guardar los selected checkbox
                  
                   var inpfields = document.getElementsByTagName('input');
                   var nr_inpfields = inpfields.length;
-                  // traverse the inpfields elements, and adds the value of selected (checked) checkbox in selchbox
+                  // Segùn condición almaceno los valores (como referencia)
                   for(var i=0; i<nr_inpfields; i++) {
                     if(inpfields[i].type == 'checkbox' && inpfields[i].checked == true && inpfields[i].id !== "checkAll" ) selchbox.push(inpfields[i].value);
                   }

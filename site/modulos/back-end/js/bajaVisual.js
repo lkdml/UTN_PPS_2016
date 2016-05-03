@@ -13,8 +13,9 @@ function deleteRow(tableID) {
              }
          }
          
-         var checkBoxCheckAll = document.getElementById("checkAll");
-         checkBoxCheckAll.checked = false;
+         document.getElementById("btnModificar").disabled = true;
+         document.getElementById("btnBorrar").disabled = true;
+         document.getElementById("btnNuevo").disabled = false;
          
          
      } catch (e) {

@@ -1,6 +1,9 @@
 function checkAll(ele) {
-     var checkboxes = document.getElementsByTagName('input');
+    
+    var checkboxes = document.getElementsByTagName('input');
+     
      if (ele.checked) {
+         
          for (var i = 0; i < checkboxes.length; i++) {
              if (checkboxes[i].type == 'checkbox' && checkboxes[i].id !== "checkAll") {
                  checkboxes[i].checked = true;
@@ -11,6 +14,7 @@ function checkAll(ele) {
              }
          }
      } else {
+        
          for (var i = 0; i < checkboxes.length; i++) {
              if (checkboxes[i].type == 'checkbox' && checkboxes[i].id !== "checkAll") {
                  checkboxes[i].checked = false;
