@@ -1,5 +1,6 @@
 <?php
 namespace CORE\Controlador;
+require_once(__DIR__.'./../../bootstrap_orm.php');
 
 class Entity_Manager extends Singleton {
 
@@ -13,6 +14,7 @@ class Entity_Manager extends Singleton {
                 return $this->EntityManager;
                 
         }
+        
 
 }
 

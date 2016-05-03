@@ -78,7 +78,7 @@ class Departamento {
     }
     
     public function asignarOperadorPorDefecto($operador){
-      $this->Operadores[] = $operador
+      $this->Operadores[] = $operador;
     }
 }
 ?>

@@ -12,7 +12,7 @@ class Operador {
  	protected $Operador_ID;
     /**
      * @ManyToOne(targetEntity="Perfil")
-     * @JoinColumn(name="Perfil_ID", referencedColumnName="Perfil_ID")
+     * @JoinColumn(name="Perfil_ID", referencedColumnName="id")
      */
  	protected $Perfil_ID;
     /**
