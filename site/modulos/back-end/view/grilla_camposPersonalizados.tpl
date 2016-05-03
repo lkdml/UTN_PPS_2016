@@ -59,7 +59,7 @@ js=''
                       <p>Esta acción eliminará el campo personalizado seleccionado. ¿Esta seguro que desea continuar?</p>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn btn-danger" data-dismiss="modal">Si, estoy seguro.</button>
+                      <button type="button" class="btn btn btn-danger" data-dismiss="modal" onclick="deleteRow('grilla')">Si, estoy seguro.</button>
                       <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
                     </div>
                   </div>
@@ -78,7 +78,7 @@ js=''
     <table id="grilla" class="display">
         <thead>
             <tr>
-                <th><input type="checkbox"  onclick="manejoBotonPrueba(this)"></input></th>
+                <th><input type="checkbox" id = "checkAll" onclick = "checkAll(this)"></input></th>
                 <th>Nombre</th>
                 <th>descripción</th>
                 <th>tipo</th>
@@ -87,41 +87,41 @@ js=''
         </thead>
         <tbody>
             <tr>
-                <td><input type="checkbox"  onclick="manejoBotonPrueba(this)"></input></td>
+                <td><input type="checkbox"></input></td>
                 <td>Teléfono</td>
                 <td>Teléconos</td>
                 <td>text</td>
                 <td>Todos</td>
             </tr>
             <tr>
-                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
+                <td><input type="checkbox"></input></td>
                 <td>Interno</td>
                 <td>Teléconos</td>
                 <td>text</td>
                 <td>Todos</td>
             </tr>
             <tr>
-                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
+                <td><input type="checkbox"></input></td>
                 <td>Aplicación</td>
                 <td>Especifique la aplicación</td>
                 <td>Opción</td>
                 <td>Soporte N2</td>
             </tr>
             <tr>
-                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
+                <td><input type="checkbox"></input></td>
                 <td>O.S.</td>
                 <td>Sistema Operativo</td>
                 <td>Opción</td>
                 <td>Soporte N2</td>
             </tr><tr>
-                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
+                <td><input type="checkbox"></input></td>
                 <td>Nro Hardware</td>
                 <td>Número de identificación del equipamiento afectado</td>
                 <td>text</td>
                 <td>Soporte N1, Soporte N2</td>
             </tr>
             <tr>
-                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
+                <td><input type="checkbox"></input></td>
                 <td>Dirección</td>
                 <td>Dirección de envío</td>
                 <td>text</td>
@@ -157,31 +157,13 @@ js=''
 
 <script type="text/javascript" charset="utf8" src="{$rutaJS}jquery.dataTables.js"></script>
 
-{literal}
-<script>
 
-function manejoBotonPrueba(checkbox)
-{
-  
- 
-    if (checkbox.checked)
-    {
-    document.getElementById("btnModificar").disabled = false;
-    document.getElementById("btnBorrar").disabled = false;
-    document.getElementById("btnNuevo").disabled = true;
-    }
-    if (checkbox.checked == false)
-    {
-    document.getElementById("btnModificar").disabled = true;
-    document.getElementById("btnBorrar").disabled = true;
-    document.getElementById("btnNuevo").disabled = false;
-    }
-    
-}
+<!-- Baja Visual -->
+<script type="text/javascript" charset="utf8" src="{$rutaJS}bajaVisual.js"></script>
 
-</script>
-{/literal}
-
+<!-- Manejador de botones y Checkbox-->
+<script type="text/javascript" charset="utf8" src="{$rutaJS}chkboxManager.js"></script>
+<script type="text/javascript" charset="utf8" src="{$rutaJS}checkAll.js"></script>
 
 {literal}
 <script>

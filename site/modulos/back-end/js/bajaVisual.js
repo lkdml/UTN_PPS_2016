@@ -13,9 +13,11 @@ function deleteRow(tableID) {
              }
          }
          
+         //Modifico los estados de los elementos del DOM
          document.getElementById("btnModificar").disabled = true;
          document.getElementById("btnBorrar").disabled = true;
          document.getElementById("btnNuevo").disabled = false;
+         document.getElementById("checkAll").checked = false;
          
          
      } catch (e) {

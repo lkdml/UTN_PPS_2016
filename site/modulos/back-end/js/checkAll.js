@@ -25,6 +25,9 @@ function checkAll(ele) {
              }
          }
      }
+     
+     
+     
  }
     
     
