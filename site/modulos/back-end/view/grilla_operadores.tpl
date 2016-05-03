@@ -59,7 +59,7 @@ js=''
                       <p>Esta acción eliminará los Operadores seleccionados. ¿Esta seguro que desea continuar?</p>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn btn-danger" data-dismiss="modal">Si, estoy seguro.</button>
+                      <button type="button" class="btn btn btn-danger" data-dismiss="modal" onclick = "deleteRow('grilla')">Si, estoy seguro.</button>
                       <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
                     </div>
                   </div>
@@ -76,10 +76,13 @@ js=''
       <!-- /1 box --> 
 
       
-    <table id="grilla" class="display">
+
+      
+    <table id="grilla" class="display" >
         <thead>
+          
             <tr>
-                <th><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></th>
+                <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
                 <th>Usuario</th>
                 <th>Nombre</th>
                 <th>Apellido</th>
@@ -88,21 +91,21 @@ js=''
         </thead>
         <tbody>
             <tr>
-                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
+                <td><input type="checkbox"></input></td>
                 <td>Br1ann</td>
                 <td>Brian</td>
                 <td>Ducca</td>
                 <td>Brian.ducca@gmail.com</td>
             </tr>
             <tr>
-                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
+                <td><input type="checkbox"></input></td>
                 <td>lbockor</td>
                 <td>Lucas Daniel</td>
                 <td>Bockor</td>
                 <td>Lbockor@gmail.com</td>
             </tr>
             <tr>
-                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
+                <td><input type="checkbox"></input></td>
                 <td>lkdml</td>
                 <td>Mariano</td>
                 <td>López Senés</td>
@@ -138,33 +141,22 @@ js=''
 
 <script type="text/javascript" charset="utf8" src="{$rutaJS}jquery.dataTables.js"></script>
 
-{literal}
-<script>
+<!-- Baja Visual -->
 
-function manejoBotonPrueba(checkbox)
-{
-  
- 
-    if (checkbox.checked)
-    {
-    document.getElementById("btnModificar").disabled = false;
-    document.getElementById("btnBorrar").disabled = false;
-    document.getElementById("btnNuevo").disabled = true;
-    }
-    if (checkbox.checked == false)
-    {
-    document.getElementById("btnModificar").disabled = true;
-    document.getElementById("btnBorrar").disabled = true;
-    document.getElementById("btnNuevo").disabled = false;
-    }
-    
-}
+<script type="text/javascript" charset="utf8" src="{$rutaJS}bajaVisual.js"></script>
+<script type="text/javascript" charset="utf8" src="{$rutaJS}chkboxManager.js"></script>
+<script type="text/javascript" charset="utf8" src="{$rutaJS}checkAll.js"></script>
 
-</script>
-{/literal}
+
+
+
+
+
+
 {literal}
 
 <script>
+
 $(document).ready( function () {
     $('#grilla').DataTable({
   "columnDefs": [
