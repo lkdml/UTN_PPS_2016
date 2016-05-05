@@ -57,15 +57,16 @@ source documentacion/db-script/alta_roles.sql
 
 ## Deployment
 
-* Model
-* View
-* Controller
+* **Model**
 
-For model: site/modelo/ . Here are all the entity's that Doctrine will use to match with the database
+  * site/modelo/ . Here are all the entity's that Doctrine will use to match with the database
+  
+* **View**
 
-For views:We work with a framework based on MVC(model-view-controller), so that our views go in site/modulos/back-end/view or site/modulos/front-end/view . For the view we use a .tpl file for the html, the .php will be at site/modulos/back-end/ or site/modulos/front-end and it will have all the smarty information with the call to view.tpl. 
-
-For controller: We use the controller to do all our business logic and also we add the routes that smarty needs. The folders are site/modulos/back-end/controlador/ or site/modulos/front-end/controlador/
+  * We work with a framework based on MVC(model-view-controller), so that our views go in site/modulos/back-end/view or site/modulos/front-end/view . For the view we use a .tpl file for the html, the .php will be at site/modulos/back-end/ or site/modulos/front-end and it will have all the smarty information with the call to view.tpl.
+  
+* **Controller**
+ * We use the controller to do all our business logic and also we add the routes that smarty needs. The folders are site/modulos/back-end/controlador/ or site/modulos/front-end/controlador/
 
 ## Built With
 
@@ -92,7 +93,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 * **Mariano Lopez Senés** - *Initial work* - [TMH](https://github.com/lkdml)
 * **Lucas Daniel Bockor** - *Initial work* - [TMH](https://github.com/LucasDaniel77)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/lkdml/UTN_PPS_2016/graphs/contributors) who participated in this project.
 
 ## License
 
