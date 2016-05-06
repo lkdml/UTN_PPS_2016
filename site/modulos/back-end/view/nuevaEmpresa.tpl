@@ -1,5 +1,5 @@
 {include file="header.tpl"
-css=''
+css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css">'
 js=''
 }
 {include file="panelLateral.tpl"}
@@ -22,42 +22,42 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/nuevaEmpresaAction.php" class="form-horizontal">
+        <form action="{$rutaCSS}../controlador/nuevaEmpresaAction.php" id="nuevaEmpresaForm" class="form-horizontal">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
                         <div class="box-body pad">
                             <label for="inputRazonSocial" class="col-sm-2 control-label">Razon Social</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputNombre">
+                              <input type="text" class="form-control" id="razonsocial" name="razonsocial">
                             </div>
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
                             <label for="inputPais" class="col-sm-2 control-label">Pais</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputPais">
+                              <input type="text" class="form-control" id="pais" name="pais">
                             </div>
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
                             <label for="inputCiudad" class="col-sm-2 control-label">Ciudad</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputCiudad">
+                              <input type="text" class="form-control" id="ciudad" name="ciudad">
                             </div>
                         </div>
                         <!-- body pad end -->
                        <div class="box-body pad">
                             <label for="inputDireccion" class="col-sm-2 control-label">Direccion</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputDireccion">
+                              <input type="text" class="form-control" id="direccion">
                             </div>
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
                             <label for="inputCodigoPostal" class="col-sm-2 control-label">Código Postal</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputCodigoPostal">
+                              <input type="text" class="form-control" id="cp">
                             </div>
                         </div>
                         <!-- body pad end -->
@@ -76,7 +76,7 @@ js=''
                         <div class="box-body pad">
                             <label for="inputWeb" class="col-sm-2 control-label">Web</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputWeb">
+                              <input type="url" class="form-control" id="web" name="web">
                             </div>
                         </div>
                         <!-- body pad end -->
@@ -110,4 +110,43 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
- {include file="footer.tpl"}
+<script src="{$rutaJS}jquery-validator-min.js"></script>
+
+{literal}
+<script>
+  $().ready(function() {
+  
+    // Setup form validation on the #register-form element
+    $("#nuevaEmpresaForm").validate({
+    
+        // Specify the validation rules
+        rules: {
+            
+            razonsocial: {required:true},
+            pais: {required:true},
+            direccion: {required:true}
+        },
+        
+        // Specify the validation error messages
+        messages: {
+             razonsocial: {
+                required: "Por favor, ingresa la Razón Social"},
+            pais: {
+                required: "Por favor, ingresa el país"},
+            direccion: {
+               required: "Por favor, ingresa la dirección",
+            },
+            web:{
+                url:"Por favor ingrese la web de forma correcta"
+            }
+           
+        }
+    })
+    
+  });
+ 
+</script> 
+ {/literal}
+ 
+{include file="footer.tpl"}
+ 

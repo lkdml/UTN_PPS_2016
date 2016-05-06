@@ -1,16 +1,15 @@
 <?php
 namespace Modelo;
+use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * @Entity @Table(name="Rol")
  **/
-class Rol {
- 	/** Saco el ID
-     * Id @Column(type="integer") @GeneratedValue 
-     * var int
-     */
-	protected $Rol_ID;
+class Rol extends EntityRepository{
+
     /**
-     * @Id @Column(type="string")
+     * @Id @GeneratedValue(strategy="NONE")  @Column(type="string")
      * @var string
      */
 	protected $Nombre;
@@ -25,7 +24,7 @@ class Rol {
      */
 	private $Estado;
     /**
-     * @ManyToMany(targetEntity="Perfil", mappedBy="Perfil_ID")
+     * ManyToMany(targetEntity="Perfil", mappedBy="Perfil_ID")
      * 
      */
     protected $Perfiles;
@@ -34,21 +33,23 @@ class Rol {
         $this->Perfiles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    //public function getRol_ID(){return $this->Rol_ID;} 
+    public function getId(){return $this->id;} 
     public function getNombre(){return $this->Nombre;} 
     public function getDescripcion(){return $this->Descripcion; }
     //public function getEstado(){return $this->Estado;}
     public function getPerfiles() {return $this->Perfiles;}
     
-    //public function setNombre($nombre){$this->Nombre = $nombre;} 
+    public function setNombre($nombre){$this->Nombre = $nombre;} 
     public function setDescripcion($descripcion){$this->Descripcion = $descripcion;}
     //public function setEstado($estado){$this->Estado = $estado;}
-    public function setPerfiles(Perfil[] $perfil){$this->Perfiles[] = $perfil;    }
+    public function setPerfiles(Perfil $perfil){$this->Perfiles = $perfil;}
     
     public function agregarPerfil(Perfil $perfil){
         $this->Perfiles[] = Perfil;
     }
+    
+    
+
 
 }
-
 ?>

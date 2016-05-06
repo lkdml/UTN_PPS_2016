@@ -310,7 +310,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`perfiles_roles` (
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_perfiles_roles_rol`
-    FOREIGN KEY ()
+    FOREIGN KEY (`Nombre_ID`)
     REFERENCES `tmh`.`rol` ()
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

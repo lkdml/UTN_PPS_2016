@@ -26,76 +26,75 @@ js=''
    
    <!-- CONTENIDO -->
     <section class="content">
-      <!-- 1 box Largo --> 
-      <div class="box box-primary">
-        <div class="box-header with-border">
-          <h3 class="box-title">Acciones:</h3>
-          <div class="box-tools pull-right">
-            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-          </div><!-- /.box-tools -->
-        </div><!-- /.box-header -->
-        <div class="box-body">
-              <button class="btn btn-app "  id="btnNuevo" onclick="window.location.href='/operador.php?modulo=nuevoPerfil'">
-                <i class="fa fa-plus"></i> Nuevo
-              </button>
-              <button class="btn btn-app " id="btnModificar" onclick="window.location.href='/operador.php?modulo=nuevoPerfil&id=3'" disabled>
-                <i class="fa fa-edit"></i> Editar
-              </button>
-              <button class="btn btn-app "id="btnBorrar" data-toggle="modal" data-target="#myModal" disabled>
-                <i class="fa fa-trash"></i> Borrar
-              </button>
-              
-              <!-- Modal para Borrar-->
-              <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-              
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Eliminar Perfil</h4></h4>
+      <form action="/operador.php?modulo=nuevoPerfil" method="post" id="myForm">
+        <!-- 1 box Largo --> 
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Acciones:</h3>
+            <div class="box-tools pull-right">
+              <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div><!-- /.box-tools -->
+          </div><!-- /.box-header -->
+          <div class="box-body">
+                
+                  <button class="btn btn-app "  id="btnNuevo" type="submit" name="accion" value="nuevo">
+                    <i class="fa fa-plus"></i> Nuevo
+                  </button>
+                  <button class="btn btn-app " id="btnModificar" type="submit" name="accion" value="editar" disabled>
+                    <i class="fa fa-edit"></i> Editar
+                  </button>
+                  <button class="btn btn-app " id="btnBorrar" data-toggle="modal" data-target="#myModal"  name="accion" value="borrarr" disabled>
+                    <i class="fa fa-trash"></i> Borrar
+                  </button>
+                
+                <!-- Modal para Borrar-->
+                <div id="myModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Eliminar Perfil</h4></h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Esta acción eliminará el perfil seleccionado. ¿Esta seguro que desea continuar?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn btn-danger" id="confirmaBorrado" data-dismiss="modal" type="submit" name="accion" value="borrar">Si, estoy seguro.</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal"name="accion" value="bodrrar" >No, llévame a donde estaba.</button>
+                      </div>
                     </div>
-                    <div class="modal-body">
-                      <p>Esta acción eliminará el perfil seleccionado. ¿Esta seguro que desea continuar?</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn btn-danger" data-dismiss="modal">Si, estoy seguro.</button>
-                      <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
-                    </div>
+                
                   </div>
-              
-                </div>
-              </div> <!-- End Modal Content -->
-              
-              
-        </div><!-- /.box-body -->
-      </div>
-      <!-- /1 box --> 
+                </div> <!-- End Modal Content -->
+               
+                
+          </div><!-- /.box-body -->
+        </div>
+        <!-- /1 box --> 
+  
+        
+      <table id="grilla" class="display">
+          <thead>
+              <tr>
+                  <th><input id="selectall" type="checkbox"></input></th>
+                  <th>Nombre</th>
+                  <th>Descripción</th>
+              </tr>
+          </thead>
+          <tbody>
+              {foreach from=$Perfiles item=perfil}
+                  <tr>
+                      <td><input class="case" type="checkbox" name="perfil[]" value="{$perfil->getId()}" ></input></td>
+                      <td>{$perfil->getNombre()}</td>
+                      <td>{$perfil->getDescripcion()}</td>
+                  </tr>
+              {/foreach}
+          </tbody>
+      </table>
 
-      
-    <table id="grilla" class="display">
-        <thead>
-            <tr>
-                <th><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
-                <td>Operador Básico</td>
-                <td>Operador Base, sin permisos de eliminación ni informes</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
-                <td>Operador Jefe</td>
-                <td>Operador Jefe, Con visibilidad a usuarios e Informes</td>
-            </tr>
-        </tbody>
-    </table>
-
- 
+    </form> 
     </section>
     <!-- /.content -->
     
@@ -136,25 +135,68 @@ $(document).ready( function () {
 
 {literal}
 <script>
+$(function() {
+    $('#grilla').on("change", ":checkbox", function () {
+        
+            
+            
+            if ($("#grilla input:checkbox:checked").length = 1) {
+              document.getElementById("btnModificar").disabled = false;
+              document.getElementById("btnBorrar").disabled = false;
+              document.getElementById("btnNuevo").disabled = false;
+            } 
+            if ($("#grilla input:checkbox:checked").length >= 2) {
+              document.getElementById("btnModificar").disabled = true;
+              document.getElementById("btnBorrar").disabled = false;
+              document.getElementById("btnNuevo").disabled = false;
+            }
+            if ($("#grilla input:checkbox:checked").length < 1) {
+              document.getElementById("btnModificar").disabled = true;
+              document.getElementById("btnBorrar").disabled = true;
+              document.getElementById("btnNuevo").disabled = false;
+            } 
+            
 
-function manejoBotonPrueba(checkbox)
-{
-  
+    });
+});
+$("#confirmaBorrado").click(function(e){
+   // e.preventDefault();
+    // validate form inputs
+   var accion=$('<input />').attr('type', 'hidden')
+          .attr('name', "accion")
+          .attr('value', "borrar")
+          .appendTo('#myForm');
+        $("#myForm").submit();
+    //$('#myModal').modal('show'); 
+});
+$("#btnBorrar").click(function(e){
+    e.preventDefault();
+    // validate form inputs
+    // if validated
+    //$("#myForm").submit()
+    //$('#myModal').modal('show'); 
+});
 
-    if (checkbox.checked )
-    {
-    document.getElementById("btnModificar").disabled = false;
-    document.getElementById("btnBorrar").disabled = false;
-    document.getElementById("btnNuevo").disabled = true;
-    }
-    if (checkbox.checked == false)
-    {
-    document.getElementById("btnModificar").disabled = true;
-    document.getElementById("btnBorrar").disabled = true;
-    document.getElementById("btnNuevo").disabled = false;
-    }
-    
-}
+
+$(function(){
+ 
+    // add multiple select / deselect functionality
+    $("#selectall").click(function () {
+          $('.case').attr('checked', this.checked);
+    });
+ 
+    // if all checkbox are selected, check the selectall checkbox
+    // and viceversa
+    $(".case").click(function(){
+ 
+        if($(".case").length == $(".case:checked").length) {
+            $("#selectall").attr("checked", "checked");
+        } else {
+            $("#selectall").removeAttr("checked");
+        }
+ 
+    });
+});
 
 </script>
 {/literal}

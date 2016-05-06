@@ -55,7 +55,7 @@ js=''
                       <p>Esta acción eliminará las categorías seleccionados. ¿Esta seguro que desea continuar?</p>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn btn-danger" data-dismiss="modal">Si, estoy seguro.</button>
+                      <button type="button" class="btn btn btn-danger" data-dismiss="modal" onclick="deleteRow('grilla')">Si, estoy seguro.</button>
                       <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
                     </div>
                   </div>
@@ -66,14 +66,14 @@ js=''
     <table id="grilla" class="display">
         <thead>
             <tr>
-                <th><input type="checkbox"></input></th>
+                <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
                 <th>Nombre</th>
                 <th>Descripción</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></td>
+                <td><input type="checkbox"></td>
                 <td>Público</td>
                 <td>Para todas las empresas</td>
             </tr>
@@ -111,29 +111,15 @@ js=''
 <!-- DataTables -->
 
 <script type="text/javascript" charset="utf8" src="{$rutaJS}jquery.dataTables.js"></script>
+
+<!-- Baja Visual -->
+<script type="text/javascript" charset="utf8" src="{$rutaJS}bajaVisual.js"></script>
+
+<!-- Manejador de botones y Checkbox-->
+<script type="text/javascript" charset="utf8" src="{$rutaJS}chkboxManager.js"></script>
+<script type="text/javascript" charset="utf8" src="{$rutaJS}checkAll.js"></script>
+
 {literal}
-<script>
-
-function manejoBotonPrueba(checkbox)
-{
-  
- 
-    if (checkbox.checked)
-    {
-    document.getElementById("btnModificar").disabled = false;
-    document.getElementById("btnBorrar").disabled = false;
-    document.getElementById("btnNuevo").disabled = true;
-    }
-    if (checkbox.checked == false)
-    {
-    document.getElementById("btnModificar").disabled = true;
-    document.getElementById("btnBorrar").disabled = true;
-    document.getElementById("btnNuevo").disabled = false;
-    }
-    
-}
-
-</script>
 <script>
 $(document).ready( function () {
     $('#grilla').DataTable({
