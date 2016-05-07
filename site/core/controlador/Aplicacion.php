@@ -2,17 +2,19 @@
 namespace CORE\Controlador;
 
     require_once('Debug.php');
+   
 
 class Aplicacion extends Singleton {
         public $session;
         private $userID;
+        private $Permisos;
         private $loggedIn;
-        private $EM;
+
 
         /**
         * Cargo las variables de session session_start(), pero antes verifico que el usuario este autenticado.
         * Si paso el parametro de autenticacion=true, creo las llaves de verificacion (utilizar luego de un login)
-        *
+        * @param boolean $backEnd (especifica el modo en el que se quiere ingresar frontend=false backend=true)
         * @param boolean $autentica
         */
         public static function startSession($backEnd=false,$autentica=false){
@@ -37,10 +39,10 @@ class Aplicacion extends Singleton {
         
         public static function autenticarFrontOBack($backend){
                 if ($backend==true) {
-                    $_SESSION['tiempo']=strtotime('+1 minute') ;
+                    $_SESSION['tiempo']=strtotime('+5 minute') ;
                     $_SESSION["backAutenticado"]=true;
                 } else {
-                    $_SESSION['tiempo']=strtotime('+1 minute') ;
+                    $_SESSION['tiempo']=strtotime('+5 minute') ;
                     $_SESSION["frontAutenticado"]=true;    
                 }
         }
@@ -51,9 +53,8 @@ class Aplicacion extends Singleton {
                 {
                         if ($_SESSION["backAutenticado"]==true) {
                                 if (isset($_SESSION['tiempo'])) {
-                                $vida_session = $_SESSION['tiempo'] - time();
-                                                if ($vida_session > $_SESSION['inactividadMax']) {
-                                                        $_SESSION['tiempo'] = strtotime('+1 minute');
+                                                if ($_SESSION['tiempo'] > time()) {
+                                                        $_SESSION['tiempo'] = strtotime('+5 minute');
                                                         $rta=true;
                                                 }
                                 }
@@ -61,9 +62,8 @@ class Aplicacion extends Singleton {
                 } else {
                         if ($_SESSION["frontAutenticado"]==true) {
                                 if (isset($_SESSION['tiempo'])) {
-                                $vida_session = $_SESSION['tiempo'] - time();
-                                                if ($vida_session > $_SESSION['inactividadMax']) {
-                                                        $_SESSION['tiempo'] = strtotime('+1 minute');
+                                                if ($_SESSION['tiempo'] > time()) {
+                                                        $_SESSION['tiempo'] = strtotime('+5 minute');
                                                         $rta=true;
                                                 }
                                 }
@@ -73,9 +73,9 @@ class Aplicacion extends Singleton {
         return $rta;
         }
 
-//        private function crearHash(){
-//           return sha1(\CORE\Config::getPublic('hash'));
-//        }
+        private function crearHash(){
+          return sha1(\CORE\Config::getPublic('hash'));
+        }
 
         private function validarHash($clave = null) {
             $rta = false;
@@ -92,16 +92,19 @@ class Aplicacion extends Singleton {
         }
 
         public function login($user){
-        // TODO: Verifico si ya estoy logueado
-        //      if($this->loggedIn){
-        //      }
+         //TODO: Verifico si ya estoy logueado
+             if($this->loggedIn){
+                     $this->logout();
+              }
                 if ($user){
+                        \CORE\Controlador\Aplicacion::startSession();
                         $this->userID = $_SESSION['userID']=$user;
                 }
 
         }
         public function logout() {
-                unset($_SESSION['userID']);
+                session_unset();
+                session_destroy();
                 unset($this->userID);
         }
 
@@ -146,12 +149,6 @@ class Aplicacion extends Singleton {
                 return $the_ip;
 
         }
-        
-        public function setEM($EntityManager){
-                $this->em = $EntityManager;
-        }
-        
-        public function getEM(){return $this->$EM;}
 
 
         /**

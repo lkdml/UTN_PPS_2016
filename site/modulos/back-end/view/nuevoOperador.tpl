@@ -28,7 +28,7 @@ js=''
             <div class="col-md-4">
                   <!-- Profile Image -->
                 <div class="box box-primary">
-                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php" class="form-horizontal">
+                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php?actualiza=foto" class="form-horizontal" method="post">
                     <div class="box-body box-profile">
                       <img class="profile-user-img img-responsive img-circle" src="{$rutaIMG}user2-160x160.jpg" alt="User profile picture">
                 
@@ -39,7 +39,7 @@ js=''
                       <div class="box-body">
                         <div class="form-group">
                           <label for="exampleInputEmail1">Avatar</label>
-                          <input id="avatar_img" type="file">
+                          <input id="avatar_img" name="fotoOperador" type="file">
                           <p class="help-block">Para agregar un avatar, debe subir una imagen.</p>
                         </div>
                       </div>
@@ -54,7 +54,7 @@ js=''
                     
                   <!-- Cambio Clave -->
                 <div class="box box-primary">
-                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php" class="form-horizontal">  
+                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php?actualiza=clave" class="form-horizontal" method="post">  
                     <div class="box-body box-profile">
                     
                       <h3 class="profile-username text-center">Contraseña</h3>
@@ -64,19 +64,19 @@ js=''
                             <div class="form-group">
                                 <label for="inputNombre" class="col-sm-4 control-label">Clave Actual</label>
                                 <div class="col-sm-5">
-                                  <input class="form-control" id="inputNombre" type="password">
+                                  <input class="form-control" id="inputNombre" type="password" name="clave">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputNombre" class="col-sm-4 control-label">Nueva Clave</label>
                                 <div class="col-sm-5">
-                                  <input class="form-control" id="inputNombre" type="password">
+                                  <input class="form-control" id="inputNombre" type="password" name="nuevaclave1">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputNombre" class="col-sm-4 control-label">Re-Ingrese Clave</label>
                                 <div class="col-sm-5">
-                                  <input class="form-control" id="inputNombre" type="password">
+                                  <input class="form-control" id="inputNombre" type="password" name="nuevaclave2">
                                 </div>
                             </div>
                         <div class="pull-right">
@@ -91,53 +91,53 @@ js=''
             <div class="col-md-8">
                     <div class="box box-primary">
                         <br>
-                        <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php" class="form-horizontal">
+                        <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php" class="form-horizontal" method="post">
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Nombre">
+                              <input class="form-control" id="inputNombre" placeholder="Nombre" name="nombre">
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Apellido</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Apellido">
+                              <input class="form-control" id="inputNombre" placeholder="Apellido" name="apellido">
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Usuario</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Nombre de Usuario">
+                              <input class="form-control" id="inputNombre" placeholder="Nombre de Usuario" name="username">
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Contraseña</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" type="password" placeholder="Contraseña">
+                              <input class="form-control" id="inputNombre" type="password" placeholder="Contraseña" name="nuevaclave1">
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Contraseña</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" type="password" placeholder="Contraseña">
+                              <input class="form-control" id="inputNombre" type="password" placeholder="Contraseña" name="nuevaclave2">
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Correo Electrónico</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" type="mail" placeholder="Correo Electrónico">
+                              <input class="form-control" id="inputNombre" type="mail" placeholder="Correo Electrónico" name="email">
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Telefono</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Teléfono / Celulular">
+                              <input class="form-control" id="inputNombre" placeholder="Teléfono / Celulular" name="tel">
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Firma de Operador</label>
                             <div class="col-sm-9 box-body pad">
-                              <textarea id="editor1" name="editor1" rows="10" cols="80">
+                              <textarea id="editor1" name="Firma" rows="10" cols="80">
                                     Firma de operador 
                                 </textarea>
                             </div>
@@ -146,7 +146,7 @@ js=''
                               <label for="inputNombre" class="col-sm-2 control-label">Perfil de Operador:</label>
                             <div class="row">
                                 <div class="col-sm-9 box-body pad">
-                                    <select name="perfilOperador" class="form-control" >
+                                    <select name="perfilOperador" class="form-control"  name="perfiles">
                                         <option value="1">Jefe</option>
                                         <option value="2">técnico</option>
                                         <option value="2">administrativo</option>
@@ -159,7 +159,7 @@ js=''
                               <label for="inputNombre" class="col-sm-2 control-label">Departamentos asociados</label>
                             <div class="row">
                                 <div class="col-xs-4">
-                                    <select name="from[]" id="multiselect" class="form-control" size="8" multiple="multiple">
+                                    <select name="departamentos[]" id="multiselect" class="form-control" size="8" multiple="multiple">
                                         <option value="1">Soporte N1</option>
                                         <option value="2">Soporte N2</option>
                                         <option value="2">Ventas</option>
