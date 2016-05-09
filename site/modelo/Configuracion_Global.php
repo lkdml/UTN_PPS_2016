@@ -5,7 +5,7 @@
  **/
 class Configuracion_Global {
     /** 
-      * @Id @Column(type="string") @GeneratedValue 
+      * @Id @Column(type="string") @GeneratedValue(strategy="NONE")
       * @var string
       */
     protected $Nombre;

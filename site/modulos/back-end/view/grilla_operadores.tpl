@@ -42,7 +42,7 @@ js=''
                 <button class="btn btn-app " id="btnModificar" type="submit" name="accion" value="editar" disabled>
                   <i class="fa fa-edit"></i> Editar
                 </button>
-                <button class="btn btn-app " id="btnBorrar" data-toggle="modal" data-target="#myModal"  name="accion" value="borrarr" disabled>
+                <button class="btn btn-app " id="btnBorrar" data-toggle="modal" data-target="#myModal"  name="accion" value="borrar" disabled>
                   <i class="fa fa-trash"></i> Borrar
                 </button>
                 
@@ -60,7 +60,7 @@ js=''
                         <p>Esta acción eliminará los Operadores seleccionados. ¿Esta seguro que desea continuar?</p>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn btn-danger" data-dismiss="modal" onclick = "deleteRow('grilla')">Si, estoy seguro.</button>
+                        <button type="button" class="btn btn btn-danger" id="confirmaBorrado" data-dismiss="modal" onclick = "deleteRow('grilla')">Si, estoy seguro.</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
                       </div>
                     </div>
@@ -129,8 +129,30 @@ js=''
 <script type="text/javascript" charset="utf8" src="{$rutaJS}app.min.js"></script>
 
 <!-- DataTables -->
-
 <script type="text/javascript" charset="utf8" src="{$rutaJS}jquery.dataTables.js"></script>
+
+{literal}
+<script>
+$("#confirmaBorrado").click(function(e){
+   // e.preventDefault();
+    // validate form inputs
+   var accion=$('<input />').attr('type', 'hidden')
+          .attr('name', "accion")
+          .attr('value', "borrar")
+          .appendTo('#myForm');
+        $("#myForm").submit();
+    //$('#myModal').modal('show'); 
+});
+$("#btnBorrar").click(function(e){
+    e.preventDefault();
+    // validate form inputs
+    // if validated
+    //$("#myForm").submit()
+    //$('#myModal').modal('show'); 
+});
+
+</script>
+{/literal}
 
 <!-- Baja Visual -->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}bajaVisual.js"></script>

@@ -28,7 +28,7 @@ js=''
             <div class="col-md-4">
                   <!-- Profile Image -->
                 <div class="box box-primary">
-                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php?actualiza=foto" class="form-horizontal" method="post">
+                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php?actualiza=foto{if $Operador}&perfil={$Operador->getOperador_ID()}{/if}" class="form-horizontal" method="post">
                     <div class="box-body box-profile">
                       <img class="profile-user-img img-responsive img-circle" src="{$rutaIMG}user2-160x160.jpg" alt="User profile picture">
                 
@@ -54,7 +54,7 @@ js=''
                     
                   <!-- Cambio Clave -->
                 <div class="box box-primary">
-                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php?actualiza=clave" class="form-horizontal" method="post">  
+                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php?actualiza=clave{if $Operador}&perfil={$Operador->getOperador_ID()}{/if}" class="form-horizontal" method="post">  
                     <div class="box-body box-profile">
                     
                       <h3 class="profile-username text-center">Contraseña</h3>
@@ -91,54 +91,54 @@ js=''
             <div class="col-md-8">
                     <div class="box box-primary">
                         <br>
-                        <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php" class="form-horizontal" method="post">
+                        <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php{if $Operador}?perfil={$Operador->getOperador_ID()}{/if}" class="form-horizontal" method="post">
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Nombre" name="nombre">
+                              <input class="form-control" id="inputNombre" placeholder="Nombre" name="nombre" {if $Operador}value={$Operador->getApellido()}{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Apellido</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Apellido" name="apellido">
+                              <input class="form-control" id="inputNombre" placeholder="Apellido" name="apellido" {if $Operador}value={$Operador->getApellido()}{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Usuario</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Nombre de Usuario" name="username">
+                              <input class="form-control" id="inputNombre" placeholder="Nombre de Usuario" name="username" {if $Operador}value={$Operador->getNombre_Usuario()}{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Contraseña</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" type="password" placeholder="Contraseña" name="nuevaclave1">
+                              <input class="form-control" id="inputNombre" type="password" placeholder="Contraseña" name="nuevaclave1" {if $Operador}disabled{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Contraseña</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" type="password" placeholder="Contraseña" name="nuevaclave2">
+                              <input class="form-control" id="inputNombre" type="password" placeholder="Contraseña" name="nuevaclave2" {if $Operador}disabled{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Correo Electrónico</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" type="mail" placeholder="Correo Electrónico" name="email">
+                              <input class="form-control" id="inputNombre" type="mail" placeholder="Correo Electrónico" name="email" {if $Operador}value={$Operador->getEmail()}{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Telefono</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Teléfono / Celulular" name="tel">
+                              <input class="form-control" id="inputNombre" placeholder="Teléfono / Celulular" name="tel" {if $Operador}value={$Operador->getCelular()}{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Firma de Operador</label>
                             <div class="col-sm-9 box-body pad">
                               <textarea id="editor1" name="Firma" rows="10" cols="80">
-                                    Firma de operador 
+                                    {if $Operador}value={$Operador->getFirma_Mensaje()}{/if}
                                 </textarea>
                             </div>
                           </div>
@@ -159,7 +159,7 @@ js=''
                               <label for="inputNombre" class="col-sm-2 control-label">Departamentos asociados</label>
                             <div class="row">
                                 <div class="col-xs-4">
-                                    <select name="departamentos[]" id="multiselect" class="form-control" size="8" multiple="multiple">
+                                    <select name="departamentos_disponibles[]" id="multiselect" class="form-control" size="8" multiple="multiple">
                                         <option value="1">Soporte N1</option>
                                         <option value="2">Soporte N2</option>
                                         <option value="2">Ventas</option>
@@ -176,7 +176,7 @@ js=''
                                 </div>
                                 
                                 <div class="col-xs-4">
-                                    <select name="to[]" id="multiselect_to" class="form-control" size="8" multiple="multiple"></select>
+                                    <select name="Departamentos_asignados[]" id="multiselect_to" class="form-control" size="8" multiple="multiple"></select>
                                 </div>
                             </div>
                           </div>
