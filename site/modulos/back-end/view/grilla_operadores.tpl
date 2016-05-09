@@ -83,7 +83,7 @@ js=''
           <thead>
             
               <tr>
-                  <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
+                  <th></th>
                   <th>Usuario</th>
                   <th>Nombre</th>
                   <th>Apellido</th>
@@ -155,7 +155,7 @@ $("#btnBorrar").click(function(e){
 {/literal}
 
 <!-- Baja Visual -->
-<script type="text/javascript" charset="utf8" src="{$rutaJS}bajaVisual.js"></script>
+<!-- <script type="text/javascript" charset="utf8" src="{$rutaJS}bajaVisual.js"></script> -->
 
 <!-- Manejador de botones y Checkbox-->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}chkboxManager.js"></script>
