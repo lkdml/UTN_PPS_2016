@@ -22,8 +22,8 @@ $Operador = new Modelo\Operador();
 
 
 if (validarRequisitos()){
-    if (isset($_GET['OperadorId'])){
-        $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["OperadorId"]);
+    if (isset($_GET['Operador'])){
+        $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
             $Operador = setearOperador($getOperador,$em);
             $em->merge($Operador);
             $em->flush();
@@ -53,7 +53,7 @@ function setearOperador(Operador $operador,$em){
     $operador->setClave($_POST["nuevaclave1"]);
     $operador->setEmail($_POST["email"]);
     $operador->setCelular($_POST["tel"]);
-    $operador->setFirma_Mensaje($_POST["firma"]);
+    $operador->setFirma_Mensaje($_POST["Firma"]);
     $operador->setPerfil($em->getRepository('Modelo\Perfil')->find($_POST["perfilOperador"]));
     if (isset($_POST['Departamentos_asignados'])){
         foreach ($_POST['Departamentos_asignados'] as $idDepto){

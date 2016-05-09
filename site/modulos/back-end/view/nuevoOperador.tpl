@@ -28,7 +28,7 @@ js=''
             <div class="col-md-4">
                   <!-- Profile Image -->
                 <div class="box box-primary">
-                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php?actualiza=foto{if $Operador}&perfil={$Operador->getOperador_ID()}{/if}" class="form-horizontal" method="post">
+                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php?actualiza=foto{if $Operador}&Operador={$Operador->getOperador_ID()}{/if}" class="form-horizontal" method="post">
                     <div class="box-body box-profile">
                       <img class="profile-user-img img-responsive img-circle" src="{$rutaIMG}user2-160x160.jpg" alt="User profile picture">
                 
@@ -54,7 +54,7 @@ js=''
                     
                   <!-- Cambio Clave -->
                 <div class="box box-primary">
-                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php?actualiza=clave{if $Operador}&perfil={$Operador->getOperador_ID()}{/if}" class="form-horizontal" method="post">  
+                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php?actualiza=clave{if $Operador}&Operador={$Operador->getOperador_ID()}{/if}" class="form-horizontal" method="post">  
                     <div class="box-body box-profile">
                     
                       <h3 class="profile-username text-center">Contraseña</h3>
@@ -91,11 +91,11 @@ js=''
             <div class="col-md-8">
                     <div class="box box-primary">
                         <br>
-                        <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php{if $Operador}?perfil={$Operador->getOperador_ID()}{/if}" class="form-horizontal" method="post">
+                        <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php{if $Operador}?Operador={$Operador->getOperador_ID()}{/if}" class="form-horizontal" method="post">
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Nombre" name="nombre" {if $Operador}value={$Operador->getApellido()}{/if}>
+                              <input class="form-control" id="inputNombre" placeholder="Nombre" name="nombre" {if $Operador}value={$Operador->getNombre()}{/if}>
                             </div>
                           </div>
                           <div class="form-group">
@@ -138,7 +138,7 @@ js=''
                             <label for="inputNombre" class="col-sm-2 control-label">Firma de Operador</label>
                             <div class="col-sm-9 box-body pad">
                               <textarea id="editor1" name="Firma" rows="10" cols="80">
-                                    {if $Operador}value={$Operador->getFirma_Mensaje()}{/if}
+                                    {if $Operador}{$Operador->getFirma_Mensaje()}{/if}
                                 </textarea>
                             </div>
                           </div>
