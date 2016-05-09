@@ -11,10 +11,13 @@ class Operador {
       */
  	protected $Operador_ID;
     /**
-     * @ManyToOne(targetEntity="Perfil")
-     * @JoinColumn(name="Perfil_ID", referencedColumnName="id")
+     * ManyToOne(targetEntity="Perfil")
+     * JoinColumn(name="Perfil", referencedColumnName="id")
      */
- 	protected $Perfil_ID;
+     /**
+     * @ManyToOne(targetEntity="Perfil", inversedBy="Operadores")
+     **/
+ 	protected $Perfil;
     /**
      * @Column(type="string")
      * @var string
@@ -26,7 +29,7 @@ class Operador {
      */
  	protected $Apellido;
     /**
-     * @Column(type="string")
+     * @Column(type="string", unique=true)
      * @var string
      */
  	protected $Nombre_Usuario;
@@ -36,17 +39,17 @@ class Operador {
      */
  	protected $Clave;
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      * @var string
      */
  	protected $Firma_Mensaje;
     /**
-     * @Column(type="string")
+     * @Column(type="string", unique=true)
      * @var string
      */
  	protected $Email;
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      * @var string
      */
  	protected $Celular;
@@ -87,7 +90,7 @@ class Operador {
      */
  	protected $Filtro_Ticket_ID;
     /**
-     * @Column(type="string")
+     * @Column(type="string", nullable=true)
      * @var string
      */
  	protected $HashFoto;
@@ -98,12 +101,12 @@ class Operador {
  	protected $Eliminado;
     
     public function __construct() {
-        $this->$Deptos_Habilitados = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->Deptos_Habilitados = new \Doctrine\Common\Collections\ArrayCollection();
         //$this->$Filtro_Ticket_ID = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
     public function getOperador_ID() {return $this->Operador_ID;}
-    public function getPerfil_ID() {return $this->Perfil_ID;}
+    public function getPerfil() {return $this->Perfil;}
     public function getNombre() {return $this->Nombre;}    
     public function getApellido() {return $this->Apellido;}
     public function getNombre_Usuario() {return $this->Nombre_Usuario;}
@@ -120,16 +123,21 @@ class Operador {
     public function getHashFoto() {return $this->HashFoto;}
     public function getEliminado() {return $this->Eliminado;}
     
-    public function setPerfil_ID($id) {$this->Perfil_ID= $id;}
+    public function setPerfil(Perfil $perfil) {$this->Perfil= $perfil;}
     public function setNombre($nombre) {$this->Nombre =$nombre;}    
     public function setApellido($apellido) {$this->Apellido = $apellido;}
     public function setNombre_Usuario($usuario) {$this->Nombre_Usuario = $usuario;}
-    public function setClave($clave) {$this->Clave = $clave;}
+    public function setClave($clave) {
+        $opciones = [
+            'cost' => 11,
+            'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
+        ];
+        $this->Clave = password_hash($clave, PASSWORD_BCRYPT, $opciones);}
     public function setFirma_Mensaje($firma) {$this->Firma_Mensaje =$firma;}
     public function setEmail($email) {$this->Email =$email;}
     public function setCelular($celular) {$this->Celular =$celular;}
-    public function setUltima_Actualizacion($lastUpdate) {$this->Ultima_Actualizacion = $lastUpdate;}
-    public function setUltima_Actividad($lastActividad) {$this->Ultima_Actividad =$lastActividad;}
+    public function setUltima_Actualizacion() {$this->Ultima_Actualizacion = new \DateTime("now"); }
+    public function setUltima_Actividad(){$this->Ultima_Actividad = new \DateTime("now");}
     public function setActivo($activo) {$this->Activo = $activo;}
     public function setDeptos_Habilitados($deptos) {$this->Deptos_Habilitados = $deptos;}
     public function setHabilita_Notificaciones_Mail($bool) {$this->Habilita_Notificaciones_Mail = $bool;}
@@ -142,6 +150,13 @@ class Operador {
        $this->Deptos_Habilitados = $depto;
    }
 
+    public function eliminarUsuario(){
+        $this->Eliminado = true;
+    }
+    
+    public function verificarClave($clave){
+        return password_verify($clave,$this->getClave());
+    }
 
 }
 

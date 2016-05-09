@@ -38,8 +38,15 @@ class Perfil {
      */
     protected $Roles;   
     
+    /**
+     * @OneToMany(targetEntity="Operador", mappedBy="Perfil")
+     * @var Bug[]
+     **/
+    protected $Operadores = null;
+    
     public function __construct(){
         $this->Roles = new \Doctrine\Common\Collections\ArrayCollection();
+         $this->Operadores = new \Doctrine\Common\Collections\ArrayCollection();
     }
     
 	public function getId() {return $this->id;}
@@ -47,11 +54,13 @@ class Perfil {
     public function getDescripcion() {return $this->Descripcion;}
     public function getEstado() {return $this->Estado;}
     public function getRoles() {return $this->Roles;}
+    public function getOperadores() {return $this->Operadores;}
     
     public function setNombre($nombre) { $this->Nombre = $nombre;}
     public function setDescripcion($descripcion) { $this->Descripcion = $descripcion;}
     public function setEstado($estado) {$this->Estado = $estado;}
     public function setRoles($roles) {$this->Roles = $roles;}
+    public function setOperadores($operador) {$this->Operadores = $operador;}
     
     /**
      * Asigna 
@@ -62,6 +71,8 @@ class Perfil {
         $this->Roles[] = $rol;
         
     }
+    
+    
     
 }
 
