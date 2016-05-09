@@ -11,8 +11,6 @@ use \Modelo\Operador as Operador;
 use \CORE\Controlador\Aplicacion;
 Aplicacion::startSession(true);
 
-var_dump($_POST);//die;
-
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 // TODO antes de generar el usuario, debo verificar que el username y el mail no existan previamente. (o bien manejar el error que devolverá el sql si eso pasara.)
@@ -23,10 +21,19 @@ $Operador = new Modelo\Operador();
 
 if (validarRequisitos()){
     if (isset($_GET['Operador'])){
-        $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
-            $Operador = setearOperador($getOperador,$em);
-            $em->merge($Operador);
+        if (($_GET['actualiza']=='clave')){
+            $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
+            if (($getOperador->verificarClave($_POST["clave"])) && ($_POST["nuevaclave1"]==$_POST["nuevaclave2"])){
+                $getOperador->setClave($_POST["nuevaclave1"]);
+            }
+            $em->merge($getOperador);
             $em->flush();
+        } else {
+            $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
+                $Operador = setearOperador($getOperador,$em);
+                $em->merge($Operador);
+                $em->flush();
+        }
     } else {
        $Operador = setearOperador(new Operador(),$em);
        $em->persist($Operador);
@@ -50,7 +57,9 @@ function setearOperador(Operador $operador,$em){
     $operador->setNombre($_POST["nombre"]);
     $operador->setApellido($_POST["apellido"]);
     $operador->setNombre_Usuario($_POST["username"]);
-    $operador->setClave($_POST["nuevaclave1"]);
+    if (($_GET['Operador']==null)){
+        $operador->setClave($_POST["nuevaclave1"]);
+    }
     $operador->setEmail($_POST["email"]);
     $operador->setCelular($_POST["tel"]);
     $operador->setFirma_Mensaje($_POST["Firma"]);

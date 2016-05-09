@@ -36,14 +36,14 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Ingrese sus credeciales para comenzar</p>
-
+    {if $error}<span class="help-block">{$error}</span>{/if}
     <form action="{$rutaCSS}../controlador/loginAction.php" method="post">
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
+        <input  class="form-control" placeholder="Nombre de operador" name="operador">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+        <input type="password" class="form-control" placeholder="Password" name="clave">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">

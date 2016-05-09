@@ -32,7 +32,7 @@ js=''
                     <div class="box-body box-profile">
                       <img class="profile-user-img img-responsive img-circle" src="{$rutaIMG}user2-160x160.jpg" alt="User profile picture">
                 
-                      <h3 class="profile-username text-center">Brian Ducca</h3>
+                      <h3 class="profile-username text-center">{if $Operador}{$Operador->getNombre()}{/if} {if $Operador}{$Operador->getApellido()}{/if}</h3>
                 
                       <p class="text-muted text-center">Operador</p>
                 
@@ -52,40 +52,42 @@ js=''
                 <!-- /.Profile Image -->
                 </div>
                     
-                  <!-- Cambio Clave -->
-                <div class="box box-primary">
-                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php?actualiza=clave{if $Operador}&Operador={$Operador->getOperador_ID()}{/if}" class="form-horizontal" method="post">  
-                    <div class="box-body box-profile">
-                    
-                      <h3 class="profile-username text-center">Contraseña</h3>
-                    
-                      <p class="text-muted text-center">Cambiar contraseña</p>
-                    
-                            <div class="form-group">
-                                <label for="inputNombre" class="col-sm-4 control-label">Clave Actual</label>
-                                <div class="col-sm-5">
-                                  <input class="form-control" id="inputNombre" type="password" name="clave">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputNombre" class="col-sm-4 control-label">Nueva Clave</label>
-                                <div class="col-sm-5">
-                                  <input class="form-control" id="inputNombre" type="password" name="nuevaclave1">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputNombre" class="col-sm-4 control-label">Re-Ingrese Clave</label>
-                                <div class="col-sm-5">
-                                  <input class="form-control" id="inputNombre" type="password" name="nuevaclave2">
-                                </div>
-                            </div>
-                        <div class="pull-right">
-                            <button type="submit" class="btn btn-warning" onclick="window.location.href='/operador.php?modulo=nuevaCategoria'">Cambiar</button>
-                        </div>
-                    </div>
-                  <!-- /.box-body -->
-                  </form>
-                </div>
+                <!-- Cambio Clave -->
+                {if $Operador}
+                  <div class="box box-primary">
+                    <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php?actualiza=clave{if $Operador}&Operador={$Operador->getOperador_ID()}{/if}" class="form-horizontal" method="post">  
+                      <div class="box-body box-profile">
+                      
+                        <h3 class="profile-username text-center">Contraseña</h3>
+                      
+                        <p class="text-muted text-center">Cambiar contraseña</p>
+                      
+                              <div class="form-group">
+                                  <label for="inputNombre" class="col-sm-4 control-label">Clave Actual</label>
+                                  <div class="col-sm-5">
+                                    <input class="form-control" id="inputNombre" type="password" name="clave">
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label for="inputNombre" class="col-sm-4 control-label">Nueva Clave</label>
+                                  <div class="col-sm-5">
+                                    <input class="form-control" id="inputNombre" type="password" name="nuevaclave1">
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <label for="inputNombre" class="col-sm-4 control-label">Re-Ingrese Clave</label>
+                                  <div class="col-sm-5">
+                                    <input class="form-control" id="inputNombre" type="password" name="nuevaclave2">
+                                  </div>
+                              </div>
+                          <div class="pull-right">
+                              <button type="submit" class="btn btn-warning" onclick="window.location.href='/operador.php?modulo=nuevaCategoria'">Cambiar</button>
+                          </div>
+                      </div>
+                    <!-- /.box-body -->
+                    </form>
+                  </div>
+                {/if}
   
             </div> 
             <div class="col-md-8">
@@ -110,18 +112,20 @@ js=''
                               <input class="form-control" id="inputNombre" placeholder="Nombre de Usuario" name="username" {if $Operador}value={$Operador->getNombre_Usuario()}{/if}>
                             </div>
                           </div>
-                          <div class="form-group">
-                            <label for="inputNombre" class="col-sm-2 control-label">Contraseña</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" type="password" placeholder="Contraseña" name="nuevaclave1" {if $Operador}disabled{/if}>
+                          {if !$Operador}
+                            <div class="form-group">
+                              <label for="inputNombre" class="col-sm-2 control-label">Contraseña</label>
+                              <div class="col-sm-9">
+                                <input class="form-control" id="inputNombre" type="password" placeholder="Contraseña" name="nuevaclave1">
+                              </div>
                             </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="inputNombre" class="col-sm-2 control-label">Contraseña</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" type="password" placeholder="Contraseña" name="nuevaclave2" {if $Operador}disabled{/if}>
+                            <div class="form-group">
+                              <label for="inputNombre" class="col-sm-2 control-label">Contraseña</label>
+                              <div class="col-sm-9">
+                                <input class="form-control" id="inputNombre" type="password" placeholder="Contraseña" name="nuevaclave2">
+                              </div>
                             </div>
-                          </div>
+                          {/if}
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Correo Electrónico</label>
                             <div class="col-sm-9">
