@@ -3,6 +3,32 @@
 
 ## Getting Started
 
+Updated as of development of script prepareDB.sh
+
+Go to cd /workspace/documentacion
+
+In the command line execute the following:
+
+". prepareDB.sh yourc9usernamehere"
+or
+"source prepareDB.sh yourc9usernamehere"
+
+And the database will be dropped, created and populated.
+
+Use example:
+
+cd
+
+cd /workspace/documentacion
+
+. prepareDB.sh lucasdaniel
+
+NOTE: You MUST enter your C9 username. Source and "." behave as the same command for bash.
+
+
+__________________
+
+
 You will need to create the database. 
 Start the Database
 ```
