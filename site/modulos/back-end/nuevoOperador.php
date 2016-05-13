@@ -30,10 +30,11 @@ switch(strtolower($_POST["accion"])){
     }
     $em->flush();
     
-    header("location:/operador.php?modulo=perfiles");
+    header("location:/operador.php?modulo=operadores");
     break;
    default:
-    header("location:/operador.php?modulo=perfiles");
+     die;
+    header("location:/operador.php?modulo=operadores");
     break;
 }
 
