@@ -80,14 +80,14 @@ js=''
     <table id="grilla" class="display">
         <thead>
             <tr>
-                <th><input type="checkbox"></input></th>
+                <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
                 <th>Nombre</th>
                 <th>Descripción</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><input type="checkbox" onclick="manejoBotonPrueba(this)"></input></td>
+                <td><input type="checkbox"></input></td>
                 <td><small class="label bg-olive">Abierto</small></td>
                 <td>Estado para tickets nuevos o respondidos por usuario.</td>
             </tr>
@@ -124,28 +124,7 @@ js=''
 <!-- prueba manejo de boton -->
 <!-- TODO: Terminar script para manejo por rows -->
 
-<script>
 
-function manejoBotonPrueba(checkbox)
-{
-  
- 
-    if (checkbox.checked)
-    {
-    document.getElementById("btnModificar").disabled = false;
-    document.getElementById("btnBorrar").disabled = false;
-    document.getElementById("btnNuevo").disabled = true;
-    }
-    if (checkbox.checked == false)
-    {
-    document.getElementById("btnModificar").disabled = true;
-    document.getElementById("btnBorrar").disabled = true;
-    document.getElementById("btnNuevo").disabled = false;
-    }
-    
-}
-
-</script>
 
 
 <!-- prueba manejo de boton -->
@@ -160,6 +139,9 @@ function manejoBotonPrueba(checkbox)
 <script type="text/javascript" charset="utf8" src="{$rutaJS}fastclick.js"></script>
 <!-- AdminLTE App -->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}app.min.js"></script>
+<!-- Manejador de botones y Checkbox-->
+<script type="text/javascript" charset="utf8" src="{$rutaJS}chkboxManager.js"></script>
+<script type="text/javascript" charset="utf8" src="{$rutaJS}checkAll.js"></script>
 
 <!-- DataTables -->
 

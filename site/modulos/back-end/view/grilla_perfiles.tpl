@@ -78,7 +78,7 @@ js=''
       <table id="grilla" class="display">
           <thead>
               <tr>
-                  <th><input id="selectall" type="checkbox"></input></th>
+                  <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
                   <th>Nombre</th>
                   <th>Descripción</th>
               </tr>
@@ -116,6 +116,9 @@ js=''
 <script type="text/javascript" charset="utf8" src="{$rutaJS}fastclick.js"></script>
 <!-- AdminLTE App -->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}app.min.js"></script>
+<!-- Manejador de botones y Checkbox-->
+<script type="text/javascript" charset="utf8" src="{$rutaJS}chkboxManager.js"></script>
+<script type="text/javascript" charset="utf8" src="{$rutaJS}checkAll.js"></script>
 
 <!-- DataTables -->
 
@@ -135,30 +138,8 @@ $(document).ready( function () {
 
 {literal}
 <script>
-$(function() {
-    $('#grilla').on("change", ":checkbox", function () {
-        
-            
-            
-            if ($("#grilla input:checkbox:checked").length = 1) {
-              document.getElementById("btnModificar").disabled = false;
-              document.getElementById("btnBorrar").disabled = false;
-              document.getElementById("btnNuevo").disabled = false;
-            } 
-            if ($("#grilla input:checkbox:checked").length >= 2) {
-              document.getElementById("btnModificar").disabled = true;
-              document.getElementById("btnBorrar").disabled = false;
-              document.getElementById("btnNuevo").disabled = false;
-            }
-            if ($("#grilla input:checkbox:checked").length < 1) {
-              document.getElementById("btnModificar").disabled = true;
-              document.getElementById("btnBorrar").disabled = true;
-              document.getElementById("btnNuevo").disabled = false;
-            } 
-            
 
-    });
-});
+
 $("#confirmaBorrado").click(function(e){
    // e.preventDefault();
     // validate form inputs
@@ -175,27 +156,6 @@ $("#btnBorrar").click(function(e){
     // if validated
     //$("#myForm").submit()
     //$('#myModal').modal('show'); 
-});
-
-
-$(function(){
- 
-    // add multiple select / deselect functionality
-    $("#selectall").click(function () {
-          $('.case').attr('checked', this.checked);
-    });
- 
-    // if all checkbox are selected, check the selectall checkbox
-    // and viceversa
-    $(".case").click(function(){
- 
-        if($(".case").length == $(".case:checked").length) {
-            $("#selectall").attr("checked", "checked");
-        } else {
-            $("#selectall").removeAttr("checked");
-        }
- 
-    });
 });
 
 </script>

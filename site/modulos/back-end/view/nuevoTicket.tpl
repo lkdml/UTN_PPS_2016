@@ -32,8 +32,8 @@ js=''
                       <div class="box-body pad">
                         <label for="comboDepto" class="col-md-2 control-label">Departamento</label>
                           <div class="col-md-5">
-                           <select class="form-control select2" style="width: 100%;">
-                              <option selected="selected">Sistemas</option>
+                           <select class="form-control select2" id="ddDepartamentos" name="ddDepartamentos" style="width: 100%;">
+                              <option value = "">Seleccione un Departamento...</option>
                               <option>Depto2</option>
                               <option>Depto3</option>
                               <option>Depto4</option>
@@ -48,8 +48,8 @@ js=''
                     <div class="box-body pad">
                       <label for="comboTipo" class="col-md-2 control-label">Tipo</label>
                       <div class="col-md-5">
-                       <select class="form-control select2" style="width: 100%;">
-                          <option selected="selected">Soporte</option>
+                       <select class="form-control select2" id="ddTipos" name="ddTipos" style="width: 100%;">
+                         <option value = "">Seleccione un Tipo...</option>
                           <option>Tipo2</option>
                           <option>Tipo3</option>
                           <option>Tipo4</option>
@@ -62,10 +62,11 @@ js=''
                    </div>
                    <div class="form-group">
                       <div class="box-body pad">
-                        <label for="comboPrioridad" class="col-md-2 control-label">Prioridad</label>
+                        <label for="comboPrioridad" class="col-md-2 control-label" >Prioridad</label>
                         <div class="col-md-5">
-                         <select class="form-control select2" style="width: 100%;">
-                            <option selected="selected">Baja</option>
+                         <select class="form-control select2" id="ddPrioridades" name="ddPrioridades" style="width: 100%;">
+                            <option value = "">Seleccione una Prioridad...</option>
+                            <option>Baja</option>
                             <option>Media</option>
                             <option>Alta</option>
                             <option>Crítica</option>
@@ -76,10 +77,11 @@ js=''
                      </div>
                      <div class="form-group">
                       <div class="box-body pad">
-                        <label for="comboPrioridad" class="col-md-2 control-label">SLA</label>
+                        <label for="comboSLA" class="col-md-2 control-label" >SLA</label>
                         <div class="col-md-5">
-                         <select class="form-control select2" style="width: 100%;">
-                            <option selected="selected">Por Defecto</option>
+                         <select class="form-control select2" id="ddSLAS" name="ddSLAS" style="width: 100%;">
+                            <option value = "">Seleccione un SLA...</option>
+                            <option>SLA por defecto</option>
                             <option>24 hs</option>
                             <option>6 hs</option>
                             <option>Auto-Cierre</option>
@@ -199,7 +201,11 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+<!-- Validaciones de form-->
 <script src="{$rutaJS}jquery-validator-min.js"></script>
+<script src="{$rutaJS}validacionNuevoTicket.js"></script>
+
+
 <script src="{$rutaJS}bootstrap3-wysihtml5.all.js"></script>
 
 {literal} <script>
@@ -209,41 +215,6 @@ js=''
   });
 </script>
 
-<script>
-  $().ready(function() {
-  
-    // Setup form validation on the #register-form element
-    $("#nuevoticketForm").validate({
-    
-        // Specify the validation rules
-        rules: {
-            txtAsunto: {
-              required:true,
-              minlength:5
-            },
-            txtDescripcion: {
-                required: true,
-                minlength:5
-            }
-        },
-        
-        // Specify the validation error messages
-        messages: {
-             txtAsunto: {
-                required: "Por favor ingresa un asunto",
-                minlength: "El asunto debe tener mas de 5 letras"
-            },
-            txtDescripcion: {
-               required: "Por favor ingresa una descripción",
-                minlength: "La descripción debe tener mas de 5 letras"
-            }
-        }
-    })
-    
-  });
-  
-  
-</script>
 
 
 {/literal}

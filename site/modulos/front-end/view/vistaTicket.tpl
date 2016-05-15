@@ -1,5 +1,5 @@
  {include file="header.tpl"
- css=''
+css='<link rel="stylesheet" href="./modulos/front-end/css/validacion.css">'
  js=''
  }
  {include file="panelLateral.tpl"}
@@ -26,7 +26,7 @@
          <!-- /.box-header -->
          
          <!-- form start -->
-         <form action="{$rutaCSS}../controlador/cerrarTicketAction.php" class="form-horizontal">
+         <form action="{$rutaCSS}../controlador/cerrarTicketAction.php" id = "vistaTicketForm" class="form-horizontal">
            <div class="box-body">
             <div class="box">
               
@@ -229,7 +229,7 @@
                      <div class="box-body pad">
                        <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                          <div class="col-sm-10">
-                           <textarea class="textarea" placeholder="Ingrese una Descripción" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
+                           <textarea class="textarea" placeholder="Ingrese una Descripción" id="txtDescripcion" name="txtDescripcion" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
                          </div>
                        <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
                        <input class="col-sm-10" type="file" id="archivo">
@@ -266,5 +266,8 @@
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+<!-- Validaciones FrontEnd -->
+<script src="{$rutaJS}jquery-validator-min.js"></script>
+<script src="{$rutaJS}validacionVistaTicket.js"></script>
 {include file="footer.tpl"}
 
