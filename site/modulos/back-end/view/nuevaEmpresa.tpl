@@ -110,43 +110,11 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+<!-- Validaciones -->
 <script src="{$rutaJS}jquery-validator-min.js"></script>
+<script src="{$rutaJS}validacionNuevaEmpresa.js"></script>
 
-{literal}
-<script>
-  $().ready(function() {
-  
-    // Setup form validation on the #register-form element
-    $("#nuevaEmpresaForm").validate({
-    
-        // Specify the validation rules
-        rules: {
-            
-            razonsocial: {required:true},
-            pais: {required:true},
-            direccion: {required:true}
-        },
-        
-        // Specify the validation error messages
-        messages: {
-             razonsocial: {
-                required: "Por favor, ingresa la Razón Social"},
-            pais: {
-                required: "Por favor, ingresa el país"},
-            direccion: {
-               required: "Por favor, ingresa la dirección",
-            },
-            web:{
-                url:"Por favor ingrese la web de forma correcta"
-            }
-           
-        }
-    })
-    
-  });
- 
-</script> 
- {/literal}
+
  
 {include file="footer.tpl"}
  

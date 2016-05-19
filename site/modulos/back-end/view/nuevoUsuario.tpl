@@ -96,8 +96,8 @@ js=''
                         <div class="box-body pad">
                             <label for="ComboEmpresa" class="col-sm-2 control-label">Empresa</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;">
-                                    <option selected="selected">Empresa1</option>
+                                <select class="form-control select2" id="ddEmpresas" name="ddEmpresas" style="width: 100%;">
+                                    <option value = "">Seleccione Empresa ...</option>
                                     <option>Empresa2</option>
                                     <option>Empresa3</option>
                                     <option>Empresa4</option>
@@ -143,70 +143,11 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+<!-- Validaciones -->
 <script src="{$rutaJS}jquery-validator-min.js"></script>
+<script src="{$rutaJS}validacionNuevoUsuario.js"></script>
 
-{literal}
-<script>
-  $().ready(function() {
-  
-    // Setup form validation on the #register-form element
-    $("#nuevoUsuarioForm").validate({
-    
-        // Specify the validation rules
-        rules: {
-            
-            nombre: {required:true},
-            apellido: {required:true},
-            clave: {
-                        required: true,
-                        pwcheck: true,
-                        minlength: 8
-                        },
-            email: {
-                required: true,
-                emailcheck:true
-            }
-            
-        },
-        
-        // Specify the validation error messages
-        messages: {
-             nombre: {
-                required: "Por favor, ingresa el nombre"},
-            apellido: {
-                required: "Por favor, ingresa el apellido"},
-            clave: {
-               required: "Por favor, ingresa una clave",
-                minlength: "La descripción debe tener mas de 8 caractéres",
-                pwcheck:"La clave debe contener una letra minuscula y un número"
-            },
-            email:{
-                required:"Por favor, ingrese un email",
-                email:"El email ingresado es inválido",
-                emailcheck:"El email ingresado es inválido"
-            },
-            emailadicional:{email:"El email ingresado es inválido"}
-           
-        }
-    })
-    
-  });
- 
-</script>
-<script>
-//VALIDACION DE LA PASSWORD
-$.validator.addMethod("pwcheck", function(value) {
-   return /^[A-Za-z0-9\d=!\-@._*]*$/.test(value) // consists of only these
-       && /[a-z]/.test(value) // has a lowercase letter
-       && /\d/.test(value) // has a digit
-});
-//VALIDACION DEL MAIL
-$.validator.addMethod("emailcheck",function(value) {
-  return /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(value);
-});
 
-</script>
-{/literal}
 
 
 

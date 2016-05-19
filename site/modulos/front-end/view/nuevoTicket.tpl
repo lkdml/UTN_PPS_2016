@@ -1,5 +1,5 @@
 {include file="header.tpl"
-css=''
+css='<link rel="stylesheet" href="./modulos/front-end/css/validacion.css">'
 js=''
 }
 {include file="panelLateral.tpl"}
@@ -25,15 +25,15 @@ js=''
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form action="{$rutaCSS}../controlador/nuevoTicketAction.php" class="form-horizontal">
+            <form action="{$rutaCSS}../controlador/nuevoTicketAction.php" id="nuevoTicketForm" class="form-horizontal">
               <div class="box-body">
                 <div class="box">
                     <div class="form-group">
                       <div class="box-body pad">
                         <label for="comboDepto" class="col-sm-2 control-label">Departamento</label>
                           <div class="col-sm-10">
-                           <select class="form-control select2" style="width: 100%;">
-                              <option selected="selected">Sistemas</option>
+                           <select class="form-control select2"  name="ddDepartamentos" id="ddDepartamentos" style="width: 100%;">
+                              <option value = "">Seleccione Departamento...</option>
                               <option>Depto2</option>
                               <option>Depto3</option>
                               <option>Depto4</option>
@@ -48,8 +48,8 @@ js=''
                       <div class="box-body pad">
                         <label for="comboTipo" class="col-sm-2 control-label">Tipo</label>
                         <div class="col-sm-10">
-                         <select class="form-control select2" style="width: 100%;">
-                            <option selected="selected">Soporte</option>
+                         <select class="form-control select2" name="ddTipos" id="ddTipos" style="width: 100%;">
+                            <option value="">Seleccione Tipo...</option>
                             <option>Tipo2</option>
                             <option>Tipo3</option>
                             <option>Tipo4</option>
@@ -130,14 +130,14 @@ js=''
                         <div class="box-body pad">
                           <label for="inputAsunto" class="col-sm-2 control-label">Asunto</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="inputAsunto">
+                            <input type="text" class="form-control" id="txtAsunto" name="txtAsunto">
                           </div>
                         </div>  
                         <div class="box-body pad">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                             
                                 <div class="col-sm-10">
-                                  <textarea class="textarea_msg" placeholder="Ingrese una Descripción" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
+                                  <textarea class="textarea_msg" placeholder="Ingrese una Descripción" name="txtDescripcion" id="txtDescripcion" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
                                 <!--  -->
                                 </div>
                             
@@ -172,6 +172,9 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+<!-- Validaciones FrontEnd -->
+<script src="{$rutaJS}jquery-validator-min.js"></script>
+<script src="{$rutaJS}validacionNuevoTicket.js"></script>
 
 <script src="{$rutaJS}bootstrap3-wysihtml5.all.js"></script>
 
@@ -182,4 +185,6 @@ js=''
   });
 </script>
 {/literal}
+
+
 {include file="footer.tpl"}

@@ -1,5 +1,5 @@
 {include file="header.tpl"
-css=''
+css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css">'
 js=''
 }
 {include file="panelLateral.tpl"}
@@ -22,22 +22,22 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/nuevoAnuncioAction.php" class="form-horizontal">
+        <form action="{$rutaCSS}../controlador/nuevoAnuncioAction.php" id="nuevoAnuncioForm" class="form-horizontal">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
                         <div class="box-body pad">
                             <label for="inputTitulo" class="col-sm-2 control-label">Título</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputTitulo">
+                              <input type="text" class="form-control" id="txtTitulo" name="txtTitulo">
                             </div>
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
                             <label for="comboEmpresa" class="col-sm-2 control-label">Alcance</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;">
-                                    <option selected="selected">Todos</option>
+                                <select class="form-control select2" id="ddEmpresas" name="ddEmpresas" style="width: 100%;">
+                                    <option value="">Seleccione una Empresa...</option>
                                     <option>Empresa1</option>
                                     <option>Empresa3</option>
                                     <option>Empresa4</option>
@@ -96,6 +96,7 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+
 <!-- CK Editor -->
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 <script>
@@ -105,4 +106,7 @@ js=''
     CKEDITOR.replace('editor1');
   });
 </script>
+<!-- Validaciones -->
+<script src="{$rutaJS}jquery-validator-min.js"></script>
+<script src="{$rutaJS}validacionNuevoAnuncio.js"></script>
  {include file="footer.tpl"}
