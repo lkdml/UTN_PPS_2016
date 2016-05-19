@@ -26,11 +26,11 @@ function setearPerfil(Perfil $perfil,$em){
     $perfil->setNombre($_POST['Nombre']);
     $perfil->setDescripcion($_POST['Descripcion']);
     $perfil->setEstado(true);
-    $perfil->getRoles()->clear();
+    $perfil->getRolNombre()->clear();
     foreach ($_POST['permisos'] as $permiso=>$valor){
         $rol = $em->find('Modelo\Rol',$permiso);
         if (!is_null($rol)){
-            $perfil->asignarRol($rol);
+            $perfil->addRolNombre($rol);
         }
     }
     $perfil->setEstado(true);

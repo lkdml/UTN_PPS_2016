@@ -94,8 +94,8 @@ js=''
           <tbody>
              {foreach from=$Operadores item=operador}
                   <tr>
-                      <td><input class="case" type="checkbox" name="operadorId[]" value="{$operador->getOperador_ID()}" ></input></td>
-                      <td>{$operador->getNombre_Usuario()}</td>
+                      <td><input class="case" type="checkbox" name="operadorId[]" value="{$operador->getOperadorId()}" ></input></td>
+                      <td>{$operador->getNombreUsuario()}</td>
                       <td>{$operador->getNombre()}</td>
                       <td>{$operador->getApellido()}</td>
                       <td>{$operador->getEmail()}</td>

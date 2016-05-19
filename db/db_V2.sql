@@ -11,572 +11,568 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema tmh
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `tmh` DEFAULT CHARACTER SET latin1 ;
+CREATE SCHEMA IF NOT EXISTS `tmh` DEFAULT CHARACTER SET utf8 ;
 USE `tmh` ;
 
 -- -----------------------------------------------------
--- Table `tmh`.`categorias_anuncios`
+-- Table `tmh`.`categoria_anuncios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`categorias_anuncios` (
-  `Categoria_ID` INT NOT NULL,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Icono` NVARCHAR(15) NULL,
-  PRIMARY KEY (`Categoria_ID`))
+CREATE TABLE IF NOT EXISTS `tmh`.`categoria_anuncios` (
+  `categoria_id` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `icono` NVARCHAR(15) NULL,
+  PRIMARY KEY (`categoria_id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `tmh`.`anuncio`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`anuncio` (
-  `Anuncio_ID` INT(11) NOT NULL AUTO_INCREMENT,
-  `Empresa_ID` INT(11) NOT NULL,
-  `Categoria_ID` INT NOT NULL,
-  `Titulo` VARCHAR(45) NOT NULL,
-  `Contenido` VARCHAR(250) CHARACTER SET 'utf8' NOT NULL,
-  `Fecha_Creacion` DATETIME NOT NULL,
-  `Estado` TINYINT(1) NOT NULL,
-  `Fecha_Fin_Publicacion` DATETIME NULL,
-  `Operador_ID` INT NOT NULL,
-  PRIMARY KEY (`Anuncio_ID`, `Empresa_ID`, `Categoria_ID`),
-  INDEX `fk_anuncios_categoria_idx` (`Categoria_ID` ASC),
+  `anuncio_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `empresa_id` INT(11) NOT NULL,
+  `categoria_id` INT NOT NULL,
+  `titulo` VARCHAR(45) NOT NULL,
+  `contenido` VARCHAR(250) CHARACTER SET 'utf8' NOT NULL,
+  `fecha_Creacion` DATETIME NOT NULL,
+  `estado` TINYINT(1) NOT NULL,
+  `fecha_fin_publicacion` DATETIME NULL,
+  `operador_id` INT NOT NULL,
+  PRIMARY KEY (`anuncio_id`, `empresa_id`, `categoria_id`),
+  INDEX `fk_anuncios_categoria_idx` (`categoria_id` ASC),
   CONSTRAINT `fk_anuncios_categoria`
-    FOREIGN KEY (`Categoria_ID`)
-    REFERENCES `tmh`.`categorias_anuncios` (`Categoria_ID`)
+    FOREIGN KEY (`categoria_id`)
+    REFERENCES `tmh`.`categoria_anuncios` (`categoria_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `tmh`.`departamento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`departamento` (
-  `Departamento_ID` INT(11) NOT NULL AUTO_INCREMENT,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Descripcion` VARCHAR(45) NOT NULL,
-  `Padre_Depto_ID` INT NOT NULL,
-  `Visibilidad_Usuario` SMALLINT NOT NULL,
-  `Orden` INT NOT NULL,
-  `Operador_Default_ID` INT NULL,
-  PRIMARY KEY (`Departamento_ID`))
+  `departamento_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(45) NOT NULL,
+  `padre_depto_id` INT NULL,
+  `visibilidad_usuario` SMALLINT NOT NULL,
+  `orden` INT NOT NULL,
+  `operador_default_id` INT NULL,
+  PRIMARY KEY (`departamento_id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `tmh`.`empresa`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`empresa` (
-  `Empresa_ID` INT(11) NOT NULL AUTO_INCREMENT,
-  `Razon_Social` VARCHAR(45) NOT NULL,
-  `Pais` VARCHAR(45) NOT NULL,
-  `Direccion` VARCHAR(45) NOT NULL,
-  `Ciudad` VARCHAR(45) NULL,
-  `Codigo_Postal` VARCHAR(45) NULL,
-  `Telefono` VARCHAR(45) NULL,
-  `Web` VARCHAR(45) NULL,
-  `Ultima_Actualizacion` DATETIME NOT NULL,
-  PRIMARY KEY (`Empresa_ID`))
+  `empresa_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `razon_social` VARCHAR(45) NOT NULL,
+  `pais` VARCHAR(45) NOT NULL,
+  `direccion` VARCHAR(45) NOT NULL,
+  `ciudad` VARCHAR(45) NULL,
+  `codigo_postal` VARCHAR(45) NULL,
+  `telefono` VARCHAR(45) NULL,
+  `web` VARCHAR(45) NULL,
+  `ultima_actualizacion` DATETIME NOT NULL,
+  PRIMARY KEY (`empresa_id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `tmh`.`usuario`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`usuario` (
-  `Usuario_ID` INT(11) NOT NULL,
-  `Nombre_Usuario` VARCHAR(45) NOT NULL,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Apellido` VARCHAR(45) NOT NULL,
-  `Clave` VARCHAR(45) NOT NULL,
-  `Email` VARCHAR(45) NOT NULL,
-  `FotoHash` VARCHAR(255) NULL DEFAULT NULL,
-  `Direccion` VARCHAR(45) NULL DEFAULT NULL,
-  `Codigo_Postal` INT(11) NULL DEFAULT NULL,
-  `Ciudad_ID` INT(11) NULL DEFAULT NULL,
-  `Telefono` VARCHAR(45) NULL DEFAULT NULL,
-  `Mail_Adicional` VARCHAR(45) NULL DEFAULT NULL,
-  `Empresa_ID` INT NOT NULL,
-  `Ultima_Actualizacion` DATETIME NOT NULL,
-  `Ultima_Actividad` DATETIME NOT NULL,
-  `Activo` TINYINT(1) NOT NULL,
-  `Eliminado` TINYINT(1) NOT NULL,
-  PRIMARY KEY (`Usuario_ID`, `Empresa_ID`),
-  INDEX `FK_Usuarios_Empresa_idx` (`Empresa_ID` ASC),
-  UNIQUE INDEX `Email_UNIQUE` (`Email` ASC),
-  CONSTRAINT `FK_Usuarios_Empresa`
-    FOREIGN KEY (`Empresa_ID`)
-    REFERENCES `tmh`.`empresa` (`Empresa_ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `tmh`.`ticket_estado`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`ticket_estado` (
-  `Estado_ID` INT(11) NOT NULL AUTO_INCREMENT,
-  `Descripcion` VARCHAR(45) NOT NULL,
-  `Color` VARCHAR(45) NOT NULL,
-  `AutoCierre` TINYINT(1) NOT NULL,
-  `Orden` INT NOT NULL,
-  PRIMARY KEY (`Estado_ID`))
+  `estado_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `descripcion` VARCHAR(45) NOT NULL,
+  `color` VARCHAR(45) NOT NULL,
+  `autocierre` TINYINT(1) NOT NULL,
+  `orden` INT NOT NULL,
+  PRIMARY KEY (`estado_id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `tmh`.`prioridades`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`prioridades` (
-  `Prioridad_ID` INT(11) NOT NULL AUTO_INCREMENT,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Descripcion` VARCHAR(45) NOT NULL,
-  `Color` VARCHAR(45) NOT NULL,
-  `Orden` INT NOT NULL,
-  PRIMARY KEY (`Prioridad_ID`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `tmh`.`perfil`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`perfil` (
-  `Perfil_ID` INT(11) NOT NULL AUTO_INCREMENT,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Descripcion` VARCHAR(45) NOT NULL,
-  `Estado` BIT(1) NOT NULL,
-  PRIMARY KEY (`Perfil_ID`))
+  `perfil_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(45) NOT NULL,
+  `estado` TINYINT(1) NOT NULL,
+  PRIMARY KEY (`perfil_id`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `tmh`.`operador`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`operador` (
-  `Operador_ID` INT(11) NOT NULL,
-  `Perfil_ID` INT(11) NOT NULL,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Apellido` VARCHAR(45) NOT NULL,
-  `Nombre_Usuario` VARCHAR(45) NOT NULL,
-  `Clave` VARCHAR(45) NOT NULL,
-  `FirmaMensaje` VARCHAR(245) NULL,
-  `Email` VARCHAR(225) NOT NULL,
-  `Celular` VARCHAR(45) NULL,
-  `Ultima_Actualizacion` DATETIME NULL,
-  `Ultima_Actividad` DATETIME NULL,
-  `Activo` TINYINT(1) NOT NULL,
-  `Deptos_Habilitados` INT NOT NULL,
-  `Habilita_Notificaciones_Mail` SMALLINT NOT NULL,
-  `Filtro_Ticket_ID` INT NULL,
-  `HashFoto` VARCHAR(245) NULL,
-  `Eliminado` TINYINT(1) NOT NULL,
-  PRIMARY KEY (`Operador_ID`, `Perfil_ID`),
-  INDEX `fk_operadores_perfil_perfil_idx` (`Perfil_ID` ASC),
-  UNIQUE INDEX `Email_UNIQUE` (`Email` ASC),
+  `operador_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `perfil_id` INT(11) NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  `apellido` VARCHAR(45) NOT NULL,
+  `nombre_usuario` VARCHAR(45) NOT NULL,
+  `clave` VARCHAR(45) NOT NULL,
+  `firma_mensaje` VARCHAR(245) NULL,
+  `email` VARCHAR(225) NOT NULL,
+  `celular` VARCHAR(45) NULL,
+  `ultima_actualizacion` DATETIME NULL,
+  `ultima_actividad` DATETIME NULL,
+  `activo` TINYINT(1) NOT NULL,
+  `deptos_habilitados` INT NULL,
+  `habilita_notificaciones_mail` SMALLINT NOT NULL,
+  `filtro_ticket_id` INT NULL,
+  `hash_foto` VARCHAR(245) NULL,
+  `eliminado` TINYINT(1) NOT NULL,
+  PRIMARY KEY (`operador_id`),
+  INDEX `fk_operadores_perfil_perfil_idx` (`perfil_id` ASC),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   CONSTRAINT `fk_operadores_perfil_perfil`
-    FOREIGN KEY (`Perfil_ID`)
-    REFERENCES `tmh`.`perfil` (`Perfil_ID`)
+    FOREIGN KEY (`perfil_id`)
+    REFERENCES `tmh`.`perfil` (`perfil_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `tmh`.`ticket_tipo`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`ticket_tipo` (
-  `Tipo_Ticket_ID` INT NOT NULL,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Descripcion` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`Tipo_Ticket_ID`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `tmh`.`tickets`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`tickets` (
-  `Ticket_ID` INT(11) NOT NULL AUTO_INCREMENT,
-  `Usuario_ID` INT(11) NULL,
-  `Operador_ID` INT(11) NULL,
-  `Estado_ID` INT(11) NOT NULL,
-  `Prioridad_ID` INT(11) NOT NULL,
-  `Departamento_ID` INT(11) NOT NULL,
-  `Descripcion` VARCHAR(200) NOT NULL,
-  `Numero_Ticker` INT NOT NULL,
-  `Email_Queue_ID` INT NOT NULL,
-  `Asignado` TINYINT(1) NULL,
-  `Owner_Operador_ID` INT NULL,
-  `Asunto` VARCHAR(45) NOT NULL,
-  `Ultima_Actividad` DATETIME NULL,
-  `Ultima_Actividad_User` DATETIME NULL,
-  `Ultima_Actividad_Operador` DATETIME NULL,
-  `Fecha_Creacion` DATETIME NOT NULL,
-  `Fecha_Vto` DATETIME NULL,
-  `Tiene_Archivos` TINYINT(1) NULL,
-  `Editado` TINYINT(1) NULL,
-  `Custom_Fields` LONGTEXT NULL,
-  `Tipo_Ticket_ID` INT NOT NULL,
-  PRIMARY KEY (`Ticket_ID`, `Departamento_ID`, `Prioridad_ID`, `Estado_ID`, `Tipo_Ticket_ID`),
-  INDEX `fk_ticket_usuario_idx` (`Usuario_ID` ASC),
-  INDEX `fk_ticket_estado_idx` (`Estado_ID` ASC),
-  INDEX `fk_ticket_prioridad_idx` (`Prioridad_ID` ASC),
-  INDEX `fk_ticket_departamento_idx` (`Departamento_ID` ASC),
-  INDEX `fk_ticket_operador_idx` (`Operador_ID` ASC),
-  INDEX `fk_ticket_tipo_Ticket_idx` (`Tipo_Ticket_ID` ASC),
-  CONSTRAINT `fk_ticket_usuario`
-    FOREIGN KEY (`Usuario_ID`)
-    REFERENCES `tmh`.`usuario` (`Usuario_ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ticket_estado`
-    FOREIGN KEY (`Estado_ID`)
-    REFERENCES `tmh`.`ticket_estado` (`Estado_ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ticket_prioridad`
-    FOREIGN KEY (`Prioridad_ID`)
-    REFERENCES `tmh`.`prioridades` (`Prioridad_ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ticket_departamento`
-    FOREIGN KEY (`Departamento_ID`)
-    REFERENCES `tmh`.`departamento` (`Departamento_ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ticket_operador`
-    FOREIGN KEY (`Operador_ID`)
-    REFERENCES `tmh`.`operador` (`Operador_ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ticket_tipo_Ticket`
-    FOREIGN KEY (`Tipo_Ticket_ID`)
-    REFERENCES `tmh`.`ticket_tipo` (`Tipo_Ticket_ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
-
-
--- -----------------------------------------------------
--- Table `tmh`.`ticket_detalle`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`ticket_detalle` (
-  `Ticket_ID` INT(11) NOT NULL,
-  `Descripcion` VARCHAR(45) NOT NULL,
-  `Tiempo_Dedicado` FLOAT NOT NULL,
-  INDEX `fk_detalle_ticket_ticket_idx` (`Ticket_ID` ASC),
-  PRIMARY KEY (`Ticket_ID`),
-  CONSTRAINT `fk_detalle_ticket_ticket`
-    FOREIGN KEY (`Ticket_ID`)
-    REFERENCES `tmh`.`tickets` (`Ticket_ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `tmh`.`rol`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`rol` (
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Descripcion` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`Nombre`),
-  UNIQUE INDEX `Nombre_UNIQUE` (`Nombre` ASC))
+  `nombre` VARCHAR(45) NOT NULL ,
+  `descripcion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`nombre`),
+  UNIQUE INDEX `nombre_UNIQUE` (`nombre` ASC))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `tmh`.`perfiles_roles`
+-- Table `tmh`.`perfil_roles`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`perfiles_roles` (
-  `Perfil_ID` INT(11) NOT NULL,
-  `Rol_ID` INT(11) NOT NULL,
-  PRIMARY KEY (`Perfil_ID`, `Rol_ID`),
+CREATE TABLE IF NOT EXISTS `tmh`.`perfil_roles` (
+  `perfil_id` INT(11) NOT NULL ,
+  `rol_nombre` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`perfil_id`, `rol_nombre`),
+  INDEX `fk_nombre_rol_perfil_idx` (`rol_nombre` ASC),
   CONSTRAINT `fk_perfiles_roles_perfil`
-    FOREIGN KEY (`Perfil_ID`)
-    REFERENCES `tmh`.`perfil` (`Perfil_ID`)
+    FOREIGN KEY (`perfil_id`)
+    REFERENCES `tmh`.`perfil` (`perfil_id`)
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_nombre_rol_perfil`
-    FOREIGN KEY ()
-    REFERENCES `tmh`.`rol` ()
+    FOREIGN KEY (`rol_nombre`)
+    REFERENCES `tmh`.`rol` (`nombre`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `tmh`.`prioridades`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tmh`.`prioridades` (
+  `prioridad_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(45) NOT NULL,
+  `color` VARCHAR(45) NOT NULL,
+  `orden` INT NOT NULL,
+  PRIMARY KEY (`prioridad_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `tmh`.`respuesta_enlatada`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`respuesta_enlatada` (
-  `Enlatado_ID` INT(11) NOT NULL AUTO_INCREMENT,
-  `Respuesta` VARCHAR(250) NOT NULL,
-  `Departamento_ID` INT NOT NULL,
-  `Operador_ID` INT NULL DEFAULT NULL COMMENT 'El operador id es para saber si la rta enlatada la ve el operador, sino es público(null)',
-  PRIMARY KEY (`Enlatado_ID`, `Departamento_ID`),
-  INDEX `FK_Respuesta_Enlatada_Departamento_idx` (`Departamento_ID` ASC),
-  CONSTRAINT `FK_Respuesta_Enlatada_Departamento`
-    FOREIGN KEY (`Departamento_ID`)
-    REFERENCES `tmh`.`departamento` (`Departamento_ID`)
+  `enlatado_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `respuesta` VARCHAR(250) NOT NULL,
+  `departamento_id` INT NOT NULL,
+  `operador_id` INT NULL DEFAULT NULL COMMENT 'El operador id es para saber si la rta enlatada la ve el operador, sino es público(null)',
+  PRIMARY KEY (`enlatado_id`, `departamento_id`),
+  INDEX `FK_respuesta_enlatada_departamento_idx` (`departamento_id` ASC),
+  CONSTRAINT `FK_respuesta_enlatada_departamento`
+    FOREIGN KEY (`departamento_id`)
+    REFERENCES `tmh`.`departamento` (`departamento_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `tmh`.`email_templates`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`email_templates` (
-  `Email_ID` INT NOT NULL,
-  `Tipo` VARCHAR(45) NOT NULL,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Texto` LONGTEXT NOT NULL,
-  `Asunto` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`Email_ID`))
-ENGINE = InnoDB;
+  `email_id` INT NOT NULL AUTO_INCREMENT,
+  `tipo` VARCHAR(45) NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  `texto` LONGTEXT NOT NULL,
+  `asunto` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`email_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `tmh`.`ticket_tipo`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tmh`.`ticket_tipo` (
+  `tipo_ticket_id` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`tipo_ticket_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `tmh`.`sla`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`sla` (
-  `SLA_ID` INT(11) NOT NULL AUTO_INCREMENT,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Descripcion` VARCHAR(45) NOT NULL,
-  `Departamento_Origen` INT(11) NULL,
-  `Estado_Origen` INT(11) NULL,
-  `Prioridad_Origen` INT(11) NULL,
-  `Horas` INT NOT NULL DEFAULT 1,
-  `Condicion_Hora` INT NOT NULL DEFAULT 1,
-  `Accion_Departamento` INT NULL,
-  `Accion_Prioridad` INT NULL,
-  `Accion_Estado` INT NULL,
-  `Accion_Operador_Asignado` INT NULL,
-  `Estado` INT NOT NULL,
-  `Eliminado` TINYINT(1) NOT NULL,
-  `Email_Template_ID` INT NOT NULL,
-  `Tipo_Ticket_Origen` INT NOT NULL,
-  PRIMARY KEY (`SLA_ID`, `Email_Template_ID`, `Tipo_Ticket_Origen`),
-  INDEX `FK_Email_SLA_Email_idx` (`Email_Template_ID` ASC),
-  INDEX `fk_sla_tipo_ticket_idx` (`Tipo_Ticket_Origen` ASC),
-  CONSTRAINT `FK_Email_SLA_Email`
-    FOREIGN KEY (`Email_Template_ID`)
-    REFERENCES `tmh`.`email_templates` (`Email_ID`)
+  `sla_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(45) NOT NULL,
+  `departamento_origen` INT(11) NULL,
+  `estado_origen` INT(11) NULL,
+  `prioridad_origen` INT(11) NULL,
+  `horas` INT NOT NULL DEFAULT 1,
+  `condicion_hora` INT NOT NULL DEFAULT 1,
+  `accion_departamento` INT NULL,
+  `accion_prioridad` INT NULL,
+  `accion_estado` INT NULL,
+  `accion_operador_asignado` INT NULL,
+  `estado` INT NOT NULL,
+  `eliminado` TINYINT(1) NOT NULL,
+  `email_template_id` INT NOT NULL,
+  `tipo_ticket_origen` INT NOT NULL,
+  PRIMARY KEY (`sla_id`, `email_template_id`, `tipo_ticket_origen`),
+  INDEX `FK_email_sla_email_idx` (`email_template_id` ASC),
+  INDEX `fk_sla_tipo_ticket_idx` (`tipo_ticket_origen` ASC),
+  CONSTRAINT `FK_email_sla_email`
+    FOREIGN KEY (`email_template_id`)
+    REFERENCES `tmh`.`email_templates` (`email_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_sla_tipo_ticket`
-    FOREIGN KEY (`Tipo_Ticket_Origen`)
-    REFERENCES `tmh`.`ticket_tipo` (`Tipo_Ticket_ID`)
+    FOREIGN KEY (`tipo_ticket_origen`)
+    REFERENCES `tmh`.`ticket_tipo` (`tipo_ticket_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = latin1;
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `tmh`.`Log_Modificacion_Ticket`
+-- Table `tmh`.`usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`Log_Modificacion_Ticket` (
-  `Ticket_ID` INT NOT NULL,
-  `Usuario_ID` INT NULL,
-  `Operador_ID` INT NULL,
-  `Accion` VARCHAR(245) NULL,
-  `Fecha` DATETIME NULL,
-  PRIMARY KEY (`Ticket_ID`),
-  CONSTRAINT `FK_Ticket_Log`
-    FOREIGN KEY (`Ticket_ID`)
-    REFERENCES `tmh`.`tickets` (`Ticket_ID`)
+CREATE TABLE IF NOT EXISTS `tmh`.`usuario` (
+  `usuario_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre_usuario` VARCHAR(45) NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  `apellido` VARCHAR(45) NOT NULL,
+  `Clave` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `foto_hash` VARCHAR(255) NULL DEFAULT NULL,
+  `direccion` VARCHAR(45) NULL DEFAULT NULL,
+  `codigo_postal` INT(11) NULL DEFAULT NULL,
+  `ciudad_id` INT(11) NULL DEFAULT NULL,
+  `telefono` VARCHAR(45) NULL DEFAULT NULL,
+  `mail_adicional` VARCHAR(45) NULL DEFAULT NULL,
+  `empresa_id` INT NOT NULL,
+  `ultima_actualizacion` DATETIME NOT NULL,
+  `ultima_actividad` DATETIME NOT NULL,
+  `activo` TINYINT(1) NOT NULL,
+  `eliminado` TINYINT(1) NOT NULL,
+  PRIMARY KEY (`usuario_id`, `empresa_id`),
+  INDEX `FK_usuarios_empresa_idx` (`empresa_id` ASC),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
+  CONSTRAINT `FK_usuarios_empresa`
+    FOREIGN KEY (`empresa_id`)
+    REFERENCES `tmh`.`empresa` (`empresa_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `tmh`.`tickets`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tmh`.`tickets` (
+  `ticket_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `usuario_id` INT(11) NULL,
+  `operador_id` INT(11) NULL,
+  `estado_id` INT(11) NOT NULL,
+  `prioridad_id` INT(11) NOT NULL,
+  `departamento_id` INT(11) NOT NULL,
+  `descripcion` VARCHAR(200) NOT NULL,
+  `numero_Ticker` INT NOT NULL,
+  `email_queue_id` INT NOT NULL,
+  `asignado` TINYINT(1) NULL,
+  `owner_operador_id` INT NULL,
+  `asunto` VARCHAR(45) NOT NULL,
+  `ultima_actividad` DATETIME NULL,
+  `ultima_actividad_User` DATETIME NULL,
+  `ultima_actividad_operador` DATETIME NULL,
+  `fecha_creacion` DATETIME NOT NULL,
+  `fecha_vto` DATETIME NULL,
+  `tiene_archivos` TINYINT(1) NULL,
+  `editado` TINYINT(1) NULL,
+  `custom_fields` LONGTEXT NULL,
+  `tipo_ticket_id` INT NOT NULL,
+  PRIMARY KEY (`ticket_id`, `departamento_id`, `prioridad_id`, `estado_id`, `tipo_ticket_id`),
+  INDEX `fk_ticket_usuario_idx` (`usuario_id` ASC),
+  INDEX `fk_ticket_estado_idx` (`estado_id` ASC),
+  INDEX `fk_ticket_prioridad_idx` (`prioridad_id` ASC),
+  INDEX `fk_ticket_departamento_idx` (`departamento_id` ASC),
+  INDEX `fk_ticket_operador_idx` (`operador_id` ASC),
+  INDEX `fk_ticket_tipo_ticket_idx` (`tipo_ticket_id` ASC),
+  CONSTRAINT `fk_ticket_usuario`
+    FOREIGN KEY (`usuario_id`)
+    REFERENCES `tmh`.`usuario` (`usuario_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ticket_estado`
+    FOREIGN KEY (`estado_id`)
+    REFERENCES `tmh`.`ticket_estado` (`estado_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ticket_prioridad`
+    FOREIGN KEY (`prioridad_id`)
+    REFERENCES `tmh`.`prioridades` (`prioridad_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ticket_departamento`
+    FOREIGN KEY (`departamento_id`)
+    REFERENCES `tmh`.`departamento` (`departamento_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ticket_operador`
+    FOREIGN KEY (`operador_id`)
+    REFERENCES `tmh`.`operador` (`operador_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ticket_tipo_ticket`
+    FOREIGN KEY (`tipo_ticket_id`)
+    REFERENCES `tmh`.`ticket_tipo` (`tipo_ticket_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `tmh`.`Log_Modificacion_ticket`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tmh`.`log_modificacion_ticket` (
+  `ticket_id` INT NOT NULL AUTO_INCREMENT,
+  `usuario_id` INT NULL,
+  `operador_id` INT NULL,
+  `accion` VARCHAR(245) NULL,
+  `fecha` DATETIME NULL,
+  PRIMARY KEY (`ticket_id`),
+  CONSTRAINT `FK_ticket_Log`
+    FOREIGN KEY (`ticket_id`)
+    REFERENCES `tmh`.`tickets` (`ticket_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `tmh`.`anuncios_empresa`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`anuncios_empresa` (
-  `Empresa_ID` INT NOT NULL,
-  `Anuncio_ID` INT NOT NULL,
-  PRIMARY KEY (`Empresa_ID`, `Anuncio_ID`),
-  INDEX `Fk_Anuncios_empresa_anuncio_idx` (`Anuncio_ID` ASC),
-  CONSTRAINT `Fk_Anuncios_empresa_anuncio`
-    FOREIGN KEY (`Anuncio_ID`)
-    REFERENCES `tmh`.`anuncio` (`Anuncio_ID`)
+  `empresa_id` INT NOT NULL,
+  `anuncio_id` INT NOT NULL,
+  PRIMARY KEY (`empresa_id`, `anuncio_id`),
+  INDEX `Fk_anuncios_empresa_anuncio_idx` (`anuncio_id` ASC),
+  CONSTRAINT `Fk_anuncios_empresa_anuncio`
+    FOREIGN KEY (`anuncio_id`)
+    REFERENCES `tmh`.`anuncio` (`anuncio_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `Fk_anuncios_empresa_empresa`
-    FOREIGN KEY (`Empresa_ID`)
-    REFERENCES `tmh`.`empresa` (`Empresa_ID`)
+    FOREIGN KEY (`empresa_id`)
+    REFERENCES `tmh`.`empresa` (`empresa_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `tmh`.`operadores_departamentos`
+-- Table `tmh`.`operador_departamentos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`operadores_departamentos` (
-  `Operador_ID` INT NOT NULL,
-  `Departamento_ID` INT NOT NULL,
-  PRIMARY KEY (`Operador_ID`, `Departamento_ID`),
-  INDEX `fk_operador_dpto_depto_idx` (`Departamento_ID` ASC),
+CREATE TABLE IF NOT EXISTS `tmh`.`operador_departamentos` (
+  `operador_id` INT NOT NULL,
+  `departamento_id` INT NOT NULL,
+  PRIMARY KEY (`operador_id`, `departamento_id`),
+  INDEX `fk_operador_dpto_depto_idx` (`departamento_id` ASC),
   CONSTRAINT `fk_operador_dpto_depto`
-    FOREIGN KEY (`Departamento_ID`)
-    REFERENCES `tmh`.`departamento` (`Departamento_ID`)
+    FOREIGN KEY (`departamento_id`)
+    REFERENCES `tmh`.`departamento` (`departamento_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_operador_dpto_operador`
-    FOREIGN KEY (`Operador_ID`)
-    REFERENCES `tmh`.`operador` (`Operador_ID`)
+    FOREIGN KEY (`operador_id`)
+    REFERENCES `tmh`.`operador` (`operador_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `tmh`.`Archivos`
+-- Table `tmh`.`archivos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`Archivos` (
-  `Archivo_ID` INT NOT NULL,
-  `Nombre` VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tmh`.`archivos` (
+  `archivo_id` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
   `Hash` VARCHAR(45) NOT NULL,
-  `Fecha_Creacion` DATETIME NOT NULL,
-  `Directorio` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`Archivo_ID`))
-ENGINE = InnoDB;
+  `fecha_creacion` DATETIME NOT NULL,
+  `directorio` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`archivo_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `tmh`.`ticket_archivos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`ticket_archivos` (
-  `Archivo_Ticket_ID` INT NOT NULL,
-  `Ticket_ID` INT NOT NULL,
-  PRIMARY KEY (`Archivo_Ticket_ID`, `Ticket_ID`),
-  INDEX `fk_ticket_archivos_ticket_idx` (`Ticket_ID` ASC),
+  `archivo_ticket_id` INT NOT NULL ,
+  `ticket_id` INT NOT NULL,
+  PRIMARY KEY (`archivo_ticket_id`, `ticket_id`),
+  INDEX `fk_ticket_archivos_ticket_idx` (`ticket_id` ASC),
   CONSTRAINT `fk_ticket_archivos_archivos`
-    FOREIGN KEY (`Archivo_Ticket_ID`)
-    REFERENCES `tmh`.`Archivos` (`Archivo_ID`)
+    FOREIGN KEY (`archivo_ticket_id`)
+    REFERENCES `tmh`.`archivos` (`archivo_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_ticket_archivos_ticket`
-    FOREIGN KEY (`Ticket_ID`)
-    REFERENCES `tmh`.`tickets` (`Ticket_ID`)
+    FOREIGN KEY (`ticket_id`)
+    REFERENCES `tmh`.`tickets` (`ticket_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `tmh`.`mensajes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`mensajes` (
-  `Mensaje_ID` INT NOT NULL,
-  `Ticket_ID` INT NOT NULL,
+  `mensaje_id` INT NOT NULL AUTO_INCREMENT,
+  `ticket_id` INT NOT NULL,
   `Texto` VARCHAR(245) NOT NULL,
-  `Fecha` DATETIME NOT NULL,
-  `Tipo_Mensaje` INT NOT NULL,
-  `Creador_Operador` INT NULL,
-  `Creador_Usuario` INT NULL,
-  PRIMARY KEY (`Mensaje_ID`, `Ticket_ID`),
-  INDEX `FK_Mensajes_Ticket_idx` (`Ticket_ID` ASC),
-  CONSTRAINT `FK_Mensajes_Ticket`
-    FOREIGN KEY (`Ticket_ID`)
-    REFERENCES `tmh`.`tickets` (`Ticket_ID`)
+  `fecha` DATETIME NOT NULL,
+  `tipo_mensaje` INT NOT NULL,
+  `creador_operador` INT NULL,
+  `creador_usuario` INT NULL,
+  PRIMARY KEY (`mensaje_id`, `ticket_id`),
+  INDEX `FK_mensajes_ticket_idx` (`ticket_id` ASC),
+  CONSTRAINT `FK_mensajes_ticket`
+    FOREIGN KEY (`ticket_id`)
+    REFERENCES `tmh`.`tickets` (`ticket_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `tmh`.`mensajes_archivos`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`mensajes_archivos` (
-  `Mensaje_ID` INT NOT NULL,
-  `Archivo_ID` INT NOT NULL,
-  PRIMARY KEY (`Mensaje_ID`, `Archivo_ID`),
-  INDEX `FK_Mensajes_Archivos_Mensajes_idx` (`Archivo_ID` ASC),
-  CONSTRAINT `FK_Mensajes_Archivos_Archivos`
-    FOREIGN KEY (`Archivo_ID`)
-    REFERENCES `tmh`.`Archivos` (`Archivo_ID`)
+  `mensaje_id` INT NOT NULL,
+  `archivo_id` INT NOT NULL,
+  PRIMARY KEY (`mensaje_id`, `archivo_id`),
+  INDEX `FK_mensajes_archivos_mensajes_idx` (`archivo_id` ASC),
+  CONSTRAINT `FK_mensajes_archivos_archivos`
+    FOREIGN KEY (`archivo_id`)
+    REFERENCES `tmh`.`archivos` (`archivo_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `FK_Mensaje_Archivos_Mensajes`
-    FOREIGN KEY (`Mensaje_ID`)
-    REFERENCES `tmh`.`mensajes` (`Mensaje_ID`)
+  CONSTRAINT `FK_mensaje_archivos_mensajes`
+    FOREIGN KEY (`mensaje_id`)
+    REFERENCES `tmh`.`mensajes` (`mensaje_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `tmh`.`ticket_filtros`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`ticket_filtros` (
-  `Filtro_ID` INT NOT NULL,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Departamentos` LONGTEXT NOT NULL,
-  `Estados` LONGTEXT NOT NULL,
-  `Prioridades` LONGTEXT NOT NULL,
-  `Asignado_A_Mi` INT NULL,
-  `Operadores` LONGTEXT NULL,
-  PRIMARY KEY (`Filtro_ID`))
-ENGINE = InnoDB;
+  `Filtro_id` INT NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `departamentos` LONGTEXT NOT NULL,
+  `estados` LONGTEXT NOT NULL,
+  `prioridades` LONGTEXT NOT NULL,
+  `asignado_a_mi` INT NULL,
+  `operadores` LONGTEXT NULL,
+  PRIMARY KEY (`filtro_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
 -- Table `tmh`.`email_queue`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`email_queue` (
-  `Queue_ID` INT NOT NULL,
-  `Destinatario` LONGTEXT NOT NULL,
-  `Remitente` LONGTEXT NOT NULL,
-  `Asunto` VARCHAR(45) NOT NULL,
-  `Contenido` LONGTEXT NOT NULL,
-  `Estado` TINYINT(1) NOT NULL,
-  `Fecha_Envio` DATETIME NULL,
-  PRIMARY KEY (`Queue_ID`))
-ENGINE = InnoDB;
+  `queue_id` INT NOT NULL AUTO_INCREMENT,
+  `destinatario` LONGTEXT NOT NULL,
+  `remitente` LONGTEXT NOT NULL,
+  `asunto` VARCHAR(45) NOT NULL,
+  `contenido` LONGTEXT NOT NULL,
+  `estado` TINYINT(1) NOT NULL,
+  `fecha_envio` DATETIME NULL,
+  PRIMARY KEY (`queue_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `tmh`.`ticket_Custom_Fields`
+-- Table `tmh`.`ticket_Custom_fields`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`ticket_Custom_Fields` (
-  `Field_ID` INT NOT NULL,
-  `Ticket_ID` INT NOT NULL,
-  `Nombre` VARCHAR(45) NOT NULL,
-  `Tipo` VARCHAR(45) NOT NULL,
-  `Opciones` LONGTEXT NULL,
-  `Requerido` TINYINT(1) NOT NULL,
-  `Departamentos` LONGTEXT NULL,
-  PRIMARY KEY (`Field_ID`))
-ENGINE = InnoDB;
+CREATE TABLE IF NOT EXISTS `tmh`.`ticket_custom_fields` (
+  `field_id` INT NOT NULL AUTO_INCREMENT,
+  `ticket_id` INT NOT NULL,
+  `nombre` VARCHAR(45) NOT NULL,
+  `tipo` VARCHAR(45) NOT NULL,
+  `opciones` LONGTEXT NULL,
+  `requerido` TINYINT(1) NOT NULL,
+  `departamentos` LONGTEXT NULL,
+  PRIMARY KEY (`field_id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `tmh`.`Configuracion_Global`
+-- Table `tmh`.`configuracion_global`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`Configuracion_Global` (
-  `Nombre` VARCHAR(45) NOT NULL,
+CREATE TABLE IF NOT EXISTS `tmh`.`configuracion_global` (
+  `nombre` VARCHAR(45) NOT NULL,
   `valor` LONGTEXT NOT NULL,
-  PRIMARY KEY (`Nombre`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`nombre`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

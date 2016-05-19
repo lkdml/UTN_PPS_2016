@@ -34,10 +34,10 @@ switch(strtolower($_POST["accion"])){
     $perfil = $em->getRepository('Modelo\Perfil')->find($_POST["perfil"][0]);
     $vm->assign('Nombre', '"'.$perfil->getNombre().'"');
     $vm->assign('Descripcion','"'. $perfil->getDescripcion().'"');
-    foreach ($perfil->getRoles() as $rol){
+    foreach ($perfil->getRolNombre() as $rol){
       $vm->assign($rol->getNombre(),true);
     }
-    $vm->assign('perfil',$perfil->getId());
+    $vm->assign('perfil',$perfil->getPerfilId());
     break;
   case ("borrar"):
     $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();

@@ -28,7 +28,7 @@ js=''
             <div class="col-md-4">
                   <!-- Profile Image -->
                 <div class="box box-primary">
-                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php?actualiza=foto{if $Operador}&Operador={$Operador->getOperador_ID()}{/if}" class="form-horizontal" method="post">
+                  <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php?actualiza=foto{if $Operador}&Operador={$Operador->getOperadorId()}{/if}" class="form-horizontal" method="post">
                     <div class="box-body box-profile">
                       <img class="profile-user-img img-responsive img-circle" src="{$rutaIMG}user2-160x160.jpg" alt="User profile picture">
                 
@@ -55,7 +55,7 @@ js=''
                 <!-- Cambio Clave -->
                 {if $Operador}
                   <div class="box box-primary">
-                    <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php?actualiza=clave{if $Operador}&Operador={$Operador->getOperador_ID()}{/if}" class="form-horizontal" method="post">  
+                    <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php?actualiza=clave{if $Operador}&Operador={$Operador->getOperadorId()}{/if}" class="form-horizontal" method="post">  
                       <div class="box-body box-profile">
                       
                         <h3 class="profile-username text-center">Contraseña</h3>
@@ -93,7 +93,7 @@ js=''
             <div class="col-md-8">
                     <div class="box box-primary">
                         <br>
-                        <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php{if $Operador}?Operador={$Operador->getOperador_ID()}{/if}" class="form-horizontal" method="post">
+                        <form action="{$rutaCSS}../controlador/nuevoOperadorAction.php{if $Operador}?Operador={$Operador->getOperadorId()}{/if}" class="form-horizontal" method="post">
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-9">
@@ -109,7 +109,7 @@ js=''
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Usuario</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Nombre de Usuario" name="username" {if $Operador}value={$Operador->getNombre_Usuario()}{/if}>
+                              <input class="form-control" id="inputNombre" placeholder="Nombre de Usuario" name="username" {if $Operador}value={$Operador->getNombreUsuario()}{/if}>
                             </div>
                           </div>
                           {if !$Operador}
@@ -142,7 +142,7 @@ js=''
                             <label for="inputNombre" class="col-sm-2 control-label">Firma de Operador</label>
                             <div class="col-sm-9 box-body pad">
                               <textarea id="editor1" name="Firma" rows="10" cols="80">
-                                    {if $Operador}{$Operador->getFirma_Mensaje()}{/if}
+                                    {if $Operador}{$Operador->getFirmaMensaje()}{/if}
                                 </textarea>
                             </div>
                           </div>
@@ -151,10 +151,11 @@ js=''
                             <div class="row">
                                 <div class="col-sm-9 box-body pad">
                                     <select name="perfilOperador" class="form-control"  name="perfiles">
-                                        <option value="1">Jefe</option>
-                                        <option value="2">técnico</option>
-                                        <option value="2">administrativo</option>
-                                        <option value="2">Admin</option>
+                                      {if $Perfiles}
+                                        {foreach from=$Perfiles item=perfil}
+                                          <option value="{$perfil->getPerfilId()}"{if $Operador->getPerfil() == $perfil}selected{/if}>{$perfil->getNombre()}</option>
+                                        {/foreach}
+                                      {/if}
                                     </select>
                                 </div>
                             </div>
@@ -164,11 +165,11 @@ js=''
                             <div class="row">
                                 <div class="col-xs-4">
                                     <select name="departamentos_disponibles[]" id="multiselect" class="form-control" size="8" multiple="multiple">
-                                        <option value="1">Soporte N1</option>
-                                        <option value="2">Soporte N2</option>
-                                        <option value="2">Ventas</option>
-                                        <option value="2">Administración</option>
-                                        <option value="3">Stock</option>
+                                      {if $Departamentos}
+                                        {foreach from=$Departamentos item=$depto}
+                                          <option value="{$depto->getDepartamentoId()}">{$depto->getNombre()}</option>
+                                        {/foreach}
+                                      {/if}
                                     </select>
                                 </div>
                                 
@@ -180,7 +181,13 @@ js=''
                                 </div>
                                 
                                 <div class="col-xs-4">
-                                    <select name="Departamentos_asignados[]" id="multiselect_to" class="form-control" size="8" multiple="multiple"></select>
+                                    <select name="Departamentos_asignados[]" id="multiselect_to" class="form-control" size="8" multiple="multiple">
+                                      {if $DepartamentosHabilitados}
+                                        {foreach from=$DepartamentosHabilitados item=$deptoH}
+                                          <option value="{$deptoH->getDepartamentoId()}">{$deptoH->getNombre()}</option>
+                                        {/foreach}
+                                      {/if}
+                                    </select>
                                 </div>
                             </div>
                           </div>

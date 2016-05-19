@@ -9,6 +9,8 @@ use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 
 
+
+
 $paths = array(Config::getPublic('Ruta_Modelo'));
 $isDevMode = false;
 
@@ -21,9 +23,18 @@ $dbParams = array(
 );
 
 
+
 $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
+
+$config->setProxyDir(Config::getPublic('Ruta_Modelo').'../Proxies');
+$config->setProxyNamespace('Proxies');
+//$config->addEntityNamespace('Modelo','Modelo');
+//$config->setEntityNamespaces(array("Modelo"=>'Modelo'));
+
+
 $EntityManager = EntityManager::create($dbParams, $config);
-$em = Entity_Manager::getInstancia();
-$em->setEntityManager($EntityManager);
+$em=$EntityManager;
+$em1 = Entity_Manager::getInstancia();
+$em1->setEntityManager($EntityManager);
 
 

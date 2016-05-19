@@ -1,90 +1,339 @@
 <?php
-namespace Modelo;
-/**
- * @Entity @Table(name="Empresa")
- **/
-class Empresa {
- 
-  	/** 
- 	 * @Id @Column(type="integer") @GeneratedValue 
- 	 * @var int
- 	 */
-  protected $Empresa_ID;
-	/**
-	 * @Column(type="string")
-	 * @var string
-	 */
-	protected $Razon_Social;
-	/**
-	 * @Column(type="string")
-	 * @var string
-	 */
-	protected $Pais;
-	/**
-	 * @Column(type="string")
-	 * @var string
-	 */
-	protected $Direccion;
-	/**
-	 * @Column(type="string")
-	 * @var string
-	 */
-	protected $Ciudad;
-	/**
-	 * @Column(type="string")
-	 * @var string
-	 */
-  protected $Codigo_Postal;
-	/**
-	 * @Column(type="string")
-	 * @var string
-	 */
-    protected $Telefono;
-	/**
-	 * @Column(type="string")
-	 * @var string
-	 */
-	protected $Web;
-	/**
-	 * @Column(type="datetime")
-	 * @var datetime
-	 */
-	protected $Ultima_Actualizacion;
-	/**
-	 * @ManyToMany (targetEntity="Anuncio", mappedBy="Anuncio_ID") 
-	 * @var $anuncios[]
-	 */
-  protected $Anuncios;
-  
-  public function __construct(){
-        $this->Anuncios = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-    
 
-	public function getEmpresa_Id() {return $this->Empresa_ID;}
-	public function getRazon_Social() {return $this->Razon_Social;}
-	public function getPais() {return $this->Pais;}
-	public function getDireccion() {return $this->Direccion;}
-	public function getCiudad() {return $this->Ciudad;}
-	public function getCodigo_Postal() {return $this->Codigo_Postal;}
-	public function getTelefono() {return $this->Telefono;}
-	public function getWeb() {return $this->Web;}
-	public function getUltima_Actualizacion() {return $this->Ultima_Actualizacion;}
-	public function getAnuncios() {return $this->Anuncios;}
-	    
-	public function setRazon_Social($Razon_Social) { $this->Razon_Social = $Razon_Social;}
-	public function setPais($Pais) { $this->Pais = $Pais;}
-	public function setDireccion($Direccion) { $this->Direccion = $Direccion;}
-	public function setCiudad($Ciudad) { $this->Ciudad = $Ciudad;}
-	public function setCodigo_Postal($Codigo_Postal) { $this->Codigo_Postal = $Codigo_Postal;}
-	public function setTelefono($Telefono) { $this->Telefono = $Telefono;}
-	public function setWeb($Web) { $this->Web = $Web;}
-	public function setUltima_Actualizacion($Ultima_Actualizacion) { $this->Ultima_Actualizacion = $Ultima_Actualizacion;}
-	public function setAnuncios($Anuncios) { $this->Anuncios = $Anuncios;}
-  
-  	public function agregarAnuncio(Anuncio $anuncio) {
-  		$this->Anuncios($anuncio);
-  	}
+
+
+namespace Modelo;
+
+/**
+ * Empresa
+ *
+ * @Table(name="empresa")
+ * @Entity
+ */
+class Empresa
+{
+    /**
+     * @var integer
+     *
+     * @Column(name="empresa_id", type="integer", nullable=false)
+     * @Id
+     * @GeneratedValue(strategy="IDENTITY")
+     */
+    private $empresaId;
+
+    /**
+     * @var string
+     *
+     * @Column(name="razon_social", type="string", length=45, nullable=false)
+     */
+    private $razonSocial;
+
+    /**
+     * @var string
+     *
+     * @Column(name="pais", type="string", length=45, nullable=false)
+     */
+    private $pais;
+
+    /**
+     * @var string
+     *
+     * @Column(name="direccion", type="string", length=45, nullable=false)
+     */
+    private $direccion;
+
+    /**
+     * @var string
+     *
+     * @Column(name="ciudad", type="string", length=45, nullable=true)
+     */
+    private $ciudad;
+
+    /**
+     * @var string
+     *
+     * @Column(name="codigo_postal", type="string", length=45, nullable=true)
+     */
+    private $codigoPostal;
+
+    /**
+     * @var string
+     *
+     * @Column(name="telefono", type="string", length=45, nullable=true)
+     */
+    private $telefono;
+
+    /**
+     * @var string
+     *
+     * @Column(name="web", type="string", length=45, nullable=true)
+     */
+    private $web;
+
+    /**
+     * @var \DateTime
+     *
+     * @Column(name="ultima_actualizacion", type="datetime", nullable=false)
+     */
+    private $ultimaActualizacion;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ManyToMany(targetEntity="Anuncio", inversedBy="empresa")
+     * @JoinTable(name="anuncios_empresa",
+     *   joinColumns={
+     *     @JoinColumn(name="empresa_id", referencedColumnName="empresa_id")
+     *   },
+     *   inverseJoinColumns={
+     *     @JoinColumn(name="anuncio_id", referencedColumnName="anuncio_id")
+     *   }
+     * )
+     */
+    private $anuncio;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->anuncio = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get empresaId
+     *
+     * @return integer
+     */
+    public function getEmpresaId()
+    {
+        return $this->empresaId;
+    }
+
+    /**
+     * Set razonSocial
+     *
+     * @param string $razonSocial
+     *
+     * @return Empresa
+     */
+    public function setRazonSocial($razonSocial)
+    {
+        $this->razonSocial = $razonSocial;
+
+        return $this;
+    }
+
+    /**
+     * Get razonSocial
+     *
+     * @return string
+     */
+    public function getRazonSocial()
+    {
+        return $this->razonSocial;
+    }
+
+    /**
+     * Set pais
+     *
+     * @param string $pais
+     *
+     * @return Empresa
+     */
+    public function setPais($pais)
+    {
+        $this->pais = $pais;
+
+        return $this;
+    }
+
+    /**
+     * Get pais
+     *
+     * @return string
+     */
+    public function getPais()
+    {
+        return $this->pais;
+    }
+
+    /**
+     * Set direccion
+     *
+     * @param string $direccion
+     *
+     * @return Empresa
+     */
+    public function setDireccion($direccion)
+    {
+        $this->direccion = $direccion;
+
+        return $this;
+    }
+
+    /**
+     * Get direccion
+     *
+     * @return string
+     */
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+
+    /**
+     * Set ciudad
+     *
+     * @param string $ciudad
+     *
+     * @return Empresa
+     */
+    public function setCiudad($ciudad)
+    {
+        $this->ciudad = $ciudad;
+
+        return $this;
+    }
+
+    /**
+     * Get ciudad
+     *
+     * @return string
+     */
+    public function getCiudad()
+    {
+        return $this->ciudad;
+    }
+
+    /**
+     * Set codigoPostal
+     *
+     * @param string $codigoPostal
+     *
+     * @return Empresa
+     */
+    public function setCodigoPostal($codigoPostal)
+    {
+        $this->codigoPostal = $codigoPostal;
+
+        return $this;
+    }
+
+    /**
+     * Get codigoPostal
+     *
+     * @return string
+     */
+    public function getCodigoPostal()
+    {
+        return $this->codigoPostal;
+    }
+
+    /**
+     * Set telefono
+     *
+     * @param string $telefono
+     *
+     * @return Empresa
+     */
+    public function setTelefono($telefono)
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    /**
+     * Get telefono
+     *
+     * @return string
+     */
+    public function getTelefono()
+    {
+        return $this->telefono;
+    }
+
+    /**
+     * Set web
+     *
+     * @param string $web
+     *
+     * @return Empresa
+     */
+    public function setWeb($web)
+    {
+        $this->web = $web;
+
+        return $this;
+    }
+
+    /**
+     * Get web
+     *
+     * @return string
+     */
+    public function getWeb()
+    {
+        return $this->web;
+    }
+
+    /**
+     * Set ultimaActualizacion
+     *
+     * @param \DateTime $ultimaActualizacion
+     *
+     * @return Empresa
+     */
+    public function setUltimaActualizacion($ultimaActualizacion)
+    {
+        $this->ultimaActualizacion = $ultimaActualizacion;
+
+        return $this;
+    }
+
+    /**
+     * Get ultimaActualizacion
+     *
+     * @return \DateTime
+     */
+    public function getUltimaActualizacion()
+    {
+        return $this->ultimaActualizacion;
+    }
+
+    /**
+     * Add anuncio
+     *
+     * @param \Anuncio $anuncio
+     *
+     * @return Empresa
+     */
+    public function addAnuncio(Anuncio $anuncio)
+    {
+        $this->anuncio[] = $anuncio;
+
+        return $this;
+    }
+
+    /**
+     * Remove anuncio
+     *
+     * @param \Anuncio $anuncio
+     */
+    public function removeAnuncio(Anuncio $anuncio)
+    {
+        $this->anuncio->removeElement($anuncio);
+    }
+
+    /**
+     * Get anuncio
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAnuncio()
+    {
+        return $this->anuncio;
+    }
 }
 
-?>

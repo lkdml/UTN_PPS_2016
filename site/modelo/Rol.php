@@ -1,55 +1,114 @@
 <?php
+
+
+
 namespace Modelo;
-use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @Entity @Table(name="Rol")
- **/
-class Rol extends EntityRepository{
+ * Rol
+ *
+ * @Table(name="rol", uniqueConstraints={@UniqueConstraint(name="nombre_UNIQUE", columns={"nombre"})})
+ * @Entity
+ */
+class Rol
+{
+    /**
+     * @var string
+     *
+     * @Column(name="nombre", type="string", length=45, nullable=false)
+     * @Id
+     * @GeneratedValue(strategy="IDENTITY")
+     */
+    private $nombre;
 
     /**
-     * @Id @GeneratedValue(strategy="NONE")  @Column(type="string")
      * @var string
+     *
+     * @Column(name="descripcion", type="string", length=45, nullable=false)
      */
-	protected $Nombre;
+    private $descripcion;
+
     /**
-     * @Column(type="string")
-     * @var string
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ManyToMany(targetEntity="Perfil", mappedBy="rolNombre")
      */
-	protected $Descripcion;
-    /** //TODO Saco el Estado
-     * Column(type="boolean")
-     * var boolean
-     */
-	private $Estado;
+    private $perfil;
+
     /**
-     * ManyToMany(targetEntity="Perfil", mappedBy="Perfil_ID")
-     * 
+     * Constructor
      */
-    protected $Perfiles;
-    
-    public function __construct(){
-        $this->Perfiles = new \Doctrine\Common\Collections\ArrayCollection();
+    public function __construct()
+    {
+        $this->perfil = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-    public function getId(){return $this->id;} 
-    public function getNombre(){return $this->Nombre;} 
-    public function getDescripcion(){return $this->Descripcion; }
-    //public function getEstado(){return $this->Estado;}
-    public function getPerfiles() {return $this->Perfiles;}
-    
-    public function setNombre($nombre){$this->Nombre = $nombre;} 
-    public function setDescripcion($descripcion){$this->Descripcion = $descripcion;}
-    //public function setEstado($estado){$this->Estado = $estado;}
-    public function setPerfiles(Perfil $perfil){$this->Perfiles = $perfil;}
-    
-    public function agregarPerfil(Perfil $perfil){
-        $this->Perfiles[] = Perfil;
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
     }
-    
-    
 
+    /**
+     * Set descripcion
+     *
+     * @param string $descripcion
+     *
+     * @return Rol
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
 
+        return $this;
+    }
+
+    /**
+     * Get descripcion
+     *
+     * @return string
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    /**
+     * Add perfil
+     *
+     * @param \Perfil $perfil
+     *
+     * @return Rol
+     */
+    public function addPerfil(Perfil $perfil)
+    {
+        $this->perfil[] = $perfil;
+
+        return $this;
+    }
+
+    /**
+     * Remove perfil
+     *
+     * @param \Perfil $perfil
+     */
+    public function removePerfil(Perfil $perfil)
+    {
+        $this->perfil->removeElement($perfil);
+    }
+
+    /**
+     * Get perfil
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPerfil()
+    {
+        return $this->perfil;
+    }
 }
-?>
+

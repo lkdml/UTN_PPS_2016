@@ -16,7 +16,7 @@ $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 // TODO antes de generar el usuario, debo verificar que el username y el mail no existan previamente. (o bien manejar el error que devolverá el sql si eso pasara.)
 
 //realizo el alta del usuario
-$Operador = new Modelo\Operador();
+//$Operador = new Modelo\Operador();
 
 
 if (validarRequisitos()){
@@ -26,19 +26,26 @@ if (validarRequisitos()){
             if (($getOperador->verificarClave($_POST["clave"])) && ($_POST["nuevaclave1"]==$_POST["nuevaclave2"])){
                 $getOperador->setClave($_POST["nuevaclave1"]);
             }
-            $em->merge($getOperador);
+            $em->persist($getOperador);
             $em->flush();
         } else {
             $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
-                $Operador = setearOperador($getOperador,$em);
-                $em->merge($Operador);
-                $em->flush();
+            //$em->clear();
+            //echo"el de la base <pre>";Doctrine\Common\Util\Debug::dump($getOperador->getPerfil());echo"</pre>";
+            
+            $Operador = setearOperador($getOperador,$em);
+            //echo"el q genero <pre>";Doctrine\Common\Util\Debug::dump($Operador);echo"</pre>";
+            $em->persist($Operador);
+            $em->flush();
+            //$em->clear();
+            // echo"Aca a otro <pre>";Doctrine\Common\Util\Debug::dump($em->getRepository('Modelo\Operador')->find($_GET["Operador"]));echo"</pre>";die;
         }
     } else {
        $Operador = setearOperador(new Operador(),$em);
        $em->persist($Operador);
        $em->flush();
     }
+
 }
 
 function validarRequisitos(){
@@ -56,29 +63,35 @@ function validarRequisitos(){
 function setearOperador(Operador $operador,$em){
     $operador->setNombre($_POST["nombre"]);
     $operador->setApellido($_POST["apellido"]);
-    $operador->setNombre_Usuario($_POST["username"]);
+    $operador->setNombreUsuario($_POST["username"]);
     if (($_GET['Operador']==null)){
         $operador->setClave($_POST["nuevaclave1"]);
     }
     $operador->setEmail($_POST["email"]);
     $operador->setCelular($_POST["tel"]);
-    $operador->setFirma_Mensaje($_POST["Firma"]);
+    $operador->setFirmaMensaje($_POST["Firma"]);
+    //Doctrine\Common\Util\Debug::dump($em->getRepository('Modelo\Perfil')->find(1));die;
     $operador->setPerfil($em->getRepository('Modelo\Perfil')->find($_POST["perfilOperador"]));
+
+    foreach ($operador->getDepartamento() as $depto){
+        $operador->removeDepartamento($depto);
+    }
     if (isset($_POST['Departamentos_asignados'])){
         foreach ($_POST['Departamentos_asignados'] as $idDepto){
             $departamento = $em->find('Modelo\Departamento',$idDepto);
+            echo"Aca DEPARTAMENTO <pre>";Doctrine\Common\Util\Debug::dump($departamento);echo"</pre>";
             if (!is_null($departamento)){
-                $operador->asignarDepartamento($departamento);
+                $operador->addDepartamento($departamento);
             }
         }
     }
     $operador->setEliminado(false);
     //TODO faltan agregar al TPL
     $operador->setHashFoto("");
-    $operador->setHabilita_Notificaciones_Mail(true);
+    $operador->setHabilitaNotificacionesMail(true);
     $operador->setActivo(true);
-    $operador->setUltima_Actualizacion();
-    $operador->setUltima_Actividad();
+    $operador->setUltimaActualizacion(new \DateTime("now"));
+    $operador->setUltimaActividad(new \DateTime("now"));
     return $operador;
 }
 

@@ -1,82 +1,352 @@
 <?php
+
+
+
 namespace Modelo;
+
 /**
- * @Entity @Table(name="Anuncio")
- **/
-class Anuncio {
- 
-  	/** 
- 	 * @Id @Column(type="integer") @GeneratedValue 
- 	 * @var int
- 	 */
- 	protected $Anuncio_ID;
-	/**
-	 * @ManyToMany(targetEntity="Empresa")
-     * @JoinTable(name="Anuncios_Empresas",
-     *      joinColumns={@JoinColumn(name="Anuncio_ID", referencedColumnName="Anuncio_ID")},
-     *      inverseJoinColumns={@JoinColumn(name="Empresa_ID", referencedColumnName="Empresa_ID")}
-     *      )
-     * @var Empresa_ID[]
-	 */
-	protected $Empresas;
-	/**
-	 * @OneToOne (targetEntity="Categoria_Anuncio")
-     * @JoinColumn(name="Categoria_ID", referencedColumnName="Categoria_ID")
-	 */
-	protected $Categoria;
-	/**
-	 * @Column(type="string")
-	 * @var string
-	 */
-	protected $Titulo;
-	/**
-	 * @Column(type="string")
-	 * @var string
-	 */
-	protected $Contenido;
-	/**
-	 * @Column(type="datetime")
-	 * @var datetime
-	 */
-	protected $Fecha_Creacion;
-	/**
-	 * @Column(type="boolean")
-	 * @var boolean
-	 */
-	protected $Estado;
-	/**
-	 * @Column(type="datetime")
-	 * @var datetime
-	 */
-	protected $Fecha_Fin_Publicacion;
+ * Anuncio
+ *
+ * @Table(name="anuncio", indexes={@Index(name="fk_anuncios_categoria_idx", columns={"categoria_id"})})
+ * @Entity
+ */
+class Anuncio
+{
+    /**
+     * @var integer
+     *
+     * @Column(name="anuncio_id", type="integer", nullable=false)
+     * @Id
+     * @GeneratedValue(strategy="NONE")
+     */
+    private $anuncioId;
 
+    /**
+     * @var integer
+     *
+     * @Column(name="empresa_id", type="integer", nullable=false)
+     * @Id
+     * @GeneratedValue(strategy="NONE")
+     */
+    private $empresaId;
 
-	public function getAnuncio_ID(){return $this->Anuncio_ID;}
-	public function getEmpresas(){return $this->Empresas;}
-	public function getCategoria(){return $this->Categoria;}
-	public function getTitulo(){return $this->Titulo;}
-	public function getContenido(){return $this->Contenido;}
-	public function getFecha_Creacion(){return $this->Fecha_Creacion;}
-	public function getEstado(){return $this->Estado;}
-	public function getFecha_Fin_Publicacion(){return $this->Fecha_Fin_Publicacion;}
-	
-	public function setEmpresas($empresa_ID){ $this->Empresas = $empresa_ID;}
-	public function setCategoria($categoria_ID){ $this->Categoria = $categoria_ID;}
-	public function setTitulo($titulo){ $this->Titulo = $titulo;}
-	public function setContenido($contenido){ $this->Contenido = $contenido;}
-	public function setFecha_Creacion($fecha_Creacion){$this->Fecha_Creacion = $fecha_Creacion;}
-	public function setEstado($estado){ $this->Estado = $estado;}
-	public function setFecha_Fin_Publicacion($fecha_Fin_Publicacion){ $this->Fecha_Fin_Publicacion = $fecha_Fin_Publicacion;}
-	
-	public function __construct() {
-        $this->Empresa = new \Doctrine\Common\Collections\ArrayCollection();
+    /**
+     * @var string
+     *
+     * @Column(name="titulo", type="string", length=45, nullable=false)
+     */
+    private $titulo;
+
+    /**
+     * @var string
+     *
+     * @Column(name="contenido", type="string", length=250, nullable=false)
+     */
+    private $contenido;
+
+    /**
+     * @var \DateTime
+     *
+     * @Column(name="fecha_Creacion", type="datetime", nullable=false)
+     */
+    private $fechaCreacion;
+
+    /**
+     * @var boolean
+     *
+     * @Column(name="estado", type="boolean", nullable=false)
+     */
+    private $estado;
+
+    /**
+     * @var \DateTime
+     *
+     * @Column(name="fecha_fin_publicacion", type="datetime", nullable=true)
+     */
+    private $fechaFinPublicacion;
+
+    /**
+     * @var integer
+     *
+     * @Column(name="operador_id", type="integer", nullable=false)
+     */
+    private $operadorId;
+
+    /**
+     * @var \CategoriaAnuncios
+     *
+     * @Id
+     * @GeneratedValue(strategy="NONE")
+     * @OneToOne(targetEntity="CategoriaAnuncios")
+     * @JoinColumns({
+     *   @JoinColumn(name="categoria_id", referencedColumnName="categoria_id")
+     * })
+     */
+    private $categoria;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ManyToMany(targetEntity="Empresa", mappedBy="anuncio")
+     */
+    private $empresa;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->empresa = new \Doctrine\Common\Collections\ArrayCollection();
     }
-    
-    public function asignarEmpresa(Empresa $empresa) {
-    	$empresa->agregarAnuncio(this);
-    	$this->Empresa[] = $empresa;
+
+    /**
+     * Set anuncioId
+     *
+     * @param integer $anuncioId
+     *
+     * @return Anuncio
+     */
+    public function setAnuncioId($anuncioId)
+    {
+        $this->anuncioId = $anuncioId;
+
+        return $this;
     }
-    
+
+    /**
+     * Get anuncioId
+     *
+     * @return integer
+     */
+    public function getAnuncioId()
+    {
+        return $this->anuncioId;
+    }
+
+    /**
+     * Set empresaId
+     *
+     * @param integer $empresaId
+     *
+     * @return Anuncio
+     */
+    public function setEmpresaId($empresaId)
+    {
+        $this->empresaId = $empresaId;
+
+        return $this;
+    }
+
+    /**
+     * Get empresaId
+     *
+     * @return integer
+     */
+    public function getEmpresaId()
+    {
+        return $this->empresaId;
+    }
+
+    /**
+     * Set titulo
+     *
+     * @param string $titulo
+     *
+     * @return Anuncio
+     */
+    public function setTitulo($titulo)
+    {
+        $this->titulo = $titulo;
+
+        return $this;
+    }
+
+    /**
+     * Get titulo
+     *
+     * @return string
+     */
+    public function getTitulo()
+    {
+        return $this->titulo;
+    }
+
+    /**
+     * Set contenido
+     *
+     * @param string $contenido
+     *
+     * @return Anuncio
+     */
+    public function setContenido($contenido)
+    {
+        $this->contenido = $contenido;
+
+        return $this;
+    }
+
+    /**
+     * Get contenido
+     *
+     * @return string
+     */
+    public function getContenido()
+    {
+        return $this->contenido;
+    }
+
+    /**
+     * Set fechaCreacion
+     *
+     * @param \DateTime $fechaCreacion
+     *
+     * @return Anuncio
+     */
+    public function setFechaCreacion($fechaCreacion)
+    {
+        $this->fechaCreacion = $fechaCreacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaCreacion
+     *
+     * @return \DateTime
+     */
+    public function getFechaCreacion()
+    {
+        return $this->fechaCreacion;
+    }
+
+    /**
+     * Set estado
+     *
+     * @param boolean $estado
+     *
+     * @return Anuncio
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return boolean
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * Set fechaFinPublicacion
+     *
+     * @param \DateTime $fechaFinPublicacion
+     *
+     * @return Anuncio
+     */
+    public function setFechaFinPublicacion($fechaFinPublicacion)
+    {
+        $this->fechaFinPublicacion = $fechaFinPublicacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaFinPublicacion
+     *
+     * @return \DateTime
+     */
+    public function getFechaFinPublicacion()
+    {
+        return $this->fechaFinPublicacion;
+    }
+
+    /**
+     * Set operadorId
+     *
+     * @param integer $operadorId
+     *
+     * @return Anuncio
+     */
+    public function setOperadorId($operadorId)
+    {
+        $this->operadorId = $operadorId;
+
+        return $this;
+    }
+
+    /**
+     * Get operadorId
+     *
+     * @return integer
+     */
+    public function getOperadorId()
+    {
+        return $this->operadorId;
+    }
+
+    /**
+     * Set categoria
+     *
+     * @param \CategoriaAnuncios $categoria
+     *
+     * @return Anuncio
+     */
+    public function setCategoria(CategoriaAnuncios $categoria)
+    {
+        $this->categoria = $categoria;
+
+        return $this;
+    }
+
+    /**
+     * Get categoria
+     *
+     * @return \CategoriaAnuncios
+     */
+    public function getCategoria()
+    {
+        return $this->categoria;
+    }
+
+    /**
+     * Add empresa
+     *
+     * @param \Empresa $empresa
+     *
+     * @return Anuncio
+     */
+    public function addEmpresa(Empresa $empresa)
+    {
+        $this->empresa[] = $empresa;
+
+        return $this;
+    }
+
+    /**
+     * Remove empresa
+     *
+     * @param \Empresa $empresa
+     */
+    public function removeEmpresa(Empresa $empresa)
+    {
+        $this->empresa->removeElement($empresa);
+    }
+
+    /**
+     * Get empresa
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEmpresa()
+    {
+        return $this->empresa;
+    }
 }
 
-?>

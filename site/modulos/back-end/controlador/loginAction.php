@@ -8,21 +8,24 @@
     * 
     */
 require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php'); 
+
+use \CORE\Controlador\Aplicacion as Aplicacion;
+/**
 require_once($_SERVER["DOCUMENT_ROOT"].'/bootstrap_orm.php');
-use \CORE\Controlador\Aplicacion;
-
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-$Operador =  $em->getRepository('Modelo\Operador')->findBy(array('Nombre_Usuario'=>$_POST["operador"]));
-$ingresa=false;
-if (!empty($Operador)){
-    if ($Operador[0]->verificarClave($_POST["clave"])){
-        $ingresa=true;
-    }
-}
+$Operador =  $em->getRepository('Modelo\Operador')->find(1);
+echo "<pre>";
+Doctrine\Common\Util\Debug::dump($Operador);
+echo "</pre>";
+//var_dump($Operador->getRoles());
+die;
+**/
 
 
-if ($ingresa){
-    Aplicacion::startSession(true,true);
+$app = Aplicacion::getInstancia();
+
+if ($app->loginOperador($_POST["operador"],$_POST["clave"])){
+    $app->guardarOperadorEnSession();
     header("location:/operador.php?modulo=dashboard");
 } else {
     header("location:/operador.php?modulo=login&error=Operador");

@@ -78,7 +78,7 @@ js=''
       <table id="grilla" class="display">
           <thead>
               <tr>
-                  <th><input id="selectall" type="checkbox"></input></th>
+                  <th></th>
                   <th>Nombre</th>
                   <th>Descripción</th>
               </tr>
@@ -86,7 +86,7 @@ js=''
           <tbody>
               {foreach from=$Perfiles item=perfil}
                   <tr>
-                      <td><input class="case" type="checkbox" name="perfil[]" value="{$perfil->getId()}" ></input></td>
+                      <td><input class="case" type="checkbox" name="perfil[]" value="{$perfil->getPerfilId()}" ></input></td>
                       <td>{$perfil->getNombre()}</td>
                       <td>{$perfil->getDescripcion()}</td>
                   </tr>

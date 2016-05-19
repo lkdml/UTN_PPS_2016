@@ -6,6 +6,8 @@ require_once (\CORE\Controlador\Config::getPublic('Ruta_Core_Controlador')."View
 use \CORE\Controlador\Aplicacion;
 Aplicacion::startSession($modoOP);
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+$depatamentos=$em->getRepository('Modelo\Departamento')->findAll();
+$perfiles=$em->getRepository('Modelo\Perfil')->findAll();
 
   $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateDir'),null);
   $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
@@ -21,7 +23,17 @@ switch(strtolower($_POST["accion"])){
   case ("editar"):
     //TODO: falta validar permisos para esta accion.
     $operador = $em->getRepository('Modelo\Operador')->find($_POST["operadorId"][0]);
+    $DepartamentosHabilitados=$operador->getDepartamento();
+    foreach ( $DepartamentosHabilitados as $dptoHabilitado){
+      foreach ($depatamentos as $kdepto=>$depto){
+        if ($dptoHabilitado == $depto){
+          unset($depatamentos[$kdepto]);
+        }
+      }
+    }
+    $vm->assign('DepartamentosHabilitados',$DepartamentosHabilitados);
     $vm->assign('Operador', $operador);
+    
     break;
   case ("borrar"):
     $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
@@ -37,5 +49,6 @@ switch(strtolower($_POST["accion"])){
     header("location:/operador.php?modulo=operadores");
     break;
 }
-
+  $vm->assign('Departamentos', $depatamentos);
+  $vm->assign('Perfiles', $perfiles);
   $vm->display('nuevoOperador.tpl');
