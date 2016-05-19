@@ -78,7 +78,7 @@ js=''
       <table id="grilla" class="display">
           <thead>
               <tr>
-                  <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
+                  <th></input></th>
                   <th>Nombre</th>
                   <th>Descripción</th>
               </tr>
