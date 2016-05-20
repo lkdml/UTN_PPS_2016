@@ -3,83 +3,47 @@
 
 ## Getting Started
 
-Updated as of development of script prepareDB.sh
+Updated as of development of script generarBase.sh
 
-Go to cd /workspace/documentacion
+Go to cd /workspace/db
 
 In the command line execute the following:
-
-". prepareDB.sh yourc9usernamehere"
+```
+. generarBase.sh yourc9usernamehere
+```
 or
-"source prepareDB.sh yourc9usernamehere"
-
+```
+source generarBase.sh yourc9usernamehere
+```
 And the database will be dropped, created and populated.
 
 Use example:
-
+```
 cd
 
-cd /workspace/documentacion
+cd /workspace/db
 
-. prepareDB.sh lucasdaniel
+. generarBase.sh lucasdaniel
+```
 
 NOTE: You MUST enter your C9 username. Source and "." behave as the same command for bash.
 
+Then you will need to create the entities, for that, we provide you with a .php doing it for you!
+
+In folder workspace/db
+Run the project and make sure you are running it into workspace/db
+
+If you are using Cloud 9, you will have this url
+```
+https://utnpps-brianducca.c9users.io/
+```
+Now you will execute our php!
+```
+https://utnpps-brianducca.c9users.io/generadorDeEntidades.php
+```
+Ready!
 
 __________________
-
-
-You will need to create the database. 
-Start the Database
-```
-mysql-ctl start
-```
-Enter in Mysql
-```
-mysql-ctl cli
-```
-Now Create the Database
-```
-create database tmh;
-```
-Exit
-```
-exit
-```
-###ORM Doctrine
-You will need to do this with the empty database
-```
-cd /site/core/libs/vendor/bin
-```
-Then
-```
-php doctrine orm:schema-tool:create
-```
-Then go back to root directory
-```
-cd -
-```
-### If you have this database already created
-Check if there are new changes and new scripts to run. If not, then start coding!
-
-Otherwise, you will have to drop and start again! Change directory to: /site/core/libs/vendor/bin
-```
-schema-tool:drop --force
-```
-
-## Run Scripts
-Enter in Mysql (If you have not started the database, you will need to start it!)
-```
-mysql-ctl cli
-```
-Then we select the tmh database
-```
-use tmh;
-```
-Then we can run the script (In this example, we are gonna run the script "alta_roles")
-```
-source documentacion/db-script/alta_roles.sql
-```
 
 ## Deployment
 
