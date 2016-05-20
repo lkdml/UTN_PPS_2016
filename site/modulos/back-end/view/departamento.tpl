@@ -40,6 +40,61 @@ js=''
                             </div>
                         </div>
                         <!-- body pad end -->
+                         <div class="box-body pad">
+                            <label for="inputDescripcion" class="col-sm-2 control-label">Departamento Padre</label>
+                            <div class="col-sm-5">
+                                <select class="form-control select2" id="DepartamentoPadre" name="idDeptoPadre" style="width: 100%;">
+                                    <option value = "">Ninguno</option>
+                                    {if $Departamentos}
+                                        {foreach from=$Departamentos item=departamento}
+                                          <option value ="{$departamento->getDepartamentoId()}"{if $Departamentos->getDepartamento() == $departamento}selected{/if}>{$departamento->getNombre()}</option>
+                                        {/foreach}
+                                    {/if}
+                                </select>
+                            </div>
+                        </div>
+                        <!-- body pad end -->
+                        
+                        <div class="box-body pad">
+                            <label for="inputDescripcion" class="col-sm-2 control-label">Visibilidad Usuario</label>
+                            <div class="col-sm-5">
+                                <select class="form-control select2" id="Visibilidad" name="visibilidadUsuario" style="width: 100%;">
+                                    <option value = "1">Front-End</option>
+                                    <option value = "2">Back-End</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- body pad end -->
+                        
+                         <div class="box-body pad">
+                            <label for="inputDescripcion" class="col-sm-2 control-label">Orden</label>
+                            <div class="col-sm-5">
+                                <select class="form-control select2" id="DeptoOrden" name="orden" style="width: 100%;">
+                                    <option value = "1">1</option>
+                                    <option value = "2">2</option>
+                                    <option value = "3">3</option>
+                                    <option value = "4">4</option>
+                                    <option value = "5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- body pad end -->
+                        
+                        <div class="box-body pad">
+                            <label for="inputDescripcion" class="col-sm-2 control-label">Operador Default</label>
+                            <div class="col-sm-5">
+                                <select class="form-control select2" id="DeptoOperadorDefault" name="operadorDefault" style="width: 100%;">
+                                    <option value = "">Ninguno</option>
+                                    {if $Operadores}
+                                        {foreach from=$Operadores item=operador}
+                                          <option value ="{$operador->getOperadorId()}"{if $Operadores->getOperador() == $operador}selected{/if}>{$operador->getNombre()}</option>
+                                        {/foreach}
+                                    {/if}
+                                </select>
+                            </div>
+                        </div>
+                        <!-- body pad end -->
+  
                     </div>
                     <!-- form group end -->
                 </div>
