@@ -33,8 +33,8 @@ function setearOperador(Departamento $departamento,$em){
     foreach ($departamento->getOperador() as $operador){
         $departamento->removeDepartamento($operador);
     }
-    if (isset($_POST['operadores'])){
-        foreach ($_POST['operadores'] as $idOperador){
+    if (isset($_POST['operadoresSelecionados'])){
+        foreach ($_POST['operadoresSelecionados'] as $idOperador){
             $Operador = $em->find('Modelo\Operador',$idOperador);
             if (!is_null($Operador)){
                 $departamento->addOperador($Operador);

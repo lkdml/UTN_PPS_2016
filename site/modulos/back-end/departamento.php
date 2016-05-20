@@ -10,6 +10,9 @@ $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateD
 $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
                   \CORE\Controlador\Config::getPublic('Ruta_Back').'js/',
                   \CORE\Controlador\Config::getPublic('Ruta_Back').'imagenes/');
+                  
+$Departamentos = $em->getRepository('Modelo\Departamento')->findAll();
+    $vm->assign('Departamentos',$Departamentos);
 
 switch(strtolower($_POST["accion"])){
   case ("nuevo"):

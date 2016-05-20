@@ -47,7 +47,7 @@ js=''
                                     <option value = "">Ninguno</option>
                                     {if $Departamentos}
                                         {foreach from=$Departamentos item=departamento}
-                                          <option value ="{$departamento->getDepartamentoId()}"{if $Departamentos->getDepartamento() == $departamento}selected{/if}>{$departamento->getNombre()}</option>
+                                          <option value ="{$departamento->getDepartamentoId()}"{if $Departamento->getDepartamentoId() == $departamento->getDepartamentoId()}selected{/if}>{$departamento->getNombre()}</option>
                                         {/foreach}
                                     {/if}
                                 </select>
