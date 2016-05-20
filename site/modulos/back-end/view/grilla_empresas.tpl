@@ -26,89 +26,69 @@ js=''
    
    <!-- CONTENIDO -->
     <section class="content">
+      <form action="/operador.php?modulo=empresa" method="post" id="myForm">
       <!-- 1 box Largo --> 
-      <div class="box box-primary">
-
-        <div class="box-body">
-              <button class="btn btn-app " id="btnNuevo" onclick="window.location.href='/operador.php?modulo=nuevaEmpresa'">
-                <i class="fa fa-plus"></i> Nuevo
-              </button>
-              <button class="btn btn-app " id="btnModificar" onclick="window.location.href='/operador.php?modulo=modificarEmpresa'" disabled>
-                <i class="fa fa-edit"></i> Editar
-              </button>
-              <button class="btn btn-app" id="btnBorrar" data-toggle="modal" data-target="#myModal" disabled >
-                <i class="fa fa-trash"></i> Borrar
-              </button>
-              
-              <!-- Modal para Borrar-->
-              <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-              
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Eliminar Empresa</h4></h4>
+        <div class="box box-primary">
+        
+          <div class="box-body">
+                <button class="btn btn-app "  id="btnNuevo" type="submit" name="accion" value="nuevo">
+                  <i class="fa fa-plus"></i> Nuevo
+                </button>
+                <button class="btn btn-app " id="btnModificar" type="submit" name="accion" value="editar" disabled>
+                  <i class="fa fa-edit"></i> Editar
+                </button>
+                <button class="btn btn-app " id="btnBorrar" data-toggle="modal" data-target="#myModal"  name="accion" value="borrar" disabled>
+                  <i class="fa fa-trash"></i> Borrar
+                </button>
+                
+                <!-- Modal para Borrar-->
+                <div id="myModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Eliminar Empresa</h4></h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Esta acción eliminará las empresas seleccionadas. ¿Esta seguro que desea continuar?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn btn-danger" data-dismiss="modal">Si, estoy seguro.</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
+                      </div>
                     </div>
-                    <div class="modal-body">
-                      <p>Esta acción eliminará las empresas seleccionadas. ¿Esta seguro que desea continuar?</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn btn-danger" data-dismiss="modal">Si, estoy seguro.</button>
-                      <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
-                    </div>
+                
                   </div>
-              
-                </div>
-              </div> <!-- End Modal Content -->
-              
-        </div><!-- /.box-body -->
-      </div>
-      <!-- /1 box --> 
-
-      
-    <table id="grilla" class="display">
-        <thead>
-            <tr>
-                <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
-                <th>Nombre</th>
-                <th>Teléfono</th>
-                <th>Dirección</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>El metro</td>
-                <td>5555-5555</td>
-                <td>Quesada 123</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Nestle</td>
-                <td>5555-5555</td>
-                <td>Quesada 123</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" ></input></td>
-                <td>Despegar</td>
-                <td>5555-5555</td>
-                <td>Quesada 123</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Ferrindus</td>
-                <td>5555-5555</td>
-                <td>Quesada 123</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>El yunke</td>
-                <td>5555-5555</td>
-                <td>Quesada 123</td>
-            </tr>
-        </tbody>
-    </table>
+                </div> <!-- End Modal Content -->
+                
+          </div><!-- /.box-body -->
+        </div>
+        <!-- /1 box --> 
+        
+        
+        <table id="grilla" class="display">
+          <thead>
+              <tr>
+                  <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
+                  <th>Nombre</th>
+                  <th>Razón Social</th>
+                  <th>Dirección</th>
+              </tr>
+          </thead>
+          <tbody>
+              {foreach from=$Empresas item=empresa}
+                  <tr>
+                      <td><input class="case" type="checkbox" name="empresaId[]" value="{$empresa->getEmpresaId()}" ></input></td>
+                      <td>{$empresa->getNombre()}</td>
+                      <td>{$empresa->getRazonSocial()}</td>
+                      <td>{$empresa->getDireccion()}</td>
+                  </tr>
+              {/foreach}
+          </tbody>
+        </table>
+      </form>
 
  
     </section>

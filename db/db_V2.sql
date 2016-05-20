@@ -89,6 +89,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`ticket_estado` (
   `estado_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(45) NOT NULL,
   `color` VARCHAR(45) NOT NULL,
   `autocierre` TINYINT(1) NOT NULL,

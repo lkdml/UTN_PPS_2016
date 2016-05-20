@@ -26,6 +26,7 @@ js=''
    
    <!-- CONTENIDO -->
     <section class="content">
+      <form action="/operador.php?modulo=prioridades" method="post" id="myForm">
       <!-- 1 box Largo --> 
       <div class="box box-primary">
         <div class="box-header with-border">
@@ -35,16 +36,13 @@ js=''
           </div><!-- /.box-tools -->
         </div><!-- /.box-header -->
         <div class="box-body">
-          
-          
-        
-              <button class="btn btn-app "  id="btnNuevo" onclick="window.location.href='/operador.php?modulo=nuevaPrioridad'">
+              <button class="btn btn-app "  id="btnNuevo" type="submit" name="accion" value="nuevo">
                 <i class="fa fa-plus"></i> Nuevo
               </button>
-              <button class="btn btn-app " id="btnModificar" onclick="window.location.href='/operador.php?modulo=modificarPrioridad'" disabled>
+              <button class="btn btn-app " id="btnModificar" type="submit" name="accion" value="editar" disabled>
                 <i class="fa fa-edit"></i> Editar
               </button>
-              <button class="btn btn-app "id="btnBorrar" data-toggle="modal" data-target="#myModal" disabled>
+              <button class="btn btn-app " id="btnBorrar" data-toggle="modal" data-target="#myModal"  name="accion" value="borrar" disabled>
                 <i class="fa fa-trash"></i> Borrar
               </button>
               
@@ -76,9 +74,9 @@ js=''
         </div><!-- /.box-body -->
       </div>
       <!-- /1 box --> 
-
       
-    <table id="grilla" class="display">
+      
+      <table id="grilla" class="display">
         <thead>
             <tr>
                 <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
@@ -88,38 +86,17 @@ js=''
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Baja</td>
-                <td>Prioridad por defecto para todos</td>
-                <td><small class="label glyphicon glyphicon-flag bg-green"> </small></td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Media</td>
-                <td>Prioridad Media - Atención dentro de las 48 hs</td>
-                <td><small class="label glyphicon glyphicon-flag bg-yellow"> </small></td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Alta</td>
-                <td>Prioridad Alta - Atención menor a 24 hs</td>
-                <td><small class="label glyphicon glyphicon-flag bg-orange"> </small></td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Critica</td>
-                <td>Prioridad Crítica - Atención menor a 12 hs</td>
-                <td><small class="label glyphicon glyphicon-flag bg-red"> </small></td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Urgente</td>
-                <td>Prioridad Urgente - Atención inmediata</td>
-                <td><small class="label glyphicon glyphicon-flag bg-purple"> </small></td>
-            </tr>
+            {foreach from=$Prioridades item=prioridad}
+                <tr>
+                    <td><input class="case" type="checkbox" name="categoriaId[]" value="{$prioridad->getPrioridadId()}" ></input></td>
+                    <td>{$prioridad->getNombre()}</td>
+                    <td>{$prioridad->getDescripcion()}</td>
+                    <td><small class="label glyphicon glyphicon-flag {$prioridad->getColor()}"> </small></td>
+                </tr>
+            {/foreach}
         </tbody>
-    </table>
+      </table>
+    </form>
 
  
     </section>

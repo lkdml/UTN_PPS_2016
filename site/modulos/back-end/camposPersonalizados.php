@@ -6,9 +6,13 @@ require_once (\CORE\Controlador\Config::getPublic('Ruta_Core_Controlador')."View
 use \CORE\Controlador\Aplicacion;
 Aplicacion::startSession($modoOP);
 
-  $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateDir'),null);
-  $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
-                    \CORE\Controlador\Config::getPublic('Ruta_Back').'js/',
-                    \CORE\Controlador\Config::getPublic('Ruta_Back').'imagenes/');
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+$ticketCustom = $em->getRepository('Modelo\TicketCustomFields')->findAll();
 
-  $vm->display('grilla_camposPersonalizados.tpl');
+$vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateDir'),null);
+$vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
+                  \CORE\Controlador\Config::getPublic('Ruta_Back').'js/',
+                  \CORE\Controlador\Config::getPublic('Ruta_Back').'imagenes/');
+$vm->assign('TicketCustomFields',$ticketCustom);
+
+$vm->display('grilla_camposPersonalizados.tpl');

@@ -2,6 +2,6 @@
 require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php'); 
 
 
-header("location:/operador.php?modulo=perfil");
+header("location:/operador.php?modulo=perfilOperador");
 
 ?>

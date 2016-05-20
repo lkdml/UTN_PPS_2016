@@ -6,9 +6,14 @@ require_once (\CORE\Controlador\Config::getPublic('Ruta_Core_Controlador')."View
 use \CORE\Controlador\Aplicacion;
 Aplicacion::startSession($modoOP);
 
-  $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateDir'),null);
-  $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
-                    \CORE\Controlador\Config::getPublic('Ruta_Back').'js/',
-                    \CORE\Controlador\Config::getPublic('Ruta_Back').'imagenes/');
+use \Modelo\Empresa as Empresa;
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+$empresa = $em->getRepository('Modelo\Empresa')->findAll();
 
-  $vm->display('grilla_empresas.tpl');
+$vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateDir'),null);
+$vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
+                  \CORE\Controlador\Config::getPublic('Ruta_Back').'js/',
+                  \CORE\Controlador\Config::getPublic('Ruta_Back').'imagenes/');
+$vm->assign('Empresa',$empresa);
+
+$vm->display('grilla_empresas.tpl');

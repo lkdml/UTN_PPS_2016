@@ -86,7 +86,7 @@
                 <li><a href="/operador.php?modulo=departamentos">Departamentos </a></li>
                 <li><a href="/operador.php?modulo=estados">Estados </a></li>
                 <li><a href="/operador.php?modulo=prioridades">Prioridades </a></li>
-                <li><a href="/operador.php?modulo=tipo_tickets">Tipo de Ticket </a></li>
+                <li><a href="/operador.php?modulo=tipoTickets">Tipo de Ticket </a></li>
                 <li class="divider"></li>
                 <li><a href="/operador.php?modulo=operadores">Operadores </a></li>
                 <li><a href="/operador.php?modulo=perfiles">Perfiles Operador </a></li>
@@ -142,7 +142,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="/operador.php?modulo=perfil" class="btn btn-default btn-flat">Configuración</a>
+                  <a href="/operador.php?modulo=perfilOperador" class="btn btn-default btn-flat">Configuración</a>
                 </div>
                 <div class="pull-right">
                   <a href="/operador.php" class="btn btn-default btn-flat">Salir</a>

@@ -26,137 +26,144 @@ js=''
    
    <!-- CONTENIDO -->
     <section class="content">
-      <!-- 1 box Largo --> 
-      <div class="box box-primary">
-        <div class="box-body">
-          
-          
-          
-              <button class="btn btn-app "  id="btnNuevo" onclick="window.location.href='/operador.php?modulo=nuevoTicket'">
-                <i class="fa fa-plus"></i> Nuevo
-              </button>
-              <button class="btn btn-app" id="btnVer" onclick="window.location.href='/operador.php?modulo=vistaTicket'" disabled>
-                <i class="fa fa-edit"></i> Ver
-              </button>
-              <button class="btn btn-app" disabled>
-                <i class="fa fa-chain"></i> Unir
-              </button>
-              <button class="btn btn-app " disabled>
-                <i class="fa fa-unlink"></i> Separar
-              </button>
-               <button class="btn btn-app "id="btnBorrar" data-toggle="modal" data-target="#myModal" disabled>
-                <i class="fa fa-trash"></i> Borrar
-              </button>
-              
-              <!-- Modal para Borrar-->
-              <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-              
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Eliminar Tickets </h4></h4>
+      <form action="/operador.php?modulo=categoria" method="post" id="myForm">
+        <!-- 1 box Largo --> 
+        <div class="box box-primary">
+          <div class="box-body">
+            
+            
+                <button class="btn btn-app "  id="btnNuevo" type="submit" name="accion" value="nuevo">
+                  <i class="fa fa-plus"></i> Nuevo
+                </button>
+                <button class="btn btn-app" id="btnVer" type="submit" name="accion" value="ver" disabled>
+                  <i class="fa fa-edit"></i> Ver
+                </button>
+                <button class="btn btn-app" id="btnUnir" type="submit" name="accion" value="unir" disabled>
+                  <i class="fa fa-chain"></i> Unir
+                </button>
+                <button class="btn btn-app " id="btnSeparar" type="submit" name="accion" value="separar" disabled>
+                  <i class="fa fa-unlink"></i> Separar
+                </button>
+                <button class="btn btn-app " id="btnBorrar" data-toggle="modal" data-target="#myModal"  name="accion" value="borrar" disabled>
+                  <i class="fa fa-trash"></i> Borrar
+                </button>
+                
+                <!-- Modal para Borrar-->
+                <div id="myModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Eliminar Tickets </h4></h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Esta acción eliminará los tickets seleccionados. ¿Esta seguro que desea continuar?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn btn-danger" data-dismiss="modal">Si, estoy seguro.</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
+                      </div>
                     </div>
-                    <div class="modal-body">
-                      <p>Esta acción eliminará los tickets seleccionados. ¿Esta seguro que desea continuar?</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn btn-danger" data-dismiss="modal">Si, estoy seguro.</button>
-                      <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
-                    </div>
+                
                   </div>
-              
-                </div>
-              </div> <!-- End Modal Content -->
-              
-              
-              
-              
-        </div><!-- /.box-body -->
-      </div>
-      <!-- /1 box --> 
-
-      
-    <table id="grilla" class="display">
-        <thead>
-            <tr>
-                <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
-                <th><small class="label glyphicon glyphicon-flag bg-navy"> </small></th>
-                <th>#</th>
-                <th>Asunto</th>
-                <th>Estado</th>
-                <th>Usuario</th>
-                <th>Asignado</th>
-                <th>Departamento</th>
-                <th>SLA</th>
-                <th>Vencimiento</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td><small class="label glyphicon glyphicon-flag bg-blue"> </small></td>
-                <td>TKP-234</td>
-                <td>Error al imprimir</td>
-                <td><small class="label bg-olive">Abierto</small></td>
-                <td>Vtolosa <br>vtolosa@nestle.com.ar<br> <Small>Victor Tolosa</Small></td>
-                <td>Br1ann <br> <Small>Brian Ducca</Small><br><small>Brian.ducca@gmail.com</small></td>
-                <td>Soporte N1</td>
-                <td>Por Defecto</td>
-                <td>18:35 hs</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td><small class="label glyphicon glyphicon-flag bg-blue"> </small></td>
-                <td>TKP-234</td>
-                <td>Error al imprimir</td>
-                <td><small class="label bg-olive">Abierto</small></td>
-                <td>Vtolosa <br>vtolosa@nestle.com.ar<br> <Small>Victor Tolosa</Small></td>
-                <td>Br1ann <br> <Small>Brian Ducca</Small><br><small>Brian.ducca@gmail.com</small></td>
-                <td>Soporte N1</td>
-                <td>Por Defecto</td>
-                <td>18:35 hs</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td><small class="label glyphicon glyphicon-flag bg-blue"> </small></td>
-                <td>TKP-234</td>
-                <td>Error al imprimir</td>
-                <td><small class="label bg-olive">Abierto</small></td>
-                <td>Vtolosa <br>vtolosa@nestle.com.ar<br> <Small>Victor Tolosa</Small></td>
-                <td>Br1ann <br> <Small>Brian Ducca</Small><br><small>Brian.ducca@gmail.com</small></td>
-                <td>Soporte N1</td>
-                <td>Por Defecto</td>
-                <td>18:35 hs</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td><small class="label glyphicon glyphicon-flag bg-yellow"> </small></td>
-                <td>TKP-234</td>
-                <td>Error al imprimir</td>
-                <td><small class="label bg-red">En Curso</small></td>
-                <td>Vtolosa <br>vtolosa@nestle.com.ar<br> <Small>Victor Tolosa</Small></td>
-                <td>Br1ann <br> <Small>Brian Ducca</Small><br><small>Brian.ducca@gmail.com</small></td>
-                <td>Soporte N1</td>
-                <td>Por Defecto</td>
-                <td>18:35 hs</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td><small class="label glyphicon glyphicon-flag bg-orange"> </small></td>
-                <td>TKP-234</td>
-                <td>Error al imprimir</td>
-                <td><small class="label bg-blue">Respondido</small></td>
-                <td>Vtolosa <br>vtolosa@nestle.com.ar<br> <Small>Victor Tolosa</Small></td>
-                <td>Br1ann <br> <Small>Brian Ducca</Small><br><small>Brian.ducca@gmail.com</small></td>
-                <td>Soporte N1</td>
-                <td>Por Defecto</td>
-                <td>18:35 hs</td>
-            </tr>
-        </tbody>
-    </table>
-
+                </div> <!-- End Modal Content -->
+                
+                
+                
+                
+          </div><!-- /.box-body -->
+        </div>
+        <!-- /1 box --> 
+        
+        
+        <table id="grilla" class="display">
+          <thead>
+              <tr>
+                  <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
+                  <th><small class="label glyphicon glyphicon-flag bg-navy"> </small></th>
+                  <th>#</th>
+                  <th>Asunto</th>
+                  <th>Estado</th>
+                  <th>Usuario</th>
+                  <th>Asignado</th>
+                  <th>Departamento</th>
+                  <th>SLA</th>
+                  <th>Vencimiento</th>
+              </tr>
+          </thead>
+          <tbody>
+              {foreach from=$Tickets item=ticket}
+                  <tr>
+                      <td><input class="case" type="checkbox" name="ticketId[]" value="{$ticket->getCategoriaId()}" ></input></td>
+                      <td>{$ticket->getNombre()}</td>
+                      <td>{$ticket->getIcono()}</td>
+                  </tr>
+              {/foreach}
+              <tr>
+                  <td><input type="checkbox"></input></td>
+                  <td><small class="label glyphicon glyphicon-flag bg-blue"> </small></td>
+                  <td>TKP-234</td>
+                  <td>Error al imprimir</td>
+                  <td><small class="label bg-olive">Abierto</small></td>
+                  <td>Vtolosa <br>vtolosa@nestle.com.ar<br> <Small>Victor Tolosa</Small></td>
+                  <td>Br1ann <br> <Small>Brian Ducca</Small><br><small>Brian.ducca@gmail.com</small></td>
+                  <td>Soporte N1</td>
+                  <td>Por Defecto</td>
+                  <td>18:35 hs</td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox"></input></td>
+                  <td><small class="label glyphicon glyphicon-flag bg-blue"> </small></td>
+                  <td>TKP-234</td>
+                  <td>Error al imprimir</td>
+                  <td><small class="label bg-olive">Abierto</small></td>
+                  <td>Vtolosa <br>vtolosa@nestle.com.ar<br> <Small>Victor Tolosa</Small></td>
+                  <td>Br1ann <br> <Small>Brian Ducca</Small><br><small>Brian.ducca@gmail.com</small></td>
+                  <td>Soporte N1</td>
+                  <td>Por Defecto</td>
+                  <td>18:35 hs</td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox"></input></td>
+                  <td><small class="label glyphicon glyphicon-flag bg-blue"> </small></td>
+                  <td>TKP-234</td>
+                  <td>Error al imprimir</td>
+                  <td><small class="label bg-olive">Abierto</small></td>
+                  <td>Vtolosa <br>vtolosa@nestle.com.ar<br> <Small>Victor Tolosa</Small></td>
+                  <td>Br1ann <br> <Small>Brian Ducca</Small><br><small>Brian.ducca@gmail.com</small></td>
+                  <td>Soporte N1</td>
+                  <td>Por Defecto</td>
+                  <td>18:35 hs</td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox"></input></td>
+                  <td><small class="label glyphicon glyphicon-flag bg-yellow"> </small></td>
+                  <td>TKP-234</td>
+                  <td>Error al imprimir</td>
+                  <td><small class="label bg-red">En Curso</small></td>
+                  <td>Vtolosa <br>vtolosa@nestle.com.ar<br> <Small>Victor Tolosa</Small></td>
+                  <td>Br1ann <br> <Small>Brian Ducca</Small><br><small>Brian.ducca@gmail.com</small></td>
+                  <td>Soporte N1</td>
+                  <td>Por Defecto</td>
+                  <td>18:35 hs</td>
+              </tr>
+              <tr>
+                  <td><input type="checkbox"></input></td>
+                  <td><small class="label glyphicon glyphicon-flag bg-orange"> </small></td>
+                  <td>TKP-234</td>
+                  <td>Error al imprimir</td>
+                  <td><small class="label bg-blue">Respondido</small></td>
+                  <td>Vtolosa <br>vtolosa@nestle.com.ar<br> <Small>Victor Tolosa</Small></td>
+                  <td>Br1ann <br> <Small>Brian Ducca</Small><br><small>Brian.ducca@gmail.com</small></td>
+                  <td>Soporte N1</td>
+                  <td>Por Defecto</td>
+                  <td>18:35 hs</td>
+              </tr>
+          </tbody>
+        </table>
+      </form>
  
     </section>
     <!-- /.content -->

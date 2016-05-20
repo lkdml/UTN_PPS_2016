@@ -26,172 +26,81 @@ js=''
    
    <!-- CONTENIDO -->
     <section class="content">
-      <!-- 1 box Largo --> 
-      <div class="box box-primary">
-        <div class="box-header with-border">
-          <h3 class="box-title">Acciones:</h3>
-          <div class="box-tools pull-right">
-            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-          </div><!-- /.box-tools -->
-        </div><!-- /.box-header -->
-        <div class="box-body">
-            
-            
-              <button class="btn btn-app " id="btnNuevo" onclick="window.location.href='/operador.php?modulo=nuevoUsuario'">
-                <i class="fa fa-plus"></i> Nuevo
-              </button>
-              
-              <button class="btn btn-app" id="btnModificar" onclick="window.location.href='/operador.php?modulo=modificarUsuario'" disabled>
-                <i class="fa fa-edit"></i> Editar
-              </button>
-              
-              <button class="btn btn-app" id="btnBorrar" data-toggle="modal" data-target="#myModal" disabled>
-                <i class="fa fa-trash"></i> Borrar
-              </button>
-              
-              <!-- Modal para Borrar-->
-              <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-              
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Eliminar Usuario</h4></h4>
+      <form action="/operador.php?modulo=usuario" method="post" id="myForm">
+        <!-- 1 box Largo --> 
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Acciones:</h3>
+            <div class="box-tools pull-right">
+              <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div><!-- /.box-tools -->
+          </div><!-- /.box-header -->
+          <div class="box-body">
+                  <button class="btn btn-app "  id="btnNuevo" type="submit" name="accion" value="nuevo">
+                    <i class="fa fa-plus"></i> Nuevo
+                  </button>
+                  <button class="btn btn-app " id="btnModificar" type="submit" name="accion" value="editar" disabled>
+                    <i class="fa fa-edit"></i> Editar
+                  </button>
+                  <button class="btn btn-app " id="btnBorrar" data-toggle="modal" data-target="#myModal"  name="accion" value="borrar" disabled>
+                    <i class="fa fa-trash"></i> Borrar
+                  </button>
+                
+                <!-- Modal para Borrar-->
+                <div id="myModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Eliminar Usuario</h4></h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Esta acción eliminará los usuarios seleccionados. ¿Esta seguro que desea continuar?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn btn-danger" data-dismiss="modal">Si, estoy seguro.</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
+                      </div>
                     </div>
-                    <div class="modal-body">
-                      <p>Esta acción eliminará los usuarios seleccionados. ¿Esta seguro que desea continuar?</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn btn-danger" data-dismiss="modal">Si, estoy seguro.</button>
-                      <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
-                    </div>
+                
                   </div>
-              
-                </div>
-              </div> <!-- End Modal Content -->
-              
-              
-        </div><!-- /.box-body -->
-      </div>
-      <!-- /1 box --> 
-
-      
-    <table id="grilla" class="display">
-        <thead>
-            <tr>
-                <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
-                <th>Usuario</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Correo</th>
-                <th>Empresa</th>
-                <th>Activo</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Br1ann</td>
-                <td>Brian</td>
-                <td>Ducca</td>
-                <td>Brian.ducca@gmail.com</td>
-                <td>T.M.H.</td>
-                <td>Si</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>lbockor</td>
-                <td>Lucas Daniel</td>
-                <td>Bockor</td>
-                <td>Lbockor@gmail.com</td>
-                <td>T.M.H.</td>
-                <td>Si</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>lkdml</td>
-                <td>Mariano</td>
-                <td>López Senés</td>
-                <td>marianolopezsenes@gmail.com</td>
-                <td>T.M.H.</td>
-                <td>Si</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>glopez</td>
-                <td>Gasón</td>
-                <td>López</td>
-                <td>glopez@gmail.com</td>
-                <td>sadaic sa</td>
-                <td>no</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>gperez</td>
-                <td>Gerardo</td>
-                <td>perez</td>
-                <td>gperez@hotmail.com</td>
-                <td></td>
-                <td>no</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>gperez</td>
-                <td>Walter</td>
-                <td>cassin</td>
-                <td>wcassin@elmetro.com.ar</td>
-                <td>El Metro</td>
-                <td>Si</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>rsalcedo</td>
-                <td>Ricadro</td>
-                <td>Salcedo</td>
-                <td>rsalcedo@elmetro.com.ar</td>
-                <td>El Metro</td>
-                <td>Si</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>vtomada</td>
-                <td>Victoria</td>
-                <td>Tomada</td>
-                <td>vtomada@elmetro.com.ar</td>
-                <td>El Metro</td>
-                <td>Si</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Sgonzales</td>
-                <td>Sofia</td>
-                <td>Gonzalez</td>
-                <td>sgonzales@elmetro.com.ar</td>
-                <td>El Metro</td>
-                <td>si</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Valeria</td>
-                <td>Valeria</td>
-                <td>ottero</td>
-                <td>valeria.ottero@nestle.com</td>
-                <td>nestle S.A.</td>
-                <td>Si</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Cvaldon</td>
-                <td>Carlos</td>
-                <td>valdon</td>
-                <td>cvaldon@nestle.com</td>
-                <td>nestle S.A.</td>
-                <td>Si</td>
-            </tr>
-            
-        </tbody>
-    </table>
+                </div> <!-- End Modal Content -->
+                
+                
+          </div><!-- /.box-body -->
+        </div>
+        <!-- /1 box --> 
+        
+        
+        <table id="grilla" class="display">
+          <thead>
+              <tr>
+                  <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
+                  <th>Usuario</th>
+                  <th>Nombre</th>
+                  <th>Apellido</th>
+                  <th>Correo</th>
+                  <th>Telefono</th>
+                  <th>Activo</th>
+              </tr>
+          </thead>
+          <tbody>
+              {foreach from=$Usuarios item=usuario}
+                  <tr>
+                      <td><input class="case" type="checkbox" name="usuarioId[]" value="{$usuario->getUsuarioId()}" ></input></td>
+                      <td>{$usuario->getNombreUsuario()}</td>
+                      <td>{$usuario->getNombre()}</td>
+                      <td>{$usuario->getApellido()}</td>
+                      <td>{$usuario->getEmail()}</td>
+                      <td>{$usuario->getTelefono()}</td>
+                      <td>{if $usuario->getActivo()}Activo{else}Inactivo{/if}</td>
+                  </tr>
+              {/foreach}
+          </tbody>
+        </table>
+  </form>
 
  
     </section>

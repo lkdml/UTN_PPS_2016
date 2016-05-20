@@ -26,109 +26,75 @@ js=''
    
    <!-- CONTENIDO -->
     <section class="content">
-      <!-- 1 box Largo --> 
-      <div class="box box-primary">
-        <div class="box-header with-border">
-          <h3 class="box-title">Acciones:</h3>
-          <div class="box-tools pull-right">
-            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-          </div><!-- /.box-tools -->
-        </div><!-- /.box-header -->
-        <div class="box-body">
-              <button class="btn btn-app"  id="btnNuevo" onclick="window.location.href='/operador.php?modulo=nuevoCampoPersonalizado'">
-                <i class="fa fa-plus"></i> Nuevo
-              </button>
-              <button class="btn btn-app" id="btnModificar" onclick="window.location.href='/operador.php?modulo=nuevoCampoPersonalizado&id=3'" disabled>
-                <i class="fa fa-edit"></i> Editar
-              </button>
-              <button class="btn btn-app" id="btnBorrar" data-toggle="modal" data-target="#myModal" disabled>
-                <i class="fa fa-trash"></i> Borrar
-              </button>
-              
-              <!-- Modal para Borrar-->
-              <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-              
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Eliminar Campo Personalizado </h4></h4>
+      <form action="/operador.php?modulo=operador" method="post" id="myForm">
+        <!-- 1 box Largo --> 
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Acciones:</h3>
+            <div class="box-tools pull-right">
+              <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div><!-- /.box-tools -->
+          </div><!-- /.box-header -->
+          <div class="box-body">
+                <button class="btn btn-app "  id="btnNuevo" type="submit" name="accion" value="nuevo">
+                  <i class="fa fa-plus"></i> Nuevo
+                </button>
+                <button class="btn btn-app " id="btnModificar" type="submit" name="accion" value="editar" disabled>
+                  <i class="fa fa-edit"></i> Editar
+                </button>
+                <button class="btn btn-app " id="btnBorrar" data-toggle="modal" data-target="#myModal"  name="accion" value="borrar" disabled>
+                  <i class="fa fa-trash"></i> Borrar
+                </button>
+                
+                <!-- Modal para Borrar-->
+                <div id="myModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Eliminar Campo Personalizado </h4></h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Esta acción eliminará el campo personalizado seleccionado. ¿Esta seguro que desea continuar?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn btn-danger" data-dismiss="modal" onclick="deleteRow('grilla')">Si, estoy seguro.</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
+                      </div>
                     </div>
-                    <div class="modal-body">
-                      <p>Esta acción eliminará el campo personalizado seleccionado. ¿Esta seguro que desea continuar?</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn btn-danger" data-dismiss="modal" onclick="deleteRow('grilla')">Si, estoy seguro.</button>
-                      <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
-                    </div>
+                
                   </div>
-              
-                </div>
-              </div> <!-- End Modal Content -->
-              
-              
-              
-              
-        </div><!-- /.box-body -->
-      </div>
-      <!-- /1 box --> 
-
-      
-    <table id="grilla" class="display">
-        <thead>
-            <tr>
-                <th><input type="checkbox" id = "checkAll" onclick = "checkAll(this)"></input></th>
-                <th>Nombre</th>
-                <th>descripción</th>
-                <th>tipo</th>
-                <th>departamentos</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Teléfono</td>
-                <td>Teléconos</td>
-                <td>text</td>
-                <td>Todos</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Interno</td>
-                <td>Teléconos</td>
-                <td>text</td>
-                <td>Todos</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Aplicación</td>
-                <td>Especifique la aplicación</td>
-                <td>Opción</td>
-                <td>Soporte N2</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>O.S.</td>
-                <td>Sistema Operativo</td>
-                <td>Opción</td>
-                <td>Soporte N2</td>
-            </tr><tr>
-                <td><input type="checkbox"></input></td>
-                <td>Nro Hardware</td>
-                <td>Número de identificación del equipamiento afectado</td>
-                <td>text</td>
-                <td>Soporte N1, Soporte N2</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Dirección</td>
-                <td>Dirección de envío</td>
-                <td>text</td>
-                <td>Administración</td>
-            </tr>
-        </tbody>
-    </table>
+                </div> <!-- End Modal Content -->
+                
+                
+                
+                
+          </div><!-- /.box-body -->
+        </div>
+        <!-- /1 box --> 
+        
+        
+        <table id="grilla" class="display">
+          <thead>
+              <tr>
+                  <th><input type="checkbox" id = "checkAll" onclick = "checkAll(this)"></input></th>
+                  <th>Nombre</th>
+                  <th>tipo</th>
+              </tr>
+          </thead>
+          <tbody>
+              {foreach from=$TicketCustomFields item=tcf}
+                  <tr>
+                      <td><input class="case" type="checkbox" name="tcfId[]" value="{$tcf->getFieldId()}" ></input></td>
+                      <td>{$tcf->getNombre()}</td>
+                      <td>{$tcf->getTipo()}</td>
+                  </tr>
+              {/foreach}
+          </tbody>
+        </table>
+      </form>
 
  
     </section>

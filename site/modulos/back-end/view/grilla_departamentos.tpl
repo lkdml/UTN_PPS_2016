@@ -26,90 +26,79 @@ js=''
    
    <!-- CONTENIDO -->
     <section class="content">
+      <form action="/operador.php?modulo=departamento" method="post" id="myForm">
       <!-- 1 box Largo --> 
-      <div class="box box-primary">
-        <div class="box-header with-border">
-          <h3 class="box-title">Acciones:</h3>
-          <div class="box-tools pull-right">
-            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-          </div><!-- /.box-tools -->
-        </div><!-- /.box-header -->
-        <div class="box-body">
-          
-          
-          
-               <button class="btn btn-app "  id="btnNuevo" onclick="window.location.href='/operador.php?modulo=nuevoDepartamento'">
-                <i class="fa fa-plus"></i> Nuevo
-              </button>
-              <button class="btn btn-app " id="btnModificar" onclick="window.location.href='/operador.php?modulo=modificarDepartamento'" disabled>
-                <i class="fa fa-edit"></i> Editar
-              </button>
-              <button class="btn btn-app "id="btnBorrar" data-toggle="modal" data-target="#myModal" disabled>
-                <i class="fa fa-trash"></i> Borrar
-              </button>
-              
-              
-              <!-- Modal para Borrar-->
-              <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-              
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Eliminar Departamentos </h4></h4>
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Acciones:</h3>
+            <div class="box-tools pull-right">
+              <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            </div><!-- /.box-tools -->
+          </div><!-- /.box-header -->
+          <div class="box-body">
+            
+            
+            
+                 <button class="btn btn-app "  id="btnNuevo"  type="submit" name="accion" value="nuevo">
+                  <i class="fa fa-plus"></i> Nuevo
+                </button>
+                <button class="btn btn-app " id="btnModificar" type="submit" name="accion" value="editar" disabled>
+                  <i class="fa fa-edit"></i> Editar
+                </button>
+                <button class="btn btn-app "id="btnBorrar" data-toggle="modal" data-target="#myModal"  name="accion" value="borrar" disabled>
+                  <i class="fa fa-trash"></i> Borrar
+                </button>
+                
+                
+                <!-- Modal para Borrar-->
+                <div id="myModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Eliminar Departamentos </h4></h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Esta acción eliminará los departamentos seleccionados. ¿Esta seguro que desea continuar?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn btn-danger" data-dismiss="modal" onclick="deleteRow('grilla')">Si, estoy seguro.</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
+                      </div>
                     </div>
-                    <div class="modal-body">
-                      <p>Esta acción eliminará los departamentos seleccionados. ¿Esta seguro que desea continuar?</p>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn btn-danger" data-dismiss="modal" onclick="deleteRow('grilla')">Si, estoy seguro.</button>
-                      <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
-                    </div>
+                
                   </div>
-              
-                </div>
-              </div> <!-- End Modal Content -->
-              
-              
-              
-              
-        </div><!-- /.box-body -->
-      </div>
-      <!-- /1 box --> 
-
-      
-    <table id="grilla" class="display">
-        <thead>
-            <tr>
-                <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Soporte N1</td>
-                <td>Soporte a usuarios de primer nivel</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Soporte N2</td>
-                <td>Soporte a usuarios de primer nivel</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Administración</td>
-                <td>Administracion de TMH</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox"></input></td>
-                <td>Ventas</td>
-                <td>Equipo de Ventas de TMH</td>
-            </tr>
-        </tbody>
-    </table>
+                </div> <!-- End Modal Content -->
+                
+                
+                
+                
+          </div><!-- /.box-body -->
+        </div>
+        <!-- /1 box --> 
+        
+        
+        <table id="grilla" class="display">
+          <thead>
+              <tr>
+                  <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
+                  <th>Nombre</th>
+                  <th>Descripción</th>
+              </tr>
+          </thead>
+          <tbody>
+              {foreach from=$Departamentos item=departamento}
+                  <tr>
+                      <td><input class="case" type="checkbox" name="departamentoId[]" value="{$departamento->getDepartamentoId()}" ></input></td>
+                      <td>{$departamento->getNombre()}</td>
+                      <td>{$departamento->getDescripcion()}</td>
+                  </tr>
+              {/foreach}
+          </tbody>
+        </table>
+      </form>
 
  
     </section>

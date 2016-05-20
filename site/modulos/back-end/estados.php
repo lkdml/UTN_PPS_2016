@@ -6,9 +6,14 @@ require_once (\CORE\Controlador\Config::getPublic('Ruta_Core_Controlador')."View
 use \CORE\Controlador\Aplicacion;
 Aplicacion::startSession($modoOP);
 
+use \Modelo\TicketEstado as TicketEstado;
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+$estado = $em->getRepository('Modelo\TicketEstado')->findAll();
+
   $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateDir'),null);
   $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
                     \CORE\Controlador\Config::getPublic('Ruta_Back').'js/',
                     \CORE\Controlador\Config::getPublic('Ruta_Back').'imagenes/');
+  $vm->assign('Estados',$estado);
 
   $vm->display('grilla_estados.tpl');
