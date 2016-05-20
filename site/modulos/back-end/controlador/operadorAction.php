@@ -2,8 +2,7 @@
 require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php'); 
 require_once($_SERVER["DOCUMENT_ROOT"].'/bootstrap_orm.php');
 
-//use \Modelo\Perfil as Perfil;
-//use \Modelo\Rol as Rol;
+
 use \Modelo\Operador as Operador;
 /**
  * Valido que el operador esté con la session habilitadas
