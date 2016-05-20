@@ -8,7 +8,7 @@ Aplicacion::startSession($modoOP);
 
 use \Modelo\Ticket as Ticket;
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-$ticket = $em->getRepository('Modelo\Ticket')->findAll();
+$ticket = $em->getRepository('Modelo\Tickets')->findAll();
 
   $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateDir'),null);
   $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
