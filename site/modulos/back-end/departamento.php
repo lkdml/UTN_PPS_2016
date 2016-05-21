@@ -14,6 +14,12 @@ $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
 $Departamentos = $em->getRepository('Modelo\Departamento')->findAll();
     $vm->assign('Departamentos',$Departamentos);
 
+$Operadores = $em->getRepository('Modelo\Operador')->findAll();
+    $vm->assign('Operadores',$Operadores);
+
+$operadoresFaltantes=$em->getRepository('Modelo\Operador')->findAll();
+    $vm->assign('OperadoresFaltantes',$operadoresFaltantes);
+
 switch(strtolower($_POST["accion"])){
   case ("nuevo"):
     // Si el parametro que envio en accion es alta, solo debo validar permisos
@@ -24,6 +30,17 @@ switch(strtolower($_POST["accion"])){
     //TODO: falta validar permisos para esta accion.
     $departamento = $em->getRepository('Modelo\Departamento')->find($_POST["departamentoId"][0]);
     $vm->assign('Departamento',$departamento);
+    
+    $OperadoresHabilitados=$departamento->getOperador();
+    foreach ( $OperadoresHabilitados as $operadorhab){
+      foreach ($operadoresFaltantes as $kop=>$operador){
+        if ($operadorhab == $operador){
+          unset($operadoresFaltantes[$kop]);
+        }
+      }
+    }
+    
+
     break;
   case ("borrar"):
     $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
