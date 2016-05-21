@@ -153,7 +153,11 @@ js=''
                                     <select name="perfilOperador" class="form-control"  name="perfiles">
                                       {if $Perfiles}
                                         {foreach from=$Perfiles item=perfil}
-                                          <option value="{$perfil->getPerfilId()}"{if $Operador->getPerfil() == $perfil}selected{/if}>{$perfil->getNombre()}</option>
+                                          <option value="{$perfil->getPerfilId()}"
+                                          {if $Operador}
+                                            {if $Operador->getPerfil() == $perfil}selected{/if}
+                                          {/if}
+                                          >{$perfil->getNombre()}</option>
                                         {/foreach}
                                       {/if}
                                     </select>
