@@ -17,8 +17,8 @@ $Departamentos = $em->getRepository('Modelo\Departamento')->findAll();
 $Operadores = $em->getRepository('Modelo\Operador')->findAll();
     $vm->assign('Operadores',$Operadores);
 
-$operadoresFaltantes=$em->getRepository('Modelo\Operador')->findAll();
-    $vm->assign('OperadoresFaltantes',$operadoresFaltantes);
+$operadoresAsignados=$em->getRepository('Modelo\Operador')->findBy(array('departamento' => $_POST["departamentoId"][0]));
+    $vm->assign('OperadoresFaltantes',$operadoresAsignados);
 
 switch(strtolower($_POST["accion"])){
   case ("nuevo"):

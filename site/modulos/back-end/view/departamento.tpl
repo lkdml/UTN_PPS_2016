@@ -112,8 +112,8 @@ js=''
                             <div class="row">
                                 <div class="col-xs-4">
                                     <select name="operadores_Disponibles[]" id="multiselect" class="form-control" size="8" multiple="multiple">
-                                      {if $OperadoresFaltantes}
-                                        {foreach from=$OperadoresFaltantes item=$op}
+                                      {if $OperadoresAsignados}
+                                        {foreach from=$OperadoresAsignados item=$op}
                                           <option value="{$op->getOperadorId()}">{$op->getNombre()}</option>
                                         {/foreach}
                                       {/if}

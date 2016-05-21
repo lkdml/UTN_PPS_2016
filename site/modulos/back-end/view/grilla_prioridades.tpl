@@ -26,7 +26,7 @@ js=''
    
    <!-- CONTENIDO -->
     <section class="content">
-      <form action="/operador.php?modulo=prioridades" method="post" id="myForm">
+      <form action="/operador.php?modulo=prioridad" method="post" id="myForm">
       <!-- 1 box Largo --> 
       <div class="box box-primary">
         <div class="box-header with-border">
@@ -74,24 +74,22 @@ js=''
         </div><!-- /.box-body -->
       </div>
       <!-- /1 box --> 
-      
+
       
       <table id="grilla" class="display">
         <thead>
             <tr>
-                <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
+                <th></th>
                 <th>Nombre</th>
                 <th>Descripción</th>
-                <th>Color</th>
             </tr>
         </thead>
         <tbody>
             {foreach from=$Prioridades item=prioridad}
                 <tr>
-                    <td><input class="case" type="checkbox" name="categoriaId[]" value="{$prioridad->getPrioridadId()}" ></input></td>
-                    <td>{$prioridad->getNombre()}</td>
-                    <td>{$prioridad->getDescripcion()}</td>
-                    <td><small class="label glyphicon glyphicon-flag {$prioridad->getColor()}"> </small></td>
+                    <td><input class="case" type="checkbox" name="prioridadId[]" value="{$prioridad->getPrioridadId()}" ></input></td>
+                    <td style='color:{$prioridad->getColor()}'>{$prioridad->getNombre()}</td>
+                    <td style='color:{$prioridad->getColor()}'>{$prioridad->getDescripcion()}</td>
                 </tr>
             {/foreach}
         </tbody>
@@ -143,7 +141,7 @@ $(document).ready( function () {
     $('#grilla').DataTable({
   "columnDefs": [
     { "width": "5px", "targets": 0 },
-    { "width": "10px", "targets": 3 }
+   // { "width": "10px", "targets": 3 }
   ]
 });
 } );

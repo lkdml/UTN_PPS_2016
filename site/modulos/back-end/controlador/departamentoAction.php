@@ -11,17 +11,17 @@ $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 if (isset($_GET['Departamento'])){
     $dpto =  $em->getRepository('Modelo\Departamento')->find($_GET["Departamento"]);
-    $departamento = setearOperador($dpto,$em);
+    $departamento = setear($dpto,$em);
     $em->persist($departamento);
     $em->flush();
 } else {
-    $departamento = setearOperador(new Operador(),$em);
+    $departamento = setear(new Operador(),$em);
     $em->persist($departamento);
     $em->flush();
 }
 
 
-function setearOperador(Departamento $departamento,$em){
+function setear(Departamento $departamento,$em){
     $departamento->setNombre($_POST["nombre"]);
     $departamento->setDescripcion($_POST["descripcion"]);
     $departamento->setPadreDeptoId($_POST["idDeptoPadre"]);

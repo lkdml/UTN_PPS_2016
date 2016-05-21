@@ -22,21 +22,21 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/prioridadAction.php" class="form-horizontal">
+        <form action="{$rutaCSS}../controlador/prioridadAction.php{if $Prioridad}?prioridadId={$Prioridad->getPrioridadId()}{/if}" class="form-horizontal"  method="post">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
                         <div class="box-body pad">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputNombre">
+                              <input type="text" class="form-control" id="inputNombre" name="nombre" {if $Prioridad}value='{$Prioridad->getNombre()}'{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->
                          <div class="box-body pad">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputDescripcion">
+                              <input type="text" class="form-control" id="inputDescripcion" name="descripcion" {if $Prioridad}value='{$Prioridad->getDescripcion()}'{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->
@@ -44,10 +44,27 @@ js=''
                         <div class="box-body pad">
                             <label for="inputColor" class="col-sm-2 control-label">Color</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control my-colorpicker1" id="inputColor">
+                                <input type="text" class="form-control my-colorpicker1" id="inputColor" name="color" {if $Prioridad}value='{$Prioridad->getColor()}'{/if}>
                             </div>
                         </div>
                         <!--color end -->
+                        <!-- Orden Picker -->
+                        <div class="box-body pad">
+                            <label for="inputColor" class="col-sm-2 control-label">Orden</label>
+                            <div class="col-sm-5">
+                                <select name="orden" class="form-control" {if $Prioridad}value='{$Prioridad->getOrden()}'{/if}>
+                                      {if Prioridades}
+                                        {$count=0}
+                                        {foreach from=Prioridades item=itemPrioridad}
+                                          <option value=$count>test</option>
+                                          {$count = $count +1}
+                                          {var_dump($count)}
+                                        {/foreach}
+                                      {/if}
+                                    </select>
+                            </div>
+                        </div>
+                        <!--Orden end -->
                         
                         
                     </div>
