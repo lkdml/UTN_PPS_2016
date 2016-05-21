@@ -22,21 +22,21 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/tipoTicketAction.php" class="form-horizontal">
+        <form action="{$rutaCSS}../controlador/tipoTicketAction.php{if $TicketTipo}?tipoTicket={$TicketTipo->getTipoTicketId()}{/if}" class="form-horizontal"  method="post">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
                         <div class="box-body pad">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputNombre">
+                              <input type="text" class="form-control" id="inputNombre" name="nombre" {if $TicketTipo}value={$TicketTipo->getNombre()}{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->
                          <div class="box-body pad">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputDescripcion">
+                              <input type="text" class="form-control" id="inputDescripcion" name="descripcion" {if $TicketTipo}value='{$TicketTipo->getDescripcion()}'{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->
