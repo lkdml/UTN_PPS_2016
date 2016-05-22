@@ -15,7 +15,7 @@ if (isset($_GET['estadoId'])){
     $em->persist(setear($Estado,$em));
     $em->flush();
 } else {
-    $Estado = setear(new TicketEstado(),$em);
+    $Estado = setear(new Estados(),$em);
     $em->persist($Estado);
     $em->flush();
 }
@@ -24,7 +24,13 @@ if (isset($_GET['estadoId'])){
 function setear(Estados $estado,$em){
     $estado->setNombre($_POST["nombre"]);
     $estado->setDescripcion($_POST["descripcion"]);
-    $estado->setAutocierre($_POST["autocierre"]);
+    if ($_POST["autocierre"] == 'on')
+    {
+      $estado->setAutocierre(true);   
+    }
+    else{
+       $estado->setAutocierre(false);
+    }
     $estado->setColor($_POST["color"]);
     $estado->setOrden($_POST["orden"]);
     return $estado;
