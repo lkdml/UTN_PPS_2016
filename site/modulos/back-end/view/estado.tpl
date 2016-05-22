@@ -78,7 +78,7 @@ js=''
                         </div>
                         <!-- body pad end -->
                          <!-- Orden Picker -->
-                        <div class="box-body pad">
+                       <!-- <div class="box-body pad">
                             <label for="inputOrden" class="col-sm-2 control-label">Orden</label>
                             <div class="col-sm-5">
                                 <select name="orden" class="form-control" {if $Estado}value='{$Estado->getOrden()}'{/if}>
@@ -89,7 +89,7 @@ js=''
                                     <option value = "5">5</option>
                                 </select>
                             </div>
-                        </div>
+                        </div>-->
                         <!--Orden end -->
                         
                         
