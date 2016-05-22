@@ -92,7 +92,7 @@ js=''
                             <label for="inputDescripcion" class="col-sm-2 control-label">Operador Default</label>
                             <div class="col-sm-5">
                                 <select class="form-control select2" id="DeptoOperadorDefault" name="operadorDefault" style="width: 100%;">
-                                    <option value = "">Ninguno</option>
+                                    <option value = "-1">Ninguno</option>
                                         {if $Operadores}
                                             {foreach from=$Operadores item=operador}
                                               <option value ="{$operador->getOperadorId()}"

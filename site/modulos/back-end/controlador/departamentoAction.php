@@ -34,17 +34,17 @@ function setear(Departamento $departamento,$em){
         $departamento->setVisibilidadUsuario(0);
     }
     $departamento->setOrden($_POST["orden"]);
-    if (isset($_POST['operadorDefault'])){
+    if ($_POST['operadorDefault']!= '-1'){
         $departamento->setOperadorDefaultId($em->find('Modelo\Operador',$_POST['operadorDefault']));
     }
     foreach ($departamento->getOperador() as $operador){
-        $departamento->removeOperador($operador);
+        $operador->removeDepartamento($departamento);
     }
-    if (isset($_POST['operadoresSelecionados'])){
-        foreach ($_POST['operadoresSelecionados'] as $idOperador){
+    if (isset($_POST['operadores_Asignados'])){
+        foreach ($_POST['operadores_Asignados'] as $idOperador){
             $Operador = $em->find('Modelo\Operador',$idOperador);
             if (!is_null($Operador)){
-                $departamento->addOperador($Operador);
+                $Operador->addDepartamento($departamento);
             }
         }
     }
