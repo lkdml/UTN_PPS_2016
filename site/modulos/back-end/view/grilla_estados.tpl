@@ -88,7 +88,7 @@ js=''
               {foreach from=$Estados item=estado}
                   <tr>
                       <td><input class="case" type="checkbox" name="estadoId[]" value="{$estado->getEstadoId()}" ></input></td>
-                      <td><small class="label {$estado->getColor()}">{$estado->getNombre()}</small></td>
+                      <td><small class="label" style='color:{$estado->getColor()}'>{$estado->getNombre()}</small></td>
                       <td>{$estado->getDescripcion()}</td>
                   </tr>
               {/foreach}
