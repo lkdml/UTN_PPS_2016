@@ -70,7 +70,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anuncios <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="/operador.php?modulo=nuevoAnuncio">Nuevo Anuncio</a></li>
+                <li><a href="/operador.php?modulo=anuncio">Nuevo Anuncio</a></li>
                 <li><a href="/operador.php?modulo=anuncios">Ver Anuncios</a></li>
                 <li class="divider"></li>
                 <li><a href="/operador.php?modulo=categorias">Categorias</a></li>

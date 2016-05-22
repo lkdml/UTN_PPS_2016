@@ -14,7 +14,7 @@ js=''
       </h1>
       <ol class="breadcrumb">
         <li><a href="/operador.php?modulo=dashboard"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Nuevo Ticket</li>
+        <li class="active">Crear/Modificar Ticket</li>
       </ol>
     </section>
  
@@ -181,7 +181,8 @@ js=''
               </div>
               
               <div class="box-footer">
-                <button type="submit" class="btn btn-info pull-right">Enviar</button>
+                 <button type="submit" class="btn btn-info pull-left">Enviar</button>
+                <button onclick="history.go(-1);" class="btn btn-danger pull-right">Cancelar</button>
               </div>
               <!-- /.box-footer -->
             </form>

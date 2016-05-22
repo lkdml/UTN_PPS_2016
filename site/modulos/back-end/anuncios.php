@@ -6,7 +6,8 @@ require_once (\CORE\Controlador\Config::getPublic('Ruta_Core_Controlador')."View
 use \CORE\Controlador\Aplicacion;
 Aplicacion::startSession($modoOP);
 
-$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager()
+
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 $anuncios = $em->getRepository('Modelo\Anuncio')->findAll();
 
 $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateDir'),null);

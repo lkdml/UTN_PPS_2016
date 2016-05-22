@@ -317,7 +317,8 @@ js=''
                      </div>
                      <div class="box-footer">
                        
-                       <button type="submit" class="btn btn-info pull-right">Enviar</button>
+                       <button type="submit" class="btn btn-info pull-left">Enviar</button>
+                        <button onclick="history.go(-1);" class="btn btn-danger pull-right">Cancelar</button>
                      </div>
                    </div>
                    

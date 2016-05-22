@@ -1,5 +1,5 @@
 {include file="header.tpl"
-css=''
+css='<link rel="stylesheet" href="./modulos/back-end/css/bootstrap-iconpicker.css">'
 js=''
 }
 {include file="panelLateral.tpl"}
@@ -10,7 +10,7 @@ js=''
  <!-- Content Header (Page header) -->
  <section class="content-header">
    <h1>
-      <strong>Categorías Anuncios</strong>
+      <strong>Alta/Modificación de Categoría Anuncio</strong>
      <small></small>
    </h1>
    <ol class="breadcrumb">
@@ -22,21 +22,24 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/categoriaAction.php" class="form-horizontal">
+        <form action="{$rutaCSS}../controlador/categoriaAction.php{if $Categoria}?categoriaId={$Categoria->getCategoriaId()}{/if}" class="form-horizontal" method="post">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
                         <div class="box-body pad">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputNombre">
+                              <input type="text" class="form-control" id="inputNombre" name="nombre" {if $Categoria}value='{$Categoria->getNombre()}'{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->
                          <div class="box-body pad">
-                            <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
+                            <label for="inputDescripcion" class="col-sm-2 control-label">Icono</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputDescripcion">
+                                
+                                   
+                                
+                              <input type="text" class="form-control" id="inputDescripcion" name="descripcion" {if $Categoria}value='{$Categoria->getDescripcion()}'{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->
@@ -48,7 +51,8 @@ js=''
             <!-- box body end -->
              
             <div class="box-footer">
-                <button type="submit" class="btn btn-info pull-right">Enviar</button>
+                 <button type="submit" class="btn btn-info pull-left">Enviar</button>
+                <button onclick="history.go(-1);" class="btn btn-danger pull-right">Cancelar</button>
             </div>
             <!-- /.box-footer -->
         </form>
@@ -70,4 +74,7 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+<!--Iconpicker -->
+<script src="{$rutaJS}bootstrap-iconpicker.js"></script>
+
  {include file="footer.tpl"}
