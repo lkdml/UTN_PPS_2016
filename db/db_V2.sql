@@ -423,14 +423,14 @@ CREATE TABLE IF NOT EXISTS `tmh`.`operador_departamentos` (
   `departamento_id` INT NOT NULL,
   PRIMARY KEY (`operador_id`, `departamento_id`),
   INDEX `fk_operador_dpto_depto_idx` (`departamento_id` ASC),
-  CONSTRAINT `fk_operador_dpto_depto`
-    FOREIGN KEY (`departamento_id`)
-    REFERENCES `tmh`.`departamento` (`departamento_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
   CONSTRAINT `fk_operador_dpto_operador`
     FOREIGN KEY (`operador_id`)
     REFERENCES `tmh`.`operador` (`operador_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_operador_dpto_depto`
+    FOREIGN KEY (`departamento_id`)
+    REFERENCES `tmh`.`departamento` (`departamento_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB

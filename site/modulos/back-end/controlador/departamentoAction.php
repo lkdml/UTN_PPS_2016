@@ -7,6 +7,8 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/bootstrap_orm.php');
 use \CORE\Controlador\Aplicacion;
 Aplicacion::startSession(true);
 
+use \Modelo\Departamento as Departamento;
+use \Modelo\Operador as Operador;
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 if (isset($_GET['Departamento'])){
@@ -15,7 +17,7 @@ if (isset($_GET['Departamento'])){
     $em->persist($departamento);
     $em->flush();
 } else {
-    $departamento = setear(new Operador(),$em);
+    $departamento = setear(new Departamento(),$em);
     $em->persist($departamento);
     $em->flush();
 }
@@ -25,13 +27,18 @@ function setear(Departamento $departamento,$em){
     $departamento->setNombre($_POST["nombre"]);
     $departamento->setDescripcion($_POST["descripcion"]);
     $departamento->setPadreDeptoId($_POST["idDeptoPadre"]);
-    $departamento->setVisibilidadUsuario($_POST["visibilidadUsuario"]);
+    if (isset($_POST["visibilidadUsuario"]))
+    {
+        $departamento->setVisibilidadUsuario($_POST["visibilidadUsuario"]);
+    } else {
+        $departamento->setVisibilidadUsuario(0);
+    }
     $departamento->setOrden($_POST["orden"]);
     if (isset($_POST['operadorDefault'])){
         $departamento->setOperadorDefaultId($em->find('Modelo\Operador',$_POST['operadorDefault']));
     }
     foreach ($departamento->getOperador() as $operador){
-        $departamento->removeDepartamento($operador);
+        $departamento->removeOperador($operador);
     }
     if (isset($_POST['operadoresSelecionados'])){
         foreach ($_POST['operadoresSelecionados'] as $idOperador){

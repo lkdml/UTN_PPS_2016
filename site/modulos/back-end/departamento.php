@@ -12,13 +12,12 @@ $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
                   \CORE\Controlador\Config::getPublic('Ruta_Back').'imagenes/');
                   
 $Departamentos = $em->getRepository('Modelo\Departamento')->findAll();
-    $vm->assign('Departamentos',$Departamentos);
+$vm->assign('Departamentos',$Departamentos);
 
 $Operadores = $em->getRepository('Modelo\Operador')->findAll();
-    $vm->assign('Operadores',$Operadores);
-
-$operadoresAsignados=$em->getRepository('Modelo\Operador')->findBy(array('departamento' => $_POST["departamentoId"][0]));
-    $vm->assign('OperadoresFaltantes',$operadoresAsignados);
+$vm->assign('Operadores',$Operadores);
+    
+$OperadoresPorHabilitar = $em->getRepository('Modelo\Operador')->findAll();
 
 switch(strtolower($_POST["accion"])){
   case ("nuevo"):
@@ -29,13 +28,17 @@ switch(strtolower($_POST["accion"])){
   case ("editar"):
     //TODO: falta validar permisos para esta accion.
     $departamento = $em->getRepository('Modelo\Departamento')->find($_POST["departamentoId"][0]);
-    $vm->assign('Departamento',$departamento);
+    $vm->assign('Departamento',$departamento);   
+
+     $operadoresAsignados=$departamento->getOperador();
+    $vm->assign('OperadoresAsignados',$operadoresAsignados);   
+
     
     $OperadoresHabilitados=$departamento->getOperador();
-    foreach ( $OperadoresHabilitados as $operadorhab){
-      foreach ($operadoresFaltantes as $kop=>$operador){
+    foreach ( $OperadoresPorHabilitar as $operadorhab){
+      foreach ($operadoresAsignados as $kop=>$operador){
         if ($operadorhab == $operador){
-          unset($operadoresFaltantes[$kop]);
+          unset($OperadoresPorHabilitar[$kop]);
         }
       }
     }
@@ -56,4 +59,5 @@ switch(strtolower($_POST["accion"])){
     header("location:/operador.php?modulo=departamentos");
     break;
 }
-  $vm->display('departamento.tpl');
+$vm->assign('OperadoresPorHabilitar',$OperadoresPorHabilitar);
+$vm->display('departamento.tpl');

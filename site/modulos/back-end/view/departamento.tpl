@@ -112,8 +112,8 @@ js=''
                             <div class="row">
                                 <div class="col-xs-4">
                                     <select name="operadores_Disponibles[]" id="multiselect" class="form-control" size="8" multiple="multiple">
-                                      {if $OperadoresAsignados}
-                                        {foreach from=$OperadoresAsignados item=$op}
+                                      {if OperadoresPorHabilitar}
+                                        {foreach from=$OperadoresPorHabilitar item=$op}
                                           <option value="{$op->getOperadorId()}">{$op->getNombre()}</option>
                                         {/foreach}
                                       {/if}
@@ -129,9 +129,9 @@ js=''
                                 
                                 <div class="col-xs-4">
                                     <select name="operadores_Asignados[]" id="multiselect_to" class="form-control" size="8" multiple="multiple">
-                                      {if $OperadoresHabilitados}
-                                        {foreach from=$OperadoresHabilitados item=$operadorH}
-                                          <option value="{$operadorH->getOperadorId()}">{$operadorH->getNombre()}</option>
+                                      {if OperadoresAsignados}
+                                        {foreach from=$OperadoresAsignados item=$operadorAsignado}
+                                          <option value="{$operadorAsignado->getOperadorId()}">{$operadorAsignado->getNombre()}</option>
                                         {/foreach}
                                       {/if}
                                     </select>
