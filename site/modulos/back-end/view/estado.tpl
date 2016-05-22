@@ -22,21 +22,31 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/estadoAction.php" class="form-horizontal">
+        <form action="{$rutaCSS}../controlador/estadoAction.php{if $Estado}?estadoId={$Estado->getEstadoId()}{/if}" class="form-horizontal" method="post">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
                         <div class="box-body pad">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputNombre">
+                              <input type="text" class="form-control" name="nombre"
+                                {if $Estado}
+                                    value='{$Estado->getNombre()}'
+                                {/if}
+                                >
+                                </input>
                             </div>
                         </div>
                         <!-- body pad end -->
                          <div class="box-body pad">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputDescripcion">
+                              <input type="text" class="form-control" name="descripcion"
+                                {if $Estado}
+                                    value='{$Estado->getDescripcion()}'
+                                {/if}
+                                >
+                                </input>
                             </div>
                         </div>
                         <!-- body pad end -->
@@ -44,10 +54,43 @@ js=''
                         <div class="box-body pad">
                             <label for="inputColor" class="col-sm-2 control-label">Color</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control my-colorpicker1" id="inputColor">
+                                <input type="text" class="form-control my-colorpicker1" name="color"
+                                {if $Estado}
+                                    value='{$Estado->getColor()}'
+                                {/if}
+                                >
+                                </input>
                             </div>
                         </div>
                         <!--color end -->
+                        <div class="box-body pad">
+                            <label for="inputDescripcion" class="col-sm-2 control-label">Auto-Cierre</label>
+                            <div class="col-sm-5">
+                                <input type="checkbox" id="acierre" name="autocierre" 
+                                {if $Estado}
+                                    {if $Estado->getAutocierre()==1}
+                                        checked
+                                    {/if}
+                                {/if}
+                                >
+                                </input>
+                            </div>
+                        </div>
+                        <!-- body pad end -->
+                         <!-- Orden Picker -->
+                        <div class="box-body pad">
+                            <label for="inputOrden" class="col-sm-2 control-label">Orden</label>
+                            <div class="col-sm-5">
+                                <select name="orden" class="form-control" {if $Estado}value='{$Estado->getOrden()}'{/if}>
+                                    <option value = "1">1</option>
+                                    <option value = "2">2</option>
+                                    <option value = "3">3</option>
+                                    <option value = "4">4</option>
+                                    <option value = "5">5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--Orden end -->
                         
                         
                     </div>
