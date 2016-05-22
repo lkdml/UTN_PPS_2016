@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace Modelo;
 
 /**
@@ -45,7 +43,7 @@ class Operador
     /**
      * @var string
      *
-     * @Column(name="clave", type="string", length=45, nullable=false)
+     * @Column(name="clave", type="string", length=60, nullable=false)
      */
     private $clave;
 
@@ -593,18 +591,13 @@ class Operador
     
     public function encriptarClave($clave){
         $opciones = [
-            'cost' => 11,
-            'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM),
+            'cost' => 12,
         ];
         $this->setClave(password_hash($clave, PASSWORD_BCRYPT, $opciones));
     }
     
     public function verificarClave($clave){
-        
-        if ($clave == $this->getClave())
-        {return true;}
-        //return password_verify($clave,$this->getClave());
-        return false;
+        return password_verify($clave,$this->getClave());
     }
 }
 

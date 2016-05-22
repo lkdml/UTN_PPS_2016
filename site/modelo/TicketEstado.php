@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace Modelo;
 
 /**
@@ -24,7 +22,14 @@ class TicketEstado
     /**
      * @var string
      *
-     * @Column(name="descripcion", type="string", length=45, nullable=false)
+     * @Column(name="nombre", type="string", length=45, nullable=false)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @Column(name="descripcion", type="string", length=45, nullable=true)
      */
     private $descripcion;
 
@@ -45,7 +50,7 @@ class TicketEstado
     /**
      * @var integer
      *
-     * @Column(name="orden", type="integer", nullable=false)
+     * @Column(name="orden", type="integer", nullable=true)
      */
     private $orden;
 
@@ -58,6 +63,30 @@ class TicketEstado
     public function getEstadoId()
     {
         return $this->estadoId;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     *
+     * @return TicketEstado
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
     }
 
     /**

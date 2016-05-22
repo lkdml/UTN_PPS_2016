@@ -8,7 +8,7 @@ Aplicacion::startSession($modoOP);
 
 use \Modelo\Prioridades as Prioridades;
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-$prioridades = $em->getRepository('Modelo\Prioridades')->findAll();
+$prioridades = $em->getRepository('Modelo\Prioridad')->findAll();
 
   $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateDir'),null);
   $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',

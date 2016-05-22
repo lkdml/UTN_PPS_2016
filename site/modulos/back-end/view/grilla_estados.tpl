@@ -26,7 +26,7 @@ js=''
    
    <!-- CONTENIDO -->
     <section class="content">
-      <form action="/operador.php?modulo=estados" method="post" id="myForm">
+      <form action="/operador.php?modulo=estado" method="post" id="myForm">
         <!-- 1 box Largo --> 
         <div class="box box-primary">
           <div class="box-header with-border">

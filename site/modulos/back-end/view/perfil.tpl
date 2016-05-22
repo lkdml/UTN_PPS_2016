@@ -140,10 +140,10 @@ js=''
                 <div class="box box-primary">
                       <div class="form-group">        
                         <div class="col-sm-11 checkbox">  
-                          <label class="checkbox-inline"><input type="checkbox" name="permisos[perfiles_ver]" {if $} checked{/if}></input>Ver Perfiles</label>
-                          <label class="checkbox-inline"><input type="checkbox" name="permisos[perfiles_crear]" {if $} checked{/if}></input>Crear Perfil</label>
-                          <label class="checkbox-inline"><input type="checkbox" name="permisos[perfiles_editar]" {if $} checked{/if}></input>editar Perfil</label>
-                          <label class="checkbox-inline"><input type="checkbox" name="permisos[perfiles_eliminar]" {if $} checked{/if}></input>Eliminar Perfil</label>
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[perfiles_ver]" {if $perfiles_ver} checked{/if}></input>Ver Perfiles</label>
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[perfiles_crear]" {if $perfiles_crear} checked{/if}></input>Crear Perfil</label>
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[perfiles_editar]" {if $perfiles_editar} checked{/if}></input>editar Perfil</label>
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[perfiles_eliminar]" {if $perfiles_eliminar} checked{/if}></input>Eliminar Perfil</label>
                         </div>
                       </div>
                       <br>
@@ -240,10 +240,10 @@ js=''
                 <div class="box box-primary">
                       <div class="form-group">
                         <div class="col-sm-11 checkbox">
-                          <label class="checkbox-inline"><input type="checkbox" name="permisos[operadores_ver]" {if $} checked{/if}></input>Ver Operadores</label>
-                          <label class="checkbox-inline"><input type="checkbox" name="permisos[operadores_crear]" {if $} checked{/if}></input>Crear Operador</label>
-                          <label class="checkbox-inline"><input type="checkbox" name="permisos[operadores_editar]" {if $} checked{/if}></input>Editar Operador</label>
-                          <label class="checkbox-inline"><input type="checkbox" name="permisos[operadores_eliminar]" {if $} checked{/if}></input>Eliminar Operador</label>
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[operadores_ver]" {if $operadores_ver} checked{/if}></input>Ver Operadores</label>
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[operadores_crear]" {if $operadores_crear} checked{/if}></input>Crear Operador</label>
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[operadores_editar]" {if $operadores_editar} checked{/if}></input>Editar Operador</label>
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[operadores_eliminar]" {if $operadores_eliminar} checked{/if}></input>Eliminar Operador</label>
                         </div>
                       </div>
                 </div>

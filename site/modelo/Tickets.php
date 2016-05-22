@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace Modelo;
 
 /**
@@ -24,7 +22,7 @@ class Tickets
     /**
      * @var string
      *
-     * @Column(name="descripcion", type="string", length=200, nullable=false)
+     * @Column(name="descripcion", type="string", length=200, nullable=true)
      */
     private $descripcion;
 
@@ -142,11 +140,11 @@ class Tickets
     private $estado;
 
     /**
-     * @var \Prioridades
+     * @var \Prioridad
      *
      * @Id
      * @GeneratedValue(strategy="NONE")
-     * @OneToOne(targetEntity="Prioridades")
+     * @OneToOne(targetEntity="Prioridad")
      * @JoinColumns({
      *   @JoinColumn(name="prioridad_id", referencedColumnName="prioridad_id")
      * })
@@ -613,11 +611,11 @@ class Tickets
     /**
      * Set prioridad
      *
-     * @param \Prioridades $prioridad
+     * @param \Prioridad $prioridad
      *
      * @return Tickets
      */
-    public function setPrioridad(Prioridades $prioridad)
+    public function setPrioridad(Prioridad $prioridad)
     {
         $this->prioridad = $prioridad;
 
@@ -627,7 +625,7 @@ class Tickets
     /**
      * Get prioridad
      *
-     * @return \Prioridades
+     * @return \Prioridad
      */
     public function getPrioridad()
     {

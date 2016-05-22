@@ -48,7 +48,7 @@ js=''
                             </div>
                         </div>
                         <!--color end -->
-                        <!-- Orden Picker -->
+                        <!-- Orden Picker -- >
                         <div class="box-body pad">
                             <label for="inputColor" class="col-sm-2 control-label">Orden</label>
                             <div class="col-sm-5">

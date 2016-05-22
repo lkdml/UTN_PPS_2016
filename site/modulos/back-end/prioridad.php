@@ -11,7 +11,7 @@ $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
                   \CORE\Controlador\Config::getPublic('Ruta_Back').'js/',
                   \CORE\Controlador\Config::getPublic('Ruta_Back').'imagenes/');
 
-$Prioridades = $em->getRepository('Modelo\Prioridades')->findAll();
+$Prioridades = $em->getRepository('Modelo\Prioridad')->findAll();
     $vm->assign('Prioridades',$Prioridades);                  
 
 
@@ -23,7 +23,7 @@ switch(strtolower($_POST["accion"])){
     break;
   case ("editar"):
     //TODO: falta validar permisos para esta accion.
-    $Prioridad = $em->getRepository('Modelo\Prioridades')->find($_POST["prioridadId"][0]);
+    $Prioridad = $em->getRepository('Modelo\Prioridad')->find($_POST["prioridadId"][0]);
     $vm->assign('Prioridad',$Prioridad);
     break;
   case ("borrar"):

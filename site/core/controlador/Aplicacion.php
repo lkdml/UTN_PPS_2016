@@ -132,6 +132,7 @@ class Aplicacion {
         $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
         $Operador =  $em->getRepository('Modelo\Operador')->findBy(array('nombreUsuario'=>$operador));
         if (!empty($Operador)){
+            //var_dump($Operador[0]->verificarClave(123));die;
             if ($Operador[0]->verificarClave($clave)){
                 $app->loggedIn = true;
                 $app->setOperador($Operador[0]); 

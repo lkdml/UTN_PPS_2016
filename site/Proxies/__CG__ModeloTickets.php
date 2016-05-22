@@ -554,7 +554,7 @@ class Tickets extends \Modelo\Tickets implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setPrioridad(\Modelo\Prioridades $prioridad)
+    public function setPrioridad(\Modelo\Prioridad $prioridad)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setPrioridad', [$prioridad]);

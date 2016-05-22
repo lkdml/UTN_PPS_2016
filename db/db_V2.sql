@@ -20,7 +20,7 @@ USE `tmh` ;
 CREATE TABLE IF NOT EXISTS `tmh`.`categoria_anuncios` (
   `categoria_id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
-  `icono` NVARCHAR(15) NULL,
+  `icono` VARCHAR(15) NULL,
   PRIMARY KEY (`categoria_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -56,10 +56,10 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `tmh`.`departamento` (
   `departamento_id` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
-  `descripcion` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(45) NULL,
   `padre_depto_id` INT NULL,
   `visibilidad_usuario` SMALLINT NOT NULL,
-  `orden` INT NOT NULL,
+  `orden` INT NULL,
   `operador_default_id` INT NULL,
   PRIMARY KEY (`departamento_id`))
 ENGINE = InnoDB
@@ -90,10 +90,10 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `tmh`.`ticket_estado` (
   `estado_id` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
-  `descripcion` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(45) NULL,
   `color` VARCHAR(45) NOT NULL,
   `autocierre` TINYINT(1) NOT NULL,
-  `orden` INT NOT NULL,
+  `orden` INT NULL,
   PRIMARY KEY (`estado_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -105,7 +105,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `tmh`.`perfil` (
   `perfil_id` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
-  `descripcion` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(45) NULL,
   `estado` TINYINT(1) NOT NULL,
   PRIMARY KEY (`perfil_id`))
 ENGINE = InnoDB
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`operador` (
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NOT NULL,
   `nombre_usuario` VARCHAR(45) NOT NULL,
-  `clave` VARCHAR(45) NOT NULL,
+  `clave` VARCHAR(60) NOT NULL,
   `firma_mensaje` VARCHAR(245) NULL,
   `email` VARCHAR(225) NOT NULL,
   `celular` VARCHAR(45) NULL,
@@ -180,14 +180,14 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `tmh`.`prioridades`
+-- Table `tmh`.`prioridad`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`prioridades` (
+CREATE TABLE IF NOT EXISTS `tmh`.`prioridad` (
   `prioridad_id` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
-  `descripcion` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(45) NULL,
   `color` VARCHAR(45) NOT NULL,
-  `orden` INT NOT NULL,
+  `orden` INT NULL,
   PRIMARY KEY (`prioridad_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -232,7 +232,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `tmh`.`ticket_tipo` (
   `tipo_ticket_id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
-  `descripcion` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(45) NULL,
   PRIMARY KEY (`tipo_ticket_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -244,7 +244,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `tmh`.`sla` (
   `sla_id` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
-  `descripcion` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(45) NULL,
   `departamento_origen` INT(11) NULL,
   `estado_origen` INT(11) NULL,
   `prioridad_origen` INT(11) NULL,
@@ -318,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`tickets` (
   `estado_id` INT(11) NOT NULL,
   `prioridad_id` INT(11) NOT NULL,
   `departamento_id` INT(11) NOT NULL,
-  `descripcion` VARCHAR(200) NOT NULL,
+  `descripcion` VARCHAR(200) NULL,
   `numero_Ticker` INT NOT NULL,
   `email_queue_id` INT NOT NULL,
   `asignado` TINYINT(1) NULL,
@@ -352,7 +352,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`tickets` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_ticket_prioridad`
     FOREIGN KEY (`prioridad_id`)
-    REFERENCES `tmh`.`prioridades` (`prioridad_id`)
+    REFERENCES `tmh`.`prioridad` (`prioridad_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_ticket_departamento`

@@ -23,7 +23,7 @@ if (validarRequisitos()){
         if (($_GET['actualiza']=='clave')){
             $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
             if (($getOperador->verificarClave($_POST["clave"])) && ($_POST["nuevaclave1"]==$_POST["nuevaclave2"])){
-                $getOperador->setClave($_POST["nuevaclave1"]);
+                $getOperador->setClave($getOperador->encriptarClave($_POST["nuevaclave1"]));
             }
             $em->persist($getOperador);
             $em->flush();
@@ -63,8 +63,10 @@ function setearOperador(Operador $operador,$em){
     $operador->setNombre($_POST["nombre"]);
     $operador->setApellido($_POST["apellido"]);
     $operador->setNombreUsuario($_POST["username"]);
+    
     if (($_GET['Operador']==null)){
-        $operador->setClave($_POST["nuevaclave1"]);
+        var_dump($operador->encriptarClave($_POST["nuevaclave1"]));
+        $operador->encriptarClave($_POST["nuevaclave1"]);
     }
     $operador->setEmail($_POST["email"]);
     $operador->setCelular($_POST["tel"]);
@@ -78,7 +80,6 @@ function setearOperador(Operador $operador,$em){
     if (isset($_POST['Departamentos_asignados'])){
         foreach ($_POST['Departamentos_asignados'] as $idDepto){
             $departamento = $em->find('Modelo\Departamento',$idDepto);
-            echo"Aca DEPARTAMENTO <pre>";Doctrine\Common\Util\Debug::dump($departamento);echo"</pre>";
             if (!is_null($departamento)){
                 $operador->addDepartamento($departamento);
             }

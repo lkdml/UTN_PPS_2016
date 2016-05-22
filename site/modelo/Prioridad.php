@@ -1,16 +1,14 @@
 <?php
 
-
-
 namespace Modelo;
 
 /**
- * Prioridades
+ * Prioridad
  *
- * @Table(name="prioridades")
+ * @Table(name="prioridad")
  * @Entity
  */
-class Prioridades
+class Prioridad
 {
     /**
      * @var integer
@@ -31,7 +29,7 @@ class Prioridades
     /**
      * @var string
      *
-     * @Column(name="descripcion", type="string", length=45, nullable=false)
+     * @Column(name="descripcion", type="string", length=45, nullable=true)
      */
     private $descripcion;
 
@@ -45,7 +43,7 @@ class Prioridades
     /**
      * @var integer
      *
-     * @Column(name="orden", type="integer", nullable=false)
+     * @Column(name="orden", type="integer", nullable=true)
      */
     private $orden;
 
@@ -65,7 +63,7 @@ class Prioridades
      *
      * @param string $nombre
      *
-     * @return Prioridades
+     * @return Prioridad
      */
     public function setNombre($nombre)
     {
@@ -89,7 +87,7 @@ class Prioridades
      *
      * @param string $descripcion
      *
-     * @return Prioridades
+     * @return Prioridad
      */
     public function setDescripcion($descripcion)
     {
@@ -113,7 +111,7 @@ class Prioridades
      *
      * @param string $color
      *
-     * @return Prioridades
+     * @return Prioridad
      */
     public function setColor($color)
     {
@@ -137,7 +135,7 @@ class Prioridades
      *
      * @param integer $orden
      *
-     * @return Prioridades
+     * @return Prioridad
      */
     public function setOrden($orden)
     {
@@ -155,6 +153,5 @@ class Prioridades
     {
         return $this->orden;
     }
-    
 }
 
