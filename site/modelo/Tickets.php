@@ -15,7 +15,7 @@ class Tickets
      *
      * @Column(name="ticket_id", type="integer", nullable=false)
      * @Id
-     * @GeneratedValue(strategy="NONE")
+     * @GeneratedValue(strategy="IDENTITY")
      */
     private $ticketId;
 

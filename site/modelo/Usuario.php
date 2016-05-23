@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace Modelo;
 
 /**
@@ -17,7 +15,7 @@ class Usuario
      *
      * @Column(name="usuario_id", type="integer", nullable=false)
      * @Id
-     * @GeneratedValue(strategy="NONE")
+     * @GeneratedValue(strategy="IDENTITY")
      */
     private $usuarioId;
 
@@ -38,14 +36,14 @@ class Usuario
     /**
      * @var string
      *
-     * @Column(name="apellido", type="string", length=45, nullable=false)
+     * @Column(name="apellido", type="string", length=45, nullable=true)
      */
     private $apellido;
 
     /**
      * @var string
      *
-     * @Column(name="Clave", type="string", length=45, nullable=false)
+     * @Column(name="Clave", type="string", length=60, nullable=false)
      */
     private $clave;
 
@@ -117,14 +115,14 @@ class Usuario
      *
      * @Column(name="activo", type="boolean", nullable=false)
      */
-    private $activo;
+    private $activo = '0';
 
     /**
      * @var boolean
      *
      * @Column(name="eliminado", type="boolean", nullable=false)
      */
-    private $eliminado;
+    private $eliminado = '0';
 
     /**
      * @var \Empresa
