@@ -70,7 +70,7 @@ js=''
               <tr>
                   <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
                   <th>Nombre</th>
-                  <th>Descripción</th>
+                  <th>Icono</th>
               </tr>
           </thead>
           <tbody>
@@ -78,7 +78,7 @@ js=''
                   <tr>
                       <td><input class="case" type="checkbox" name="categoriaId[]" value="{$categoria->getCategoriaId()}" ></input></td>
                       <td>{$categoria->getNombre()}</td>
-                      <td>{$categoria->getIcono()}</td>
+                      <td><span class='glyphicon {$categoria->getIcono()}'></span></td>
                   </tr>
               {/foreach}
           </tbody>

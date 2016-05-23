@@ -22,7 +22,7 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/categoriaAction.php{if $Categoria}?categoriaId={$Categoria->getCategoriaId()}{/if}" class="form-horizontal" method="post">
+        <form action="{$rutaCSS}../controlador/categoriaAction.php{if $Categoria}?categoriaId={$Categoria->getCategoriaId()}{/if}" class="form-horizontal"  method="post">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
@@ -36,10 +36,7 @@ js=''
                          <div class="box-body pad">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Icono</label>
                             <div class="col-sm-5">
-                                
-                                   
-                                
-                              <input type="text" class="form-control" id="inputDescripcion" name="descripcion" {if $Categoria}value='{$Categoria->getDescripcion()}'{/if}>
+                                <button role="iconpicker" data-search="false" data-placement="bottom" data-rows="5" data-cols="6" id="icono" name="icono" {if $Categoria}data-icon='{$Categoria->getIcono()}'{/if} ></button>
                             </div>
                         </div>
                         <!-- body pad end -->
@@ -76,5 +73,13 @@ js=''
 <script src="{$rutaJS}demo.js"></script>
 <!--Iconpicker -->
 <script src="{$rutaJS}bootstrap-iconpicker.js"></script>
+
+{literal}
+<script>
+    $("#icono").click(function(e){
+    e.preventDefault();
+    });
+</script>
+{/literal}
 
  {include file="footer.tpl"}
