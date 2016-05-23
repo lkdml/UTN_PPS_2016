@@ -64,10 +64,10 @@ class Anuncio extends \Modelo\Anuncio implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'anuncioId', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'empresaId', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'titulo', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'contenido', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'fechaCreacion', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'estado', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'fechaFinPublicacion', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'operadorId', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'categoria', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'empresa'];
+            return ['__isInitialized__', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'anuncioId', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'titulo', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'contenido', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'fechaCreacion', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'estado', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'fechaFinPublicacion', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'operadorId', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'categoria', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'empresa'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'anuncioId', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'empresaId', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'titulo', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'contenido', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'fechaCreacion', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'estado', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'fechaFinPublicacion', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'operadorId', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'categoria', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'empresa'];
+        return ['__isInitialized__', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'anuncioId', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'titulo', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'contenido', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'fechaCreacion', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'estado', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'fechaFinPublicacion', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'operadorId', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'categoria', '' . "\0" . 'Modelo\\Anuncio' . "\0" . 'empresa'];
     }
 
     /**
@@ -197,32 +197,6 @@ class Anuncio extends \Modelo\Anuncio implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAnuncioId', []);
 
         return parent::getAnuncioId();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setEmpresaId($empresaId)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEmpresaId', [$empresaId]);
-
-        return parent::setEmpresaId($empresaId);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getEmpresaId()
-    {
-        if ($this->__isInitialized__ === false) {
-            return (int)  parent::getEmpresaId();
-        }
-
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEmpresaId', []);
-
-        return parent::getEmpresaId();
     }
 
     /**

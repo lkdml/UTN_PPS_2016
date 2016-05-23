@@ -22,15 +22,6 @@ class Anuncio
     private $anuncioId;
 
     /**
-     * @var integer
-     *
-     * @Column(name="empresa_id", type="integer", nullable=false)
-     * @Id
-     * @GeneratedValue(strategy="NONE")
-     */
-    private $empresaId;
-
-    /**
      * @var string
      *
      * @Column(name="titulo", type="string", length=45, nullable=false)
@@ -121,30 +112,6 @@ class Anuncio
     public function getAnuncioId()
     {
         return $this->anuncioId;
-    }
-
-    /**
-     * Set empresaId
-     *
-     * @param integer $empresaId
-     *
-     * @return Anuncio
-     */
-    public function setEmpresaId($empresaId)
-    {
-        $this->empresaId = $empresaId;
-
-        return $this;
-    }
-
-    /**
-     * Get empresaId
-     *
-     * @return integer
-     */
-    public function getEmpresaId()
-    {
-        return $this->empresaId;
     }
 
     /**

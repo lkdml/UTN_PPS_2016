@@ -20,7 +20,7 @@ USE `tmh` ;
 CREATE TABLE IF NOT EXISTS `tmh`.`categoria_anuncios` (
   `categoria_id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
-  `icono` VARCHAR(15) NULL,
+  `icono` VARCHAR(60) NULL,
   PRIMARY KEY (`categoria_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -31,7 +31,6 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`anuncio` (
   `anuncio_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `empresa_id` INT(11) NOT NULL,
   `categoria_id` INT NOT NULL,
   `titulo` VARCHAR(45) NOT NULL,
   `contenido` VARCHAR(250) CHARACTER SET 'utf8' NOT NULL,
@@ -39,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`anuncio` (
   `estado` TINYINT(1) NOT NULL,
   `fecha_fin_publicacion` DATETIME NULL,
   `operador_id` INT NOT NULL,
-  PRIMARY KEY (`anuncio_id`, `empresa_id`, `categoria_id`),
+  PRIMARY KEY (`anuncio_id`, `categoria_id`),
   INDEX `fk_anuncios_categoria_idx` (`categoria_id` ASC),
   CONSTRAINT `fk_anuncios_categoria`
     FOREIGN KEY (`categoria_id`)

@@ -31,7 +31,7 @@ class CategoriaAnuncios
     /**
      * @var string
      *
-     * @Column(name="icono", type="string", length=15, nullable=true)
+     * @Column(name="icono", type="string", length=60, nullable=true)
      */
     private $icono;
 
