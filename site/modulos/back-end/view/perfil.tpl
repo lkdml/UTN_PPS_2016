@@ -252,8 +252,11 @@ js=''
             </div>
             <!-- Fin Columna Derecha -->
  
-            <div class="pull-right">
+            <div class="pull-left">
               <button type="submit" class="btn btn-warning">Enviar</button>
+            </div>
+            <div class="pull-right">
+              <button onclick="history.go(-1);" class="btn btn-danger pull-right">Cancelar</button>
             </div>
         </form>
         <!-- form end -->

@@ -195,9 +195,9 @@ js=''
                                 </div>
                             </div>
                           </div>
-                          <div class="pull-right">
-                            <button type="submit" class="btn btn-warning" >Enviar</button>
-                          </div>
+                          
+                            <button type="submit" class="btn btn-info pull-left">Enviar</button>
+                            <button onclick="history.go(-1);" class="btn btn-danger pull-right">Cancelar</button>
                           </form>
                         </div>
 
