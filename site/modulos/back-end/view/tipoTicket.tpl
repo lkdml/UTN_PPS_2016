@@ -1,5 +1,5 @@
 {include file="header.tpl"
-css=''
+css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css">'
 js=''
 }
 {include file="panelLateral.tpl"}
@@ -22,7 +22,7 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/tipoTicketAction.php{if $TicketTipo}?tipoTicket={$TicketTipo->getTipoTicketId()}{/if}" class="form-horizontal"  method="post">
+        <form action="{$rutaCSS}../controlador/tipoTicketAction.php{if $TicketTipo}?tipoTicket={$TicketTipo->getTipoTicketId()}{/if}" id= "nuevoTipoTicketForm" class="form-horizontal"  method="post">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
@@ -70,5 +70,9 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+<!-- Validaciones -->
+<script src="{$rutaJS}jquery-validator-min.js"></script>
+<script src="{$rutaJS}validacionNuevoTipoDeTicket.js"></script>
+
 
  {include file="footer.tpl"}

@@ -1,5 +1,5 @@
 {include file="header.tpl"
-css=''
+css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css">'
 js=''
 }
 {include file="panelLateral.tpl"}
@@ -22,7 +22,7 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/slaAction.php" class="form-horizontal">
+        <form action="{$rutaCSS}../controlador/slaAction.php" id = "nuevoSLAForm" class="form-horizontal">
             <div class="box-body">
                 <div class="box">
                     <div class="box-header">
@@ -33,22 +33,23 @@ js=''
                         <div class="box-body pad">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputNombre">
+                              <input type="text" class="form-control" id="inputNombre" name="nombre">
                             </div>
                         </div>
                         <!-- body pad end -->
                          <div class="box-body pad">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputDescripcion">
+                              <input type="text" class="form-control" id="inputDescripcion" name="descripcion">
                             </div>
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
                             <label for="comboDeptoOrigen" class="col-sm-2 control-label">Departamento</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Todos</option>
+                                <select class="form-control select2" style="width: 100%;" id="ddDeptos" name="ddDeptos">
+                                  <option value = "">Seleccione un Departamento...</option>
+                                  <option>Todos</option>
                                   <option>Depto2</option>
                                   <option>Depto3</option>
                                   <option>Depto4</option>
@@ -63,8 +64,9 @@ js=''
                         <div class="box-body pad">
                             <label for="comboEstadoOrigen" class="col-sm-2 control-label">Estado</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Todos</option>
+                                <select class="form-control select2" style="width: 100%;" id = "ddEstados" name = "ddEstados">
+                                  <option value = "">Seleccione un Estado...</option>
+                                  <option>Todos</option>
                                   <option>Estado1</option>
                                   <option>Estado2</option>
                                 </select>
@@ -75,8 +77,9 @@ js=''
                         <div class="box-body pad">
                             <label for="comboPrioridadOrigen" class="col-sm-2 control-label">Prioridad</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Todas</option>
+                                <select class="form-control select2" style="width: 100%;" id = "ddPrioridades" name="ddPrioridades">
+                                  <option value = "">Seleccione una Prioridad...</option>
+                                  <option>Todas</option>
                                   <option>Prioridad1</option>
                                   <option>Prioridad2</option>
                                   <option>Prioridad3</option>
@@ -100,7 +103,7 @@ js=''
                         <div class="box-body pad">
                             <label for="inputCondicionHoras" class="col-sm-2 control-label">Horas</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputCondicionHoras">
+                              <input type="text" class="form-control" id="inputCondicionHoras" name = "horas">
                             </div>
                         </div>
                         <!-- body pad end -->
@@ -120,9 +123,9 @@ js=''
                          <div class="box-body pad">
                             <label for="comboDeptoOrigen" class="col-sm-2 control-label">Departamento</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Todos</option>
-                                  <option>Depto2</option>
+                                <select class="form-control select2" style="width: 100%;" id = "ddDeptoOrigen" name="ddDeptoOrigen">
+                                  <option value = "">Seleccione un Departamento...</option>
+                                  <option>Todas</option>
                                   <option>Depto3</option>
                                   <option>Depto4</option>
                                   <option>Depto5</option>
@@ -136,8 +139,9 @@ js=''
                         <div class="box-body pad">
                             <label for="comboEstadoOrigen" class="col-sm-2 control-label">Estado</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Todos</option>
+                                <select class="form-control select2" style="width: 100%;" id="ddEstadosOrigen" name="ddEstadosOrigen">
+                                  <option value = "">Seleccione un Estado...</option>
+                                  <option>Todos</option>
                                   <option>Estado1</option>
                                   <option>Estado2</option>
                                 </select>
@@ -148,8 +152,9 @@ js=''
                         <div class="box-body pad">
                             <label for="comboPrioridadOrigen" class="col-sm-2 control-label">Prioridad</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Todas</option>
+                                <select class="form-control select2" style="width: 100%;" id= "ddPrioridadOrigen" name= "ddPrioridadOrigen">
+                                  <option value = "">Seleccione una Prioridad...</option>
+                                  <option>Todas</option>
                                   <option>Prioridad1</option>
                                   <option>Prioridad2</option>
                                   <option>Prioridad3</option>
@@ -161,8 +166,8 @@ js=''
                          <div class="box-body pad">
                             <label for="comboPrioridadOrigen" class="col-sm-2 control-label">Operador</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Operador1</option>
+                                <select class="form-control select2" style="width: 100%;" id="ddOperadores" name="ddOperadores">
+                                  <option value = "">Seleccione un Operador...</option>
                                   <option>Operador2</option>
                                   <option>Operador3</option>
                                   <option>Operador4</option>
@@ -205,5 +210,8 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+<!-- Validaciones -->
+<script src="{$rutaJS}jquery-validator-min.js"></script>
+<script src="{$rutaJS}validacionNuevoSLA.js"></script>
 
  {include file="footer.tpl"}

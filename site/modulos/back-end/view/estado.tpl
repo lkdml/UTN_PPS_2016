@@ -1,5 +1,5 @@
 {include file="header.tpl"
-css=''
+css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css">'
 js=''
 }
 {include file="panelLateral.tpl"}
@@ -22,14 +22,14 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/estadoAction.php{if $Estado}?estadoId={$Estado->getEstadoId()}{/if}" class="form-horizontal" method="post">
+        <form action="{$rutaCSS}../controlador/estadoAction.php{if $Estado}?estadoId={$Estado->getEstadoId()}{/if}" class="form-horizontal" method="post" id = "nuevoEstadoForm">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
                         <div class="box-body pad">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" name="nombre"
+                              <input type="text" class="form-control" id="nombre" name="nombre"
                                 {if $Estado}
                                     value='{$Estado->getNombre()}'
                                 {/if}
@@ -41,7 +41,7 @@ js=''
                          <div class="box-body pad">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" name="descripcion"
+                              <input type="text" class="form-control" id="descripcion" name="descripcion"
                                 {if $Estado}
                                     value='{$Estado->getDescripcion()}'
                                 {/if}
@@ -54,7 +54,7 @@ js=''
                         <div class="box-body pad">
                             <label for="inputColor" class="col-sm-2 control-label">Color</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control my-colorpicker1" name="color"
+                                <input type="text" class="form-control my-colorpicker1" id="color" name="color"
                                 {if $Estado}
                                     value='{$Estado->getColor()}'
                                 {/if}
@@ -133,5 +133,10 @@ js=''
   });
 </script>
 {/literal}
+
+
+<!-- Validaciones -->
+<script src="{$rutaJS}jquery-validator-min.js"></script>
+<script src="{$rutaJS}validacionNuevoEstado.js"></script>
   
  {include file="footer.tpl"}

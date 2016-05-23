@@ -1,5 +1,5 @@
 {include file="header.tpl"
-css=''
+css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css">'
 js=''
 }
 {include file="panelLateral.tpl"}
@@ -22,7 +22,7 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/departamentoAction.php{if $Departamento}?Departamento={$Departamento->getDepartamentoId()}{/if}" class="form-horizontal"  method="post">
+        <form action="{$rutaCSS}../controlador/departamentoAction.php{if $Departamento}?Departamento={$Departamento->getDepartamentoId()}{/if}" class="form-horizontal" id="nuevoDepartamentoForm" method="post">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
@@ -44,7 +44,8 @@ js=''
                             <label for="inputDescripcion" class="col-sm-2 control-label">Departamento Padre</label>
                             <div class="col-sm-5">
                                 <select class="form-control select2" id="DepartamentoPadre" name="idDeptoPadre" style="width: 100%;">
-                                    <option value = "">Ninguno</option>
+                                    <option value = "">Seleccione un Departamento Padre...</option>
+                                    <option value = "-1">Ninguno</option>
                                     {if $Departamentos}
                                         {foreach from=$Departamentos item=departamento}
                                           <option value ="{$departamento->getDepartamentoId()}"
@@ -78,6 +79,7 @@ js=''
                             <label for="inputDescripcion" class="col-sm-2 control-label">Orden</label>
                             <div class="col-sm-5">
                                 <select class="form-control select2" id="DeptoOrden" name="orden" style="width: 100%;">
+                                    <option value = "">Seleccione un Orden...</option>
                                     <option value = "1">1</option>
                                     <option value = "2">2</option>
                                     <option value = "3">3</option>
@@ -92,6 +94,7 @@ js=''
                             <label for="inputDescripcion" class="col-sm-2 control-label">Operador Default</label>
                             <div class="col-sm-5">
                                 <select class="form-control select2" id="DeptoOperadorDefault" name="operadorDefault" style="width: 100%;">
+                                    <option value = "">Seleccione un  Operador...</option>
                                     <option value = "-1">Ninguno</option>
                                         {if $Operadores}
                                             {foreach from=$Operadores item=operador}
@@ -180,5 +183,8 @@ jQuery(document).ready(function($) {
 });
 </script>
 
+<!-- Validaciones -->
+<script src="{$rutaJS}jquery-validator-min.js"></script>
+<script src="{$rutaJS}validacionNuevoDepartamento.js"></script>
 
  {include file="footer.tpl"}

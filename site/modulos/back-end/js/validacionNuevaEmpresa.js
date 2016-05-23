@@ -14,14 +14,14 @@ $().ready(function() {
         // Specify the validation error messages
         messages: {
              razonsocial: {
-                required: "Por favor, ingresa la Razón Social."},
+                required: "(*)Por favor, ingresa la Razón Social."},
             pais: {
-                required: "Por favor, ingresa el país."},
+                required: "(*)Por favor, ingresa el país."},
             direccion: {
-               required: "Por favor, ingresa la dirección.",
+               required: "(*)Por favor, ingresa la dirección.",
             },
             web:{
-                url:"Por favor ingrese la web de forma correcta"
+                url:"(*)Por favor ingrese la web de forma correcta"
             }
            
         }

@@ -26,7 +26,7 @@ js=''
                 <div class="box-header with-border">
                     <h3 class="box-title">Filtros</h3>
                 </div>
-                <form action="{$rutaCSS}../controlador/procesarInformeAction.php" class="form-horizontal">
+                <form action="{$rutaCSS}../controlador/procesarInformeAction.php" class="form-horizontal" id = "nuevoInformeForm">
                     <div class="box-body">
                         
                         <!--Row Desde Hasta -->
@@ -39,7 +39,7 @@ js=''
                                             <div class="input-group-addon">
                                                 <i class="fa fa-calendar"></i>
                                             </div>
-                                            <input type="text" class="form-control" id="desdehasta">
+                                            <input type="text" class="form-control" id="desdehasta" name="desdehasta">
                                         </div>
                                         <!-- /.input group -->
                                     </div>
@@ -56,8 +56,8 @@ js=''
                                 <div class="col-md-12">
                                     <label for="comboEmpresa" class="col-md-2 control-label">Departamento</label>
                                     <div class="col-md-4">
-                                        <select class="form-control select2" style="width: 100%;">
-                                            <option selected="selected">Seleccionar</option>
+                                        <select class="form-control select2" style="width: 100%;" name ="ddDepartamento" id="ddDepartamento">
+                                            <option value = "" >Departamento1</option>
                                             <option>Departamento2</option>
                                             <option>Departamento3</option>
                                         </select>
@@ -150,6 +150,5 @@ js=''
   });
 </script>
 {/literal}
-
 
  {include file="footer.tpl"}

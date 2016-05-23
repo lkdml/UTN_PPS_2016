@@ -1,5 +1,5 @@
 {include file="header.tpl"
-css=''
+css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css">'
 js=''
 }
 {include file="panelLateral.tpl"}
@@ -24,7 +24,7 @@ js=''
         <h3>Alta / Modificación de Perfil</h3>
         <br>
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/perfilAction.php{if $perfil}?perfil={$perfil}{/if}" class="form-horizontal" method="post">
+        <form action="{$rutaCSS}../controlador/perfilAction.php{if $perfil}?perfil={$perfil}{/if}"  class="form-horizontal" id="nuevoPerfilOperadorForm" method="post">
               <!-- Columna Izquierda -->
               <div class="col-md-6">
                 <!-- Nombre y Descripcion -->
@@ -39,9 +39,9 @@ js=''
                             </div>
                           </div>
                           <div class="form-group">
-                            <label for="inputNombre" class="col-sm-2 control-label">Descripcion</label>
+                            <label for="inputDescripcion" class="col-sm-2 control-label">Descripcion</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" name="Descripcion"  {if $Descripcion}value={$Descripcion}{/if} placeholder="Descripcion del perfíl">
+                              <input class="form-control" id="inputDescripcion" name="Descripcion"  {if $Descripcion}value={$Descripcion}{/if} placeholder="Descripcion del perfíl">
                             </div>
                           </div>
                           <br>
@@ -272,6 +272,9 @@ js=''
 <!-- FastClick -->
 <script src="{$rutaJS}fastclick.js"></script>
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+<!-- Validaciones -->
+<script src="{$rutaJS}jquery-validator-min.js"></script>
+<script src="{$rutaJS}validacionNuevoPerfilOperador.js"></script>
 <script>
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
@@ -291,4 +294,6 @@ jQuery(document).ready(function($) {
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+
+
  {include file="footer.tpl"}

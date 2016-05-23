@@ -161,4 +161,6 @@ js=''
     CKEDITOR.replace('editor1');
   });
 </script>
+
+
  {include file="footer.tpl"}
