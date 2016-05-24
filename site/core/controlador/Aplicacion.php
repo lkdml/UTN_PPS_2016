@@ -9,13 +9,13 @@ class Aplicacion {
     public $session;
     private $usuario;
     private $loggedIn;
-    private $Operador;
+    private $operador;
     private static $instancia;
     
-    public function getOperador(){return $this->Operador;}
+    public function getoperador(){return $this->operador;}
     public function getUsuario(){return $this->usuario;}
     
-    public function setOperador($operador){$this->Operador = $operador;}
+    public function setoperador($operador){$this->operador = $operador;}
     
     /**
      * Retorna la instancia de si misma.
@@ -34,19 +34,18 @@ class Aplicacion {
     }
     
     public function guardarOperadorEnSession(){
-        if(!isset($_SESSION)) {
-           session_start();
-        }
-        //unset($_SESSION['Aplicacion']);
-        $_SESSION['Aplicacion']['Operador']=serialize($this->Operador);
+        $_SESSION['Aplicacion']['Operador']=serialize($this->operador);
     }
     
     public function recuperarOperadorDeSession(){
-        if(!isset($_SESSION)) {
-           session_start();
-        }
-        //unset($_SESSION['Aplicacion']);
-        $this->Operador=unserialize($_SESSION['Aplicacion']['Operador']);
+        $this->operador=unserialize($_SESSION['Aplicacion']['Operador']);
+    }
+    public function guardarUsuarioEnSession(){
+        $_SESSION['Aplicacion']['Usuario']=serialize($this->usuario);
+    }
+    
+    public function recuperarUsuarioDeSession(){
+        $this->operador=unserialize($_SESSION['Aplicacion']['Usuario']);
     }
 
     protected function __construct(){    }
@@ -72,15 +71,16 @@ class Aplicacion {
     * @param boolean $autentica
     */
     public static function startSession($backEnd=false,$autentica=false){
+            $app = Aplicacion::getInstancia();
             if(!isset($_SESSION)) {
-                       session_start();
+                session_start();
             }
             //Si quiero autenticar al usuario
             if ($autentica==true) {
-                \CORE\Controlador\Aplicacion::autenticarFrontOBack($backEnd);
+                $app->autenticarFrontOBack($backEnd);
             }
             //Si no esta authenticado,  mato todo
-            if (!(\CORE\Controlador\Aplicacion::isLoggedIn($backEnd))) {
+            if (!($app->isLoggedIn($backEnd))) {
                 session_destroy();
                 if ($backEnd){
                         header("location:/operador.php");
@@ -91,26 +91,29 @@ class Aplicacion {
             }
     }
     
-    public static function autenticarFrontOBack($backend){
+    public function autenticarFrontOBack($backend){
             if ($backend==true) {
-                $_SESSION['tiempo']=strtotime('+5 minute') ;
+                $_SESSION['tiempo']=strtotime('+10 minute') ;
                 $_SESSION["backAutenticado"]=true;
             } else {
-                $_SESSION['tiempo']=strtotime('+5 minute') ;
+                $_SESSION['tiempo']=strtotime('+10 minute') ;
                 $_SESSION["frontAutenticado"]=true;    
             }
     }
 
-    public static function isLoggedIn($backend){
+    public function isLoggedIn($backend){
             $rta=false;
             if ($backend)
             {
                 if ($_SESSION["backAutenticado"]==true) {
                     if (isset($_SESSION['tiempo'])) {
                         if ($_SESSION['tiempo'] > time()) {
-                            $_SESSION['tiempo'] = strtotime('+5 minute');
+                            $_SESSION['tiempo'] = strtotime('+10 minute');
                             $rta=true;
                         }
+                    }
+                    if (isset($_SESSION['Aplicacion']['Operador'])){
+                        $this->recuperarOperadorDeSession();
                     }
                 }
             } else {
@@ -121,22 +124,24 @@ class Aplicacion {
                             $rta=true;
                         }
                     }
+                    if (isset($_SESSION['Aplicacion']['Usuario'])){
+                        $this->recuperarUsuarioDeSession();
+                    }
                 }
             }
     return $rta;
     }
 
 
-    public function loginOperador($operador,$clave){
-        $app = \CORE\Controlador\Aplicacion::getInstancia();
+    public function loginoperador($operador,$clave){
         $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-        $Operador =  $em->getRepository('Modelo\Operador')->findBy(array('nombreUsuario'=>$operador));
-        if (!empty($Operador)){
-            //var_dump($Operador[0]->verificarClave(123));die;
-            if ($Operador[0]->verificarClave($clave)){
-                $app->loggedIn = true;
-                $app->setOperador($Operador[0]); 
-                \CORE\Controlador\Aplicacion::startSession(true,true);
+        $operador =  $em->getRepository('Modelo\Operador')->findBy(array('nombreUsuario'=>$operador));
+        if (!empty($operador)){
+            if ($operador[0]->verificarClave($clave)){
+                $this->loggedIn = true;
+                $this->setoperador($operador[0]); 
+                $this->startSession(true,true);
+                $this->guardarOperadorEnSession();
                 return true;
             }
         }
@@ -145,8 +150,8 @@ class Aplicacion {
     
     public function getPermisos(){
         $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-        var_dump($this->Operador->getPerfil());
-        $Permisos =  $em->getRepository('Modelo\Perfil')->find($this->Operador->getPerfil());
+        var_dump($this->operador->getPerfil());
+        $Permisos =  $em->getRepository('Modelo\Perfil')->find($this->operador->getPerfil());
         var_dump($Permisos);die;
         return $Permisos;
     }
@@ -155,7 +160,7 @@ class Aplicacion {
             session_unset();
             session_destroy();
             unset($this->usuario);
-            unset($this->Operador);
+            unset($this->operador);
     }
 
 

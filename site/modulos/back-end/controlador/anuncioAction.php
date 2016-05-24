@@ -32,7 +32,7 @@ function setear(Anuncio $anuncio,$em){
     
      if (isset($_POST["fechaFinPublicacion"]))
     {
-        $anuncio->setFechaFinPublicacion($_POST["fechaFinPublicacion"]);
+        $anuncio->setFechaFinPublicacion(new \DateTime("now"));
     } else {
         $anuncio->setFechaFinPublicacion(null);
     }

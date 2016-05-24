@@ -7,6 +7,8 @@ use \CORE\Controlador\Aplicacion;
 Aplicacion::startSession($modoOP);
 
 use \Modelo\Ticket as Ticket;
+
+$test = new Ticket();
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 $ticket = $em->getRepository('Modelo\Ticket')->findAll();
 

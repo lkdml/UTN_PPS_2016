@@ -7,12 +7,11 @@ use \CORE\Controlador\Aplicacion;
 
 $app = Aplicacion::getInstancia();
 $app->startSession($modoOP);
-$app->recuperarOperadorDeSession();
+//$app->recuperarOperadorDeSession();
 /**$app->getPermisos();
 var_dump(Aplicacion::getInstancia()->getOperador()->getPerfil());
 
 die;**/
-
   $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateDir'),null);
   $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
                     \CORE\Controlador\Config::getPublic('Ruta_Back').'js/',

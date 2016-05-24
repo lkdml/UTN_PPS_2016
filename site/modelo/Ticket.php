@@ -5,124 +5,124 @@ namespace Modelo;
 /**
  * Ticket
  *
- * Table(name="ticket", indexes={Index(name="fk_ticket_usuario_idx", columns={"usuario_id"}), Index(name="fk_ticket_estado_idx", columns={"estado_id"}), Index(name="fk_ticket_prioridad_idx", columns={"prioridad_id"}), Index(name="fk_ticket_departamento_idx", columns={"departamento_id"}), Index(name="fk_ticket_operador_idx", columns={"operador_id"}), Index(name="fk_ticket_tipo_ticket_idx", columns={"tipo_ticket_id"})})
- * Entity
+ * @Table(name="ticket", indexes={@Index(name="fk_ticket_usuario_idx", columns={"usuario_id"}), @Index(name="fk_ticket_estado_idx", columns={"estado_id"}), @Index(name="fk_ticket_prioridad_idx", columns={"prioridad_id"}), @Index(name="fk_ticket_departamento_idx", columns={"departamento_id"}), @Index(name="fk_ticket_operador_idx", columns={"operador_id"}), @Index(name="fk_ticket_tipo_ticket_idx", columns={"tipo_ticket_id"})})
+ * @Entity
  */
 class Ticket
 {
     /**
      * @var integer
      *
-     * Column(name="ticket_id", type="integer", nullable=false)
-     * Id
-     * GeneratedValue(strategy="IDENTITY")
+     * @Column(name="ticket_id", type="integer", nullable=false)
+     * @Id
+     * @GeneratedValue(strategy="IDENTITY")
      */
     private $ticketId;
 
     /**
      * @var string
      *
-     * Column(name="descripcion", type="string", length=200, nullable=true)
+     * @Column(name="descripcion", type="string", length=200, nullable=true)
      */
     private $descripcion;
 
     /**
      * @var integer
      *
-     * Column(name="numero_Ticker", type="integer", nullable=false)
+     * @Column(name="numero_Ticker", type="integer", nullable=false)
      */
     private $numeroTicker;
 
     /**
      * @var integer
      *
-     * Column(name="email_queue_id", type="integer", nullable=false)
+     * @Column(name="email_queue_id", type="integer", nullable=false)
      */
     private $emailQueueId;
 
     /**
      * @var boolean
      *
-     * Column(name="asignado", type="boolean", nullable=true)
+     * @Column(name="asignado", type="boolean", nullable=true)
      */
     private $asignado;
 
     /**
      * @var integer
      *
-     * Column(name="owner_operador_id", type="integer", nullable=true)
+     * @Column(name="owner_operador_id", type="integer", nullable=true)
      */
     private $ownerOperadorId;
 
     /**
      * @var string
      *
-     * Column(name="asunto", type="string", length=45, nullable=false)
+     * @Column(name="asunto", type="string", length=45, nullable=false)
      */
     private $asunto;
 
     /**
      * @var \DateTime
      *
-     * Column(name="ultima_actividad", type="datetime", nullable=true)
+     * @Column(name="ultima_actividad", type="datetime", nullable=true)
      */
     private $ultimaActividad;
 
     /**
      * @var \DateTime
      *
-     * Column(name="ultima_actividad_User", type="datetime", nullable=true)
+     * @Column(name="ultima_actividad_User", type="datetime", nullable=true)
      */
     private $ultimaActividadUser;
 
     /**
      * @var \DateTime
      *
-     * Column(name="ultima_actividad_operador", type="datetime", nullable=true)
+     * @Column(name="ultima_actividad_operador", type="datetime", nullable=true)
      */
     private $ultimaActividadOperador;
 
     /**
      * @var \DateTime
      *
-     * Column(name="fecha_creacion", type="datetime", nullable=false)
+     * @Column(name="fecha_creacion", type="datetime", nullable=false)
      */
     private $fechaCreacion;
 
     /**
      * @var \DateTime
      *
-     * Column(name="fecha_vto", type="datetime", nullable=true)
+     * @Column(name="fecha_vto", type="datetime", nullable=true)
      */
     private $fechaVto;
 
     /**
      * @var boolean
      *
-     * Column(name="tiene_archivos", type="boolean", nullable=true)
+     * @Column(name="tiene_archivos", type="boolean", nullable=true)
      */
     private $tieneArchivos;
 
     /**
      * @var boolean
      *
-     * Column(name="editado", type="boolean", nullable=true)
+     * @Column(name="editado", type="boolean", nullable=true)
      */
     private $editado;
 
     /**
      * @var string
      *
-     * Column(name="custom_fields", type="text", nullable=true)
+     * @Column(name="custom_fields", type="text", nullable=true)
      */
     private $customFields;
 
     /**
      * @var \Usuario
      *
-     * ManyToOne(targetEntity="Usuario")
-     * JoinColumns({
-     *   JoinColumn(name="usuario_id", referencedColumnName="usuario_id")
+     * @ManyToOne(targetEntity="Usuario")
+     * @JoinColumns({
+     *   @JoinColumn(name="usuario_id", referencedColumnName="usuario_id")
      * })
      */
     private $usuario;
@@ -130,9 +130,9 @@ class Ticket
     /**
      * @var \TicketEstado
      *
-     * ManyToOne(targetEntity="TicketEstado")
-     * JoinColumns({
-     *   JoinColumn(name="estado_id", referencedColumnName="estado_id")
+     * @ManyToOne(targetEntity="TicketEstado")
+     * @JoinColumns({
+     *   @JoinColumn(name="estado_id", referencedColumnName="estado_id")
      * })
      */
     private $estado;
@@ -140,9 +140,9 @@ class Ticket
     /**
      * @var \Prioridad
      *
-     * ManyToOne(targetEntity="Prioridad")
-     * JoinColumns({
-     *   JoinColumn(name="prioridad_id", referencedColumnName="prioridad_id")
+     * @ManyToOne(targetEntity="Prioridad")
+     * @JoinColumns({
+     *   @JoinColumn(name="prioridad_id", referencedColumnName="prioridad_id")
      * })
      */
     private $prioridad;
@@ -150,9 +150,9 @@ class Ticket
     /**
      * @var \Departamento
      *
-     * ManyToOne(targetEntity="Departamento")
-     * JoinColumns({
-     *   JoinColumn(name="departamento_id", referencedColumnName="departamento_id")
+     * @ManyToOne(targetEntity="Departamento")
+     * @JoinColumns({
+     *   @JoinColumn(name="departamento_id", referencedColumnName="departamento_id")
      * })
      */
     private $departamento;
@@ -160,9 +160,9 @@ class Ticket
     /**
      * @var \Operador
      *
-     * ManyToOne(targetEntity="Operador")
-     * JoinColumns({
-     *   JoinColumn(name="operador_id", referencedColumnName="operador_id")
+     * @ManyToOne(targetEntity="Operador")
+     * @JoinColumns({
+     *   @JoinColumn(name="operador_id", referencedColumnName="operador_id")
      * })
      */
     private $operador;
@@ -170,9 +170,9 @@ class Ticket
     /**
      * @var \TicketTipo
      *
-     * ManyToOne(targetEntity="TicketTipo")
-     * JoinColumns({
-     *   JoinColumn(name="tipo_ticket_id", referencedColumnName="tipo_ticket_id")
+     * @ManyToOne(targetEntity="TicketTipo")
+     * @JoinColumns({
+     *   @JoinColumn(name="tipo_ticket_id", referencedColumnName="tipo_ticket_id")
      * })
      */
     private $tipoTicket;
@@ -180,7 +180,7 @@ class Ticket
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * ManyToMany(targetEntity="Archivos", mappedBy="ticket")
+     * @ManyToMany(targetEntity="Archivo", mappedBy="ticket")
      */
     private $archivoTicket;
 
@@ -685,11 +685,11 @@ class Ticket
     /**
      * Add archivoTicket
      *
-     * @param \Archivos $archivoTicket
+     * @param \Archivo $archivoTicket
      *
      * @return Ticket
      */
-    public function addArchivoTicket(Archivos $archivoTicket)
+    public function addArchivoTicket(Archivo $archivoTicket)
     {
         $this->archivoTicket[] = $archivoTicket;
 
@@ -699,9 +699,9 @@ class Ticket
     /**
      * Remove archivoTicket
      *
-     * @param \Archivos $archivoTicket
+     * @param \Archivo $archivoTicket
      */
-    public function removeArchivoTicket(Archivos $archivoTicket)
+    public function removeArchivoTicket(Archivo $archivoTicket)
     {
         $this->archivoTicket->removeElement($archivoTicket);
     }
