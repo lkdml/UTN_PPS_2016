@@ -49,8 +49,8 @@ switch(strtolower($_POST["accion"])){
     break;
   case ("borrar"):
     $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-    foreach ($_POST['anuncioId'] as $estado) {
-      $em->remove($em->getRepository('Modelo\Anuncio')->find($estado));
+    foreach ($_POST['anuncioId'] as $anuncio) {
+      $em->remove($em->getRepository('Modelo\Anuncio')->find($anuncio));
     }
     $em->flush();
     

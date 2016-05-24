@@ -13,6 +13,7 @@ $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
                   \CORE\Controlador\Config::getPublic('Ruta_Back').'imagenes/');
 $vm->assign('OperadorLogueado',$app->getOperador());
 
+use \Modelo\Anuncio as Anuncio;
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 $anuncios = $em->getRepository('Modelo\Anuncio')->findAll();
 

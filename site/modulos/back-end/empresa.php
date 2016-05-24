@@ -13,9 +13,32 @@ $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
                   \CORE\Controlador\Config::getPublic('Ruta_Back').'imagenes/');
 $vm->assign('OperadorLogueado',$app->getOperador());
 
-$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager()
-$empresa = $em->getRepository('Modelo\Empresa')->findAll();
+switch(strtolower($_POST["accion"])){
+  case ("nuevo"):
+    // Si el parametro que envio en accion es alta, solo debo validar permisos
+    //var_dump($_POST);die;
+   // $vm->assign('accion',$_POST["accion"]);
+    break;
+  case ("editar"):
+    //TODO: falta validar permisos para esta accion.
+    $Empresa = $em->getRepository('Modelo\Empresa')->find($_POST["empresaId"][0]);
+    $vm->assign('Empresa',$Empresa);
+    
+    break;
+  case ("borrar"):
+    $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+    foreach ($_POST['empresaId'] as $empresa) {
+      $em->remove($em->getRepository('Modelo\Empresa')->find($empresa));
+    }
+    $em->flush();
+    
+    header("location:/operador.php?modulo=empresas");
+    break;
+   default:
+     die;
+    header("location:/operador.php?modulo=empresas");
+    break;
+}
 
-$vm->assign('Empresas',$empresa);
 
 $vm->display('empresa.tpl');

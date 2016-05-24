@@ -17,6 +17,6 @@ use \Modelo\Empresa as Empresa;
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 $empresa = $em->getRepository('Modelo\Empresa')->findAll();
 
-$vm->assign('Empresa',$empresa);
+$vm->assign('Empresas',$empresa);
 
 $vm->display('grilla_empresas.tpl');

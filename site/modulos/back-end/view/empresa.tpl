@@ -22,42 +22,42 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/empresaAction.php" id="nuevaEmpresaForm" class="form-horizontal">
+        <form action="{$rutaCSS}../controlador/empresaAction.php{if $Empresa}?empresaId={$Empresa->getEmpresaId()}{/if}" id="nuevaEmpresaForm" class="form-horizontal" method="post">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
                         <div class="box-body pad">
                             <label for="inputRazonSocial" class="col-sm-2 control-label">Razon Social</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="razonsocial" name="razonsocial">
+                              <input type="text" class="form-control" id="razonsocial" name="razonsocial" {if $Empresa}value="{$Empresa->getRazonSocial()}"{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
                             <label for="inputPais" class="col-sm-2 control-label">Pais</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="pais" name="pais">
+                              <input type="text" class="form-control" id="pais" name="pais" {if $Empresa}value="{$Empresa->getPais()}"{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
                             <label for="inputCiudad" class="col-sm-2 control-label">Ciudad</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="ciudad" name="ciudad">
+                              <input type="text" class="form-control" id="ciudad" name="ciudad" {if $Empresa}value="{$Empresa->getCiudad()}"{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->
                        <div class="box-body pad">
                             <label for="inputDireccion" class="col-sm-2 control-label">Direccion</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="direccion">
+                              <input type="text" class="form-control" id="direccion" name="direccion" {if $Empresa}value="{$Empresa->getDireccion()}"{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
                             <label for="inputCodigoPostal" class="col-sm-2 control-label">Código Postal</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="cp">
+                              <input type="text" class="form-control" id="cp" name="codigoPostal" {if $Empresa}value="{$Empresa->getCodigoPostal()}"{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->
@@ -68,7 +68,7 @@ js=''
                                   <div class="input-group-addon">
                                     <i class="fa fa-phone"></i>
                                   </div>
-                                  <input type="text" class="form-control" data-inputmask='"mask": "9-999-9999"' data-mask>
+                                  <input type="text" class="form-control" data-inputmask='"mask": "9-999-9999"' data-mask name="telefono" {if $Empresa}value="{$Empresa->getTelefono()}"{/if}>
                                 </div>
                             </div>
                         </div>
@@ -76,7 +76,7 @@ js=''
                         <div class="box-body pad">
                             <label for="inputWeb" class="col-sm-2 control-label">Web</label>
                             <div class="col-sm-5">
-                              <input type="url" class="form-control" id="web" name="web">
+                              <input type="url" class="form-control" id="web" name="web" {if $Empresa}value="{$Empresa->getWeb()}"{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->

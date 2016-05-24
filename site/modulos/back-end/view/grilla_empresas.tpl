@@ -72,7 +72,6 @@ js=''
           <thead>
               <tr>
                   <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
-                  <th>Nombre</th>
                   <th>Razón Social</th>
                   <th>Dirección</th>
               </tr>
@@ -81,7 +80,6 @@ js=''
               {foreach from=$Empresas item=empresa}
                   <tr>
                       <td><input class="case" type="checkbox" name="empresaId[]" value="{$empresa->getEmpresaId()}" ></input></td>
-                      <td>{$empresa->getNombre()}</td>
                       <td>{$empresa->getRazonSocial()}</td>
                       <td>{$empresa->getDireccion()}</td>
                   </tr>
