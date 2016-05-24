@@ -88,7 +88,7 @@ js=''
               </tr>
           </thead>
           <tbody>
-              {foreach from=$anuncios item=anuncio}
+              {foreach from=$Anuncios item=anuncio}
                   <tr>
                       <td><input class="case" type="checkbox" name="anuncioId[]" value="{$anuncio->getOperadorId()}" ></input></td>
                       <td>{$anuncio->getTitulo()}</td>

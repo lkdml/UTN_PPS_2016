@@ -3,7 +3,9 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php');
 
 use \CORE\Controlador\Aplicacion;
 use \Modelo\Anuncio as Anuncio;
-Aplicacion::startSession(true);
+
+$app = Aplicacion::getInstancia();
+$app->startSession($modoOP);
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
@@ -32,14 +34,15 @@ function setear(Anuncio $anuncio,$em){
     
      if (isset($_POST["fechaFinPublicacion"]))
     {
-        $anuncio->setFechaFinPublicacion(new \DateTime("now"));
+        $anuncio->setFechaFinPublicacion(strtotime($_POST["fechaFinPublicacion"]));
     } else {
         $anuncio->setFechaFinPublicacion(null);
     }
    
     $anuncio->setCategoria($em->find('Modelo\CategoriaAnuncios',$_POST['categoria']));
     
-    $anuncio->setOperadorId(1);//TODO TRAER EL OPERADOR ID EN SESSION
+    $op=$app->getOperador();
+    $anuncio->setOperadorId($op->getOperadorId());
     
     foreach ($anuncio->getEmpresa() as $empresa){
         $empresa->removeAnuncio($anuncio);
