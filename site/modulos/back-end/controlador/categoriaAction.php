@@ -5,8 +5,6 @@ use \CORE\Controlador\Aplicacion;
 use \Modelo\CategoriaAnuncios as Categoria;
 Aplicacion::startSession(true);
 
-var_dump($_POST);
-
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 if (isset($_GET['categoriaId'])){

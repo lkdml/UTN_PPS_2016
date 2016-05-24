@@ -176,17 +176,6 @@ class Anuncio extends \Modelo\Anuncio implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setAnuncioId($anuncioId)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAnuncioId', [$anuncioId]);
-
-        return parent::setAnuncioId($anuncioId);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getAnuncioId()
     {
         if ($this->__isInitialized__ === false) {

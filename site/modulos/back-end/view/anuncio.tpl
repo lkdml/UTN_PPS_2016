@@ -29,7 +29,7 @@ js=''
                         <div class="box-body pad">
                             <label for="inputTitulo" class="col-sm-2 control-label">Título</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="txtTitulo" name="txtTitulo">
+                              <input type="text" class="form-control" id="txtTitulo" name="titulo" {if $Anuncio}value={$Anuncio->getTitulo()}{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->
@@ -60,13 +60,12 @@ js=''
                                   <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                   </div>
-                                  <input type="text" class="form-control" id="datepicker">
+                                  <input type="text" class="form-control" id="datepicker" name="fechaFinPublicacion" {if $Anuncio}value={$Anuncio->getFechaFinPublicacion()}{/if}>
                                 </div>
                                 <!-- /.input group -->
                             </div>
                         </div>
                         <!-- body pad end -->
-
                         <div class="box-body pad">
                             <label for="inputEmpresas" class="col-sm-2 control-label">Empresas asociadas al anuncio</label>
                             <div class="row">
@@ -100,7 +99,20 @@ js=''
                         </div>
                         <!-- body pad end -->
                         
-                        
+                         <div class="box-body pad">
+                            <label for="inputDescripcion" class="col-sm-2 control-label">Activo</label>
+                            <div class="col-sm-5">
+                                <input type="checkbox" id="Activo" name="estado" 
+                                {if $Anuncio}
+                                    {if $Anuncio->getEstado()==1}
+                                        checked
+                                    {/if}
+                                {/if}
+                                >
+                                </input>
+                            </div>
+                        </div>
+                        <!-- body pad end -->
                         
                         
                         
@@ -115,8 +127,8 @@ js=''
                             </div>     
                             <div class="box-body pad">
                                 <div class="tab-pane" id="#descripcionAnuncio">
-                                    <textarea id="editor1" name="editor1" rows="10" cols="80">
-                                        Descripción del Anuncio 
+                                    <textarea id="editor1" name="contenido" rows="10" cols="80">
+                                         {if $Anuncio}{$Anuncio->getContenido()}{/if}
                                     </textarea>
                                 </div>
                             </div>
@@ -172,6 +184,13 @@ js=''
         autoclose:true,
         language: 'es'
     });
+</script>
+
+<script src="{$rutaJS}multiselect.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $('#multiselect').multiselect();
+});
 </script>
 <!-- Validaciones -->
 <script src="{$rutaJS}jquery-validator-min.js"></script>

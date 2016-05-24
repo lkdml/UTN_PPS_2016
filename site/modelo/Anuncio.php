@@ -2,6 +2,7 @@
 
 
 
+
 namespace Modelo;
 
 /**
@@ -17,7 +18,7 @@ class Anuncio
      *
      * @Column(name="anuncio_id", type="integer", nullable=false)
      * @Id
-     * @GeneratedValue(strategy="NONE")
+     * @GeneratedValue(strategy="IDENTITY")
      */
     private $anuncioId;
 
@@ -66,9 +67,7 @@ class Anuncio
     /**
      * @var \CategoriaAnuncios
      *
-     * @Id
-     * @GeneratedValue(strategy="NONE")
-     * @OneToOne(targetEntity="CategoriaAnuncios")
+     * @ManyToOne(targetEntity="CategoriaAnuncios")
      * @JoinColumns({
      *   @JoinColumn(name="categoria_id", referencedColumnName="categoria_id")
      * })
@@ -88,20 +87,6 @@ class Anuncio
     public function __construct()
     {
         $this->empresa = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Set anuncioId
-     *
-     * @param integer $anuncioId
-     *
-     * @return Anuncio
-     */
-    public function setAnuncioId($anuncioId)
-    {
-        $this->anuncioId = $anuncioId;
-
-        return $this;
     }
 
     /**

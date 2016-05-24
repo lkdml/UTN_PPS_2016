@@ -38,7 +38,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`anuncio` (
   `estado` TINYINT(1) NOT NULL,
   `fecha_fin_publicacion` DATETIME NULL,
   `operador_id` INT NOT NULL,
-  PRIMARY KEY (`anuncio_id`, `categoria_id`),
+  PRIMARY KEY (`anuncio_id`),
   INDEX `fk_anuncios_categoria_idx` (`categoria_id` ASC),
   CONSTRAINT `fk_anuncios_categoria`
     FOREIGN KEY (`categoria_id`)
