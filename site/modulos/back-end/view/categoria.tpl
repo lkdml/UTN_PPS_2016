@@ -1,5 +1,6 @@
 {include file="header.tpl"
 css='<link rel="stylesheet" href="./modulos/back-end/css/bootstrap-iconpicker.css">'
+css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css">'
 js=''
 }
 {include file="panelLateral.tpl"}
@@ -22,7 +23,7 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/categoriaAction.php{if $Categoria}?categoriaId={$Categoria->getCategoriaId()}{/if}" class="form-horizontal"  method="post">
+        <form action="{$rutaCSS}../controlador/categoriaAction.php{if $Categoria}?categoriaId={$Categoria->getCategoriaId()}{/if}" class="form-horizontal" id = "nuevaCategoriaForm" method="post">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
@@ -73,7 +74,8 @@ js=''
 <script src="{$rutaJS}demo.js"></script>
 <!--Iconpicker -->
 <script src="{$rutaJS}bootstrap-iconpicker.js"></script>
-
+<script src="{$rutaJS}jquery-validator-min.js"></script>
+<script src="{$rutaJS}validacionNuevaCategoria.js"></script>
 {literal}
 <script>
     $("#icono").click(function(e){

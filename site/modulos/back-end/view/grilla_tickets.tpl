@@ -26,7 +26,7 @@ js=''
    
    <!-- CONTENIDO -->
     <section class="content">
-      <form action="/operador.php?modulo=categoria" method="post" id="myForm">
+      <form action="/operador.php?modulo=ticket" method="post" id="myForm">
         <!-- 1 box Largo --> 
         <div class="box box-primary">
           <div class="box-body">
@@ -96,71 +96,21 @@ js=''
           <tbody>
               {foreach from=$Tickets item=ticket}
                   <tr>
-                      <td><input class="case" type="checkbox" name="ticketId[]" value="{$ticket->getCategoriaId()}" ></input></td>
-                      <td>{$ticket->getNombre()}</td>
-                      <td>{$ticket->getIcono()}</td>
+                      <td><input class="case" type="checkbox" name="ticketId[]" value="{$ticket->getTicketId()}"></input></td>
+                      <td><small class="label glyphicon glyphicon-flag" style='color:{$ticket->getPrioridad()->getColor()}'> </small><br><small>{$ticket->getPrioridad()->getNombre()}</small></td>
+                      <td>{$ticket->getNumeroTicket()}</td>
+                      <td>{$ticket->getAsunto()}</td>
+                      <td><small class="label" style='color:{$ticket->getEstado()->getColor()}'>{$ticket->getEstado()->getNombre()}</small></td>
+                      <td>{$ticket->getUsuario()->getNombreUsuario()} <br>{$ticket->getUsuario()->getNombre()}<br> <Small>{$ticket->getUsuario()->getEmail()}</Small></td>
+                      <td>{if $ticket->getOperador()}
+                              {$ticket->getOperador()->getNombreUsuario()}<br> <Small>{$ticket->getOperador()->getNombreUsuario()}</Small><br><small>{$ticket->getOperador()->getEmail()}</small>
+                          {/if}    
+                      </td>
+                      <td>{$ticket->getDepartamento()->getNombre()}</td>
+                      <td>Por Defecto</td>
+                      <td>{$ticket->getFechaVto()|date_format:"%D, %H:%M"}</td>
                   </tr>
               {/foreach}
-              <tr>
-                  <td><input type="checkbox"></input></td>
-                  <td><small class="label glyphicon glyphicon-flag bg-blue"> </small></td>
-                  <td>TKP-234</td>
-                  <td>Error al imprimir</td>
-                  <td><small class="label bg-olive">Abierto</small></td>
-                  <td>Vtolosa <br>vtolosa@nestle.com.ar<br> <Small>Victor Tolosa</Small></td>
-                  <td>Br1ann <br> <Small>Brian Ducca</Small><br><small>Brian.ducca@gmail.com</small></td>
-                  <td>Soporte N1</td>
-                  <td>Por Defecto</td>
-                  <td>18:35 hs</td>
-              </tr>
-              <tr>
-                  <td><input type="checkbox"></input></td>
-                  <td><small class="label glyphicon glyphicon-flag bg-blue"> </small></td>
-                  <td>TKP-234</td>
-                  <td>Error al imprimir</td>
-                  <td><small class="label bg-olive">Abierto</small></td>
-                  <td>Vtolosa <br>vtolosa@nestle.com.ar<br> <Small>Victor Tolosa</Small></td>
-                  <td>Br1ann <br> <Small>Brian Ducca</Small><br><small>Brian.ducca@gmail.com</small></td>
-                  <td>Soporte N1</td>
-                  <td>Por Defecto</td>
-                  <td>18:35 hs</td>
-              </tr>
-              <tr>
-                  <td><input type="checkbox"></input></td>
-                  <td><small class="label glyphicon glyphicon-flag bg-blue"> </small></td>
-                  <td>TKP-234</td>
-                  <td>Error al imprimir</td>
-                  <td><small class="label bg-olive">Abierto</small></td>
-                  <td>Vtolosa <br>vtolosa@nestle.com.ar<br> <Small>Victor Tolosa</Small></td>
-                  <td>Br1ann <br> <Small>Brian Ducca</Small><br><small>Brian.ducca@gmail.com</small></td>
-                  <td>Soporte N1</td>
-                  <td>Por Defecto</td>
-                  <td>18:35 hs</td>
-              </tr>
-              <tr>
-                  <td><input type="checkbox"></input></td>
-                  <td><small class="label glyphicon glyphicon-flag bg-yellow"> </small></td>
-                  <td>TKP-234</td>
-                  <td>Error al imprimir</td>
-                  <td><small class="label bg-red">En Curso</small></td>
-                  <td>Vtolosa <br>vtolosa@nestle.com.ar<br> <Small>Victor Tolosa</Small></td>
-                  <td>Br1ann <br> <Small>Brian Ducca</Small><br><small>Brian.ducca@gmail.com</small></td>
-                  <td>Soporte N1</td>
-                  <td>Por Defecto</td>
-                  <td>18:35 hs</td>
-              </tr>
-              <tr>
-                  <td><input type="checkbox"></input></td>
-                  <td><small class="label glyphicon glyphicon-flag bg-orange"> </small></td>
-                  <td>TKP-234</td>
-                  <td>Error al imprimir</td>
-                  <td><small class="label bg-blue">Respondido</small></td>
-                  <td>Vtolosa <br>vtolosa@nestle.com.ar<br> <Small>Victor Tolosa</Small></td>
-                  <td>Br1ann <br> <Small>Brian Ducca</Small><br><small>Brian.ducca@gmail.com</small></td>
-                  <td>Soporte N1</td>
-                  <td>Por Defecto</td>
-                  <td>18:35 hs</td>
-              </tr>
           </tbody>
         </table>
       </form>

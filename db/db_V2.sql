@@ -318,7 +318,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`ticket` (
   `prioridad_id` INT(11) NOT NULL,
   `departamento_id` INT(11) NOT NULL,
   `descripcion` VARCHAR(200) NULL,
-  `numero_Ticker` INT NOT NULL,
+  `numero_Ticket` INT NOT NULL,
   `email_queue_id` INT NOT NULL,
   `asignado` TINYINT(1) NULL,
   `owner_operador_id` INT NULL,

@@ -23,15 +23,15 @@
         messages: {
              nombre: {
                 required: "(*)Por favor, ingrese un nombre.",
-                minlength: "(*)El nombre debe tener más de 5 letras."
+                minlength: "(*)El nombre debe tener más de 4 letras."
             },
             descripcion: {
-                required: "(*)Por favor, ingrese una Descripción.",
-                minlength: "(*)La Descripción debe tener más de 5 letras."
+                required: "(*)Por favor, ingrese una Descripción",
+                minlength: "(*)La Descripción debe tener más de 4 letras."
                 
             },
                 color: {
-                required: "(*)Por favor, seleccione un Color.",
+                required: "(*)Por favor, seleccione un Color",
                 
             },
           

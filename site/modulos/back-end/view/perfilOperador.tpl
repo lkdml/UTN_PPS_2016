@@ -67,14 +67,14 @@ js=''
                     <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
     
                     <div class="col-sm-5">
-                      <input class="form-control" id="inputNombre" placeholder="Ingrese un Nombre" {if $OperadorLogueado}value="{$OperadorLogueado->getNombre()}"{/if}>
+                      <input class="form-control" id="inputNombre" placeholder="Ingrese un Nombre" name = "nombre" {if $OperadorLogueado}value="{$OperadorLogueado->getNombre()}"{/if}>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputApellido" class="col-sm-2 control-label">Apellido</label>
     
                     <div class="col-sm-5">
-                      <input class="form-control" id="inputApellido" placeholder="Ingrese un Apellido" {if $OperadorLogueado}value="{$OperadorLogueado->getApellido()}"{/if}>
+                      <input class="form-control" id="inputApellido" placeholder="Ingrese un Apellido" name = "apellido" {if $OperadorLogueado}value="{$OperadorLogueado->getApellido()}"{/if}>
                     </div>
                   </div>
                   <div class="form-group">
@@ -115,7 +115,7 @@ js=''
                     <label for="inputEmailAdicional" class="col-sm-2 control-label">Email Adicional</label>
     
                     <div class="col-sm-5">
-                      <input type="Email" class="form-control" id="inputEmailAdicional" placeholder="prueba@prueba.com">
+                      <input type="Email" class="form-control" id="inputEmailAdicional" name= "emailAdicional" placeholder="prueba@prueba.com">
                     </div>
                   </div>
                 </div>
@@ -167,6 +167,7 @@ js=''
 <script src="{$rutaJS}demo.js"></script>
 <!-- CK Editor -->
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+
 <script>
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor

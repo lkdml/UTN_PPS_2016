@@ -31,7 +31,7 @@ $().ready(function() {
                 required: "(*)Por favor, ingresa el apellido."},
             clave: {
                required: "(*)Por favor, ingresa una clave.",
-                minlength: "(*)La clave debe tener mas de 8 caractéres.",
+                minlength: "(*)La clave debe tener mas de 7 caractéres.",
                 pwcheck:"(*)La clave debe contener una letra minúscula y un número."
             },
             email:{

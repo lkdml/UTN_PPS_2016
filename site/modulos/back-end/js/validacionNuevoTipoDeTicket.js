@@ -18,12 +18,12 @@ $().ready(function() {
         messages: {
              nombre: {
                 required: "(*)Por favor, ingrese el nombre.",
-                 minlength: "(*)Ingrese un nombre mayor a 5 dígitos."
+                 minlength: "(*)Ingrese un nombre mayor a 4 dígitos."
              },
                 
             descripcion: {
                 required: "(*)Por favor, ingrese una descripción.",
-                minlength: "(*)Ingrese una descripcion mayor a 5 dígitos."
+                minlength: "(*)Ingrese una descripcion mayor a 4 dígitos."
             },
            
         }

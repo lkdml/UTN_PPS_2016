@@ -28,7 +28,7 @@
         messages: {
              txtAsunto: {
                 required: "(*)Por favor, ingresa un asunto.",
-                minlength: "(*)El asunto debe tener más de 5 letras."
+                minlength: "(*)El asunto debe tener más de 4 letras."
             },
             ddDepartamentos: {
                 required: "(*)Por favor, seleccione un Departamento de la Lista.",
