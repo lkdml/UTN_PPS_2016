@@ -127,7 +127,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="{$rutaIMG}user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Mariano López Senés</span>
+              <span class="hidden-xs">{if $OperadorLogueado}{$OperadorLogueado->getNombre()} {$OperadorLogueado->getApellido()}{/if}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -135,8 +135,8 @@
                 <img src="{$rutaIMG}user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  lkdml - Web Developer
-                  <small>Mariano López Senés</small>
+                  {if $OperadorLogueado}{$OperadorLogueado->getNombreUsuario()} - {$OperadorLogueado->getEmail()}{/if}
+                  <small>{if $OperadorLogueado}{$OperadorLogueado->getNombre()} {$OperadorLogueado->getApellido()}{/if}</small>
                 </p>
               </li>
               <!-- Menu Footer-->
