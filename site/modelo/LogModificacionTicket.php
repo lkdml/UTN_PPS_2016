@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace Modelo;
 
 /**
@@ -41,11 +39,11 @@ class LogModificacionTicket
     private $fecha;
 
     /**
-     * @var \Tickets
+     * @var \Ticket
      *
      * @Id
      * @GeneratedValue(strategy="NONE")
-     * @OneToOne(targetEntity="Tickets")
+     * @OneToOne(targetEntity="Ticket")
      * @JoinColumns({
      *   @JoinColumn(name="ticket_id", referencedColumnName="ticket_id")
      * })
@@ -152,11 +150,11 @@ class LogModificacionTicket
     /**
      * Set ticket
      *
-     * @param \Tickets $ticket
+     * @param \Ticket $ticket
      *
      * @return LogModificacionTicket
      */
-    public function setTicket(Tickets $ticket)
+    public function setTicket(Ticket $ticket)
     {
         $this->ticket = $ticket;
 
@@ -166,7 +164,7 @@ class LogModificacionTicket
     /**
      * Get ticket
      *
-     * @return \Tickets
+     * @return \Ticket
      */
     public function getTicket()
     {

@@ -1,30 +1,28 @@
 <?php
 
-
-
 namespace Modelo;
 
 /**
- * Mensajes
+ * Mensaje
  *
- * @Table(name="mensajes", indexes={@Index(name="FK_mensajes_ticket_idx", columns={"ticket_id"})})
+ * @Table(name="mensaje", indexes={@Index(name="FK_mensaje_ticket_idx", columns={"ticket_id"})})
  * @Entity
  */
-class Mensajes
+class Mensaje
 {
     /**
      * @var integer
      *
      * @Column(name="mensaje_id", type="integer", nullable=false)
      * @Id
-     * @GeneratedValue(strategy="NONE")
+     * @GeneratedValue(strategy="IDENTITY")
      */
     private $mensajeId;
 
     /**
      * @var string
      *
-     * @Column(name="Texto", type="string", length=245, nullable=false)
+     * @Column(name="Texto", type="string", length=245, nullable=true)
      */
     private $texto;
 
@@ -57,11 +55,9 @@ class Mensajes
     private $creadorUsuario;
 
     /**
-     * @var \Tickets
+     * @var \Ticket
      *
-     * @Id
-     * @GeneratedValue(strategy="NONE")
-     * @OneToOne(targetEntity="Tickets")
+     * @ManyToOne(targetEntity="Ticket")
      * @JoinColumns({
      *   @JoinColumn(name="ticket_id", referencedColumnName="ticket_id")
      * })
@@ -71,8 +67,8 @@ class Mensajes
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ManyToMany(targetEntity="Archivos", inversedBy="mensaje")
-     * @JoinTable(name="mensajes_archivos",
+     * @ManyToMany(targetEntity="Archivo", inversedBy="mensaje")
+     * @JoinTable(name="mensaje_archivo",
      *   joinColumns={
      *     @JoinColumn(name="mensaje_id", referencedColumnName="mensaje_id")
      *   },
@@ -92,20 +88,6 @@ class Mensajes
     }
 
     /**
-     * Set mensajeId
-     *
-     * @param integer $mensajeId
-     *
-     * @return Mensajes
-     */
-    public function setMensajeId($mensajeId)
-    {
-        $this->mensajeId = $mensajeId;
-
-        return $this;
-    }
-
-    /**
      * Get mensajeId
      *
      * @return integer
@@ -120,7 +102,7 @@ class Mensajes
      *
      * @param string $texto
      *
-     * @return Mensajes
+     * @return Mensaje
      */
     public function setTexto($texto)
     {
@@ -144,7 +126,7 @@ class Mensajes
      *
      * @param \DateTime $fecha
      *
-     * @return Mensajes
+     * @return Mensaje
      */
     public function setFecha($fecha)
     {
@@ -168,7 +150,7 @@ class Mensajes
      *
      * @param integer $tipoMensaje
      *
-     * @return Mensajes
+     * @return Mensaje
      */
     public function setTipoMensaje($tipoMensaje)
     {
@@ -192,7 +174,7 @@ class Mensajes
      *
      * @param integer $creadorOperador
      *
-     * @return Mensajes
+     * @return Mensaje
      */
     public function setCreadorOperador($creadorOperador)
     {
@@ -216,7 +198,7 @@ class Mensajes
      *
      * @param integer $creadorUsuario
      *
-     * @return Mensajes
+     * @return Mensaje
      */
     public function setCreadorUsuario($creadorUsuario)
     {
@@ -238,11 +220,11 @@ class Mensajes
     /**
      * Set ticket
      *
-     * @param \Tickets $ticket
+     * @param \Ticket $ticket
      *
-     * @return Mensajes
+     * @return Mensaje
      */
-    public function setTicket(Tickets $ticket)
+    public function setTicket(Ticket $ticket = null)
     {
         $this->ticket = $ticket;
 
@@ -252,7 +234,7 @@ class Mensajes
     /**
      * Get ticket
      *
-     * @return \Tickets
+     * @return \Ticket
      */
     public function getTicket()
     {
@@ -262,11 +244,11 @@ class Mensajes
     /**
      * Add archivo
      *
-     * @param \Archivos $archivo
+     * @param \Archivo $archivo
      *
-     * @return Mensajes
+     * @return Mensaje
      */
-    public function addArchivo(Archivos $archivo)
+    public function addArchivo(Archivo $archivo)
     {
         $this->archivo[] = $archivo;
 
@@ -276,9 +258,9 @@ class Mensajes
     /**
      * Remove archivo
      *
-     * @param \Archivos $archivo
+     * @param \Archivo $archivo
      */
-    public function removeArchivo(Archivos $archivo)
+    public function removeArchivo(Archivo $archivo)
     {
         $this->archivo->removeElement($archivo);
     }

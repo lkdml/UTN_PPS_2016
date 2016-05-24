@@ -3,126 +3,126 @@
 namespace Modelo;
 
 /**
- * Tickets
+ * Ticket
  *
- * @Table(name="tickets", indexes={@Index(name="fk_ticket_usuario_idx", columns={"usuario_id"}), @Index(name="fk_ticket_estado_idx", columns={"estado_id"}), @Index(name="fk_ticket_prioridad_idx", columns={"prioridad_id"}), @Index(name="fk_ticket_departamento_idx", columns={"departamento_id"}), @Index(name="fk_ticket_operador_idx", columns={"operador_id"}), @Index(name="fk_ticket_tipo_ticket_idx", columns={"tipo_ticket_id"})})
- * @Entity
+ * Table(name="ticket", indexes={Index(name="fk_ticket_usuario_idx", columns={"usuario_id"}), Index(name="fk_ticket_estado_idx", columns={"estado_id"}), Index(name="fk_ticket_prioridad_idx", columns={"prioridad_id"}), Index(name="fk_ticket_departamento_idx", columns={"departamento_id"}), Index(name="fk_ticket_operador_idx", columns={"operador_id"}), Index(name="fk_ticket_tipo_ticket_idx", columns={"tipo_ticket_id"})})
+ * Entity
  */
-class Tickets
+class Ticket
 {
     /**
      * @var integer
      *
-     * @Column(name="ticket_id", type="integer", nullable=false)
-     * @Id
-     * @GeneratedValue(strategy="IDENTITY")
+     * Column(name="ticket_id", type="integer", nullable=false)
+     * Id
+     * GeneratedValue(strategy="IDENTITY")
      */
     private $ticketId;
 
     /**
      * @var string
      *
-     * @Column(name="descripcion", type="string", length=200, nullable=true)
+     * Column(name="descripcion", type="string", length=200, nullable=true)
      */
     private $descripcion;
 
     /**
      * @var integer
      *
-     * @Column(name="numero_Ticker", type="integer", nullable=false)
+     * Column(name="numero_Ticker", type="integer", nullable=false)
      */
     private $numeroTicker;
 
     /**
      * @var integer
      *
-     * @Column(name="email_queue_id", type="integer", nullable=false)
+     * Column(name="email_queue_id", type="integer", nullable=false)
      */
     private $emailQueueId;
 
     /**
      * @var boolean
      *
-     * @Column(name="asignado", type="boolean", nullable=true)
+     * Column(name="asignado", type="boolean", nullable=true)
      */
     private $asignado;
 
     /**
      * @var integer
      *
-     * @Column(name="owner_operador_id", type="integer", nullable=true)
+     * Column(name="owner_operador_id", type="integer", nullable=true)
      */
     private $ownerOperadorId;
 
     /**
      * @var string
      *
-     * @Column(name="asunto", type="string", length=45, nullable=false)
+     * Column(name="asunto", type="string", length=45, nullable=false)
      */
     private $asunto;
 
     /**
      * @var \DateTime
      *
-     * @Column(name="ultima_actividad", type="datetime", nullable=true)
+     * Column(name="ultima_actividad", type="datetime", nullable=true)
      */
     private $ultimaActividad;
 
     /**
      * @var \DateTime
      *
-     * @Column(name="ultima_actividad_User", type="datetime", nullable=true)
+     * Column(name="ultima_actividad_User", type="datetime", nullable=true)
      */
     private $ultimaActividadUser;
 
     /**
      * @var \DateTime
      *
-     * @Column(name="ultima_actividad_operador", type="datetime", nullable=true)
+     * Column(name="ultima_actividad_operador", type="datetime", nullable=true)
      */
     private $ultimaActividadOperador;
 
     /**
      * @var \DateTime
      *
-     * @Column(name="fecha_creacion", type="datetime", nullable=false)
+     * Column(name="fecha_creacion", type="datetime", nullable=false)
      */
     private $fechaCreacion;
 
     /**
      * @var \DateTime
      *
-     * @Column(name="fecha_vto", type="datetime", nullable=true)
+     * Column(name="fecha_vto", type="datetime", nullable=true)
      */
     private $fechaVto;
 
     /**
      * @var boolean
      *
-     * @Column(name="tiene_archivos", type="boolean", nullable=true)
+     * Column(name="tiene_archivos", type="boolean", nullable=true)
      */
     private $tieneArchivos;
 
     /**
      * @var boolean
      *
-     * @Column(name="editado", type="boolean", nullable=true)
+     * Column(name="editado", type="boolean", nullable=true)
      */
     private $editado;
 
     /**
      * @var string
      *
-     * @Column(name="custom_fields", type="text", nullable=true)
+     * Column(name="custom_fields", type="text", nullable=true)
      */
     private $customFields;
 
     /**
      * @var \Usuario
      *
-     * @ManyToOne(targetEntity="Usuario")
-     * @JoinColumns({
-     *   @JoinColumn(name="usuario_id", referencedColumnName="usuario_id")
+     * ManyToOne(targetEntity="Usuario")
+     * JoinColumns({
+     *   JoinColumn(name="usuario_id", referencedColumnName="usuario_id")
      * })
      */
     private $usuario;
@@ -130,11 +130,9 @@ class Tickets
     /**
      * @var \TicketEstado
      *
-     * @Id
-     * @GeneratedValue(strategy="NONE")
-     * @OneToOne(targetEntity="TicketEstado")
-     * @JoinColumns({
-     *   @JoinColumn(name="estado_id", referencedColumnName="estado_id")
+     * ManyToOne(targetEntity="TicketEstado")
+     * JoinColumns({
+     *   JoinColumn(name="estado_id", referencedColumnName="estado_id")
      * })
      */
     private $estado;
@@ -142,11 +140,9 @@ class Tickets
     /**
      * @var \Prioridad
      *
-     * @Id
-     * @GeneratedValue(strategy="NONE")
-     * @OneToOne(targetEntity="Prioridad")
-     * @JoinColumns({
-     *   @JoinColumn(name="prioridad_id", referencedColumnName="prioridad_id")
+     * ManyToOne(targetEntity="Prioridad")
+     * JoinColumns({
+     *   JoinColumn(name="prioridad_id", referencedColumnName="prioridad_id")
      * })
      */
     private $prioridad;
@@ -154,11 +150,9 @@ class Tickets
     /**
      * @var \Departamento
      *
-     * @Id
-     * @GeneratedValue(strategy="NONE")
-     * @OneToOne(targetEntity="Departamento")
-     * @JoinColumns({
-     *   @JoinColumn(name="departamento_id", referencedColumnName="departamento_id")
+     * ManyToOne(targetEntity="Departamento")
+     * JoinColumns({
+     *   JoinColumn(name="departamento_id", referencedColumnName="departamento_id")
      * })
      */
     private $departamento;
@@ -166,9 +160,9 @@ class Tickets
     /**
      * @var \Operador
      *
-     * @ManyToOne(targetEntity="Operador")
-     * @JoinColumns({
-     *   @JoinColumn(name="operador_id", referencedColumnName="operador_id")
+     * ManyToOne(targetEntity="Operador")
+     * JoinColumns({
+     *   JoinColumn(name="operador_id", referencedColumnName="operador_id")
      * })
      */
     private $operador;
@@ -176,11 +170,9 @@ class Tickets
     /**
      * @var \TicketTipo
      *
-     * @Id
-     * @GeneratedValue(strategy="NONE")
-     * @OneToOne(targetEntity="TicketTipo")
-     * @JoinColumns({
-     *   @JoinColumn(name="tipo_ticket_id", referencedColumnName="tipo_ticket_id")
+     * ManyToOne(targetEntity="TicketTipo")
+     * JoinColumns({
+     *   JoinColumn(name="tipo_ticket_id", referencedColumnName="tipo_ticket_id")
      * })
      */
     private $tipoTicket;
@@ -188,7 +180,7 @@ class Tickets
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ManyToMany(targetEntity="Archivos", mappedBy="ticket")
+     * ManyToMany(targetEntity="Archivos", mappedBy="ticket")
      */
     private $archivoTicket;
 
@@ -198,20 +190,6 @@ class Tickets
     public function __construct()
     {
         $this->archivoTicket = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Set ticketId
-     *
-     * @param integer $ticketId
-     *
-     * @return Tickets
-     */
-    public function setTicketId($ticketId)
-    {
-        $this->ticketId = $ticketId;
-
-        return $this;
     }
 
     /**
@@ -229,7 +207,7 @@ class Tickets
      *
      * @param string $descripcion
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function setDescripcion($descripcion)
     {
@@ -253,7 +231,7 @@ class Tickets
      *
      * @param integer $numeroTicker
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function setNumeroTicker($numeroTicker)
     {
@@ -277,7 +255,7 @@ class Tickets
      *
      * @param integer $emailQueueId
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function setEmailQueueId($emailQueueId)
     {
@@ -301,7 +279,7 @@ class Tickets
      *
      * @param boolean $asignado
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function setAsignado($asignado)
     {
@@ -325,7 +303,7 @@ class Tickets
      *
      * @param integer $ownerOperadorId
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function setOwnerOperadorId($ownerOperadorId)
     {
@@ -349,7 +327,7 @@ class Tickets
      *
      * @param string $asunto
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function setAsunto($asunto)
     {
@@ -373,7 +351,7 @@ class Tickets
      *
      * @param \DateTime $ultimaActividad
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function setUltimaActividad($ultimaActividad)
     {
@@ -397,7 +375,7 @@ class Tickets
      *
      * @param \DateTime $ultimaActividadUser
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function setUltimaActividadUser($ultimaActividadUser)
     {
@@ -421,7 +399,7 @@ class Tickets
      *
      * @param \DateTime $ultimaActividadOperador
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function setUltimaActividadOperador($ultimaActividadOperador)
     {
@@ -445,7 +423,7 @@ class Tickets
      *
      * @param \DateTime $fechaCreacion
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function setFechaCreacion($fechaCreacion)
     {
@@ -469,7 +447,7 @@ class Tickets
      *
      * @param \DateTime $fechaVto
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function setFechaVto($fechaVto)
     {
@@ -493,7 +471,7 @@ class Tickets
      *
      * @param boolean $tieneArchivos
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function setTieneArchivos($tieneArchivos)
     {
@@ -517,7 +495,7 @@ class Tickets
      *
      * @param boolean $editado
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function setEditado($editado)
     {
@@ -541,7 +519,7 @@ class Tickets
      *
      * @param string $customFields
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function setCustomFields($customFields)
     {
@@ -565,7 +543,7 @@ class Tickets
      *
      * @param \Usuario $usuario
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function setUsuario(Usuario $usuario = null)
     {
@@ -589,9 +567,9 @@ class Tickets
      *
      * @param \TicketEstado $estado
      *
-     * @return Tickets
+     * @return Ticket
      */
-    public function setEstado(TicketEstado $estado)
+    public function setEstado(TicketEstado $estado = null)
     {
         $this->estado = $estado;
 
@@ -613,9 +591,9 @@ class Tickets
      *
      * @param \Prioridad $prioridad
      *
-     * @return Tickets
+     * @return Ticket
      */
-    public function setPrioridad(Prioridad $prioridad)
+    public function setPrioridad(Prioridad $prioridad = null)
     {
         $this->prioridad = $prioridad;
 
@@ -637,9 +615,9 @@ class Tickets
      *
      * @param \Departamento $departamento
      *
-     * @return Tickets
+     * @return Ticket
      */
-    public function setDepartamento(Departamento $departamento)
+    public function setDepartamento(Departamento $departamento = null)
     {
         $this->departamento = $departamento;
 
@@ -661,7 +639,7 @@ class Tickets
      *
      * @param \Operador $operador
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function setOperador(Operador $operador = null)
     {
@@ -685,9 +663,9 @@ class Tickets
      *
      * @param \TicketTipo $tipoTicket
      *
-     * @return Tickets
+     * @return Ticket
      */
-    public function setTipoTicket(TicketTipo $tipoTicket)
+    public function setTipoTicket(TicketTipo $tipoTicket = null)
     {
         $this->tipoTicket = $tipoTicket;
 
@@ -709,7 +687,7 @@ class Tickets
      *
      * @param \Archivos $archivoTicket
      *
-     * @return Tickets
+     * @return Ticket
      */
     public function addArchivoTicket(Archivos $archivoTicket)
     {

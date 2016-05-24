@@ -5,7 +5,7 @@ namespace Modelo;
 /**
  * Usuario
  *
- * @Table(name="usuario", uniqueConstraints={@UniqueConstraint(name="email_UNIQUE", columns={"email"})}, indexes={@Index(name="FK_usuarios_empresa_idx", columns={"empresa_id"})})
+ * @Table(name="usuario", uniqueConstraints={@UniqueConstraint(name="email_UNIQUE", columns={"email"}), @UniqueConstraint(name="nombre_usuario_UNIQUE", columns={"email"})}, indexes={@Index(name="FK_usuarios_empresa", columns={"empresa_id"})})
  * @Entity
  */
 class Usuario
@@ -127,29 +127,13 @@ class Usuario
     /**
      * @var \Empresa
      *
-     * @Id
-     * @GeneratedValue(strategy="NONE")
-     * @OneToOne(targetEntity="Empresa")
+     * @ManyToOne(targetEntity="Empresa")
      * @JoinColumns({
      *   @JoinColumn(name="empresa_id", referencedColumnName="empresa_id")
      * })
      */
     private $empresa;
 
-
-    /**
-     * Set usuarioId
-     *
-     * @param integer $usuarioId
-     *
-     * @return Usuario
-     */
-    public function setUsuarioId($usuarioId)
-    {
-        $this->usuarioId = $usuarioId;
-
-        return $this;
-    }
 
     /**
      * Get usuarioId
@@ -528,7 +512,7 @@ class Usuario
      *
      * @return Usuario
      */
-    public function setEmpresa(Empresa $empresa)
+    public function setEmpresa(Empresa $empresa = null)
     {
         $this->empresa = $empresa;
 

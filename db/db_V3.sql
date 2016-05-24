@@ -290,7 +290,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`usuario` (
   `ciudad_id` INT(11) NULL DEFAULT NULL,
   `telefono` VARCHAR(45) NULL DEFAULT NULL,
   `mail_adicional` VARCHAR(45) NULL DEFAULT NULL,
-  `empresa_id` INT NULL,
+  `empresa_id` INT not NULL,
   `ultima_actualizacion` DATETIME NOT NULL,
   `ultima_actividad` DATETIME NOT NULL,
   `activo` TINYINT(1) NOT NULL DEFAULT 0,
@@ -332,7 +332,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`ticket` (
   `editado` TINYINT(1) NULL,
   `custom_fields` LONGTEXT NULL,
   `tipo_ticket_id` INT NOT NULL,
-  PRIMARY KEY (`ticket_id`),
+  PRIMARY KEY (`ticket_id`, `departamento_id`, `prioridad_id`, `estado_id`, `tipo_ticket_id`),
   INDEX `fk_ticket_usuario_idx` (`usuario_id` ASC),
   INDEX `fk_ticket_estado_idx` (`estado_id` ASC),
   INDEX `fk_ticket_prioridad_idx` (`prioridad_id` ASC),
@@ -478,12 +478,12 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `tmh`.`mensaje` (
   `mensaje_id` INT NOT NULL AUTO_INCREMENT,
   `ticket_id` INT NOT NULL,
-  `Texto` VARCHAR(245)  NULL,
+  `Texto` VARCHAR(245) NOT NULL,
   `fecha` DATETIME NOT NULL,
   `tipo_mensaje` INT NOT NULL,
   `creador_operador` INT NULL,
   `creador_usuario` INT NULL,
-  PRIMARY KEY (`mensaje_id`),
+  PRIMARY KEY (`mensaje_id`, `ticket_id`),
   INDEX `FK_mensaje_ticket_idx` (`ticket_id` ASC),
   CONSTRAINT `FK_mensaje_ticket`
     FOREIGN KEY (`ticket_id`)

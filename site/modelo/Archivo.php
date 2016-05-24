@@ -1,16 +1,14 @@
 <?php
 
-
-
 namespace Modelo;
 
 /**
- * Archivos
+ * Archivo
  *
- * @Table(name="archivos")
+ * @Table(name="archivo")
  * @Entity
  */
-class Archivos
+class Archivo
 {
     /**
      * @var integer
@@ -52,15 +50,15 @@ class Archivos
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ManyToMany(targetEntity="Mensajes", mappedBy="archivo")
+     * @ManyToMany(targetEntity="Mensaje", mappedBy="archivo")
      */
     private $mensaje;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ManyToMany(targetEntity="Tickets", inversedBy="archivoTicket")
-     * @JoinTable(name="ticket_archivos",
+     * @ManyToMany(targetEntity="Ticket", inversedBy="archivoTicket")
+     * @JoinTable(name="ticket_archivo",
      *   joinColumns={
      *     @JoinColumn(name="archivo_ticket_id", referencedColumnName="archivo_id")
      *   },
@@ -95,7 +93,7 @@ class Archivos
      *
      * @param string $nombre
      *
-     * @return Archivos
+     * @return Archivo
      */
     public function setNombre($nombre)
     {
@@ -119,7 +117,7 @@ class Archivos
      *
      * @param string $hash
      *
-     * @return Archivos
+     * @return Archivo
      */
     public function setHash($hash)
     {
@@ -143,7 +141,7 @@ class Archivos
      *
      * @param \DateTime $fechaCreacion
      *
-     * @return Archivos
+     * @return Archivo
      */
     public function setFechaCreacion($fechaCreacion)
     {
@@ -167,7 +165,7 @@ class Archivos
      *
      * @param string $directorio
      *
-     * @return Archivos
+     * @return Archivo
      */
     public function setDirectorio($directorio)
     {
@@ -189,11 +187,11 @@ class Archivos
     /**
      * Add mensaje
      *
-     * @param \Mensajes $mensaje
+     * @param \Mensaje $mensaje
      *
-     * @return Archivos
+     * @return Archivo
      */
-    public function addMensaje(Mensajes $mensaje)
+    public function addMensaje(Mensaje $mensaje)
     {
         $this->mensaje[] = $mensaje;
 
@@ -203,9 +201,9 @@ class Archivos
     /**
      * Remove mensaje
      *
-     * @param \Mensajes $mensaje
+     * @param \Mensaje $mensaje
      */
-    public function removeMensaje(Mensajes $mensaje)
+    public function removeMensaje(Mensaje $mensaje)
     {
         $this->mensaje->removeElement($mensaje);
     }
@@ -223,11 +221,11 @@ class Archivos
     /**
      * Add ticket
      *
-     * @param \Tickets $ticket
+     * @param \Ticket $ticket
      *
-     * @return Archivos
+     * @return Archivo
      */
-    public function addTicket(Tickets $ticket)
+    public function addTicket(Ticket $ticket)
     {
         $this->ticket[] = $ticket;
 
@@ -237,9 +235,9 @@ class Archivos
     /**
      * Remove ticket
      *
-     * @param \Tickets $ticket
+     * @param \Ticket $ticket
      */
-    public function removeTicket(Tickets $ticket)
+    public function removeTicket(Ticket $ticket)
     {
         $this->ticket->removeElement($ticket);
     }

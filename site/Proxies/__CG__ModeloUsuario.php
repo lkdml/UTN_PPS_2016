@@ -176,17 +176,6 @@ class Usuario extends \Modelo\Usuario implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setUsuarioId($usuarioId)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUsuarioId', [$usuarioId]);
-
-        return parent::setUsuarioId($usuarioId);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
     public function getUsuarioId()
     {
         if ($this->__isInitialized__ === false) {
@@ -532,7 +521,7 @@ class Usuario extends \Modelo\Usuario implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setEmpresa(\Modelo\Empresa $empresa)
+    public function setEmpresa(\Modelo\Empresa $empresa = NULL)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEmpresa', [$empresa]);
