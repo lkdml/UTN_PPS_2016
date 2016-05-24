@@ -62,7 +62,7 @@
     <ul class="sidebar-menu">
       <li class="header">General</li>
       <li class="../forms/general.html">
-        <a href="/operador.php?modulo=nuevoTicket">
+        <a href="/operador.php?modulo=ticket">
           <i class="fa fa-edit"></i> <span>Nuevo Ticket</span>
         </a>
       </li>

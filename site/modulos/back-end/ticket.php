@@ -22,10 +22,15 @@ $vm->assign('TicketTipos',$TicketTipos);
 $Prioridades = $em->getRepository('Modelo\Prioridad')->findAll();
 $vm->assign('Prioridades',$Prioridades);
 
+$Estados = $em->getRepository('Modelo\TicketEstado')->findAll();
+$vm->assign('TicketEstados',$Estados);
+
 $SLAs = $em->getRepository('Modelo\Sla')->findAll();
 $vm->assign('SLAs',$SLAs);
 
 //TODO: los campos custom, deberán cargarse por ajax, al seleccionar el departamento o cambiarlo.
+$CamposCustoms = $em->getRepository('Modelo\TicketCustomFields')->findAll();
+$vm->assign('TicketCustomFields',$CamposCustoms);
 
 // TODO: los operadores deberían cargarse por ajax al cambiar de departamento, asi permite seleccionar los que tiene visibilidad ese departamento.
 $Operadores = $em->getRepository('Modelo\Operador')->findAll();
@@ -34,7 +39,7 @@ $vm->assign('Operadores',$Operadores);
 
 
 switch(strtolower($_POST["accion"])){
-  case ("nuevo"):
+  case ("nuevo"):default:
     // Si el parametro que envio en accion es alta, solo debo validar permisos
     //var_dump($_POST);die;
    // $vm->assign('accion',$_POST["accion"]);
@@ -52,10 +57,6 @@ switch(strtolower($_POST["accion"])){
     }
     $em->flush();
     
-    header("location:/operador.php?modulo=tickets");
-    break;
-   default:
-     die;
     header("location:/operador.php?modulo=tickets");
     break;
 }

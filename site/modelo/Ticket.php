@@ -29,9 +29,9 @@ class Ticket
     /**
      * @var integer
      *
-     * @Column(name="numero_Ticker", type="integer", nullable=false)
+     * @Column(name="numero_Ticket", type="integer", nullable=false)
      */
-    private $numeroTicker;
+    private $numeroTicket;
 
     /**
      * @var integer
@@ -227,27 +227,27 @@ class Ticket
     }
 
     /**
-     * Set numeroTicker
+     * Set numeroTicket
      *
-     * @param integer $numeroTicker
+     * @param integer $numeroTicket
      *
      * @return Ticket
      */
-    public function setNumeroTicker($numeroTicker)
+    public function setNumeroTicket($numeroTicket)
     {
-        $this->numeroTicker = $numeroTicker;
+        $this->numeroTicket = $numeroTicket;
 
         return $this;
     }
 
     /**
-     * Get numeroTicker
+     * Get numeroTicket
      *
      * @return integer
      */
-    public function getNumeroTicker()
+    public function getNumeroTicket()
     {
-        return $this->numeroTicker;
+        return $this->numeroTicket;
     }
 
     /**
@@ -715,5 +715,6 @@ class Ticket
     {
         return $this->archivoTicket;
     }
+    
 }
 
