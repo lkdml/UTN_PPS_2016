@@ -57,14 +57,14 @@ js=''
                     <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
     
                     <div class="col-sm-5">
-                      <input class="form-control" id="inputNombre" placeholder="Brian">
+                      <input class="form-control" id="inputNombre" name = "nombre" placeholder="Brian">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputApellido" class="col-sm-2 control-label">Apellido</label>
     
                     <div class="col-sm-5">
-                      <input class="form-control" id="inputApellido" placeholder="Ducca">
+                      <input class="form-control" id="inputApellido" name = "apellido" placeholder="Ducca">
                     </div>
                   </div>
                   <div class="form-group">
@@ -105,7 +105,7 @@ js=''
                     <label for="inputEmailAdicional" class="col-sm-2 control-label">Email Adicional</label>
     
                     <div class="col-sm-5">
-                      <input type="Email" class="form-control" id="inputEmailAdicional" placeholder="prueba@prueba.com">
+                      <input type="Email" class="form-control" id="inputEmailAdicional" name= "emailAdicional" placeholder="prueba@prueba.com">
                     </div>
                   </div>
                 </div>
@@ -157,6 +157,7 @@ js=''
 <script src="{$rutaJS}demo.js"></script>
 <!-- CK Editor -->
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+
 <script>
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor

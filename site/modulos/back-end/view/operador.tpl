@@ -1,5 +1,5 @@
 {include file="header.tpl"
-css=''
+css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css">'
 js=''
 }
 {include file="panelLateral.tpl"}
@@ -55,7 +55,7 @@ js=''
                 <!-- Cambio Clave -->
                 {if $Operador}
                   <div class="box box-primary">
-                    <form action="{$rutaCSS}../controlador/operadorAction.php?actualiza=clave{if $Operador}&Operador={$Operador->getOperadorId()}{/if}" class="form-horizontal" method="post">  
+                    <form action="{$rutaCSS}../controlador/operadorAction.php?actualiza=clave{if $Operador}&Operador={$Operador->getOperadorId()}{/if}" class="form-horizontal" id="nuevaClaveForm" method="post">  
                       <div class="box-body box-profile">
                       
                         <h3 class="profile-username text-center">Contraseña</h3>
@@ -63,7 +63,7 @@ js=''
                         <p class="text-muted text-center">Cambiar contraseña</p>
                       
                               <div class="form-group">
-                                  <label for="inputNombre" class="col-sm-4 control-label">Clave Actual</label>
+                                  <label for="inputContraseñaOriginal" class="col-sm-4 control-label">Clave Actual</label>
                                   <div class="col-sm-5">
                                     <input class="form-control" id="inputNombre" type="password" name="clave">
                                   </div>
@@ -71,13 +71,13 @@ js=''
                               <div class="form-group">
                                   <label for="inputNombre" class="col-sm-4 control-label">Nueva Clave</label>
                                   <div class="col-sm-5">
-                                    <input class="form-control" id="inputNombre" type="password" name="nuevaclave1">
+                                    <input class="form-control" id="inputContraseñaNueva" type="password" name="nuevaclave1">
                                   </div>
                               </div>
                               <div class="form-group">
                                   <label for="inputNombre" class="col-sm-4 control-label">Re-Ingrese Clave</label>
                                   <div class="col-sm-5">
-                                    <input class="form-control" id="inputNombre" type="password" name="nuevaclave2">
+                                    <input class="form-control" id="inputContraseñaNueva2" type="password" name="nuevaclave2">
                                   </div>
                               </div>
                           <div class="pull-right">
@@ -93,7 +93,7 @@ js=''
             <div class="col-md-8">
                     <div class="box box-primary">
                         <br>
-                        <form action="{$rutaCSS}../controlador/operadorAction.php{if $Operador}?Operador={$Operador->getOperadorId()}{/if}" class="form-horizontal" method="post">
+                        <form action="{$rutaCSS}../controlador/operadorAction.php{if $Operador}?Operador={$Operador->getOperadorId()}{/if}" class="form-horizontal" id = "nuevoOperadorForm"method="post">
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-9">
@@ -103,33 +103,33 @@ js=''
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Apellido</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Apellido" name="apellido" {if $Operador}value={$Operador->getApellido()}{/if}>
+                              <input class="form-control" id="inputApellido" placeholder="Apellido" name="apellido" {if $Operador}value={$Operador->getApellido()}{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Usuario</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Nombre de Usuario" name="username" {if $Operador}value={$Operador->getNombreUsuario()}{/if}>
+                              <input class="form-control" id="inputUsuario" placeholder="Nombre de Usuario" name="username" {if $Operador}value={$Operador->getNombreUsuario()}{/if}>
                             </div>
                           </div>
                           {if !$Operador}
                             <div class="form-group">
                               <label for="inputNombre" class="col-sm-2 control-label">Contraseña</label>
                               <div class="col-sm-9">
-                                <input class="form-control" id="inputNombre" type="password" placeholder="Contraseña" name="nuevaclave1">
+                                <input class="form-control" id="inputContraseña" type="password" placeholder="Contraseña" name="nuevaclave1">
                               </div>
                             </div>
                             <div class="form-group">
                               <label for="inputNombre" class="col-sm-2 control-label">Contraseña</label>
                               <div class="col-sm-9">
-                                <input class="form-control" id="inputNombre" type="password" placeholder="Contraseña" name="nuevaclave2">
+                                <input class="form-control" id="inputContraseña2" type="password" placeholder="Contraseña" name="nuevaclave2">
                               </div>
                             </div>
                           {/if}
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Correo Electrónico</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" type="mail" placeholder="Correo Electrónico" name="email" {if $Operador}value={$Operador->getEmail()}{/if}>
+                              <input class="form-control" id="inputMail" type="mail" placeholder="Correo Electrónico" name="email" {if $Operador}value={$Operador->getEmail()}{/if}>
                             </div>
                           </div>
                           <div class="form-group">
@@ -240,4 +240,8 @@ jQuery(document).ready(function($) {
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+<script src="{$rutaJS}jquery-validator-min.js"></script>
+<script src="{$rutaJS}validacionNuevoOperador.js"></script>
+<script src="{$rutaJS}validacionNuevaClave.js"></script>
+
  {include file="footer.tpl"}
