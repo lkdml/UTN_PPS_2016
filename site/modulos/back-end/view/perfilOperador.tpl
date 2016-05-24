@@ -22,16 +22,26 @@ js=''
                 <div class="box-body box-profile">
                   <img class="profile-user-img img-responsive img-circle" src="{$rutaIMG}user2-160x160.jpg" alt="User profile picture">
     
-                  <h3 class="profile-username text-center">Brian Ducca</h3>
-    
-                  <p class="text-muted text-center">Operador</p>
-    
+                  <h3 class="profile-username text-center">{if $OperadorLogueado}{$OperadorLogueado->getNombre()}{/if}</h3>
+   
+                  <p class="text-muted text-center">
+                    {if $OperadorLogueado}
+                      {if $Perfiles}
+                        {foreach from=$Perfiles item=perfil}
+                            {if $OperadorLogueado->getPerfil() == $perfil}
+                              {$perfil->getNombre()}
+                            {/if}
+                        {/foreach}
+                      {/if}
+                    {/if}
+                  </p>
+                  
                   <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">
                       <b>Empresa</b> <a class="pull-right">TMH S.A</a>
                     </li>
                     <li class="list-group-item">
-                      <b>Ultima Modificación</b> <a class="pull-right">14/04/2016</a>
+                      <b>Ultima Modificación</b> <a class="pull-right">{if $OperadorLogueado}{strtotime($OperadorLogueado->getUltimaActualizacion())}{/if}</a>
                     </li>
                   </ul>
                 </div>
@@ -57,27 +67,27 @@ js=''
                     <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
     
                     <div class="col-sm-5">
-                      <input class="form-control" id="inputNombre" placeholder="Brian">
+                      <input class="form-control" id="inputNombre" placeholder="Ingrese un Nombre" {if $OperadorLogueado}value="{$OperadorLogueado->getNombre()}"{/if}>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputApellido" class="col-sm-2 control-label">Apellido</label>
     
                     <div class="col-sm-5">
-                      <input class="form-control" id="inputApellido" placeholder="Ducca">
+                      <input class="form-control" id="inputApellido" placeholder="Ingrese un Apellido" {if $OperadorLogueado}value="{$OperadorLogueado->getApellido()}"{/if}>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputClave" class="col-sm-2 control-label">Clave</label>
     
                     <div class="col-sm-5">
-                      <input type="password" class="form-control" id="inputClave" placeholder="">
+                      <input type="password" class="form-control" id="inputClave" placeholder="" {if $OperadorLogueado}value="{$OperadorLogueado->getClave()}"{/if}>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="inputDireccion" class="col-sm-2 control-label">Direccion</label>
                     <div class="col-sm-5">
-                      <input class="form-control" id="inputDireccion" placeholder="Av.Mitre 380"></input>
+                      <input class="form-control" id="inputDireccion" placeholder="Ingrese una dirección" >
                     </div>
                   </div>
                   <div class="form-group">

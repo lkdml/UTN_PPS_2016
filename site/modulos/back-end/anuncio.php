@@ -23,7 +23,7 @@ $EmpresasPorHabilitar = $em->getRepository('Modelo\Empresa')->findAll();
     $vm->assign('EmpresasPorHabilitar',$EmpresasPorHabilitar);
 
 switch(strtolower($_POST["accion"])){
-  case ("nuevo"):
+  case ("nuevo"):default:
     // Si el parametro que envio en accion es alta, solo debo validar permisos
     //var_dump($_POST);die;
    // $vm->assign('accion',$_POST["accion"]);
@@ -56,10 +56,7 @@ switch(strtolower($_POST["accion"])){
     
     header("location:/operador.php?modulo=anuncios");
     break;
-   default:
-     die;
-    header("location:/operador.php?modulo=anuncios");
-    break;
+
 }
 
   $vm->display('anuncio.tpl');

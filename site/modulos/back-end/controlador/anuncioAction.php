@@ -5,7 +5,7 @@ use \CORE\Controlador\Aplicacion;
 use \Modelo\Anuncio as Anuncio;
 
 $app = Aplicacion::getInstancia();
-$app->startSession($modoOP);
+$app->startSession(true);
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 

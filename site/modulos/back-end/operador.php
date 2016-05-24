@@ -18,7 +18,7 @@ $depatamentos=$em->getRepository('Modelo\Departamento')->findAll();
 $perfiles=$em->getRepository('Modelo\Perfil')->findAll();
 
 switch(strtolower($_POST["accion"])){
-  case ("nuevo"):
+  case ("nuevo"):default:
     // Si el parametro que envio en accion es alta, solo debo validar permisos
     //var_dump($_POST);die;
    // $vm->assign('accion',$_POST["accion"]);
@@ -47,10 +47,7 @@ switch(strtolower($_POST["accion"])){
     
     header("location:/operador.php?modulo=operadores");
     break;
-   default:
-     die;
-    header("location:/operador.php?modulo=operadores");
-    break;
+
 }
 $vm->assign('Departamentos', $depatamentos);
 $vm->assign('Perfiles', $perfiles);
