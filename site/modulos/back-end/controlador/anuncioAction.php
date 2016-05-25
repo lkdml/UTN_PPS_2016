@@ -13,7 +13,7 @@ $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 if (isset($_GET['anuncioId'])){
     $Anuncio =  $em->getRepository('Modelo\Anuncio')->find($_GET["anuncioId"]);
-    $em->persist(setear($Anuncio,$em));
+    $em->persist(setear($Anuncio,$em,$op));
     $em->flush();
 } else {
     $Anuncio = setear(new Anuncio(),$em,$op);
@@ -36,7 +36,7 @@ function setear(Anuncio $anuncio,$em,$op){
     
      if (isset($_POST["fechaFinPublicacion"]))
     {
-        $anuncio->setFechaFinPublicacion(new \DateTime("now"));
+        $anuncio->setFechaFinPublicacion(DateTime::createFromFormat('m/d/Y', $_POST['fechaFinPublicacion']));
     } else {
         $anuncio->setFechaFinPublicacion(null);
     }
