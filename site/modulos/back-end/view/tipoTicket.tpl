@@ -40,6 +40,14 @@ js=''
                             </div>
                         </div>
                         <!-- body pad end -->
+                        <!-- body pad end -->
+                         <div class="box-body pad">
+                            <label for="inputDescripcion" class="col-sm-2 control-label">Icono</label>
+                            <div class="col-sm-5">
+                                <button role="iconpicker" data-search="false" data-placement="bottom" data-rows="5" data-cols="6" id="icono" name="icono" {if $Categoria}data-icon='{$Categoria->getIcono()}'{/if} ></button>
+                            </div>
+                        </div>
+                        <!-- body pad end -->
                     </div>
                     <!-- form group end -->
                 </div>
@@ -71,9 +79,19 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+<!--Iconpicker -->
+<script src="{$rutaJS}bootstrap-iconpicker.js"></script>
 <!-- Validaciones -->
 <script src="{$rutaJS}jquery-validator-min.js"></script>
 <script src="{$rutaJS}validacionNuevoTipoDeTicket.js"></script>
+
+{literal}
+<script>
+    $("#icono").click(function(e){
+    e.preventDefault();
+    });
+</script>
+{/literal}
 
 
  {include file="footer.tpl"}

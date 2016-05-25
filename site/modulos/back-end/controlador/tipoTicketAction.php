@@ -23,7 +23,7 @@ if (isset($_GET['tipoTicket'])){
 function setear(TicketTipo $TicketTipo,$em){
     $TicketTipo->setNombre($_POST["nombre"]);
     $TicketTipo->setDescripcion($_POST["descripcion"]);
-    
+    $TicketTipo->setIcono($_POST["icono"]);
     return $TicketTipo;
 }
 header("location:/operador.php?modulo=tipoTickets");

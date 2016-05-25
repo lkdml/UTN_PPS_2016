@@ -232,6 +232,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`ticket_tipo` (
   `tipo_ticket_id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(45) NULL,
+  `icono` VARCHAR(60) NULL,
   PRIMARY KEY (`tipo_ticket_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;

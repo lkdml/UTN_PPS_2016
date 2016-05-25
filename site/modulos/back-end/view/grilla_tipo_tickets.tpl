@@ -80,6 +80,7 @@ js=''
           <thead>
               <tr>
                   <th></th>
+                  <th>Icono</th>
                   <th>Nombre</th>
                   <th>Descripción</th>
               </tr>
@@ -88,6 +89,7 @@ js=''
               {foreach from=$TicketTipos item=tipoTicket}
                   <tr>
                       <td><input class="case" type="checkbox" name="tipoTicketId[]" value="{$tipoTicket->getTipoTicketId()}" ></input></td>
+                      <td><small class='label glyphicon {$tipoTicket->getIcono()}' style="color:#333377"> </small></td>
                       <td>{$tipoTicket->getNombre()}</td>
                       <td>{$tipoTicket->getDescripcion()}</td>
                   </tr>

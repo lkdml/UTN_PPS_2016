@@ -82,7 +82,7 @@ js=''
           <thead>
               <tr>
                   <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
-                  <th><small class="label glyphicon glyphicon-flag bg-navy"> </small></th>
+                  <th><small class="label glyphicon glyphicon-flag bg-olive"> </small></th>
                   <th>#</th>
                   <th>Asunto</th>
                   <th>Estado</th>

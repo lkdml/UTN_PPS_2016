@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace Modelo;
 
 /**
@@ -31,9 +29,16 @@ class TicketTipo
     /**
      * @var string
      *
-     * @Column(name="descripcion", type="string", length=45, nullable=false)
+     * @Column(name="descripcion", type="string", length=45, nullable=true)
      */
     private $descripcion;
+
+    /**
+     * @var string
+     *
+     * @Column(name="icono", type="string", length=60, nullable=true)
+     */
+    private $icono;
 
 
     /**
@@ -92,6 +97,30 @@ class TicketTipo
     public function getDescripcion()
     {
         return $this->descripcion;
+    }
+
+    /**
+     * Set icono
+     *
+     * @param string $icono
+     *
+     * @return TicketTipo
+     */
+    public function setIcono($icono)
+    {
+        $this->icono = $icono;
+
+        return $this;
+    }
+
+    /**
+     * Get icono
+     *
+     * @return string
+     */
+    public function getIcono()
+    {
+        return $this->icono;
     }
 }
 
