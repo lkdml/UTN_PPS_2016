@@ -49,8 +49,11 @@ switch(strtolower($_POST["accion"])){
     break;
   case ("borrar"):
     $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+    
     foreach ($_POST['slaId'] as $sla) {
-      $em->remove($em->getRepository('Modelo\Sla')->find($sla));
+      $SlaUpdatear =  $em->getRepository('Modelo\Sla')->find($sla);
+      $SlaUpdatear->setEliminado(false);
+      $em->persist($SlaUpdatear);
     }
     $em->flush();
     

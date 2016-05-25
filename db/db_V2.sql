@@ -248,7 +248,6 @@ CREATE TABLE IF NOT EXISTS `tmh`.`sla` (
   `departamento_origen` INT(11) NULL,
   `estado_origen` INT(11) NULL,
   `prioridad_origen` INT(11) NULL,
-  `horas` INT NOT NULL DEFAULT 1,
   `condicion_hora` INT NOT NULL DEFAULT 1,
   `accion_departamento` INT NULL,
   `accion_prioridad` INT NULL,
@@ -258,7 +257,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`sla` (
   `eliminado` TINYINT(1) NOT NULL,
   `email_template_id` INT NOT NULL,
   `tipo_ticket_origen` INT NOT NULL,
-  PRIMARY KEY (`sla_id`, `email_template_id`, `tipo_ticket_origen`),
+  PRIMARY KEY (`sla_id`),
   INDEX `FK_email_sla_email_idx` (`email_template_id` ASC),
   INDEX `fk_sla_tipo_ticket_idx` (`tipo_ticket_origen` ASC),
   CONSTRAINT `FK_email_sla_email`

@@ -24,6 +24,8 @@ js=''
          <!-- form start -->
         <form action="{$rutaCSS}../controlador/slaAction.php{if $Sla}?slaId={$Sla->getSlaId()}{/if}" id = "nuevoSLAForm" class="form-horizontal" method="post">
             <div class="box-body">
+                
+                <!--DATOS GENERALES -->
                 <div class="box">
                     <div class="box-header">
                       <h3 class="box-title">Datos Generales
@@ -44,6 +46,34 @@ js=''
                             </div>
                         </div>
                         <!-- body pad end -->
+                        
+                        <div class="box-body pad">
+                            <label for="inputActivo" class="col-sm-2 control-label">Activo</label>
+                            <div class="col-sm-5">
+                                <input type="checkbox" id="Activo" name="estado" 
+                                {if $Sla}
+                                    {if $Sla->getEstado()==1}
+                                        checked
+                                    {/if}
+                                {/if}
+                                >
+                                </input>
+                            </div>
+                        </div>
+                        <!-- body pad end -->
+                        
+                    </div>   
+                </div>
+                <!--DATOS GENERALES -->
+                
+                <!--DATOS CONDICIONES TICKET -->
+                <div class="box">
+                    <div class="box-header">
+                      <h3 class="box-title">Ticket en
+                      </h3>
+                    </div>
+                    <div class="form-group">
+                        
                         <div class="box-body pad">
                             <label for="comboDeptoOrigen" class="col-sm-2 control-label">Departamento</label>
                             <div class="col-sm-5">
@@ -125,11 +155,13 @@ js=''
                     <!-- form group end -->
                 </div>
                 <!-- box end -->
+                <!--DATOS CONDICIONES TICKET -->
                 
-                <!-- box Precondicion begin -->
+                <!--DATOS VENCIMIENTO -->
+                <!-- box begin -->
                 <div class="box">
                     <div class="box-header">
-                      <h3 class="box-title">Condición
+                      <h3 class="box-title">Vencimiento en
                       </h3>
                     </div>
                     <div class="form-group">
@@ -143,13 +175,14 @@ js=''
                     </div>
                     <!-- form group end -->
                 </div>
-                 <!-- box Precondicion end -->
+                 <!-- box  end -->
+                 <!--DATOS VENCIMIENTO -->
                 
-                
-                <!-- box Accion begin -->
+                <!--DATOS Acción Cambiar -->
+                <!-- box Cambiar begin -->
                 <div class="box">
                     <div class="box-header">
-                      <h3 class="box-title">Acción
+                      <h3 class="box-title">Cambiar
                       </h3>
                     </div>
                     <div class="form-group">
@@ -211,7 +244,7 @@ js=''
                         </div>
                         <!-- body pad end -->
                          <div class="box-body pad">
-                            <label for="comboPrioridadOrigen" class="col-sm-2 control-label">Operador</label>
+                            <label for="comboPrioridadOrigen" class="col-sm-2 control-label">Operador Asignado</label>
                             <div class="col-sm-5">
                                 <select class="form-control select2" style="width: 100%;" id="ddOperadores" name="accionOperadorAsignado">
                                   <option value = "">Seleccione un Operador...</option>
@@ -249,11 +282,24 @@ js=''
                             <!-- select  end -->
                         </div>
                         <!-- body pad end -->
-                        
+  
+                    </div>
+                    <!-- form group end -->
+                </div>
+                 <!-- box Accion end -->
+                 <!--DATOS Acción Cambiar -->
+                
+                <!--DATOS Template -->
+                <div class="box">
+                    <div class="box-header">
+                      <h3 class="box-title">Plantilla Email
+                      </h3>
+                    </div>
+                    <div class="form-group">
                         <div class="box-body pad">
                             <label for="comboPrioridadOrigen" class="col-sm-2 control-label">Template</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;" id="template" name="template">
+                                <select class="form-control select2" style="width: 100%;" id="template" name="template" data-toggle="tooltip" title="En caso de no seleccionar uno, se utilizará el template por defecto">
                                   <option value = "">Seleccione un Template...</option>
                                   {if $Templates}
                                         {foreach from=$Templates item=template}
@@ -265,6 +311,7 @@ js=''
                                         {/foreach}
                                     {/if}
                                 </select>
+                                
                             </div> 
                             <!-- select  end -->
                         </div>
@@ -272,8 +319,7 @@ js=''
                     </div>
                     <!-- form group end -->
                 </div>
-                 <!-- box Accion end -->
-                
+                 <!--DATOS Template -->
                 
                 
                 

@@ -64,10 +64,10 @@ class Sla extends \Modelo\Sla implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Modelo\\Sla' . "\0" . 'slaId', '' . "\0" . 'Modelo\\Sla' . "\0" . 'nombre', '' . "\0" . 'Modelo\\Sla' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\Sla' . "\0" . 'departamentoOrigen', '' . "\0" . 'Modelo\\Sla' . "\0" . 'estadoOrigen', '' . "\0" . 'Modelo\\Sla' . "\0" . 'prioridadOrigen', '' . "\0" . 'Modelo\\Sla' . "\0" . 'horas', '' . "\0" . 'Modelo\\Sla' . "\0" . 'condicionHora', '' . "\0" . 'Modelo\\Sla' . "\0" . 'accionDepartamento', '' . "\0" . 'Modelo\\Sla' . "\0" . 'accionPrioridad', '' . "\0" . 'Modelo\\Sla' . "\0" . 'accionEstado', '' . "\0" . 'Modelo\\Sla' . "\0" . 'accionOperadorAsignado', '' . "\0" . 'Modelo\\Sla' . "\0" . 'estado', '' . "\0" . 'Modelo\\Sla' . "\0" . 'eliminado', '' . "\0" . 'Modelo\\Sla' . "\0" . 'emailTemplate', '' . "\0" . 'Modelo\\Sla' . "\0" . 'tipoTicketOrigen'];
+            return ['__isInitialized__', '' . "\0" . 'Modelo\\Sla' . "\0" . 'slaId', '' . "\0" . 'Modelo\\Sla' . "\0" . 'nombre', '' . "\0" . 'Modelo\\Sla' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\Sla' . "\0" . 'departamentoOrigen', '' . "\0" . 'Modelo\\Sla' . "\0" . 'estadoOrigen', '' . "\0" . 'Modelo\\Sla' . "\0" . 'prioridadOrigen', '' . "\0" . 'Modelo\\Sla' . "\0" . 'condicionHora', '' . "\0" . 'Modelo\\Sla' . "\0" . 'accionDepartamento', '' . "\0" . 'Modelo\\Sla' . "\0" . 'accionPrioridad', '' . "\0" . 'Modelo\\Sla' . "\0" . 'accionEstado', '' . "\0" . 'Modelo\\Sla' . "\0" . 'accionOperadorAsignado', '' . "\0" . 'Modelo\\Sla' . "\0" . 'estado', '' . "\0" . 'Modelo\\Sla' . "\0" . 'eliminado', '' . "\0" . 'Modelo\\Sla' . "\0" . 'emailTemplate', '' . "\0" . 'Modelo\\Sla' . "\0" . 'tipoTicketOrigen'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Modelo\\Sla' . "\0" . 'slaId', '' . "\0" . 'Modelo\\Sla' . "\0" . 'nombre', '' . "\0" . 'Modelo\\Sla' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\Sla' . "\0" . 'departamentoOrigen', '' . "\0" . 'Modelo\\Sla' . "\0" . 'estadoOrigen', '' . "\0" . 'Modelo\\Sla' . "\0" . 'prioridadOrigen', '' . "\0" . 'Modelo\\Sla' . "\0" . 'horas', '' . "\0" . 'Modelo\\Sla' . "\0" . 'condicionHora', '' . "\0" . 'Modelo\\Sla' . "\0" . 'accionDepartamento', '' . "\0" . 'Modelo\\Sla' . "\0" . 'accionPrioridad', '' . "\0" . 'Modelo\\Sla' . "\0" . 'accionEstado', '' . "\0" . 'Modelo\\Sla' . "\0" . 'accionOperadorAsignado', '' . "\0" . 'Modelo\\Sla' . "\0" . 'estado', '' . "\0" . 'Modelo\\Sla' . "\0" . 'eliminado', '' . "\0" . 'Modelo\\Sla' . "\0" . 'emailTemplate', '' . "\0" . 'Modelo\\Sla' . "\0" . 'tipoTicketOrigen'];
+        return ['__isInitialized__', '' . "\0" . 'Modelo\\Sla' . "\0" . 'slaId', '' . "\0" . 'Modelo\\Sla' . "\0" . 'nombre', '' . "\0" . 'Modelo\\Sla' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\Sla' . "\0" . 'departamentoOrigen', '' . "\0" . 'Modelo\\Sla' . "\0" . 'estadoOrigen', '' . "\0" . 'Modelo\\Sla' . "\0" . 'prioridadOrigen', '' . "\0" . 'Modelo\\Sla' . "\0" . 'condicionHora', '' . "\0" . 'Modelo\\Sla' . "\0" . 'accionDepartamento', '' . "\0" . 'Modelo\\Sla' . "\0" . 'accionPrioridad', '' . "\0" . 'Modelo\\Sla' . "\0" . 'accionEstado', '' . "\0" . 'Modelo\\Sla' . "\0" . 'accionOperadorAsignado', '' . "\0" . 'Modelo\\Sla' . "\0" . 'estado', '' . "\0" . 'Modelo\\Sla' . "\0" . 'eliminado', '' . "\0" . 'Modelo\\Sla' . "\0" . 'emailTemplate', '' . "\0" . 'Modelo\\Sla' . "\0" . 'tipoTicketOrigen'];
     }
 
     /**
@@ -173,17 +173,6 @@ class Sla extends \Modelo\Sla implements \Doctrine\ORM\Proxy\Proxy
     }
 
     
-    /**
-     * {@inheritDoc}
-     */
-    public function setSlaId($slaId)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSlaId', [$slaId]);
-
-        return parent::setSlaId($slaId);
-    }
-
     /**
      * {@inheritDoc}
      */
@@ -307,28 +296,6 @@ class Sla extends \Modelo\Sla implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPrioridadOrigen', []);
 
         return parent::getPrioridadOrigen();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setHoras($horas)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setHoras', [$horas]);
-
-        return parent::setHoras($horas);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getHoras()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getHoras', []);
-
-        return parent::getHoras();
     }
 
     /**

@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace Modelo;
 
 /**
@@ -17,7 +15,7 @@ class Sla
      *
      * @Column(name="sla_id", type="integer", nullable=false)
      * @Id
-     * @GeneratedValue(strategy="NONE")
+     * @GeneratedValue(strategy="IDENTITY")
      */
     private $slaId;
 
@@ -31,7 +29,7 @@ class Sla
     /**
      * @var string
      *
-     * @Column(name="descripcion", type="string", length=45, nullable=false)
+     * @Column(name="descripcion", type="string", length=45, nullable=true)
      */
     private $descripcion;
 
@@ -55,13 +53,6 @@ class Sla
      * @Column(name="prioridad_origen", type="integer", nullable=true)
      */
     private $prioridadOrigen;
-
-    /**
-     * @var integer
-     *
-     * @Column(name="horas", type="integer", nullable=false)
-     */
-    private $horas = '1';
 
     /**
      * @var integer
@@ -115,9 +106,7 @@ class Sla
     /**
      * @var \EmailTemplates
      *
-     * @Id
-     * @GeneratedValue(strategy="NONE")
-     * @OneToOne(targetEntity="EmailTemplates")
+     * @ManyToOne(targetEntity="EmailTemplates")
      * @JoinColumns({
      *   @JoinColumn(name="email_template_id", referencedColumnName="email_id")
      * })
@@ -127,29 +116,13 @@ class Sla
     /**
      * @var \TicketTipo
      *
-     * @Id
-     * @GeneratedValue(strategy="NONE")
-     * @OneToOne(targetEntity="TicketTipo")
+     * @ManyToOne(targetEntity="TicketTipo")
      * @JoinColumns({
      *   @JoinColumn(name="tipo_ticket_origen", referencedColumnName="tipo_ticket_id")
      * })
      */
     private $tipoTicketOrigen;
 
-
-    /**
-     * Set slaId
-     *
-     * @param integer $slaId
-     *
-     * @return Sla
-     */
-    public function setSlaId($slaId)
-    {
-        $this->slaId = $slaId;
-
-        return $this;
-    }
 
     /**
      * Get slaId
@@ -279,30 +252,6 @@ class Sla
     public function getPrioridadOrigen()
     {
         return $this->prioridadOrigen;
-    }
-
-    /**
-     * Set horas
-     *
-     * @param integer $horas
-     *
-     * @return Sla
-     */
-    public function setHoras($horas)
-    {
-        $this->horas = $horas;
-
-        return $this;
-    }
-
-    /**
-     * Get horas
-     *
-     * @return integer
-     */
-    public function getHoras()
-    {
-        return $this->horas;
     }
 
     /**

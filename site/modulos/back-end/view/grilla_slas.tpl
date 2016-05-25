@@ -82,7 +82,8 @@ js=''
                   <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
                   <th>Nombre</th>
                   <th>Descripción</th>
-                  <th>Horas</th>
+                  <th>Activo</th>
+                  <th>Eliminado</th>
               </tr>
           </thead>
           <tbody>
@@ -91,7 +92,8 @@ js=''
                       <td><input class="case" type="checkbox" name="slaId[]" value="{$sla->getSlaId()}" ></input></td>
                       <td>{$sla->getNombre()}</td>
                       <td>{$sla->getDescripcion()}</td>
-                      <td>{$sla->getHoras()}</td>
+                      <td>{if $sla->getEstado()==1}Si{else}No{/if}</td>
+                      <td>{if $sla->getEliminado()==true}Si{else}No{/if}</td>
                   </tr>
               {/foreach}
           </tbody>
