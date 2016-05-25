@@ -53,13 +53,11 @@ js=''
                     </div>
                     <div class="box-footer no-padding">
                       <ul class="nav nav-stacked">
-                        <li><a href="#">Nuevo Ticket Abierto <span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
-                        <li><a href="#">Ticket asignado a operador <span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
-                        <li><a href="#">Nueva respuesta en ticket <span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
-                        <li><a href="#">Recupero de clave <span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
-                        <li><a href="#">Nuevo Ticket Abierto y asignado a operador <span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
-                        <li><a href="#">Cambio de departamento en Ticket <span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
-                        <li><a href="#">Cambios en el ticket <span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
+                        {foreach from=$EmailTemplates item=$plantilla}
+                          {if $plantilla->getTipo() eq 'operador'}
+                            <li><a href="#">{$plantilla->getNombre()}<span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
+                          {/if}
+                        {/foreach}
                       </ul>
                     </div>
                   </div>
@@ -73,13 +71,11 @@ js=''
                     </div>
                     <div class="box-footer no-padding">
                       <ul class="nav nav-stacked">
-                        <li><a href="#">Nuevo Ticket Abierto <span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
-                        <li><a href="#">Nueva Respuesta a Ticket<span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
-                        <li><a href="#">Recupero de clave <span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
-                        <li><a href="#">Nuevo usuario registrado<span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
-                        <li><a href="#">Ticket escalado por SLA <span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
-                        <li><a href="#">Ticket cerrado por inactividad <span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
-                        <li><a href="#">Ticket cerrado por Operador <span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
+                        {foreach from=$EmailTemplates item=$plantilla}
+                          {if $plantilla->getTipo() eq 'usuario'}
+                            <li><a href="#">{$plantilla->getNombre()}<span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
+                          {/if}
+                        {/foreach}
                       </ul>
                     </div>
                   </div>
@@ -98,6 +94,11 @@ js=''
                     </div>
                     <div class="box-footer no-padding">
                       <ul class="nav nav-stacked">
+                        {foreach from=$EmailTemplates item=$plantilla}
+                          {if $plantilla->getTipo() eq 'custom'}
+                            <li><a href="#">{$plantilla->getNombre()}<span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
+                          {/if}
+                        {/foreach}
                       </ul>
                     </div>
                   </div>

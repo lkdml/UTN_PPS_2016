@@ -12,5 +12,12 @@ $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
                   \CORE\Controlador\Config::getPublic('Ruta_Back').'js/',
                   \CORE\Controlador\Config::getPublic('Ruta_Back').'imagenes/');
 $vm->assign('OperadorLogueado',$app->getOperador());
+use \Modelo\EmailTemplates as EmailTemplates;
+
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+
+$plantillas = $em->getRepository('Modelo\EmailTemplates')->findAll();
+
+$vm->assign('EmailTemplates',$plantillas);
 
 $vm->display('grilla_plantillas.tpl');
