@@ -6,6 +6,8 @@ use \Modelo\Anuncio as Anuncio;
 
 $app = Aplicacion::getInstancia();
 $app->startSession(true);
+$op=$app->getOperador();
+
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
@@ -14,13 +16,13 @@ if (isset($_GET['anuncioId'])){
     $em->persist(setear($Anuncio,$em));
     $em->flush();
 } else {
-    $Anuncio = setear(new Anuncio(),$em);
+    $Anuncio = setear(new Anuncio(),$em,$op);
     $em->persist($Anuncio);
     $em->flush();
 }
 
 
-function setear(Anuncio $anuncio,$em){
+function setear(Anuncio $anuncio,$em,$op){
     
     $anuncio->setTitulo($_POST["titulo"]);
     $anuncio->setContenido($_POST["contenido"]);
@@ -34,14 +36,14 @@ function setear(Anuncio $anuncio,$em){
     
      if (isset($_POST["fechaFinPublicacion"]))
     {
-        $anuncio->setFechaFinPublicacion(strtotime($_POST["fechaFinPublicacion"]));
+        $anuncio->setFechaFinPublicacion(new \DateTime("now"));
     } else {
         $anuncio->setFechaFinPublicacion(null);
     }
    
     $anuncio->setCategoria($em->find('Modelo\CategoriaAnuncios',$_POST['categoria']));
     
-    $op=$app->getOperador();
+    
     $anuncio->setOperadorId($op->getOperadorId());
     
     foreach ($anuncio->getEmpresa() as $empresa){

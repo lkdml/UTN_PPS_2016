@@ -92,9 +92,9 @@ js=''
                   <tr>
                       <td><input class="case" type="checkbox" name="anuncioId[]" value="{$anuncio->getOperadorId()}" ></input></td>
                       <td>{$anuncio->getTitulo()}</td>
-                      <td>{$anuncio->getFechaCreacion()}</td>
-                      <td>{$anuncio->getFechaFinPublicacion()}</td>
-                      <td>{$anuncio->getCategoria()}</td>
+                      <td>{$anuncio->getFechaCreacion()|date_format:"%D, %H:%M"}</td>
+                      <td>{$anuncio->getFechaFinPublicacion()|date_format:"%D, %H:%M"}</td>
+                      <td>{$anuncio->getCategoria()->getNombre()}</td>
                       <td>{if $anuncio->getEstado()}Activo{else}Inactivo{/if}</td>
                   </tr>
               {/foreach}
