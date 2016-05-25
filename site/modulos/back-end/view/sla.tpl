@@ -22,7 +22,7 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/slaAction.php" id = "nuevoSLAForm" class="form-horizontal">
+        <form action="{$rutaCSS}../controlador/slaAction.php{if $Sla}?slaId={$Sla->getSlaId()}{/if}" id = "nuevoSLAForm" class="form-horizontal" method="post">
             <div class="box-body">
                 <div class="box">
                     <div class="box-header">
@@ -33,29 +33,31 @@ js=''
                         <div class="box-body pad">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputNombre" name="nombre">
+                              <input type="text" class="form-control" id="inputNombre" name="nombre" {if $Sla}value="{$Sla->getNombre()}"{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->
                          <div class="box-body pad">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputDescripcion" name="descripcion">
+                              <input type="text" class="form-control" id="inputDescripcion" name="descripcion" {if $Sla}value="{$Sla->getDescripcion()}"{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->
                         <div class="box-body pad">
                             <label for="comboDeptoOrigen" class="col-sm-2 control-label">Departamento</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;" id="ddDeptos" name="ddDeptos">
+                                <select class="form-control select2" style="width: 100%;" id="ddDeptos" name="departamentoOrigen">
                                   <option value = "">Seleccione un Departamento...</option>
-                                  <option>Todos</option>
-                                  <option>Depto2</option>
-                                  <option>Depto3</option>
-                                  <option>Depto4</option>
-                                  <option>Depto5</option>
-                                  <option>Depto6</option>
-                                  <option>Depto7</option>
+                                  {if $Departamentos}
+                                        {foreach from=$Departamentos item=depto}
+                                          <option value ="{$depto->getDepartamentoId()}"
+                                          {if $Sla}
+                                            {if $Sla->getDepartamentoOrigen() == $depto->getDepartamentoId()}selected{/if}
+                                          {/if}
+                                          >{$depto->getNombre()}</option>
+                                        {/foreach}
+                                    {/if}
                                 </select>
                             </div> 
                             <!-- select  end -->
@@ -64,11 +66,17 @@ js=''
                         <div class="box-body pad">
                             <label for="comboEstadoOrigen" class="col-sm-2 control-label">Estado</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;" id = "ddEstados" name = "ddEstados">
+                                <select class="form-control select2" style="width: 100%;" id = "ddEstados" name = "estadoOrigen">
                                   <option value = "">Seleccione un Estado...</option>
-                                  <option>Todos</option>
-                                  <option>Estado1</option>
-                                  <option>Estado2</option>
+                                  {if $Estados}
+                                        {foreach from=$Estados item=estado}
+                                          <option value ="{$estado->getEstadoId()}"
+                                          {if $Sla}
+                                            {if $Sla->getEstadoOrigen() == $estado->getEstadoId()}selected{/if}
+                                          {/if}
+                                          >{$estado->getNombre()}</option>
+                                        {/foreach}
+                                    {/if}
                                 </select>
                             </div> 
                             <!-- select  end -->
@@ -77,12 +85,37 @@ js=''
                         <div class="box-body pad">
                             <label for="comboPrioridadOrigen" class="col-sm-2 control-label">Prioridad</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;" id = "ddPrioridades" name="ddPrioridades">
+                                <select class="form-control select2" style="width: 100%;" id = "ddPrioridades" name="prioridadOrigen">
                                   <option value = "">Seleccione una Prioridad...</option>
-                                  <option>Todas</option>
-                                  <option>Prioridad1</option>
-                                  <option>Prioridad2</option>
-                                  <option>Prioridad3</option>
+                                  {if $Prioridades}
+                                        {foreach from=$Prioridades item=prioridad}
+                                          <option value ="{$prioridad->getPrioridadId()}"
+                                          {if $Sla}
+                                            {if $Sla->getPrioridadOrigen() == $prioridad->getPrioridadId()}selected{/if}
+                                          {/if}
+                                          >{$prioridad->getNombre()}</option>
+                                        {/foreach}
+                                    {/if}
+                                </select>
+                            </div> 
+                            <!-- select  end -->
+                        </div>
+                        <!-- body pad end -->
+                        
+                         <div class="box-body pad">
+                            <label for="comboPrioridadOrigen" class="col-sm-2 control-label">Tipo de Ticket</label>
+                            <div class="col-sm-5">
+                                <select class="form-control select2" style="width: 100%;" id = "ddPrioridades" name="tipoTicketOrigen">
+                                  <option value = "">Seleccione un Tipo de Ticket...</option>
+                                  {if $TipoTickets}
+                                        {foreach from=$TipoTickets item=tipoTicket}
+                                          <option value ="{$tipoTicket->getTipoTicketId()}"
+                                          {if $Sla}
+                                            {if $Sla->getTipoTicketOrigen()->getTipoTicketId() == $tipoTicket->getTipoTicketId()}selected{/if}
+                                          {/if}
+                                          >{$tipoTicket->getNombre()}</option>
+                                        {/foreach}
+                                    {/if}
                                 </select>
                             </div> 
                             <!-- select  end -->
@@ -103,7 +136,7 @@ js=''
                         <div class="box-body pad">
                             <label for="inputCondicionHoras" class="col-sm-2 control-label">Horas</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputCondicionHoras" name = "horas">
+                              <input type="text" class="form-control" id="inputCondicionHoras" name = "condicionHora">
                             </div>
                         </div>
                         <!-- body pad end -->
@@ -123,14 +156,17 @@ js=''
                          <div class="box-body pad">
                             <label for="comboDeptoOrigen" class="col-sm-2 control-label">Departamento</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;" id = "ddDeptoOrigen" name="ddDeptoOrigen">
+                                <select class="form-control select2" style="width: 100%;" id = "ddDeptoOrigen" name="accionDepartamento">
                                   <option value = "">Seleccione un Departamento...</option>
-                                  <option>Todas</option>
-                                  <option>Depto3</option>
-                                  <option>Depto4</option>
-                                  <option>Depto5</option>
-                                  <option>Depto6</option>
-                                  <option>Depto7</option>
+                                   {if $Departamentos}
+                                        {foreach from=$Departamentos item=depto}
+                                          <option value ="{$depto->getDepartamentoId()}"
+                                          {if $Sla}
+                                            {if $Sla->getAccionDepartamento() == $depto->getDepartamentoId()}selected{/if}
+                                          {/if}
+                                          >{$depto->getNombre()}</option>
+                                        {/foreach}
+                                    {/if}
                                 </select>
                             </div> 
                             <!-- select  end -->
@@ -139,11 +175,17 @@ js=''
                         <div class="box-body pad">
                             <label for="comboEstadoOrigen" class="col-sm-2 control-label">Estado</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;" id="ddEstadosOrigen" name="ddEstadosOrigen">
+                                <select class="form-control select2" style="width: 100%;" id="ddEstadosOrigen" name="accionEstado">
                                   <option value = "">Seleccione un Estado...</option>
-                                  <option>Todos</option>
-                                  <option>Estado1</option>
-                                  <option>Estado2</option>
+                                  {if $Estados}
+                                        {foreach from=$Estados item=estado}
+                                          <option value ="{$estado->getEstadoId()}"
+                                          {if $Sla}
+                                            {if $Sla->getAccionEstado() == $estado->getEstadoId()}selected{/if}
+                                          {/if}
+                                          >{$estado->getNombre()}</option>
+                                        {/foreach}
+                                    {/if}
                                 </select>
                             </div> 
                             <!-- select  end -->
@@ -152,12 +194,17 @@ js=''
                         <div class="box-body pad">
                             <label for="comboPrioridadOrigen" class="col-sm-2 control-label">Prioridad</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;" id= "ddPrioridadOrigen" name= "ddPrioridadOrigen">
+                                <select class="form-control select2" style="width: 100%;" id= "ddPrioridadOrigen" name= "accionPrioridad">
                                   <option value = "">Seleccione una Prioridad...</option>
-                                  <option>Todas</option>
-                                  <option>Prioridad1</option>
-                                  <option>Prioridad2</option>
-                                  <option>Prioridad3</option>
+                                  {if $Prioridades}
+                                        {foreach from=$Prioridades item=prioridad}
+                                          <option value ="{$prioridad->getPrioridadId()}"
+                                          {if $Sla}
+                                            {if $Sla->getAccionPrioridad() == $prioridad->getPrioridadId()}selected{/if}
+                                          {/if}
+                                          >{$prioridad->getNombre()}</option>
+                                        {/foreach}
+                                    {/if}
                                 </select>
                             </div> 
                             <!-- select  end -->
@@ -166,11 +213,57 @@ js=''
                          <div class="box-body pad">
                             <label for="comboPrioridadOrigen" class="col-sm-2 control-label">Operador</label>
                             <div class="col-sm-5">
-                                <select class="form-control select2" style="width: 100%;" id="ddOperadores" name="ddOperadores">
+                                <select class="form-control select2" style="width: 100%;" id="ddOperadores" name="accionOperadorAsignado">
                                   <option value = "">Seleccione un Operador...</option>
-                                  <option>Operador2</option>
-                                  <option>Operador3</option>
-                                  <option>Operador4</option>
+                                  {if $Operadores}
+                                        {foreach from=$Operadores item=operador}
+                                          <option value ="{$operador->getOperadorId()}"
+                                          {if $Sla}
+                                            {if $Sla->getAccionPrioridad() == $operador->getPrioridadId()}selected{/if}
+                                          {/if}
+                                          >{$operador->getNombre()}</option>
+                                        {/foreach}
+                                    {/if}
+                                </select>
+                            </div> 
+                            <!-- select  end -->
+                        </div>
+                        <!-- body pad end -->
+                        
+                        <div class="box-body pad">
+                            <label for="comboPrioridadOrigen" class="col-sm-2 control-label">SLA</label>
+                            <div class="col-sm-5">
+                                <select class="form-control select2" style="width: 100%;" id="sla" name="sla">
+                                  <option value = "">Seleccione un SLA...</option>
+                                  {if $Slas}
+                                        {foreach from=$Slas item=sla}
+                                          <option value ="{$sla->getSlaId()}"
+                                          {if $Sla}
+                                            {if $Sla->getSlaId() == $sla->getSlaId()}selected{/if}
+                                          {/if}
+                                          >{$sla->getNombre()}</option>
+                                        {/foreach}
+                                    {/if}
+                                </select>
+                            </div> 
+                            <!-- select  end -->
+                        </div>
+                        <!-- body pad end -->
+                        
+                        <div class="box-body pad">
+                            <label for="comboPrioridadOrigen" class="col-sm-2 control-label">Template</label>
+                            <div class="col-sm-5">
+                                <select class="form-control select2" style="width: 100%;" id="template" name="template">
+                                  <option value = "">Seleccione un Template...</option>
+                                  {if $Templates}
+                                        {foreach from=$Templates item=template}
+                                          <option value ="{$template->getEmailId()}"
+                                          {if $Sla}
+                                            {if $Sla->getEmailTemplate()->getEmailId() == $template->getEmailId()}selected{/if}
+                                          {/if}
+                                          >{$template->getNombre()}</option>
+                                        {/foreach}
+                                    {/if}
                                 </select>
                             </div> 
                             <!-- select  end -->
