@@ -89,6 +89,7 @@ js=''
               {foreach from=$Slas item=sla}
                   <tr>
                       <td><input class="case" type="checkbox" name="slaId[]" value="{$sla->getSlaId()}" ></input></td>
+                      <td>{$sla->getNombre()}</td>
                       <td>{$sla->getDescripcion()}</td>
                       <td>{$sla->getHoras()}</td>
                   </tr>
