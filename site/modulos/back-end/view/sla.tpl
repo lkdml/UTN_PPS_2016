@@ -168,7 +168,7 @@ js=''
                         <div class="box-body pad">
                             <label for="inputCondicionHoras" class="col-sm-2 control-label">Horas</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputCondicionHoras" name = "condicionHora">
+                              <input type="text" class="form-control" id="inputCondicionHoras" name = "condicionHora" {if $Sla}value="{$Sla->getCondicionHora()}"{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->
@@ -252,7 +252,7 @@ js=''
                                         {foreach from=$Operadores item=operador}
                                           <option value ="{$operador->getOperadorId()}"
                                           {if $Sla}
-                                            {if $Sla->getAccionPrioridad() == $operador->getPrioridadId()}selected{/if}
+                                            {if $Sla->getAccionOperadorAsignado() == $operador->getOperadorId()}selected{/if}
                                           {/if}
                                           >{$operador->getNombre()}</option>
                                         {/foreach}
