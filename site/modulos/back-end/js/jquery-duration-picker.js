@@ -136,7 +136,7 @@
 
             if (!disabled) {
                 var picker = $('<div class="bdp-popover"></div>');
-                buildNumericInput('days', false).appendTo(picker);
+                buildNumericInput('days', false,2).appendTo(picker);
                 buildNumericInput('hours', false, 23).appendTo(picker);
                 buildNumericInput('minutes', false, 59).appendTo(picker);
                 buildNumericInput('seconds', !settings.showSeconds, 59).appendTo(picker);

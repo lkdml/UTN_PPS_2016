@@ -1,9 +1,9 @@
 {include file="header.tpl"
 css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css">'
+css='<link rel="stylesheet" href="./modulos/back-end/css/jquery-duration-picker.css">'
 js=''
 }
 {include file="panelLateral.tpl"}
-
 
   <!-- =============================================== -->
 <div class="content-wrapper">
@@ -353,5 +353,15 @@ js=''
 <!-- Validaciones -->
 <script src="{$rutaJS}jquery-validator-min.js"></script>
 <script src="{$rutaJS}validacionNuevoSLA.js"></script>
+<!-- DurationPicker -->
+<script src="{$rutaJS}jquery-duration-picker.js"></script>
+
+{literal} <script>
+   $(function () {
+            $('#inputCondicionHoras').durationPicker({lang:'es'});
+            $('#').durationPicker({showSeconds: true });
+        });
+</script>
+{/literal}
 
  {include file="footer.tpl"}
