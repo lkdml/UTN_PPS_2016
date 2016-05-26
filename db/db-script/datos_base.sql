@@ -206,9 +206,11 @@ UNLOCK TABLES;
 
 LOCK TABLES `prioridad` WRITE;
 /*!40000 ALTER TABLE `prioridad` DISABLE KEYS */;
-insert into prioridad values (1,'Alta','Prioridad alta','#fd8f00',null),
-                                (2,'Media','Prioridad media','#f44f00',null),
-                                (3,'Baja','Prioridad baja','#234f00',null);
+insert into prioridad values (1,'Urgente','Necesita atenderse ya','#fd0000',null),
+                                (2,'Crítica','Prioridad crítica','#fd003d',null),
+                                (3,'Alta','Prioridad alta','#fd5b00',null),
+                                (4,'Media','Prioridad media','#fde400',null),
+                                (5,'Baja','Prioridad baja','#234f00',null);
 /*!40000 ALTER TABLE `prioridad` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -223,6 +225,7 @@ UNLOCK TABLES;
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 insert into usuario values (1,'mi nombre','mi apellido','$2y$12$6/1I/icTUyqYkRR3ICrv1OfsI.fBkXWnGEdtWPNNxqN/eQXcdhI8a','marianolopezsenes@gmail.com',null,'mi direccion','1875','Buenos Aires','5555-5555','adicional mail',1,'2016-05-23 12:30','2016-05-23 12:31',1,0);
+insert into usuario values (2,'Brian','Ducca','$2y$12$6/1I/icTUyqYkRR3ICrv1OfsI.fBkXWnGEdtWPNNxqN/eQXcdhI8a','brian.ducca@gmail.com',null,'mi direccion','1875','Buenos Aires','5555-5555','adicional mail',1,'2016-05-23 12:30','2016-05-23 12:31',1,0);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
