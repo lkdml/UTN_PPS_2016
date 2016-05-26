@@ -101,7 +101,10 @@ js=''
                       <td>{$ticket->getNumeroTicket()}</td>
                       <td>{$ticket->getAsunto()}</td>
                       <td><small class="label" style='color:{$ticket->getEstado()->getColor()}'>{$ticket->getEstado()->getNombre()}</small></td>
-                      <td>{$ticket->getUsuario()->getNombreUsuario()} <br>{$ticket->getUsuario()->getNombre()}<br> <Small>{$ticket->getUsuario()->getEmail()}</Small></td>
+                      <td>{$ticket->getUsuario()->getEmail()} <br>
+                          {$ticket->getUsuario()->getNombre()}<br>
+                          <!--<Small>{$ticket->getUsuario()->getEmail()}</Small> -->
+                      </td>
                       <td>{if $ticket->getOperador()}
                               {$ticket->getOperador()->getNombreUsuario()}<br> <Small>{$ticket->getOperador()->getNombreUsuario()}</Small><br><small>{$ticket->getOperador()->getEmail()}</small>
                           {/if}    
