@@ -52,7 +52,8 @@ switch(strtolower($_POST["accion"])){
     
     foreach ($_POST['slaId'] as $sla) {
       $SlaUpdatear =  $em->getRepository('Modelo\Sla')->find($sla);
-      $SlaUpdatear->setEliminado(false);
+      $SlaUpdatear->setEliminado(true);
+      $SlaUpdatear->setEstado(0);
       $em->persist($SlaUpdatear);
     }
     $em->flush();
