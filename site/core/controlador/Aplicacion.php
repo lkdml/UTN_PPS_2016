@@ -16,7 +16,7 @@ class Aplicacion {
     public function getUsuario(){return $this->usuario;}
     
     public function setoperador($operador){$this->operador = $operador;}
-    
+    public function setUsuario($usuario){$this->usuario = $usuario;}
     /**
      * Retorna la instancia de si misma.
      *
@@ -142,6 +142,22 @@ class Aplicacion {
                 $this->setoperador($operador[0]); 
                 $this->startSession(true,true);
                 $this->guardarOperadorEnSession();
+                return true;
+            }
+        }
+        return false;
+    }
+    
+        public function loginUsuario($usuario,$clave){
+        $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+        $usuario =  $em->getRepository('Modelo\Usuario')->findBy(array('email'=>$usuario));
+             
+       if (!empty($usuario)){
+            if ($usuario[0]->verificarClave($clave)){
+                $this->loggedIn = true;
+                $this->setUsuario($usuario[0]); 
+                $this->startSession(false,true);
+                $this->guardarUsuarioEnSession();
                 return true;
             }
         }

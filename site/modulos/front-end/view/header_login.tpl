@@ -58,17 +58,13 @@
               <button type="button" class="btn btn-block btn-primary btn-xs">Ingresar</button>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">Ingrese sus dados:</li>
-              <li>
-                <!-- inner menu: contains the actual data -->
-                <ul class="menu">
-                  <li>
-                    <input class="form-control input-sm" id="exampleInputEmail1" placeholder="Email" type="email">
-                    <input class="form-control input-sm" id="exampleInputPassword1" placeholder="Clave" type="password">            
-                  </li>
-                </ul>
-              </li>
               <form action="{$rutaCSS}../controlador/loginAction.php" method="post">
+                <li class="header">Ingrese sus dados:</li>
+                {if $error}<li class="header"><span class="help-block">{$error}</span></li>{/if}
+                <li>
+                    <input class="form-control input-sm" id="exampleInputEmail" placeholder="Email" name="email" type="email">
+                    <input class="form-control input-sm" id="exampleInputPassword" placeholder="Clave" name="clave" type="password">            
+                </li>
                 <button type="submit" class="btn btn-block btn-primary btn-sm">Ingresar</button>
               </form>
             </ul>
