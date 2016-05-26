@@ -81,7 +81,6 @@ js=''
                   <th>Usuario</th>
                   <th>Nombre</th>
                   <th>Apellido</th>
-                  <th>Correo</th>
                   <th>Telefono</th>
                   <th>Activo</th>
               </tr>
@@ -90,10 +89,9 @@ js=''
               {foreach from=$Usuarios item=usuario}
                   <tr>
                       <td><input class="case" type="checkbox" name="usuarioId[]" value="{$usuario->getUsuarioId()}" ></input></td>
-                      <td>{$usuario->getNombreUsuario()}</td>
+                      <td>{$usuario->getEmail()}</td>
                       <td>{$usuario->getNombre()}</td>
                       <td>{$usuario->getApellido()}</td>
-                      <td>{$usuario->getEmail()}</td>
                       <td>{$usuario->getTelefono()}</td>
                       <td>{if $usuario->getActivo()}Activo{else}Inactivo{/if}</td>
                   </tr>

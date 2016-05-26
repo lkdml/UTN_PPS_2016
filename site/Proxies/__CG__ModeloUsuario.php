@@ -64,10 +64,10 @@ class Usuario extends \Modelo\Usuario implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'usuarioId', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'nombreUsuario', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'nombre', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'apellido', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'clave', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'email', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'fotoHash', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'direccion', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'codigoPostal', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'ciudadId', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'telefono', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'mailAdicional', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'ultimaActualizacion', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'ultimaActividad', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'activo', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'eliminado', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'empresa'];
+            return ['__isInitialized__', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'usuarioId', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'nombre', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'apellido', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'clave', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'email', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'fotoHash', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'direccion', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'codigoPostal', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'ciudad', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'telefono', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'mailAdicional', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'ultimaActualizacion', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'ultimaActividad', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'activo', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'eliminado', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'empresa'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'usuarioId', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'nombreUsuario', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'nombre', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'apellido', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'clave', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'email', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'fotoHash', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'direccion', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'codigoPostal', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'ciudadId', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'telefono', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'mailAdicional', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'ultimaActualizacion', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'ultimaActividad', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'activo', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'eliminado', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'empresa'];
+        return ['__isInitialized__', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'usuarioId', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'nombre', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'apellido', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'clave', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'email', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'fotoHash', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'direccion', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'codigoPostal', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'ciudad', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'telefono', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'mailAdicional', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'ultimaActualizacion', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'ultimaActividad', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'activo', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'eliminado', '' . "\0" . 'Modelo\\Usuario' . "\0" . 'empresa'];
     }
 
     /**
@@ -186,28 +186,6 @@ class Usuario extends \Modelo\Usuario implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUsuarioId', []);
 
         return parent::getUsuarioId();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setNombreUsuario($nombreUsuario)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNombreUsuario', [$nombreUsuario]);
-
-        return parent::setNombreUsuario($nombreUsuario);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getNombreUsuario()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNombreUsuario', []);
-
-        return parent::getNombreUsuario();
     }
 
     /**
@@ -367,23 +345,23 @@ class Usuario extends \Modelo\Usuario implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setCiudadId($ciudadId)
+    public function setCiudad($ciudad)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCiudadId', [$ciudadId]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setCiudad', [$ciudad]);
 
-        return parent::setCiudadId($ciudadId);
+        return parent::setCiudad($ciudad);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getCiudadId()
+    public function getCiudad()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCiudadId', []);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCiudad', []);
 
-        return parent::getCiudadId();
+        return parent::getCiudad();
     }
 
     /**
@@ -521,7 +499,7 @@ class Usuario extends \Modelo\Usuario implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setEmpresa(\Modelo\Empresa $empresa = NULL)
+    public function setEmpresa(\Modelo\Empresa $empresa)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEmpresa', [$empresa]);
@@ -538,6 +516,28 @@ class Usuario extends \Modelo\Usuario implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEmpresa', []);
 
         return parent::getEmpresa();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function encriptarClave($clave)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'encriptarClave', [$clave]);
+
+        return parent::encriptarClave($clave);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function verificarClave($clave)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'verificarClave', [$clave]);
+
+        return parent::verificarClave($clave);
     }
 
 }

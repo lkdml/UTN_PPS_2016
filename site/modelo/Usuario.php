@@ -1,11 +1,13 @@
 <?php
 
+
+
 namespace Modelo;
 
 /**
  * Usuario
  *
- * @Table(name="usuario", uniqueConstraints={@UniqueConstraint(name="email_UNIQUE", columns={"email"}), @UniqueConstraint(name="nombre_usuario_UNIQUE", columns={"email"})}, indexes={@Index(name="FK_usuarios_empresa", columns={"empresa_id"})})
+ * @Table(name="usuario", uniqueConstraints={@UniqueConstraint(name="email_UNIQUE", columns={"email"})}, indexes={@Index(name="FK_usuarios_empresa", columns={"empresa_id"})})
  * @Entity
  */
 class Usuario
@@ -18,13 +20,6 @@ class Usuario
      * @GeneratedValue(strategy="IDENTITY")
      */
     private $usuarioId;
-
-    /**
-     * @var string
-     *
-     * @Column(name="nombre_usuario", type="string", length=45, nullable=false)
-     */
-    private $nombreUsuario;
 
     /**
      * @var string
@@ -64,7 +59,7 @@ class Usuario
     /**
      * @var string
      *
-     * @Column(name="direccion", type="string", length=45, nullable=true)
+     * @Column(name="direccion", type="string", length=80, nullable=true)
      */
     private $direccion;
 
@@ -76,11 +71,11 @@ class Usuario
     private $codigoPostal;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @Column(name="ciudad_id", type="integer", nullable=true)
+     * @Column(name="ciudad", type="string", length=30, nullable=true)
      */
-    private $ciudadId;
+    private $ciudad;
 
     /**
      * @var string
@@ -143,30 +138,6 @@ class Usuario
     public function getUsuarioId()
     {
         return $this->usuarioId;
-    }
-
-    /**
-     * Set nombreUsuario
-     *
-     * @param string $nombreUsuario
-     *
-     * @return Usuario
-     */
-    public function setNombreUsuario($nombreUsuario)
-    {
-        $this->nombreUsuario = $nombreUsuario;
-
-        return $this;
-    }
-
-    /**
-     * Get nombreUsuario
-     *
-     * @return string
-     */
-    public function getNombreUsuario()
-    {
-        return $this->nombreUsuario;
     }
 
     /**
@@ -338,27 +309,27 @@ class Usuario
     }
 
     /**
-     * Set ciudadId
+     * Set ciudad
      *
-     * @param integer $ciudadId
+     * @param string $ciudad
      *
      * @return Usuario
      */
-    public function setCiudadId($ciudadId)
+    public function setCiudad($ciudad)
     {
-        $this->ciudadId = $ciudadId;
+        $this->ciudad = $ciudad;
 
         return $this;
     }
 
     /**
-     * Get ciudadId
+     * Get ciudad
      *
-     * @return integer
+     * @return string
      */
-    public function getCiudadId()
+    public function getCiudad()
     {
-        return $this->ciudadId;
+        return $this->ciudad;
     }
 
     /**
@@ -512,7 +483,7 @@ class Usuario
      *
      * @return Usuario
      */
-    public function setEmpresa(Empresa $empresa = null)
+    public function setEmpresa(Empresa $empresa)
     {
         $this->empresa = $empresa;
 
@@ -527,6 +498,17 @@ class Usuario
     public function getEmpresa()
     {
         return $this->empresa;
+    }
+    
+     public function encriptarClave($clave){
+        $opciones = [
+            'cost' => 12,
+        ];
+        $this->setClave(password_hash($clave, PASSWORD_BCRYPT, $opciones));
+    }
+    
+    public function verificarClave($clave){
+        return password_verify($clave,$this->getClave());
     }
 }
 

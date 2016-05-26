@@ -279,25 +279,23 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`usuario` (
   `usuario_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `nombre_usuario` VARCHAR(45) NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   `apellido` VARCHAR(45) NULL DEFAULT NULL,
   `Clave` VARCHAR(60) NOT NULL,
   `email` VARCHAR(45) NOT NULL,
   `foto_hash` VARCHAR(255) NULL DEFAULT NULL,
-  `direccion` VARCHAR(45) NULL DEFAULT NULL,
+  `direccion` VARCHAR(80) NULL DEFAULT NULL,
   `codigo_postal` INT(11) NULL DEFAULT NULL,
-  `ciudad_id` INT(11) NULL DEFAULT NULL,
+  `ciudad` VARCHAR(30) NULL DEFAULT NULL,
   `telefono` VARCHAR(45) NULL DEFAULT NULL,
   `mail_adicional` VARCHAR(45) NULL DEFAULT NULL,
-  `empresa_id` INT NULL,
+  `empresa_id` INT NOT NULL,
   `ultima_actualizacion` DATETIME NOT NULL,
   `ultima_actividad` DATETIME NOT NULL,
   `activo` TINYINT(1) NOT NULL DEFAULT 0,
   `eliminado` TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`usuario_id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC),
-  UNIQUE INDEX `nombre_usuario_UNIQUE` (`email` ASC),
   CONSTRAINT `FK_usuarios_empresa`
     FOREIGN KEY (`empresa_id`)
     REFERENCES `tmh`.`empresa` (`empresa_id`)

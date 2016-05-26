@@ -222,7 +222,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-insert into usuario values (1,'user','mi nombre','mi apellido','$2y$12$6/1I/icTUyqYkRR3ICrv1OfsI.fBkXWnGEdtWPNNxqN/eQXcdhI8a','marianolopezsenes@gmail.com',null,'mi direccion','1875',1,'5555-5555','adicional mail',1,'2016-05-23 12:30','2016-05-23 12:31',1,0);
+insert into usuario values (1,'mi nombre','mi apellido','$2y$12$6/1I/icTUyqYkRR3ICrv1OfsI.fBkXWnGEdtWPNNxqN/eQXcdhI8a','marianolopezsenes@gmail.com',null,'mi direccion','1875','Buenos Aires','5555-5555','adicional mail',1,'2016-05-23 12:30','2016-05-23 12:31',1,0);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
