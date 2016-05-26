@@ -12,9 +12,9 @@ $().ready(function() {
             descripcion: {required:true,
                             minlength: 5
             },
-             horas: {
+             condicionHora: {
                         required: true,
-                        horacheck: true,
+                        horacheck: false,
                         },
             ddDeptos: {required:true},
             ddEstados: {required:true},
