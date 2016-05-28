@@ -45,36 +45,17 @@ use \Modelo\Ticket as Ticket;
                     $arraydatos[$estado->getNombre()] = count($em->getRepository('Modelo\Ticket')->findBy(array("estado"=>$estado->getEstadoId())));
                     $arrayEstadoColor[$estado->getNombre()] =$estado->getColor();
                   }
-                  
-                  $resultado="'[";
+                  unset($respuesta);
+                  $i=0;
                   foreach($estados as $estado)
                   {
-                    $resultado=$resultado."{'value':".$arraydatos[$estado->getNombre()].",'color':"."'".$arrayEstadoColor[$estado->getNombre()]."'".",'highlight':"."'".$arrayEstadoColor[$estado->getNombre()]."'".",'label':"."'".$estado->getNombre()."'"."},";
+                    $respuesta[$i]['value'] =$arraydatos[$estado->getNombre()];
+                    $respuesta[$i]['color']= $arrayEstadoColor[$estado->getNombre()];
+                    $respuesta[$i]['highlight'] =$arrayEstadoColor[$estado->getNombre()];
+                    $respuesta[$i]['label'] = $estado->getNombre();
+                    $i++;
                   }
-                  $resultado=substr($resultado,0,$resultado.lenght-1)."]'";
-                  //var_dump($resultado);die;
-
-                    $result = '[
-                              {
-                                "value": 700,
-                                "color": "#f56954",
-                                "highlight": "#f56954",
-                                "label": "Abierto"
-                              },
-                              {
-                                "value": 200,
-                                "color": "#00c0ef",
-                                "highlight": "#00c0ef",
-                                "label": "En curso"
-                              },
-                              {
-                                "value": 100,
-                                "color": "#00a65a",
-                                "highlight": "#00a65a",
-                                "label": "Cerrado"
-                              }
-                            ]';
-            die(($resultado));
+                  echo json_encode($respuesta); die;
             break;
         case strtolower('w-tiempo-vs-tiempo'):
             $result = '{
