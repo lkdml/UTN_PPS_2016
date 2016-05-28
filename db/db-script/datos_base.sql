@@ -194,7 +194,8 @@ UNLOCK TABLES;
 
 LOCK TABLES `categoria_anuncios` WRITE;
 /*!40000 ALTER TABLE `categoria_anuncios` DISABLE KEYS */;
-insert into categoria_anuncios values (1,'Publica','glyphicon-lock');
+insert into categoria_anuncios values (1,'Pública','glyphicon-globe');
+insert into categoria_anuncios values (2,'Privada','glyphicon-lock');
 /*!40000 ALTER TABLE `categoria_anuncios` ENABLE KEYS */;
 UNLOCK TABLES;
 
