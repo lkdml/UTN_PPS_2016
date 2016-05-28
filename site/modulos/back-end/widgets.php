@@ -3,8 +3,10 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php');
 
 use \CORE\Controlador\Aplicacion;
 Aplicacion::startSession(true);
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+use Doctrine\ORM\Query\ResultSetMapping;
 
-
+use \Modelo\Ticket as Ticket;
 //      \CORE\Controlador\Aplicacion::starSession();
     //require_once(CORE\Config::getPublic('CORE').'singleton.class.php');
     //require(\CORE\Config::getPublic('CORE').'aplicacion.class.php');
@@ -15,9 +17,10 @@ Aplicacion::startSession(true);
             header("location:login.php");
         }*/
 
-
     switch  (strtolower($_GET['datosAjax'])){
         case strtolower('W-TiempoEstimadoVs'):
+          
+          
             $result = '{
                           "labels": ["<1 Hora", "1-3 Horas", "3-6 Horas", "6-12 Horas", "12-24 Horas", "+24 Horas"],
                           "datasets": [
@@ -36,6 +39,21 @@ Aplicacion::startSession(true);
             die(($result));
             break;
         case strtolower('W-estdosTicket'):
+
+                  $estados = $ticket = $em->getRepository('Modelo\TicketEstado')->findAll();
+                  foreach ($estados as $estado) {
+                    $arraydatos[$estado->getNombre()] = count($em->getRepository('Modelo\Ticket')->findBy(array("estado"=>$estado->getEstadoId())));
+                    $arrayEstadoColor[$estado->getNombre()] =$estado->getColor();
+                  }
+                  
+                  $resultado="'[";
+                  foreach($estados as $estado)
+                  {
+                    $resultado=$resultado."{'value':".$arraydatos[$estado->getNombre()].",'color':"."'".$arrayEstadoColor[$estado->getNombre()]."'".",'highlight':"."'".$arrayEstadoColor[$estado->getNombre()]."'".",'label':"."'".$estado->getNombre()."'"."},";
+                  }
+                  $resultado=substr($resultado,0,$resultado.lenght-1)."]'";
+                  //var_dump($resultado);die;
+
                     $result = '[
                               {
                                 "value": 700,
@@ -44,25 +62,19 @@ Aplicacion::startSession(true);
                                 "label": "Abierto"
                               },
                               {
-                                "value": 500,
+                                "value": 200,
                                 "color": "#00c0ef",
                                 "highlight": "#00c0ef",
                                 "label": "En curso"
                               },
                               {
-                                "value": 400,
-                                "color": "#f39c12",
-                                "highlight": "#f39c12",
-                                "label": "Respondido"
-                              },
-                              {
-                                "value": 600,
+                                "value": 100,
                                 "color": "#00a65a",
                                 "highlight": "#00a65a",
                                 "label": "Cerrado"
                               }
                             ]';
-            die(($result));
+            die(($resultado));
             break;
         case strtolower('w-tiempo-vs-tiempo'):
             $result = '{
@@ -93,11 +105,27 @@ Aplicacion::startSession(true);
             die(($result));
             break;
         case strtolower('w-TicketXPrioridad'):
+          
+            /*
+                 $prioridades = $ticket = $em->getRepository('Modelo\Prioridad')->findAll();
+                  foreach ($prioridades as $prioridad) {
+                    $arraydatos[$estado->getNombre()] = count($em->getRepository('Modelo\Ticket')->findBy(array("prioridad"=>$prioridad->getPrioridadId())));
+                    $arrayEstadoColor[$estado->getNombre()] =$estado->getColor();
+                  }
+                  
+                  $resultado="'[";
+                  foreach($estados as $estado)
+                  {
+                    $resultado=$resultado."{'value':".$arraydatos[$estado->getNombre()].",'color':"."'".$arrayEstadoColor[$estado->getNombre()]."'".",'highlight':"."'".$arrayEstadoColor[$estado->getNombre()]."'".",'label':"."'".$estado->getNombre()."'"."},";
+                  }
+                  $resultado=substr($resultado,0,$resultado.lenght-1)."]'";
+          */
+          
                 $result = '{
                             "labels": ["Baja", "Media", "Alta", "Crítica", "Urgente"],
                             "datasets": [
                                 {
-                                    "label": "My First dataset",
+                                    "label": "Tickets segun prioridad",
                                     "fillColor": "rgba(220,220,220,0.2)",
                                     "strokeColor": "rgba(220,220,220,1)",
                                     "pointColor": "rgba(220,220,220,1)",
