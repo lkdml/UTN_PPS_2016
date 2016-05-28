@@ -187,7 +187,7 @@ js=''
                         <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                     </div>
                 </div>
-                <div class="box-body">
+                <div class="box-body pieChart">
                   <canvas id="pieChart" style="height:250px"></canvas>
                 </div>
                 <!-- /.box-body -->
