@@ -1,6 +1,5 @@
-
-setInterval(
-  function (){
+cargarChart();
+  function cargarChart(){
        $.ajax({
             url:'operador.php?modulo=widgets',
             type:'GET',
@@ -49,6 +48,6 @@ setInterval(
                    }
             })
   }
-  
-
-  ,5000);
+setInterval(function() {
+  cargarChart();  
+},120000);
