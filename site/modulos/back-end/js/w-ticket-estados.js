@@ -1,5 +1,4 @@
-    
-var bandera = false;
+
 setInterval(
   function (){
        $.ajax({
