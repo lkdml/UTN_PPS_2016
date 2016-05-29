@@ -58,24 +58,28 @@
                 <li><a href="/operador.php?modulo=ticket">Nuevo Ticket</a></li>
               </ul>
             </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="/operador.php?modulo=usuarios">Ver Usuarios</a></li>
-                <li><a href="/operador.php?modulo=usuario">Nuevo Usuario</a></li>
-                <li class="divider"></li>
-                <li><a href="/operador.php?modulo=empresas">Empresas</a></li>
-              </ul>
-            </li>
+            {if $Permisos->verificarPermiso(array("usuarios_ver","usuarios_crear","empresas_ver"))}
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li>{if $Permisos->verificarPermiso("usuarios_ver")}<a href="/operador.php?modulo=usuarios">Ver Usuarios</a></li>{/if}
+                  <li>{if $Permisos->verificarPermiso("usuarios_crear")}<a href="/operador.php?modulo=usuario">Nuevo Usuario</a></li>{/if}
+                  <li class="divider"></li>
+                  <li>{if $Permisos->verificarPermiso("empresas_ver")}<a href="/operador.php?modulo=empresas">Empresas</a></li>{/if}
+                </ul>
+              </li>
+            {/if}
+            {if $Permisos->verificarPermiso(array("anuncios_crear","anuncios_listar","categorias_ver"))}
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anuncios <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="/operador.php?modulo=anuncio">Nuevo Anuncio</a></li>
-                <li><a href="/operador.php?modulo=anuncios">Ver Anuncios</a></li>
+                <li>{if $Permisos->verificarPermiso("anuncios_crear")}<a href="/operador.php?modulo=anuncio">Nuevo Anuncio</a></li>{/if}
+                <li>{if $Permisos->verificarPermiso("anuncios_listar")}<a href="/operador.php?modulo=anuncios">Ver Anuncios</a></li>{/if}
                 <li class="divider"></li>
-                <li><a href="/operador.php?modulo=categorias">Categorias</a></li>
+                <li>{if $Permisos->verificarPermiso("categorias_ver")}<a href="/operador.php?modulo=categorias">Categorias</a></li>{/if}
               </ul>
             </li>
+            {/if}
             <li ><a href="/operador.php?modulo=informes">Informes </a></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administración <span class="caret"></span></a>

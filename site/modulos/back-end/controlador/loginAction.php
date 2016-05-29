@@ -25,7 +25,6 @@ die;
 $app = Aplicacion::getInstancia();
 
 if ($app->loginOperador($_POST["operador"],$_POST["clave"])){
-    $app->guardarOperadorEnSession();
     header("location:/operador.php?modulo=dashboard");
 } else {
     header("location:/operador.php?modulo=login&error=Operador");

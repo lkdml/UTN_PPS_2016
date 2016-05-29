@@ -10,13 +10,22 @@ class Aplicacion {
     private $usuario;
     private $loggedIn;
     private $operador;
+    private $permisos;
     private static $instancia;
     
-    public function getoperador(){return $this->operador;}
+    public function getOperador(){return $this->operador;}
     public function getUsuario(){return $this->usuario;}
+    public function getPermisos(){
+        $this->permisos->obtenerPermisosOperador($this->permisos->getPerfilId);
+        return $this->permisos;
+    }
     
     public function setoperador($operador){$this->operador = $operador;}
     public function setUsuario($usuario){$this->usuario = $usuario;}
+    public function setPermisos($permisos){$this->permisos = $permisos;}
+    
+
+    
     /**
      * Retorna la instancia de si misma.
      *
@@ -33,6 +42,15 @@ class Aplicacion {
       return self::$instancia;
     }
     
+    public function guardarPermisosEnSession(){
+        unset($_SESSION['Aplicacion']['Permisos']);
+        $_SESSION['Aplicacion']['Permisos']=serialize($this->permisos);
+    }
+
+    public function recuperarPermisosDeSession(){
+        $this->permisos = unserialize($_SESSION['Aplicacion']['Permisos']);
+    }
+
     public function guardarOperadorEnSession(){
         $_SESSION['Aplicacion']['Operador']=serialize($this->operador);
     }
@@ -45,10 +63,10 @@ class Aplicacion {
     }
     
     public function recuperarUsuarioDeSession(){
-        $this->operador=unserialize($_SESSION['Aplicacion']['Usuario']);
+        $this->usuario=unserialize($_SESSION['Aplicacion']['Usuario']);
     }
 
-    protected function __construct(){    }
+    protected function __construct(){}
 
     /**
      * Previene que clonen esta clase
@@ -114,6 +132,10 @@ class Aplicacion {
                     }
                     if (isset($_SESSION['Aplicacion']['Operador'])){
                         $this->recuperarOperadorDeSession();
+                        if (isset($this->permisos)){
+                            $this->permisos = new \CORE\Controlador\Permisos();
+                        }
+                        $this->recuperarPermisosDeSession();
                     }
                 }
             } else {
@@ -142,6 +164,10 @@ class Aplicacion {
                 $this->setoperador($operador[0]); 
                 $this->startSession(true,true);
                 $this->guardarOperadorEnSession();
+                $this->permisos = new \CORE\Controlador\Permisos();
+                $this->permisos->setPerfilId($this->operador->getPerfil()->getPerfilId());
+                $this->permisos->obtenerPermisosOperador();
+                $this->guardarPermisosEnSession();
                 return true;
             }
         }
@@ -164,13 +190,7 @@ class Aplicacion {
         return false;
     }
     
-    public function getPermisos(){
-        $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-        var_dump($this->operador->getPerfil());
-        $Permisos =  $em->getRepository('Modelo\Perfil')->find($this->operador->getPerfil());
-        var_dump($Permisos);die;
-        return $Permisos;
-    }
+
     
     public function logout() {
             session_unset();
