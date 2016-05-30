@@ -11,7 +11,6 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php');
 
 use \CORE\Controlador\Aplicacion;
 $app = Aplicacion::getInstancia();
-
 if ($app->loginUsuario($_POST["email"],$_POST["clave"])){
     $app->guardarUsuarioEnSession();
     header("location:/index.php?modulo=home");

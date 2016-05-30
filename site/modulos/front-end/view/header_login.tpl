@@ -20,6 +20,8 @@
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="{$rutaCSS}_all-skins.css">
 
+  <link rel="stylesheet" href="{$rutaCSS}loginNavBar.css">
+  
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -45,41 +47,53 @@
       <!-- <span class="logo-lg">Sistema<b>T.H.M.</b></span>-->
     </a>
     <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
+    
+  <nav class="navbar navbar-default navbar-inverse" role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    
 
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li {if $error}class="dropdown open" {else} class="dropdown"{/if}class="dropdown" >
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" {if $error}aria-expanded="true"{/if}><i class="glyphicon glyphicon-user"></i> Ingresar<span class="caret"></span></a>
+    			<ul id="login-dp" class="dropdown-menu">
+    				<li>
+    					 <div class="row">
+    							<div class="col-md-12">
+    								 <form class="form" role="form" method="post" action="{$rutaCSS}../controlador/loginAction.php" id="login-nav">
+    										Ingrese sus datos
+    										<div class="form-group">
+    										  <div class="input-group">
+                          	<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                            <!--EMAIL ADDRESS-->
+                            <input id="emailInput" name="email" placeholder="Ingrese su email" class="form-control" type="email">
+                          </div>
+												</div>
+    										<div class="form-group">
+    										    <div class="input-group">
+                            	<span class="input-group-addon"><i class="glyphicon glyphicon-lock color-blue"></i></span>
+                              <!--PASSWORD--> 
+                            	<input id="passwordInput" name="clave" placeholder="Ingrese su contraseña" class="form-control" type="password">
+                            </div>
+                           <div class="help-block text-right"><a href="/index.php?modulo=perfil">Olvidé mi contraseña</a></div>
+    										</div>
+    										{if $error}<div class="help-block-error"><span class="glyphicon glyphicon-remove"></span>{$error}</div>{/if}
+    										<div class="form-group">
+    											 <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+    										</div>
+    								 </form>
+    							</div>
+    					 </div>
+    				</li>
+    			</ul>
+        </li>
+        <li><a href="#" data-toggle="control-sidebar">Registrarse</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <!-- Notifications: style can be found in dropdown.less -->
-          <li class="dropdown notifications-menu">
-            
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <button type="button" class="btn btn-block btn-primary btn-xs">Ingresar</button>
-            </a>
-            <ul class="dropdown-menu">
-              <form action="{$rutaCSS}../controlador/loginAction.php" method="post">
-                <li class="header">Ingrese sus dados:</li>
-                {if $error}<li class="header"><span class="help-block">{$error}</span></li>{/if}
-                <li>
-                    <input class="form-control input-sm" id="exampleInputEmail" placeholder="Email" name="email" type="email">
-                    <input class="form-control input-sm" id="exampleInputPassword" placeholder="Clave" name="clave" type="password">            
-                </li>
-                <button type="submit" class="btn btn-block btn-primary btn-sm">Ingresar</button>
-              </form>
-            </ul>
-          </li>
-                    <li class="dropdown notifications-menu">
-            
-            <a href="#" class="dropdown-toggle" >
-              <button type="button" class="btn btn-block btn-primary btn-xs" data-toggle="control-sidebar">Registrarse</button>
-            </a>
+</header>
 
-            
-          </li>
-          <li>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>

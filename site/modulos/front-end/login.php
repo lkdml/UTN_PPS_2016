@@ -8,8 +8,9 @@ $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Front_SMARTY_Template
 $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Front').'css/',
                 \CORE\Controlador\Config::getPublic('Ruta_Front').'js/',
                 \CORE\Controlador\Config::getPublic('Ruta_Front').'imagenes/');
+           
 switch(strtolower($_GET['error'])){
-  case 'Usuario':
+  case "usuario":
     $vm->assign('error',"El Usuario o la clave son incorrectos");
     break;
   default:

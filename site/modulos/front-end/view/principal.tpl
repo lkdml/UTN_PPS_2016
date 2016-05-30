@@ -1,10 +1,9 @@
-{include file="header_login.tpl"
+{include file="header_login.tpl" error=$error
 css=''
 js=''
 }
   <!-- =============================================== -->
 
- 
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
