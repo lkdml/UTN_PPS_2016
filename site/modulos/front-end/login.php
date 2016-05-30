@@ -20,6 +20,17 @@ $Empresa=$em->getRepository('Modelo\Empresa')->findby(array('empresaId' => -1));
 
 $Anuncios = $Empresa[0]->getAnuncio();
 
+//SACO LOS ANUNCIOS QUE TIENEN FECHA DE FIN VENCIDA
+foreach ($Anuncios as $key=>$anuncio){
+        if ($anuncio->getFechaFinPublicacion() != null)
+        {
+            if (strtotime($anuncio->getFechaFinPublicacion()->format('d-m-Y')) < strtotime(date_format(new \DateTime("now"),'d-m-Y')))
+            {
+                
+               unset($Anuncios[$key]); 
+            }
+        }
+      }
 
 //////////////////////////////////////////////////////////////////////////////
 // ORDENO LOS ANUNCIOS
