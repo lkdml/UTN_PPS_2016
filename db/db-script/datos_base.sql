@@ -201,7 +201,8 @@ UNLOCK TABLES;
 
 LOCK TABLES `empresa` WRITE;
 /*!40000 ALTER TABLE `empresa` DISABLE KEYS */;
-insert into empresa values (1,'tmh corp','arg','','','','','http://tmh.com.ar','2016-05-22 23:30');
+insert into empresa values (-1,'Comunicaciones Globales','Argentina','','','','','','2016-05-22 23:30');
+insert into empresa values (1,'TMH Corporation','Argentina','','','','','http://tmh.com.ar','2016-05-22 23:30');
 /*!40000 ALTER TABLE `empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,5 +229,31 @@ LOCK TABLES `usuario` WRITE;
 insert into usuario values (1,'mi nombre','mi apellido','$2y$12$6/1I/icTUyqYkRR3ICrv1OfsI.fBkXWnGEdtWPNNxqN/eQXcdhI8a','marianolopezsenes@gmail.com',null,'mi direccion','1875','Buenos Aires','5555-5555','adicional mail',1,'2016-05-23 12:30','2016-05-23 12:31',1,0);
 insert into usuario values (2,'Brian','Ducca','$2y$12$6/1I/icTUyqYkRR3ICrv1OfsI.fBkXWnGEdtWPNNxqN/eQXcdhI8a','brian.ducca@gmail.com',null,'mi direccion','1875','Buenos Aires','5555-5555','adicional mail',1,'2016-05-23 12:30','2016-05-23 12:31',1,0);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `anuncio` WRITE;
+/*!40000 ALTER TABLE `anuncio` DISABLE KEYS */;
+insert into anuncio values (1,1,'Version Beta','<p>TMH en su version beta</p><p>Features Incluidos</p><ul><li>Manejo de Anuncios y Categoria de anuncios</li><li>Manejo de Usuarios</li><li>Manejo de Operadores</li><li>Creacion de Tickets</li></ul>','2016-05-22 22:30',1,null,1);
+insert into anuncio values (2,2,'TMH CORP Avances','Funcionando Perfiles y Roles','2016-05-29 22:30',1,null,1);
+insert into anuncio values (3,2,'TMH CORP Avances','Funcionando ABM Operadores','2016-04-27 22:30',1,null,1);
+insert into anuncio values (4,2,'Lorem Ipsum','Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.','2016-05-30 10:30',1,null,1);
+insert into anuncio values (5,1,'Arranque Proyecto TMH','TMH Nace','2016-03-17 18:30',1,null,1);
+insert into anuncio values (6,1,'Novedades Proyecto','Finaliza la etapa de análisis y comienza el desarrollo','2016-04-12 18:30',1,null,1);
+insert into anuncio values (7,1,'Novedades Proyecto','Primer MegaPack, ORM Funcionando','2016-05-19 18:30',1,null,1);
+insert into anuncio values (8,1,'Novedades Proyecto','Segundo MegaPack','2016-05-29 18:30',1,null,1);
+/*!40000 ALTER TABLE `anuncio` ENABLE KEYS */;
+UNLOCK TABLES;
+
+LOCK TABLES `anuncios_empresa` WRITE;
+/*!40000 ALTER TABLE `anuncios_empresa` DISABLE KEYS */;
+insert into anuncios_empresa values (-1,1);
+insert into anuncios_empresa values (1,2);
+insert into anuncios_empresa values (1,3);
+insert into anuncios_empresa values (1,4);
+insert into anuncios_empresa values (-1,5);
+insert into anuncios_empresa values (-1,6);
+insert into anuncios_empresa values (-1,7);
+insert into anuncios_empresa values (-1,8);
+/*!40000 ALTER TABLE `anuncios_empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 

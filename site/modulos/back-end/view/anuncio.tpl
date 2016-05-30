@@ -29,7 +29,7 @@ js=''
                         <div class="box-body pad">
                             <label for="inputTitulo" class="col-sm-2 control-label">Título</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="txtTitulo" name="titulo" {if $Anuncio}value={$Anuncio->getTitulo()}{/if}>
+                              <input type="text" class="form-control" id="txtTitulo" name="titulo" {if $Anuncio}value="{$Anuncio->getTitulo()}"{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->

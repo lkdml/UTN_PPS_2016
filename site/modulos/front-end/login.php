@@ -16,4 +16,24 @@ switch(strtolower($_GET['error'])){
     break;
 }
 
+$Empresa=$em->getRepository('Modelo\Empresa')->findby(array('empresaId' => -1));
+
+$Anuncios = $Empresa[0]->getAnuncio();
+
+
+//////////////////////////////////////////////////////////////////////////////
+// ORDENO LOS ANUNCIOS
+$iterator = $Anuncios->getIterator();
+
+// define ordering closure, using preferred comparison method/field
+$iterator->uasort(function ($first, $second) {
+    return $first->getFechaCreacion() > $second->getFechaCreacion() ? -1 : 1;
+});
+//////////////////////////////////////////////////////////////////////////////
+
+$minFecha=new DateTime('4000-01-01');
+$vm->assign('minFecha',$minFecha); 
+
+$vm->assign('Anuncios',$iterator); 
+
 $vm->display('principal.tpl');

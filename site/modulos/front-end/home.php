@@ -5,10 +5,36 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php');
 require_once (\CORE\Controlador\Config::getPublic('Ruta_Core_Controlador')."ViewManager.php");
 
 use \CORE\Controlador\Aplicacion;
-Aplicacion::startSession($modoOP);
+$app = Aplicacion::getInstancia();
+$app->startSession(false);
 
-  $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Front_SMARTY_TemplateDir'),null);
-  $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Front').'css/',\CORE\Controlador\Config::getPublic('Ruta_Front').'js/',\CORE\Controlador\Config::getPublic('Ruta_Front').'imagenes/');
+$vm = new ViewManager(\CORE\Controlador\Config::getPublic('Front_SMARTY_TemplateDir'),null);
+$vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Front').'css/',\CORE\Controlador\Config::getPublic('Ruta_Front').'js/',\CORE\Controlador\Config::getPublic('Ruta_Front').'imagenes/');
 
-  $vm->display('home.tpl');
+$vm->assign('UsuarioLogeado',$app->getUsuario());
+
+$UsuarioLogeado=$em->getRepository('Modelo\Usuario')->findby(array('usuarioId' => $app->getUsuario()->getUsuarioId()));
+
+$Empresa=$em->getRepository('Modelo\Empresa')->findby(array('empresaId' => $UsuarioLogeado[0]->getEmpresa()->getEmpresaId()));
+
+$Anuncios = $Empresa[0]->getAnuncio();
+
+//////////////////////////////////////////////////////////////////////////////
+// ORDENO LOS ANUNCIOS
+$iterator = $Anuncios->getIterator();
+
+// define ordering closure, using preferred comparison method/field
+$iterator->uasort(function ($first, $second) {
+    return $first->getFechaCreacion() > $second->getFechaCreacion() ? -1 : 1;
+});
+//////////////////////////////////////////////////////////////////////////////
+
+$minFecha=new DateTime('4000-01-01');
+$vm->assign('minFecha',$minFecha); 
+
+
+$vm->assign('Anuncios',$iterator); 
+
+$vm->display('home.tpl');
+
 ?>

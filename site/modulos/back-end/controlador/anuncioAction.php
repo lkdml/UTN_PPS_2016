@@ -33,10 +33,9 @@ function setear(Anuncio $anuncio,$em,$op){
         $anuncio->setEstado(false);
     }
     $anuncio->setFechaCreacion(new \DateTime("now"));
-    
-     if (isset($_POST["fechaFinPublicacion"]))
+     if (!empty($_POST["fechaFinPublicacion"]))
     {
-        $anuncio->setFechaFinPublicacion(DateTime::createFromFormat('m/d/Y', $_POST['fechaFinPublicacion']));
+        $anuncio->setFechaFinPublicacion(DateTime::createFromFormat('d/m/Y', $_POST['fechaFinPublicacion']));
     } else {
         $anuncio->setFechaFinPublicacion(null);
     }
