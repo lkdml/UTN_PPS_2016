@@ -193,10 +193,11 @@ class Aplicacion {
 
     
     public function logout() {
+            session_start();
             session_unset();
             session_destroy();
-            unset($this->usuario);
-            unset($this->operador);
+            unset($this);
+            unset($this);
     }
 
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /> 
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="shortcut icon" href="{$rutaIMG}monkeyIco.ico">
   <title>T.M.H.</title>
@@ -149,7 +149,7 @@
                   <a href="/operador.php?modulo=perfilOperador" class="btn btn-default btn-flat">Configuración</a>
                 </div>
                 <div class="pull-right">
-                  <a href="/operador.php" class="btn btn-default btn-flat">Salir</a>
+                  <a href="/operador.php?modulo=login&logOut=1" class="btn btn-default btn-flat">Salir</a>
                 </div>
               </li>
             </ul>

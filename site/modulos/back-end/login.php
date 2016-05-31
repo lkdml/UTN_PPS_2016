@@ -3,6 +3,11 @@
 require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php');  
 require_once (\CORE\Controlador\Config::getPublic('Ruta_Core_Controlador')."ViewManager.php");
 
+$app = \CORE\Controlador\Aplicacion::getInstancia();
+
+if ($_GET["logOut"]=='1'){
+  $app->logout();
+}
 
 $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateDir'),null);
 $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',

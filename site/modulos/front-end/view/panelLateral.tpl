@@ -32,7 +32,7 @@
           </a>
         </li>
         <li class="treeview">
-          <a href="/index.php">
+          <a href="/index.php?modulo=login&logOut=1">
             <i class="fa fa-share"></i> <span>Salir</span>
           </a>
         </li>
