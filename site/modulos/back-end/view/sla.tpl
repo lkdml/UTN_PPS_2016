@@ -354,14 +354,14 @@ js=''
 <script src="{$rutaJS}jquery-validator-min.js"></script>
 <script src="{$rutaJS}validacionNuevoSLA.js"></script>
 <!-- DurationPicker -->
-<script src="{$rutaJS}jquery-duration-picker.js"></script>
+<!-- <script src="{$rutaJS}jquery-duration-picker.js"></script> -->
 
-{literal} <script>
+<!-- {literal} <script>
    $(function () {
             $('#inputCondicionHoras').durationPicker({lang:'es'});
             $('#').durationPicker({showSeconds: true });
         });
 </script>
-{/literal}
+{/literal} -->
 
  {include file="footer.tpl"}
