@@ -205,17 +205,22 @@ js=''
                             
                             <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
                             <input class="col-sm-10" type="file" id="archivo" name="Archivo[]">
+                            
+                            <div class="box-footer col-md-2 pull-right">
+                              <button onclick="history.go(-1);" class="btn btn-danger pull-left btn-lg">Cancelar</button>
+                              <button type="submit" class="btn btn-info pull-right btn-lg">Enviar</button>
+                            </div>
                          </div> 
+              
                       </div>
+                 
                     </div>
-                    <button type="submit" class="btn btn-info pull-right">Enviar</button>
-                    <button onclick="history.go(-1);" class="btn btn-danger pull-right">Cancelar</button>
+                    
                     
                   </div><!-- /.box-body Asunto Descripcion y Adjuntos -->
                  
               </div>
 
-              <!-- /.box-footer -->
             </form>
           </div>
           
@@ -236,9 +241,9 @@ js=''
 <!-- Validaciones de form-->
 <script src="{$rutaJS}jquery-validator-min.js"></script>
 <script src="{$rutaJS}validacionNuevoTicket.js"></script>
-
-
 <script src="{$rutaJS}bootstrap3-wysihtml5.all.js"></script>
+
+
 
 {literal} <script>
   $(function () {

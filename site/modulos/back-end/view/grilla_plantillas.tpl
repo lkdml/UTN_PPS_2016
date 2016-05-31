@@ -159,7 +159,7 @@ js=''
                   <!-- box body end -->
                    
                   <div class="box-footer">
-                      <button type="submit" class="btn btn-info pull-right">Guardar</button> 
+                      <button type="submit" class="btn btn-info pull-right btn-lg">Guardar</button> 
                   </div>
                   <!-- /.box-footer -->
               </form>

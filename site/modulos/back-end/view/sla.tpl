@@ -321,15 +321,17 @@ js=''
                 </div>
                  <!--DATOS Template -->
                 
-                
+           <div class="box-footer col-md-2 pull-right">
+                <button onclick="history.go(-1);" class="btn btn-danger pull-left btn-lg">Cancelar</button>
+                <button type="submit" class="btn btn-info pull-right btn-lg">Enviar</button>
+         </div>
                 
             </div>
             <!-- box body end -->
+            
+            
              
-            <div class="box-footer">
-                 <button type="submit" class="btn btn-info pull-left">Enviar</button>
-                <button onclick="history.go(-1);" class="btn btn-danger pull-right">Cancelar</button>
-            </div>
+          
             <!-- /.box-footer -->
         </form>
         <!-- form end -->
@@ -353,6 +355,9 @@ js=''
 <!-- Validaciones -->
 <script src="{$rutaJS}jquery-validator-min.js"></script>
 <script src="{$rutaJS}validacionNuevoSLA.js"></script>
+<!--PreventDefault Enter -->
+<script src="{$rutaJS}noEnter.js"></script>
+
 <!-- DurationPicker -->
 <!-- <script src="{$rutaJS}jquery-duration-picker.js"></script> -->
 
@@ -363,5 +368,8 @@ js=''
         });
 </script>
 {/literal} -->
+
+
+
 
  {include file="footer.tpl"}

@@ -252,12 +252,10 @@ js=''
             </div>
             <!-- Fin Columna Derecha -->
  
-            <div class="pull-left">
-              <button type="submit" class="btn btn-warning">Enviar</button>
-            </div>
-            <div class="pull-right">
-              <button onclick="history.go(-1);" class="btn btn-danger pull-right">Cancelar</button>
-            </div>
+           <div class="box-footer col-md-2 pull-right">
+                  <button onclick="history.go(-1);" class="btn btn-danger pull-left btn-lg">Cancelar</button>
+                  <button type="submit" class="btn btn-info pull-right btn-lg">Enviar</button>
+                </div>
         </form>
         <!-- form end -->
     </div>

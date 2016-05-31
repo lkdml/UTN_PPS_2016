@@ -71,14 +71,14 @@ js=''
                     <!-- form group end -->
                 </div>
                 <!-- box end -->
+                 <div class="box-footer col-md-2 pull-right">
+                  <button onclick="history.go(-1);" class="btn btn-danger pull-left btn-lg">Cancelar</button>
+                  <button type="submit" class="btn btn-info pull-right btn-lg">Enviar</button>
+                </div>
             </div>
             <!-- box body end -->
              
-            <div class="box-footer">
-                 <button type="submit" class="btn btn-info pull-left">Enviar</button>
-                <button onclick="history.go(-1);" class="btn btn-danger pull-right">Cancelar</button>
-            </div>
-            <!-- /.box-footer -->
+           
         </form>
         <!-- form end -->
     </div>
