@@ -11,7 +11,7 @@ if(!empty($_GET["q"]))
    ->getResult();
    if(!empty($result)) {
        foreach($result as $usuario) {
-           $data=array($usuario->getEmail());
+           $data[]=$usuario->getEmail();
        }
        echo json_encode($data);
    }
