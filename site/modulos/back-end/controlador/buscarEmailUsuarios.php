@@ -13,8 +13,21 @@ if(!empty($_GET["q"]))
        foreach($result as $usuario) {
            $data[]=$usuario->getEmail();
        }
-       echo json_encode($data);
+       
    }
+   
+   $resultOperadores= $em->getRepository('Modelo\Operador')->createQueryBuilder('op')
+   ->where('op.email LIKE :email')
+   ->setParameter('email','%'.$_GET["q"].'%')
+   ->getQuery()
+   ->getResult();
+   if(!empty($resultOperadores)) {
+       foreach($resultOperadores as $operador) {
+           $data[]=$operador->getEmail();
+       }
+       
+   }
+   echo json_encode($data);
 }
 
 ?>
