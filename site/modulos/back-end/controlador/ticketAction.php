@@ -4,6 +4,7 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/bootstrap_orm.php');
 
 use \CORE\Controlador\Aplicacion;
 use \Modelo\Ticket as Ticket;
+use \Modelo\Mensaje as Mensaje;
 use \Modelo\EmailQueue as EmailQueue;
 $app = Aplicacion::getInstancia();
 $app->startSession(true);
@@ -12,11 +13,13 @@ $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 if (isset($_GET['TicketId'])){
     $Ticket =  $em->getRepository('Modelo\Ticket')->find($_GET["TicketId"]);
-    $em->persist(setear($Ticket,$em));
+    $em->persist(setearTicket($Ticket,$em));
     $em->flush();
 } else {
-    $Ticket = setear(new Ticket(),$em);
+    $Ticket = setearTicket(new Ticket(),$em);
+    $Mensaje = setearMensaje(new Mensaje, $Ticket, $em);
     $em->persist($Ticket);
+    $em->persist($Mensaje);
     $em->flush();
 }
 
@@ -48,9 +51,11 @@ function generarCodigoTicket($em){
 }
 
 
-function setear(Ticket $ticket,$em){
+function setearTicket(Ticket $ticket,$em){
+   
     $ticket->setNumeroTicket(generarCodigoTicket($em));
     $ticket->setAsunto($_POST["Asunto"]);
+
     $ticket->setDescripcion($_POST["descripcion"]);
     $ticket->setEmailQueueID(1);
     if ($_POST["Departamento"]!="-1"){
@@ -67,7 +72,7 @@ function setear(Ticket $ticket,$em){
     }
     if ($_POST["OperadorAsignado"]!="-1"){
         $ticket->setOwnerOperadorId($em->getRepository('Modelo\Operador')->find($_POST["OperadorAsignado"]));
-        $ticket->setAsignado(1);
+        $ticket->setAsignado(1); // TODO: Debemos arreglar el asignado 1 o 0
     }
     //TODO Ticket no tiene SLA en la BD
     if ($_POST["SLA"]!="-1"){
@@ -87,10 +92,29 @@ function setear(Ticket $ticket,$em){
     }
     
     //TODO Aca hay que ver si va usuario u operador, pero hay que modificar la tpl
-    $usuario = $em->getRepository('Modelo\Usuario')->findBy(array("email"=>$_POST["Propieatario"]));
-    $ticket->setUsuario($usuario[0]);
+    $propietariUsuario = $em->getRepository('Modelo\Usuario')->findBy(array("email"=>$_POST["Propietario"]));
+    $ticket->setUsuario($propietariUsuario[0]);
     $ticket->setOperador($operador);
+
     return $ticket;
+}
+
+function setearMensaje(Mensaje $mensaje, Ticket $ticket,$em){
+    $propietariUsuario = $em->getRepository('Modelo\Usuario')->findBy(array("email"=>$_POST["Propietario"]));
+    $propietarioOperador = $em->getRepository('Modelo\Operador')->findBy(array("email"=>$_POST["Propietario"]));
+    if ($_POST["Descripcion"]) {
+        $mensaje = new Mensaje();
+        $mensaje->setTexto($_POST["Descripcion"]);
+        $mensaje->setFecha(new DateTime("NOW"));
+        $mensaje->setTipoMensaje(1); //TODO: No se lo que es tipo de mensaje integer pero le paso 1 como parametro
+        $mensaje->setTicket($ticket);
+        if (!is_null($propietariUsuario)){
+            $mensaje->setCreadorUsuario($propietariUsuario[0]->getUsuarioId());
+        } else if (!is_null($propietarioOperador)){
+            $mensaje->setCreadorOperador($propietarioOperador[0]->getOperadorId());
+        }   
+    }
+    return $mensaje;
 }
 
 

@@ -45,11 +45,13 @@ switch(strtolower($_POST["accion"])){
     // Si el parametro que envio en accion es alta, solo debo validar permisos
     //var_dump($_POST);die;
    // $vm->assign('accion',$_POST["accion"]);
+   $vm->display('ticket.tpl');
     break;
-  case ("editar"):
+  case ("ver"):
     //TODO: falta validar permisos para esta accion.
     $Ticket = $em->getRepository('Modelo\Ticket')->find($_POST["ticketId"][0]);
     $vm->assign('Ticket',$Ticket);   
+    $vm->display('ticketVista.tpl');
 
     break;
   case ("borrar"):
@@ -62,4 +64,4 @@ switch(strtolower($_POST["accion"])){
     header("location:/operador.php?modulo=tickets");
     break;
 }
-$vm->display('ticket.tpl');
+

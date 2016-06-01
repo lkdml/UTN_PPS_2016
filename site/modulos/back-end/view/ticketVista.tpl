@@ -9,7 +9,7 @@ js=''
      <!-- Content Header (Page header) -->
      <section class="content-header">
        <h1>
-          <strong>Ticket TKP-234</strong>
+          <strong>Ticket {$Ticket->getNumeroTicket()}</strong>
          <small></small>
        </h1>
        <ol class="breadcrumb">
@@ -37,20 +37,19 @@ js=''
                     
                         <label for="comboDepto" class="col-sm-2 control-label">Departamento</label>
                           <div class="col-sm-5">
-                           <select class="form-control select2" style="width: 100%;">
-                              <option selected="selected">Sistemas</option>
-                              <option>Depto2</option>
-                              <option>Depto3</option>
-                              <option>Depto4</option>
-                              <option>Depto5</option>
-                              <option>Depto6</option>
-                              <option>Depto7</option>
+                           <select class="form-control select2" id="ddDepartamentos" name="Departamento" style="width: 100%;">
+                              <option value = "-1">Seleccione un Departamento...</option>
+                              {if $Departamentos}
+                                {foreach from=$Departamentos item=$departamento}
+                                  <option value="{$departamento->getDepartamentoId()}" {if $Ticket->getDepartamento()->getDepartamentoId() == $departamento->getDepartamentoId()} selected {/if}>{$departamento->getNombre()}</option>
+                                {/foreach}
+                              {/if}
                             </select>
                           </div>
                     
                     <label for="inputFechaAlta" class="col-sm-2 control-label">Fecha Alta</label>
                     <div class="col-sm-2">
-                      <input type="text" class="form-control" id="inputFechaAlta" disabled>
+                      <input type="text" class="form-control" id="inputFechaAlta" value='{$Ticket->getFechaCreacion()|date_format:"%d-%m-%Y %H:%m"}' disabled>
                     </div>
 
                   </div>
@@ -64,19 +63,19 @@ js=''
                     
                      <label for="comboEstado" class="col-sm-2 control-label">Estado</label>
                           <div class="col-sm-5">
-                           <select class="form-control select2" style="width: 100%;">
-                              <option selected="selected">Abierto</option>
-                              <option>estado2</option>
-                              <option>estado3</option>
-                              <option>estado4</option>
-                              
-                            </select>
+                           <select class="form-control select2" id="ddPrioridades" name="Estado" style="width: 100%;">
+                            {if $TicketEstados}
+                              {foreach from=$TicketEstados item=$Estado}
+                                <option value="{$Estado->getEstadoId()}" {if $Ticket->getEstado()->getEstadoId() == $Estado->getEstadoId()} selected {/if}>{$Estado->getNombre()}</option>
+                              {/foreach}
+                            {/if}
+                        </select>
                           </div>
                     
                     
                     <label for="inputFechaModificacion" class="col-sm-2 control-label">Fecha Modificación</label>
                     <div class="col-sm-2">
-                      <input type="text" class="form-control" id="inputFechaModificacion" disabled>
+                      <input type="text" class="form-control" id="inputFechaModificacion" value='{$Ticket->getFechaVto()|date_format:"%d-%m-%Y %H:%m"}' disabled>
                     </div>
                   </div>
                 </div>
@@ -85,7 +84,7 @@ js=''
                   <div class="box-body pad">
                     <label for="inputAsunto" class="col-sm-2 control-label">Asunto</label>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" id="inputAsunto" disabled>
+                      <input type="text" class="form-control" id="inputAsunto" value='{$Ticket->getAsunto()}' disabled>
                     </div>
                     
                     
@@ -93,7 +92,7 @@ js=''
                     
                     <label for="inputTipoTicket" class="col-sm-2 control-label">Tipo de Ticket</label>
                     <div class="col-sm-2">
-                      <input type="text" class="form-control" id="inputTipoTicket" disabled>
+                      <input type="text" class="form-control" id="inputTipoTicket" value='{$Ticket->getTipoTicket()->getNombre()}' disabled>
                     </div>
                   </div>
                 </div>
@@ -105,13 +104,13 @@ js=''
                       
                        <label for="comboPrioridad" class="col-sm-2 control-label">Prioridad</label>
                           <div class="col-sm-5">
-                           <select class="form-control select2" style="width: 100%;">
-                              <option selected="selected">Alta</option>
-                              <option>Prioridad2</option>
-                              <option>Prioridad3</option>
-                              <option>Prioridad4</option>
-                              
-                            </select>
+                           <select class="form-control select2" id="ddPrioridades" name="Prioridad" style="width: 100%;">
+                            {if $Prioridades}
+                              {foreach from=$Prioridades item=$Prioridad}
+                                <option value="{$Prioridad->getPrioridadId()}"  {if $Ticket->getPrioridad()->getPrioridadId() == $Prioridad->getPrioridadId()} selected {/if}>{$Prioridad->getNombre()}</option>
+                              {/foreach}
+                            {/if}
+                        </select>
                           </div>
                           
                           <label for="comboSLA" class="col-sm-2 control-label">SLA</label>
@@ -136,8 +135,8 @@ js=''
                 
             </div><!-- fin box detalle-->
           </div><!-- fin box body detalle-->
-          
-         <div class="box-body"><!-- /.box-body Campos Custom -->
+                    {if $CamposCustom} 
+                     <div class="box-body"><!-- /.box-body Campos Custom -->
                         <div class="box">
                           <div class="box-header">
                             <h3 class="box-title">Campos Personalizados
@@ -191,7 +190,7 @@ js=''
                           </div>
                           <br>
                       </div><!-- /.box-body Campos Custom -->        
-                   
+                    {/if}
                    <!--Boton Cerrar Ticket-->
                     <div class="col-md-2 pull-right">
                                   <button type="submit" class="btn btn-danger btn-block">Cerrar Ticket</button>
