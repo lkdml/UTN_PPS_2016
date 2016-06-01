@@ -23,26 +23,36 @@ var checkboxes = document.getElementsByTagName('input');
                  
                  if (selchbox.length == 0){
                      
-                    document.getElementById("btnModificar").disabled = true;
-                    document.getElementById("btnBorrar").disabled = true;
-                    document.getElementById("btnNuevo").disabled = false;
+                    $("#btnModificar").prop('disabled', true);
+                    $("#btnBorrar").prop('disabled', true);
+                    $("#btnNuevo").prop('disabled', false);
+                    $("#btnUnir").prop('disabled', true);
+                    $("#btnSeparar").prop('disabled', true);
+                    $("#btnVer").prop('disabled', true);
+                    
                      
                      
                  }
                       if (selchbox.length == 1){
                      
-                    document.getElementById("btnModificar").disabled = false;
-                    document.getElementById("btnBorrar").disabled = false;
-                    document.getElementById("btnNuevo").disabled = true;
-                     
+                    $("#btnModificar").prop('disabled', false);
+                    $("#btnBorrar").prop('disabled', false);
+                    $("#btnNuevo").prop('disabled', true);
+                    $("#btnUnir").prop('disabled', true);;
+                    $("#btnSeparar").prop('disabled', true); // TODO: falta verificar si es un ticket unido
+                    $("#btnVer").prop('disabled', false);
                     
                       }
                       
                      if (selchbox.length > 1){
                      
-                    document.getElementById("btnModificar").disabled = true;
-                    document.getElementById("btnBorrar").disabled = false;
-                    document.getElementById("btnNuevo").disabled = true;
+                    $("#btnModificar").prop('disabled', true);
+                    $("#btnBorrar").prop('disabled', false);
+                    $("#btnNuevo").prop('disabled', true);
+                    $("#btnUnir").prop('disabled', false);
+                    $("#btnSeparar").prop('disabled', true);
+                    $("#btnVer").prop('disabled', true);
+                    
                      
                      
                  }
