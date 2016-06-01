@@ -1,5 +1,5 @@
 {include file="header.tpl"
-css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css">'
+css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css"><link rel="stylesheet" href="./modulos/back-end/css/jquery.auto-complete.css">'
 js='' 
 }
 {include file="panelLateral.tpl"}
@@ -30,9 +30,9 @@ js=''
                 <div class="box">
                   <div class="form-group">
                     <div class="box-body pad">
-                      <label for="inputAsunto" class="col-md-2 control-label">Propieatario</label>
+                      <label for="inputAsunto" class="col-md-2 control-label">Propietario</label>
                       <div class="col-md-5">
-                        <input type="text" class="form-control" id="txtAsunto" name="Propieatario">
+                        <input type="text" class="form-control" id="searchUsuario" name="Propietario" autocomplete="on">
                       </div>
                     </div>  
                   </div>
@@ -242,16 +242,27 @@ js=''
 <script src="{$rutaJS}jquery-validator-min.js"></script>
 <script src="{$rutaJS}validacionNuevoTicket.js"></script>
 <script src="{$rutaJS}bootstrap3-wysihtml5.all.js"></script>
+<script src="{$rutaJS}jquery.auto-complete.js"></script>
 
-
-
-{literal} <script>
+{literal} 
+<script>
   $(function () {
     //bootstrap WYSIHTML5 - text editor
     $(".textarea_msg").wysihtml5();
   });
 </script>
 
+<script type="text/javascript">
+$().ready(function() {
+var xhr;
+$('input[name="Propietario"]').autoComplete({
+    source: function(term, response){
+        try { xhr.abort(); } catch(e){}
+        xhr = $.getJSON('modulos/back-end/controlador/buscarEmailUsuarios.php', { q: term }, function(data){ response(data); });
+    }
+});
+ });
+</script>
 
 
 {/literal}
