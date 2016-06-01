@@ -1,4 +1,5 @@
-$(document).ready(function(){
+cargarRadarChart();
+  function cargarRadarChart(){
    $.ajax({
         url:'operador.php?modulo=widgets',
         type:'GET',
@@ -59,5 +60,8 @@ $(document).ready(function(){
 
                 
                         }
-                    });
-});
+                    })
+  }
+setInterval(function() {
+  cargarRadarChart();  
+},120000);

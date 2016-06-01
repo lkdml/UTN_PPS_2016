@@ -86,38 +86,34 @@ use \Modelo\Ticket as Ticket;
             die(($result));
             break;
         case strtolower('w-TicketXPrioridad'):
-          
-            /*
-                 $prioridades = $ticket = $em->getRepository('Modelo\Prioridad')->findAll();
-                  foreach ($prioridades as $prioridad) {
-                    $arraydatos[$estado->getNombre()] = count($em->getRepository('Modelo\Ticket')->findBy(array("prioridad"=>$prioridad->getPrioridadId())));
-                    $arrayEstadoColor[$estado->getNombre()] =$estado->getColor();
-                  }
-                  
-                  $resultado="'[";
-                  foreach($estados as $estado)
-                  {
-                    $resultado=$resultado."{'value':".$arraydatos[$estado->getNombre()].",'color':"."'".$arrayEstadoColor[$estado->getNombre()]."'".",'highlight':"."'".$arrayEstadoColor[$estado->getNombre()]."'".",'label':"."'".$estado->getNombre()."'"."},";
-                  }
-                  $resultado=substr($resultado,0,$resultado.lenght-1)."]'";
-          */
-          
-                $result = '{
-                            "labels": ["Baja", "Media", "Alta", "Crítica", "Urgente"],
-                            "datasets": [
-                                {
-                                    "label": "Tickets segun prioridad",
-                                    "fillColor": "rgba(220,220,220,0.2)",
-                                    "strokeColor": "rgba(220,220,220,1)",
-                                    "pointColor": "rgba(220,220,220,1)",
-                                    "pointStrokeColor": "#fff",
-                                    "pointHighlightFill": "#fff",
-                                    "pointHighlightStroke": "rgba(220,220,220,1)",
-                                    "data": [40,20,10,30,15]
-                                }
-                                    ]
-                                    }';
-            die(($result));
+
+                $prioridades = $ticket = $em->getRepository('Modelo\Prioridad')->findAll();
+                foreach ($prioridades as $prioridad) {
+                  $arraydatos[$prioridad->getNombre()] = count($em->getRepository('Modelo\Ticket')->findBy(array("prioridad"=>$prioridad->getPrioridadId())));
+                  //$arrayPrioridadColor[$prioridad->getNombre()] =$prioridad->getColor();
+                }
+                unset($labels);
+                unset($datos);
+                $i=0;
+                foreach($prioridades as $prioridad)
+                {
+                  $labels[]=  iconv('UTF-8', 'UTF-8//IGNORE', utf8_encode($prioridad->getNombre()));
+                  $datos['data'][$i]=$arraydatos[$prioridad->getNombre()];
+                  $i++;
+                }
+                
+                $arrDatasets = array('label' => "Tickets segun prioridad"
+                 ,'fillColor' => "rgba(220,220,220,0.2)"
+                 , 'strokeColor' => "rgba(220,220,220,1)"
+                 , 'pointColor' => "rgba(220,220,220,1)"
+                 , 'pointStrokeColor' => "#fff"
+                 , 'pointHighlightFill' => "#fff"
+                 , 'pointHighlightStroke' => "rgba(220,220,220,1)"
+                 , 'data' => $datos['data']);
+                   
+                $arrReturn = array('labels' => $labels, 'datasets' => array($arrDatasets));
+
+                echo json_encode($arrReturn);die;
             break;
 
     }
