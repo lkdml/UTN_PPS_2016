@@ -2,9 +2,10 @@
 require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php'); 
 
 use \CORE\Controlador\Aplicacion;
-Aplicacion::startSession(true);
+$app = Aplicacion::getInstancia();
+$app->startSession(true);
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-use Doctrine\ORM\Query\ResultSetMapping;
+
 
 use \Modelo\Ticket as Ticket;
 //      \CORE\Controlador\Aplicacion::starSession();
@@ -114,6 +115,23 @@ use \Modelo\Ticket as Ticket;
                 $arrReturn = array('labels' => $labels, 'datasets' => array($arrDatasets));
 
                 echo json_encode($arrReturn);die;
+            break;
+        case strtolower('w-ticketsPendientesAccion'):
+              $pendientesAccion=count($em->getRepository('Modelo\Ticket')->findBy(array("estado"=>1)));
+              echo $pendientesAccion;
+            break;
+        case strtolower('w-usuariosExistentes'):
+              $usuariosExistentes=count($em->getRepository('Modelo\Usuario')->findAll());
+              echo $usuariosExistentes;
+            break;
+        case strtolower('w-ticketsAbiertosOperadorActual'):
+         
+              $resultOperadores= $em->getRepository('Modelo\Ticket')->createQueryBuilder('t')
+                                 ->where('t.operador = :id')
+                                 ->setParameter('id',$app->getOperador()->getOperadorId())
+                                 ->getQuery()
+                                 ->getResult();
+              echo count($resultOperadores);
             break;
 
     }

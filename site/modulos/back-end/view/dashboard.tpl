@@ -18,8 +18,7 @@ js=''
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>20</h3>
-
+              <h3 id="pendientesAccion"></h3>
               <p>Tickets <small>Pendientes de acción</small></p>
             </div>
             <div class="icon">
@@ -33,7 +32,7 @@ js=''
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <h3 id="usuariosExistentes"></h3>
               <p>Usuarios <small>Existentes</small></p>
             </div>
             <div class="icon">
@@ -82,22 +81,12 @@ js=''
                   <div class="info-box">
                     <span class="info-box-icon bg-acua"><i class="fa fa-envelope-o"></i></span>
                     <div class="info-box-content">
-                      <span class="info-box-text">Pendientes </span>
-                      <span class="info-box-number">20</span>
+                      <span class="info-box-text">Abiertos </span>
+                      <span class="info-box-number" id="ticketsOperadorAbiertos">2</span>
                     </div><!-- /.info-box-content -->
                   </div><!-- /.info-box -->
                 </div><!-- /.col -->
-                 
-                <div class="col-md-4 col-sm-8 col-xs-12">
-                  <div class="info-box">
-                    <span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
-                    <div class="info-box-content">
-                      <span class="info-box-text">Abiertos</span>
-                      <span class="info-box-number">5</span>
-                    </div><!-- /.info-box-content -->
-                  </div><!-- /.info-box -->
-                </div><!-- /.col -->
-                 
+
                 <div class="col-md-4 col-sm-8 col-xs-12">
                   <div class="info-box">
                     <span class="info-box-icon bg-red"><i class="fa fa-files-o"></i></span>
@@ -107,17 +96,7 @@ js=''
                     </div><!-- /.info-box-content -->
                   </div><!-- /.info-box -->
                 </div><!-- /.col -->
-                 
-                <div class="col-md-4 col-sm-8 col-xs-12">
-                  <div class="info-box">
-                    <span class="info-box-icon bg-yellow"><i class="fa fa-star-o"></i></span>
-                    <div class="info-box-content">
-                      <span class="info-box-text">Respondidos</span>
-                      <span class="info-box-number">7</span>
-                    </div><!-- /.info-box-content -->
-                  </div><!-- /.info-box -->
-                </div><!-- /.col -->
-               
+
                 <div class="col-md-4 col-sm-8 col-xs-12">
                   <div class="info-box">
                     <span class="info-box-icon bg-black"><i class="fa fa-star-o"></i></span>
@@ -252,5 +231,8 @@ js=''
 <script src="{$rutaJS}w-ticket-prioridad.js"></script>
 <script src="{$rutaJS}w-ticket-estados.js"></script>
 <script src="{$rutaJS}w-tiempo-vs-tiempo.js"></script>
+<script src="{$rutaJS}ticketsPendientesAccion.js"></script>
+<script src="{$rutaJS}cantidadUsuariosExistentes.js"></script>
+<script src="{$rutaJS}ticketsAbiertosOperador.js"></script>
 
 {include file='footer.tpl'}
