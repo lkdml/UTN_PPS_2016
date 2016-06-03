@@ -82,7 +82,7 @@ js=''
                     <span class="info-box-icon bg-acua"><i class="fa fa-envelope-o"></i></span>
                     <div class="info-box-content">
                       <span class="info-box-text">Abiertos </span>
-                      <span class="info-box-number" id="ticketsOperadorAbiertos">2</span>
+                      <span class="info-box-number" id="ticketsOperadorAbiertos"></span>
                     </div><!-- /.info-box-content -->
                   </div><!-- /.info-box -->
                 </div><!-- /.col -->
@@ -92,7 +92,7 @@ js=''
                     <span class="info-box-icon bg-red"><i class="fa fa-files-o"></i></span>
                     <div class="info-box-content">
                       <span class="info-box-text">En Curso</span>
-                      <span class="info-box-number">8</span>
+                      <span class="info-box-number" id="ticketsOperadorEnCurso"></span>
                     </div><!-- /.info-box-content -->
                   </div><!-- /.info-box -->
                 </div><!-- /.col -->
@@ -102,7 +102,7 @@ js=''
                     <span class="info-box-icon bg-black"><i class="fa fa-star-o"></i></span>
                     <div class="info-box-content">
                       <span class="info-box-text">Cerrados</span>
-                      <span class="info-box-number">15</span>
+                      <span class="info-box-number" id="ticketsOperadorCerrados"></span>
                     </div><!-- /.info-box-content -->
                   </div><!-- /.info-box -->
                 </div><!-- /.col -->
@@ -234,5 +234,7 @@ js=''
 <script src="{$rutaJS}ticketsPendientesAccion.js"></script>
 <script src="{$rutaJS}cantidadUsuariosExistentes.js"></script>
 <script src="{$rutaJS}ticketsAbiertosOperador.js"></script>
+<script src="{$rutaJS}ticketsEnCursoOperador.js"></script>
+<script src="{$rutaJS}ticketsCerradosOperador.js"></script>
 
 {include file='footer.tpl'}

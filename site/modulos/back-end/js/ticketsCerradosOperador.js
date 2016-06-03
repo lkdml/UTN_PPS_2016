@@ -1,18 +1,18 @@
-ticketsPendientesOperadorActual();
-function ticketsPendientesOperadorActual(){
+ticketsCerradosOperadorActual();
+function ticketsCerradosOperadorActual(){
    $.ajax({
         url:'operador.php?modulo=widgets',
         type:'GET',
         datatype:'JSON',
-        data:{datosAjax:'w-ticketsAbiertosOperadorActual'},
+        data:{datosAjax:'w-ticketsCerradosOperadorActual'},
         success: function (response){
                     var datos=response;
-                    $("#ticketsOperadorAbiertos").html(datos);
+                    $("#ticketsOperadorCerrados").html(datos);
                         }
                     });
 }
 
 
 setInterval(function() {
-  ticketsPendientesOperadorActual();  
-},110000);
+  ticketsCerradosOperadorActual();  
+},170000);

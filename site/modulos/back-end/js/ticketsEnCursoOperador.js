@@ -1,18 +1,18 @@
-ticketsPendientesOperadorActual();
-function ticketsPendientesOperadorActual(){
+ticketsEnCursoOperadorActual();
+function ticketsEnCursoOperadorActual(){
    $.ajax({
         url:'operador.php?modulo=widgets',
         type:'GET',
         datatype:'JSON',
-        data:{datosAjax:'w-ticketsAbiertosOperadorActual'},
+        data:{datosAjax:'w-ticketsEnCursoOperadorActual'},
         success: function (response){
                     var datos=response;
-                    $("#ticketsOperadorAbiertos").html(datos);
+                    $("#ticketsOperadorEnCurso").html(datos);
                         }
                     });
 }
 
 
 setInterval(function() {
-  ticketsPendientesOperadorActual();  
-},110000);
+  ticketsEnCursoOperadorActual();  
+},150000);

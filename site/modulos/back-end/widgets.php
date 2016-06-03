@@ -128,9 +128,33 @@ use \Modelo\Ticket as Ticket;
          
               $resultOperadores= $em->getRepository('Modelo\Ticket')->createQueryBuilder('t')
                                  ->where('t.operador = :id')
+                                 ->Andwhere('t.estado = :estado')
                                  ->setParameter('id',$app->getOperador()->getOperadorId())
+                                 ->setParameter('estado',1)
                                  ->getQuery()
                                  ->getResult();
+              echo count($resultOperadores);
+            break;
+        case strtolower('w-ticketsEnCursoOperadorActual'):
+         
+              $resultOperadores= $em->getRepository('Modelo\Ticket')->createQueryBuilder('t')
+                                   ->where('t.operador = :id')
+                                   ->Andwhere('t.estado = :estado')
+                                   ->setParameter('id',$app->getOperador()->getOperadorId())
+                                   ->setParameter('estado',2)
+                                   ->getQuery()
+                                   ->getResult();
+              echo count($resultOperadores);
+            break;
+        case strtolower('w-ticketsCerradosOperadorActual'):
+         
+              $resultOperadores= $em->getRepository('Modelo\Ticket')->createQueryBuilder('t')
+                                   ->where('t.operador = :id')
+                                   ->Andwhere('t.estado = :estado')
+                                   ->setParameter('id',$app->getOperador()->getOperadorId())
+                                   ->setParameter('estado',3)
+                                   ->getQuery()
+                                   ->getResult();
               echo count($resultOperadores);
             break;
 
