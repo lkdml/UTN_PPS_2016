@@ -135,7 +135,7 @@ js=''
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Telefono</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Teléfono / Celulular" name="tel" {if $Operador}value={$Operador->getCelular()}{/if}>
+                              <input class="form-control" id="inputNombre" placeholder="Teléfono / Celular" name="tel" {if $Operador}value={$Operador->getCelular()}{/if}>
                             </div>
                           </div>
                           <div class="form-group">

@@ -12,7 +12,8 @@ $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateD
 $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
                   \CORE\Controlador\Config::getPublic('Ruta_Back').'js/',
                   \CORE\Controlador\Config::getPublic('Ruta_Back').'imagenes/');
-$vm->assign('OperadorLogueado',$app->getOperador());
+                  
+$vm->assign('Operador',$app->getOperador());
 $vm->assign('Permisos',$permisos);
 
 $perfiles=$em->getRepository('Modelo\Perfil')->findAll();
