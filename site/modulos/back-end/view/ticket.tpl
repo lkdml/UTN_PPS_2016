@@ -243,6 +243,8 @@ js=''
 <script src="{$rutaJS}validacionNuevoTicket.js"></script>
 <script src="{$rutaJS}bootstrap3-wysihtml5.all.js"></script>
 <script src="{$rutaJS}jquery.auto-complete.js"></script>
+<!-- No enter for submitting v1.0 -->
+<script src="{$rutaJS}noEnter.js"></script>
 
 {literal} 
 <script>

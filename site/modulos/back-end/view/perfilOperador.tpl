@@ -173,6 +173,8 @@ js=''
 <script src="{$rutaJS}demo.js"></script>
 <!-- CK Editor -->
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+<!-- No enter for submitting v1.0 -->
+<script src="{$rutaJS}noEnter.js"></script>
 
 <script>
   $(function () {

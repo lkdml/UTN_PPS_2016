@@ -167,6 +167,8 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+<!-- No enter for submitting v1.0 -->
+<script src="{$rutaJS}noEnter.js"></script>
 
 {literal} <script>
 $(document).ready(function(){

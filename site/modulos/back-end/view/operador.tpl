@@ -221,6 +221,8 @@ js=''
 <!-- FastClick -->
 <script src="{$rutaJS}fastclick.js"></script>
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+<!-- No enter for submitting v1.0 -->
+<script src="{$rutaJS}noEnter.js"></script>
 <script>
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor

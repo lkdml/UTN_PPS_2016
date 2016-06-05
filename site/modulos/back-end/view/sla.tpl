@@ -358,6 +358,7 @@ js=''
 <!--PreventDefault Enter -->
 <script src="{$rutaJS}noEnter.js"></script>
 
+
 <!-- DurationPicker -->
 <!-- <script src="{$rutaJS}jquery-duration-picker.js"></script> -->
 

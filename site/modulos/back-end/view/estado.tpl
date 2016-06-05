@@ -128,6 +128,8 @@ js=''
 <script src="{$rutaJS}bootstrap-colorpicker.js"></script>
 <!-- Bootstrap Color Picker -->
 <link rel="stylesheet" href="{$rutaCSS}bootstrap-colorpicker.css">
+<!-- No enter for submitting v1.0 -->
+<script src="{$rutaJS}noEnter.js"></script>
 {literal} <script>
   $(function () {
      $(".my-colorpicker1").colorpicker();

@@ -114,6 +114,8 @@ js=''
 <!-- Validaciones -->
 <script src="{$rutaJS}jquery-validator-min.js"></script>
 <script src="{$rutaJS}validacionNuevaEmpresa.js"></script>
+<!-- No enter for submitting v1.0 -->
+<script src="{$rutaJS}noEnter.js"></script>
 
 
  

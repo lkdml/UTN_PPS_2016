@@ -276,6 +276,8 @@ js=''
 <!-- Validaciones -->
 <script src="{$rutaJS}jquery-validator-min.js"></script>
 <script src="{$rutaJS}validacionNuevoPerfilOperador.js"></script>
+<!-- No enter for submitting v1.0 -->
+<script src="{$rutaJS}noEnter.js"></script>
 <script>
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
