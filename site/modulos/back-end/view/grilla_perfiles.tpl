@@ -119,6 +119,8 @@ js=''
 <!-- Manejador de botones y Checkbox-->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}chkboxManager.js"></script>
 <script type="text/javascript" charset="utf8" src="{$rutaJS}checkAll.js"></script>
+<!-- Borrado Modal-->
+<script type="text/javascript" charset="utf8" src="{$rutaJS}borradoModal.js"></script>
 
 <!-- DataTables -->
 
@@ -136,6 +138,7 @@ $(document).ready( function () {
 </script>
 {/literal}
 
+<!--
 {literal}
 <script>
 
@@ -160,6 +163,7 @@ $("#btnBorrar").click(function(e){
 
 </script>
 {/literal}
+-->
 
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
