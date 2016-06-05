@@ -195,7 +195,7 @@ js=''
                                 </div>
                             </div>
                           </div>
-                <div class="box-footer col-md-3 pull-right">
+                <div class="box-footer col-sm-5 pull-right">
                   <button onclick="history.go(-1);" class="btn btn-danger pull-left btn-lg">Cancelar</button>
                   <button type="submit" class="btn btn-info pull-right btn-lg">Enviar</button>
                 </div>

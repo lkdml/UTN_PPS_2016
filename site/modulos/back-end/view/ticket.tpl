@@ -206,7 +206,7 @@ js=''
                             <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
                             <input class="col-sm-10" type="file" id="archivo" name="Archivo[]">
                             
-                            <div class="box-footer col-md-2 pull-right">
+                            <div class="box-footer col-sm-3 pull-right">
                               <button onclick="history.go(-1);" class="btn btn-danger pull-left btn-lg">Cancelar</button>
                               <button type="submit" class="btn btn-info pull-right btn-lg">Enviar</button>
                             </div>
