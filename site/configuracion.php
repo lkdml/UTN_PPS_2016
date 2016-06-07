@@ -16,8 +16,10 @@ use \CORE\Controlador\Config as Config;
  Config::setPublic('Ruta_App',$FullPath);
  Config::setPublic('Ruta_Modulos',Config::getPublic('Ruta_App').'modulos'.'/');
  Config::setPublic('Ruta_Modelo',Config::getPublic('Ruta_App').'modelo'.'/');
+ Config::setPublic('Ruta_Uploads',Config::getPublic('Ruta_App').'uploads'.'/');
  
- Config::setPublic('LogWarn',true);
+ //TODO: cambiar el logWarn a false
+ Config::setPublic('LogWarn',true); // habilita el logueo forsado  recomendado false
  Config::setPublic('LogFile',Config::getPublic('Ruta_App').'logs/logeo.log');
 
   

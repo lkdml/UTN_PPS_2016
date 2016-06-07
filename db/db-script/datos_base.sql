@@ -257,3 +257,17 @@ insert into anuncios_empresa values (-1,8);
 /*!40000 ALTER TABLE `anuncios_empresa` ENABLE KEYS */;
 UNLOCK TABLES;
 
+LOCK TABLES `configuracion_global` WRITE;
+/*!40000 ALTER TABLE `configuracion_global` DISABLE KEYS */;
+insert into configuracion_global values ("mail_SMTPAuth","");
+insert into configuracion_global values ("mail_SMTPSecure","");
+insert into configuracion_global values ("mail_Host","");
+insert into configuracion_global values ("mail_Port","");
+insert into configuracion_global values ("mail_Username","");
+insert into configuracion_global values ("mail_Password","");
+insert into configuracion_global values ("directorio_Uploads","");
+insert into configuracion_global values ("extensiones_permitidas_imagenes",'["jpg","png","gif","TIF"]');
+insert into configuracion_global values ("extensiones_permitidas_archivos",'["jpg","png","gif","TIF","doc","pdf","docx","csv","xls""XLSX","rar","ZIP","bz","gz"]');
+/*insert into configuracion_global values ("","");*/
+/*!40000 ALTER TABLE `configuracion_global` ENABLE KEYS */;
+UNLOCK TABLES;

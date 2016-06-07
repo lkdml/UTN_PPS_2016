@@ -71,7 +71,7 @@ function setearTicket(Ticket $ticket,$em){
         $ticket->setEstado($em->getRepository('Modelo\TicketEstado')->find($_POST["Estado"]));
     }
     if ($_POST["OperadorAsignado"]!="-1"){
-        $ticket->setOwnerOperadorId($em->getRepository('Modelo\Operador')->find($_POST["OperadorAsignado"]));
+        $ticket->setOperador($em->getRepository('Modelo\Operador')->find($_POST["OperadorAsignado"]));
         $ticket->setAsignado(1); // TODO: Debemos arreglar el asignado 1 o 0
     }
     //TODO Ticket no tiene SLA en la BD
@@ -90,12 +90,12 @@ function setearTicket(Ticket $ticket,$em){
     if (($_POST["CustomFields"]!="-1") && (!is_null($_POST["CustomFields"]))){
         $ticket->setCustomFields($em->getRepository('Modelo\TicketCustomFields')->find($_POST["CustomFields"]));
     }
-    
     //TODO Aca hay que ver si va usuario u operador, pero hay que modificar la tpl
     $propietariUsuario = $em->getRepository('Modelo\Usuario')->findBy(array("email"=>$_POST["Propietario"]));
     $ticket->setUsuario($propietariUsuario[0]);
-    $ticket->setOperador($operador);
-
+    var_dump($_POST["Archivos"]);
+    var_dump($_FILES);die;
+    
     return $ticket;
 }
 

@@ -27,9 +27,9 @@ class Ticket
     private $descripcion;
 
     /**
-     * @var integer
+     * @var string
      *
-     * @Column(name="numero_Ticket", type="integer", nullable=false)
+     * @Column(name="numero_Ticket", type="string", nullable=false)
      */
     private $numeroTicket;
 

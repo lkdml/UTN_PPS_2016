@@ -30,7 +30,7 @@ js=''
                 <div class="box box-primary">
                   <form action="{$rutaCSS}../controlador/operadorAction.php?actualiza=foto{if $Operador}&Operador={$Operador->getOperadorId()}{/if}" class="form-horizontal" method="post">
                     <div class="box-body box-profile">
-                      <img class="profile-user-img img-responsive img-circle" src="{$rutaIMG}user2-160x160.jpg" alt="User profile picture">
+                      <img class="profile-user-img img-responsive img-circle" src="{$rutaIMG}avatars/{if $Operador}{if $Operador->getHashFoto()}{$Operador->getHashFoto()}{else}UserDefault.jpg{/if}{/if}" alt="User profile picture">
                 
                       <h3 class="profile-username text-center">{if $Operador}{$Operador->getNombre()}{/if} {if $Operador}{$Operador->getApellido()}{/if}</h3>
                 
@@ -39,7 +39,7 @@ js=''
                       <div class="box-body">
                         <div class="form-group">
                           <label for="exampleInputEmail1">Avatar</label>
-                          <input id="avatar_img" name="fotoOperador" type="file">
+                          <input id="avatar_img" name="fotoOperador[]" type="file">
                           <p class="help-block">Para agregar un avatar, debe subir una imagen.</p>
                         </div>
                       </div>

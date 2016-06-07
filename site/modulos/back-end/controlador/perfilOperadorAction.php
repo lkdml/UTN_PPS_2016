@@ -4,12 +4,13 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/bootstrap_orm.php');
 
 
 use \Modelo\Operador as Operador;
+use \CORE\Controlador\FileManager as FileManager;
 /**
  * Valido que el operador esté con la session habilitadas
  */
 use \CORE\Controlador\Aplicacion;
 $app = Aplicacion::getInstancia();
-
+Aplicacion::startSession(true);
 
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
@@ -25,15 +26,14 @@ if (validarRequisitos()){
             $em->persist($getOperador);
             $em->flush();
             $opActualizado=$em->getRepository('Modelo\Operador')->find($getOperador->getOperadorId());
-            $app->setoperador($opActualizado);
+            $app->setoperador($getOperador);
             $app->guardarOperadorEnSession();
         } else {
             $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
             $Operador = setearOperador($getOperador,$em);
             $em->persist($Operador);
             $em->flush();
-            $opActualizado=$em->getRepository('Modelo\Operador')->find($getOperador->getOperadorId());
-            $app->setoperador($opActualizado);
+            $app->setoperador($Operador);
             $app->guardarOperadorEnSession();
         }
     }
@@ -65,8 +65,10 @@ function setearOperador(Operador $operador,$em){
     $operador->setFirmaMensaje($_POST["Firma"]);
 
     $operador->setEliminado(false);
+    $archivo = new FileManager($em->getRepository('Modelo\ConfiguracionGlobal')->find("extensiones_permitidas_imagenes")->getValor(),'modulos/back-end/imagenes/avatars/');
+    $archivo->guardarArvhivosDePost($_FILES);
     //TODO faltan agregar al TPL
-    $operador->setHashFoto("");
+    $operador->setHashFoto($archivo->getArrayNombres()[0]);
     $operador->setHabilitaNotificacionesMail(true);
     $operador->setActivo(true);
     $operador->setUltimaActualizacion(new \DateTime("now"));

@@ -50,17 +50,20 @@ switch(strtolower($_POST["accion"])){
   case ("ver"):
     //TODO: falta validar permisos para esta accion.
     $Ticket = $em->getRepository('Modelo\Ticket')->find($_POST["ticketId"][0]);
-    $vm->assign('Ticket',$Ticket);   
+    $Mensajes = $em->getRepository('Modelo\Mensaje')->findBy(array("ticket"=>$_POST["ticketId"][0]));
+    $vm->assign('Ticket',$Ticket); 
+    $vm->assign('Mensajes',$Mensajes);
     $vm->display('ticketVista.tpl');
 
     break;
   case ("borrar"):
-    $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+    //No es correcto borrar tickes de la BD, se deshabilita esta función.
+    /**$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
     foreach ($_POST['ticketId'] as $departamento) {
       $em->remove($em->getRepository('Modelo\Ticket')->find($departamento));
     }
     $em->flush();
-    
+    */
     header("location:/operador.php?modulo=tickets");
     break;
 }

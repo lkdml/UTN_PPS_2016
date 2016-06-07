@@ -274,5 +274,19 @@ class Mensaje
     {
         return $this->archivo;
     }
+    
+    public function getCreadorOperadorNombre() {
+        $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+        $oper = $em->getRepository('Modelo\Operador')->find($this->creadorOperador);
+        $nombreCompleto = $oper->getNombre() ." " .$oper->getApellido(); 
+        return $nombreCompleto;
+    }
+    
+    public function getCreadorUsuarioNombre() {
+        $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+        $usr = $em->getRepository('Modelo\Usuario')->find($this->creadorUsuario);
+        $nombreCompleto = $usr->getNombre() ." " .$usr->getApellido(); 
+        return $nombreCompleto;
+    }
 }
 

@@ -44,10 +44,11 @@ js=''
                 <button class="btn btn-app " id="btnSeparar" type="submit" name="accion" value="separar" disabled>
                   <i class="fa fa-unlink"></i> Separar
                 </button>
+                <!-- borrar no es algo que se deba hacer desde los tickets..
                 <button class="btn btn-app " id="btnBorrar" data-toggle="modal" data-target="#myModal"  name="accion" value="borrarr" disabled>
                   <i class="fa fa-trash"></i> Borrar
                 </button>
-                
+                -->
                 <!-- Modal para Borrar-->
                 <div id="myModal" class="modal fade" role="dialog">
                   <div class="modal-dialog">

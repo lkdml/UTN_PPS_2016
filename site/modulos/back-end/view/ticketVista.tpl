@@ -128,6 +128,21 @@ js=''
                         
                   </div>
                 </div>
+                <div class="form-group">
+                  <div class="box-body pad">
+                       <label for="comboPrioridad" class="col-sm-2 control-label">Operador Asignado:</label>
+                          <div class="col-sm-5">
+                           <select class="form-control select2" id="ddOperadorAsignado" name="OperadorAsignado" style="width: 100%;">
+                               <option value = "-1">Seleccione un Operador</option>
+                               {if $Operadores}
+                                  {foreach from=$Operadores item=$operador}
+                                    <option value="{$operador->getOperadorId()}"  {if $operador->getOperadorId() == $Ticket->getOperador()->getOperadorId()} selected {/if}>{$operador->getNombre()}</option>
+                                  {/foreach}
+                                {/if}
+                           </select>
+                          </div>
+                  </div>
+                </div>
                 
                 
                 
@@ -234,25 +249,28 @@ js=''
                           <div class="box-body">
                             <!-- Conversations are loaded here -->
                             <div class="direct-chat-messages">
+                                {if $Mensajes}
+                                  {foreach from=$Mensajes item=$mensaje}
+                                    <div class="direct-chat-msg">
+                                        <div class="direct-chat-info clearfix">
+                                          <span class="direct-chat-name pull-left"><font size = 5>{if $mensaje->getCreadorOperador() != null}
+                                                                                                          {$mensaje->getCreadorOperadorNombre()}
+                                                                                                      
+                                                                                                  {else}
+                                                                                                      {$mensaje->getCreadorUsuarioNombre()}
+                                                                                                {/if}</font></span>
+                                          <span class="direct-chat-timestamp pull-right">{$mensaje->getFecha()|date_format:"%d-%m-%Y %H:%m"}</span>
+                                        </div><!-- /.direct-chat-info -->
+                                        <img class="direct-chat-img" src="{$rutaIMG}/avatars/{if $Operador}{$Operador->getHashFoto()}{else}UserDefault.jpg{/if}" alt="message user image"><!-- /.direct-chat-img -->
+                                        <div class="direct-chat-text">
+                                          {$mensaje->getTexto()}
+                                          <p><a href="https://www.facebook.com/lukas77.25"><font size = 3>Adjunto 1</font></a></p>
+                                        </div><!-- /.direct-chat-text -->
+                                    </div><!-- /.direct-chat-msg -->
+                                  {/foreach}
+                                {/if}
                               <!-- Message. Default to the left -->
-                              <div class="direct-chat-msg">
-                                <div class="direct-chat-info clearfix">
-                                  <span class="direct-chat-name pull-left"><font size = 5>Lucas Bockor (Operador)</font></span>
-                                  <span class="direct-chat-timestamp pull-right">19 Abril 2:00 pm</span>
-                                </div><!-- /.direct-chat-info -->
-                                <img class="direct-chat-img" src="{$rutaIMG}avatar.png" alt="message user image"><!-- /.direct-chat-img -->
-                                <div class="direct-chat-text">
-                                  Is this template really for free? That's unbelievable!Lorem ipsum dolor sit amet, consectetur 
-                                  adipiscing elit. Maecenas leo leo, congue vel quam sit amet, viverra auctor eros. Ut vulputate
-                                  ac erat ac eleifend. Morbi malesuada pretium accumsan. Vestibulum tincidunt velit eget velit 
-                                  sodales, in hendrerit purus hendrerit. Integer auctor quis felis sed consectetur. 
-                                  Maecenas scelerisque orci lorem, nec vehicula diam tincidunt at. Sed ultrices dui eu 
-                                  hendrerit congue. Morbi iaculis sit amet erat at finibus. Integer sollicitudin pulvinar dolor id pharetra. 
-                                  Aenean eget elit dui.
-                                  
-                                  <p><a href="https://www.facebook.com/lukas77.25"><font size = 3>Adjunto 1</font></a></p>
-                                </div><!-- /.direct-chat-text -->
-                              </div><!-- /.direct-chat-msg -->
+                              
                                  <!-- Message. Default to the left -->
                               <div class="direct-chat-msg">
                                 <div class="direct-chat-info clearfix">
@@ -294,7 +312,7 @@ js=''
                            <textarea class="textarea" placeholder="Ingrese una Descripción" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
                          </div>
                        <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
-                       <input class="col-sm-10" type="file" id="archivo">
+                       <input class="col-sm-10" type="file" id="Archivos[]">
                      </div>
                      <div class="box-footer">
                        

@@ -71,7 +71,7 @@ js=''
                       <label for="comboPrioridad" class="col-md-2 control-label" >Prioridad</label>
                       <div class="col-md-5">
                        <select class="form-control select2" id="ddPrioridades" name="Prioridad" style="width: 100%;">
-                          <option value = "">Seleccione una Prioridad...</option>
+                          <option value = "-1">Seleccione una Prioridad...</option>
                             {if $Prioridades}
                               {foreach from=$Prioridades item=$Prioridad}
                                 <option value="{$Prioridad->getPrioridadId()}">{$Prioridad->getNombre()}</option>
@@ -86,7 +86,7 @@ js=''
                       <label for="comboPrioridad" class="col-md-2 control-label" >Estado</label>
                       <div class="col-md-5">
                        <select class="form-control select2" id="ddPrioridades" name="Estado" style="width: 100%;">
-                          <option value = "">Seleccione una Estado...</option>
+                          <option value = "-1">Seleccione una Estado...</option>
                             {if $TicketEstados}
                               {foreach from=$TicketEstados item=$Estado}
                                 <option value="{$Estado->getEstadoId()}">{$Estado->getNombre()}</option>
@@ -101,7 +101,12 @@ js=''
                       <label for="comboSLA" class="col-md-2 control-label" >Asignar Operador</label>
                       <div class="col-md-5">
                        <select class="form-control select2" id="OperadorAsignado" name="OperadorAsignado" style="width: 100%;">
-                          <option value = "">Seleccione un Operador</option>
+                          <option value = "-1">Seleccione un Operador</option>
+                          {if $Operadores}
+                              {foreach from=$Operadores item=$operador}
+                                <option value="{$operador->getOperadorId()}">{$operador->getNombre()}</option>
+                              {/foreach}
+                            {/if}
                         </select>
                       </div>
                     </div>
@@ -112,10 +117,10 @@ js=''
                         <label for="comboSLA" class="col-md-2 control-label" >SLA</label>
                         <div class="col-md-5">
                          <select class="form-control select2" id="ddSLAS" name="SLA" style="width: 100%;">
-                            <option value = "">Seleccione un SLA...</option>
-                                {foreach from=$SLAs item=$sla}
+                            <option value = "-1">Seleccione un SLA...</option>
+                              {foreach from=$SLAs item=$sla}
                                   <option value="{$sla->getSlaId()}">{$sla->getNombre()}</option>
-                                {/foreach}
+                              {/foreach}
                           </select>
                         </div>
                       </div>
@@ -204,7 +209,7 @@ js=''
                                 </div>
                             
                             <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
-                            <input class="col-sm-10" type="file" id="archivo" name="Archivo[]">
+                            <input class="col-sm-10" type="file" id="archivo" name="Archivos">
                             
                             <div class="box-footer col-sm-3 pull-right">
                               <button onclick="history.go(-1);" class="btn btn-danger pull-left btn-lg">Cancelar</button>
