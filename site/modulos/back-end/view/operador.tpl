@@ -28,7 +28,7 @@ js=''
             <div class="col-md-4">
                   <!-- Profile Image -->
                 <div class="box box-primary">
-                  <form action="{$rutaCSS}../controlador/operadorAction.php?actualiza=foto{if $Operador}&Operador={$Operador->getOperadorId()}{/if}" class="form-horizontal" method="post">
+                  <form action="{$rutaCSS}../controlador/operadorAction.php?actualiza=foto{if $Operador}&Operador={$Operador->getOperadorId()}{/if}" class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="box-body box-profile">
                       <img class="profile-user-img img-responsive img-circle" src="{$rutaIMG}avatars/{if $Operador}{if $Operador->getHashFoto()}{$Operador->getHashFoto()}{else}UserDefault.jpg{/if}{/if}" alt="User profile picture">
                 

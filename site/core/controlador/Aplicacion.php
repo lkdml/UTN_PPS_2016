@@ -1,7 +1,7 @@
 <?php
 namespace CORE\Controlador;
 
-    require_once('Debug.php');
+    require_once('Dbug.php');
     require_once(__DIR__.'./../../bootstrap_orm.php');
    
 

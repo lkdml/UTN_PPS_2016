@@ -62,7 +62,7 @@ class FileManager {
                         switch ($this->moverArchivo($tmpName,null,$this->rutaUpload,$filename,true)) {
                             case true:
                                 $this->arrayNombres[] =  $this->getRutaUploadRelativa().$filename;
-                                \CORE\Controlador\Degub::getInstancia()->escribirLog("Se guardó satisfactoriamente el archivo: ".$this->rutaUpload.$filename,"FileManager");
+                                \CORE\Controlador\Dbug::getInstancia()->escribirLog("Se guardó satisfactoriamente el archivo: ".$this->rutaUpload.$filename,"FileManager");
                                 break;
                             case -1:
                                 $int=0;
@@ -74,11 +74,11 @@ class FileManager {
                                 }
                                 $this->moverArchivo($tmpName,null,$this->rutaUpload,$filename,true);
                                 $this->arrayNombres[] =  $this->getRutaUploadRelativa().$filename;
-                                \CORE\Controlador\Degub::getInstancia()->escribirLog("Se guardó satisfactoriamente el archivo: ".$this->rutaUpload.$filename,"FileManager");
+                                \CORE\Controlador\Dbug::getInstancia()->escribirLog("Se guardó satisfactoriamente el archivo: ".$this->rutaUpload.$filename,"FileManager");
                                 break;
                             
                             case false: default:
-                                \CORE\Controlador\Degub::getInstancia()->escribirLog("No se pudo guardar el archivo: ".$this->rutaUpload.$filename,"FileManager",true);
+                                \CORE\Controlador\Dbug::getInstancia()->escribirLog("No se pudo guardar el archivo: ".$this->rutaUpload.$filename,"FileManager",true);
                                 break;
                         }
                     } 
@@ -107,29 +107,29 @@ class FileManager {
                     if (move_uploaded_file( $rutaOrigen.$archivoOrigen, $rutaDestino.$archivoDestino)){
                         return true;
                     } else {
-                        \CORE\Controlador\Degub::getInstancia()->escribirLog("Error al subir '".$rutaDestino.$archivoDestino."'","FileManager",true);
+                        \CORE\Controlador\Dbug::getInstancia()->escribirLog("Error al subir '".$rutaDestino.$archivoDestino."'","FileManager",true);
                     }
                 } else {
                     if ($sobreEscribir){
-                        \CORE\Controlador\Degub::getInstancia()->escribirLog("Se borra archivo existente '".$rutaDestino.$archivoDestino."'","FileManager");
+                        \CORE\Controlador\Dbug::getInstancia()->escribirLog("Se borra archivo existente '".$rutaDestino.$archivoDestino."'","FileManager");
                         unlink($rutaDestino.$archivoDestino);
                         if (move_uploaded_file( $rutaOrigen.$archivoOrigen, $rutaDestino.$archivoDestino)){
                             return true;
                         } else {
-                                \CORE\Controlador\Degub::getInstancia()->escribirLog("Error al subir '".$rutaDestino.$archivoDestino."'","FileManager",true);
+                                \CORE\Controlador\Dbug::getInstancia()->escribirLog("Error al subir '".$rutaDestino.$archivoDestino."'","FileManager",true);
                         }
                     } else {
-                        \CORE\Controlador\Degub::getInstancia()->escribirLog("Ya existe el archivo: '".$path.$archivoDestino."'","FileManager",true);
+                        \CORE\Controlador\Dbug::getInstancia()->escribirLog("Ya existe el archivo: '".$path.$archivoDestino."'","FileManager",true);
                         return -1;
                     }
                 }
             } else {
-                \CORE\Controlador\Degub::getInstancia()->escribirLog("No se puede grabar en: ".$rutaDestino,"FileManager");
+                \CORE\Controlador\Dbug::getInstancia()->escribirLog("No se puede grabar en: ".$rutaDestino,"FileManager");
             }
             return false;
             
         } catch (Exception $exc) {
-            \CORE\Controlador\Degub::getInstancia()->escribirLog($exc->getMessage(),"FileManager",true);
+            \CORE\Controlador\Dbug::getInstancia()->escribirLog($exc->getMessage(),"FileManager",true);
         }
         
         

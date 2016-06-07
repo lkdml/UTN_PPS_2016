@@ -28,6 +28,18 @@ if (validarRequisitos()){
             $opActualizado=$em->getRepository('Modelo\Operador')->find($getOperador->getOperadorId());
             $app->setoperador($getOperador);
             $app->guardarOperadorEnSession();
+        } else if (($_GET['actualiza']=='foto')){
+            $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
+            $archivo = new FileManager($em->getRepository('Modelo\ConfiguracionGlobal')->find("extensiones_permitidas_imagenes")->getValor(),'modulos/back-end/imagenes/avatars/');
+            $archivo->guardarArvhivosDePost($_FILES);
+            //TODO faltan agregar al TPL
+            $getOperador->setHashFoto($archivo->getArrayNombres()[0]);
+            $em->persist($getOperador);
+            $em->flush();
+            if ($getOperador->getOperadorId()==$app->getOperador()->getOperadorId()){
+                $app->setoperador($getOperador);
+                $app->guardarOperadorEnSession();
+            }
         } else {
             $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
             $Operador = setearOperador($getOperador,$em);

@@ -4,10 +4,13 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/bootstrap_orm.php');
 
 
 use \Modelo\Operador as Operador;
+
+use \CORE\Controlador\FileManager as FileManager;
 /**
  * Valido que el operador esté con la session habilitadas
  */
 use \CORE\Controlador\Aplicacion;
+$app = Aplicacion::getInstancia();
 Aplicacion::startSession(true);
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
@@ -27,17 +30,23 @@ if (validarRequisitos()){
             }
             $em->persist($getOperador);
             $em->flush();
+        } else if (($_GET['actualiza']=='foto')){
+            $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
+            $archivo = new FileManager($em->getRepository('Modelo\ConfiguracionGlobal')->find("extensiones_permitidas_imagenes")->getValor(),'modulos/back-end/imagenes/avatars/');
+            $archivo->guardarArvhivosDePost($_FILES);
+            //TODO faltan agregar al TPL
+            $getOperador->setHashFoto($archivo->getArrayNombres()[0]);
+            $em->persist($getOperador);
+            $em->flush();
+            if ($getOperador->getOperadorId()==$app->getOperador()->getOperadorId()){
+                $app->setoperador($getOperador);
+                $app->guardarOperadorEnSession();
+            }
         } else {
             $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
-            //$em->clear();
-            //echo"el de la base <pre>";Doctrine\Common\Util\Debug::dump($getOperador->getPerfil());echo"</pre>";
-            
             $Operador = setearOperador($getOperador,$em);
-            //echo"el q genero <pre>";Doctrine\Common\Util\Debug::dump($Operador);echo"</pre>";
             $em->persist($Operador);
             $em->flush();
-            //$em->clear();
-            // echo"Aca a otro <pre>";Doctrine\Common\Util\Debug::dump($em->getRepository('Modelo\Operador')->find($_GET["Operador"]));echo"</pre>";die;
         }
     } else {
        $Operador = setearOperador(new Operador(),$em);

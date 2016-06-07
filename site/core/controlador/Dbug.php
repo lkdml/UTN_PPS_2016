@@ -6,7 +6,7 @@
  */
 namespace CORE\Controlador;
 
-class Degub {
+class Dbug {
 
         private $logFile;
         private $LogWarn;
