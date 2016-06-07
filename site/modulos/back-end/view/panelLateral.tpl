@@ -8,7 +8,7 @@
           <img src="{$rutaIMG}avatars/{if $OperadorLogueado->getHashFoto()}{$OperadorLogueado->getHashFoto()}{else}UserDefault.jpg{/if}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Mariano López Senés</p>
+          <p>{if $OperadorLogueado}{$OperadorLogueado->getNombre()} {$OperadorLogueado->getApellido()}{/if}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>

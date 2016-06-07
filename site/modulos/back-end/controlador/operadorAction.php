@@ -35,7 +35,7 @@ if (validarRequisitos()){
             $archivo = new FileManager($em->getRepository('Modelo\ConfiguracionGlobal')->find("extensiones_permitidas_imagenes")->getValor(),'modulos/back-end/imagenes/avatars/');
             $archivo->guardarArvhivosDePost($_FILES);
             //TODO faltan agregar al TPL
-            $getOperador->setHashFoto($archivo->getArrayNombres()[0]);
+            $getOperador->setHashFoto($archivo->getArrayNombres()[0]['hashName']);
             $em->persist($getOperador);
             $em->flush();
             if ($getOperador->getOperadorId()==$app->getOperador()->getOperadorId()){

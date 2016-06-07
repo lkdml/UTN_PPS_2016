@@ -25,7 +25,7 @@ js=''
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form action="{$rutaCSS}../controlador/ticketAction.php{if $Ticket}&TicketId={$Ticket->getTicketId()}{/if}" id="nuevoticketForm" class="form-horizontal" method="POST">
+            <form action="{$rutaCSS}../controlador/ticketAction.php{if $Ticket}&TicketId={$Ticket->getTicketId()}{/if}" id="nuevoticketForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
               <div class="box-body">
                 <div class="box">
                   <div class="form-group">
@@ -209,7 +209,7 @@ js=''
                                 </div>
                             
                             <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
-                            <input class="col-sm-10" type="file" id="archivo" name="Archivos">
+                            <input class="col-sm-10" type="file" id="archivo" name="Archivos[]">
                             
                             <div class="box-footer col-sm-3 pull-right">
                               <button onclick="history.go(-1);" class="btn btn-danger pull-left btn-lg">Cancelar</button>

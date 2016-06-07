@@ -61,7 +61,9 @@ class FileManager {
                         $filename = $this->crearHashDeArchivo($filesArray[$NombreClave]["name"][$index]);
                         switch ($this->moverArchivo($tmpName,null,$this->rutaUpload,$filename,true)) {
                             case true:
-                                $this->arrayNombres[] =  $this->getRutaUploadRelativa().$filename;
+                                $this->arrayNombres[] = array('name'=>$filesArray[$NombreClave]["name"][$index],
+                                                            'hashName' =>  $this->getRutaUploadRelativa().$filename,
+                                                            'path' => $this->rutaUpload);
                                 \CORE\Controlador\Dbug::getInstancia()->escribirLog("Se guardó satisfactoriamente el archivo: ".$this->rutaUpload.$filename,"FileManager");
                                 break;
                             case -1:
@@ -73,7 +75,9 @@ class FileManager {
                                         $int ++;
                                 }
                                 $this->moverArchivo($tmpName,null,$this->rutaUpload,$filename,true);
-                                $this->arrayNombres[] =  $this->getRutaUploadRelativa().$filename;
+                                $this->arrayNombres[] = array('name'=>$filesArray[$NombreClave]["name"][$index],
+                                                            'hashName' =>  $this->getRutaUploadRelativa().$filename,
+                                                            'path' => $this->rutaUpload);
                                 \CORE\Controlador\Dbug::getInstancia()->escribirLog("Se guardó satisfactoriamente el archivo: ".$this->rutaUpload.$filename,"FileManager");
                                 break;
                             

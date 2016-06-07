@@ -32,7 +32,7 @@ class Dbug {
 
         public function escribirLog($texto,$dependencia=null,$logear=false) {
                 if (($this->LogWarn) || ($logear)) {
-                        file_put_contents($this->logFile,$dependencia.": ". $texto, FILE_APPEND | LOCK_EX);
+                        file_put_contents($this->logFile,$dependencia.": ". $texto . '\n', FILE_APPEND | LOCK_EX);
                 }
         }
     public static function vdump($parametro) {

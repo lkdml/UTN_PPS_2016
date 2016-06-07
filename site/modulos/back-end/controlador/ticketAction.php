@@ -3,8 +3,10 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php');
 require_once($_SERVER["DOCUMENT_ROOT"].'/bootstrap_orm.php'); 
 
 use \CORE\Controlador\Aplicacion;
+use \CORE\Controlador\FileManager as FileManager;
 use \Modelo\Ticket as Ticket;
 use \Modelo\Mensaje as Mensaje;
+use \Modelo\Archivo as Archivo;
 use \Modelo\EmailQueue as EmailQueue;
 $app = Aplicacion::getInstancia();
 $app->startSession(true);
@@ -93,8 +95,20 @@ function setearTicket(Ticket $ticket,$em){
     //TODO Aca hay que ver si va usuario u operador, pero hay que modificar la tpl
     $propietariUsuario = $em->getRepository('Modelo\Usuario')->findBy(array("email"=>$_POST["Propietario"]));
     $ticket->setUsuario($propietariUsuario[0]);
-    var_dump($_POST["Archivos"]);
-    var_dump($_FILES);die;
+    
+    $archivo = new FileManager($em->getRepository('Modelo\ConfiguracionGlobal')->find("extensiones_permitidas_archivos")->getValor(),\CORE\Controlador\Config::getPublic('Ruta_Uploads'));
+    $archivo->guardarArvhivosDePost($_FILES);
+    \CORE\Controlador\Dbug::vdump($archivo);
+    foreach ($archivo->getArrayNombres() as $archivo) {
+        $dbArchivo = new Archivo();
+        $dbArchivo->setNombre($archivo['name']);
+        $dbArchivo->setHash($archivo['hashName']);
+        $dbArchivo->setFechaCreacion(new DateTime("NOW"));
+        $dbArchivo->setDirectorio($archivo['path']);
+        // code...
+    }
+    //TODO faltan agregar al TPL
+    $getOperador->setHashFoto([0]);
     
     return $ticket;
 }
