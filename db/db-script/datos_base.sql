@@ -186,9 +186,9 @@ UNLOCK TABLES;
 
 LOCK TABLES `ticket_estado` WRITE;
 /*!40000 ALTER TABLE `ticket_estado` DISABLE KEYS */;
-insert into ticket_estado values (1,'Abierto','Para tickets nuevos o respondidos','#fd8f00',0,null),
-                                (2,'En Curso','Para cuando se está trabajando con el ticket','#f44f00',0,null),
-                                (3,'Cerrado','Cuando se finalizaron los trabajos relacionados.','#234f00',0,null);
+insert into ticket_estado values (1,'Abierto','Para tickets nuevos o respondidos','#fd8f00','glyphicon-folder-open',0,null),
+                                (2,'En Curso','Para cuando se está trabajando con el ticket','#f44f00','glyphicon-pushpin',0,null),
+                                (3,'Cerrado','Cuando se finalizaron los trabajos relacionados.','#234f00','glyphicon-ok-sign',0,null);
 /*!40000 ALTER TABLE `ticket_estado` ENABLE KEYS */;
 UNLOCK TABLES;
 

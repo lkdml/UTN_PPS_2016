@@ -91,6 +91,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`ticket_estado` (
   `nombre` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(45) NULL,
   `color` VARCHAR(45) NOT NULL,
+  `icono` VARCHAR(60) NOT NULL ,
   `autocierre` TINYINT(1) NOT NULL,
   `orden` INT NULL,
   PRIMARY KEY (`estado_id`))
