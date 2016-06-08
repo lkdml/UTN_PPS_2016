@@ -51,13 +51,17 @@
         <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
           <ul class="nav navbar-nav">
             <li class="active"><a href="/operador.php?modulo=dashboard">Dashboard <span class="sr-only">(current)</span></a></li>
+            
+             {if $Permisos->verificarPermiso(array("Ticket_crear","Ticket_ver"))}
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tickets <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="/operador.php?modulo=tickets">Ver Tickets</a></li>
-                <li><a href="/operador.php?modulo=ticket">Nuevo Ticket</a></li>
+                <li>{if $Permisos->verificarPermiso("Ticket_ver")}<a href="/operador.php?modulo=tickets">Ver Tickets</a></li>{/if}
+                <li>{if $Permisos->verificarPermiso("Ticket_crear")}<a href="/operador.php?modulo=ticket">Nuevo Ticket</a></li>{/if}
               </ul>
             </li>
+              {/if}
+            
             {if $Permisos->verificarPermiso(array("usuarios_ver","usuarios_crear","empresas_ver"))}
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Usuarios <span class="caret"></span></a>
@@ -69,6 +73,7 @@
                 </ul>
               </li>
             {/if}
+            
             {if $Permisos->verificarPermiso(array("anuncios_crear","anuncios_listar","categorias_ver"))}
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Anuncios <span class="caret"></span></a>
@@ -80,26 +85,33 @@
               </ul>
             </li>
             {/if}
-            <li ><a href="/operador.php?modulo=informes">Informes </a></li>
+            
+          
+            <li>{if $Permisos->verificarPermiso("informes_operadores")}<a href="/operador.php?modulo=informes">Informes </a></li>{/if}
+            
+           {if $Permisos->verificarPermiso(array("general_parametros","general_plantillas","departamentos_ver","estados_ver","prioridades_ver","tipoTicket_ver","operadores_ver","perfiles_ver","sla_ver"))}
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Administración <span class="caret"></span></a>
               <ul class="dropdown-menu" role="menu">
-                <li><a href="/operador.php?modulo=configuracionGeneral">Configuración General </a></li>
-                <li><a href="/operador.php?modulo=plantillas">Plantillas Mails </a></li>
+                <li>{if $Permisos->verificarPermiso("general_parametros")}<a href="/operador.php?modulo=configuracionGeneral">Configuración General </a></li>{/if}
+                <li>{if $Permisos->verificarPermiso("general_plantillas")}<a href="/operador.php?modulo=plantillas">Plantillas Mails </a></li>{/if}
                 <li class="divider"></li>
-                <li><a href="/operador.php?modulo=departamentos">Departamentos </a></li>
-                <li><a href="/operador.php?modulo=estados">Estados </a></li>
-                <li><a href="/operador.php?modulo=prioridades">Prioridades </a></li>
-                <li><a href="/operador.php?modulo=tipoTickets">Tipo de Ticket </a></li>
+                <li>{if $Permisos->verificarPermiso("departamentos_ver")}<a href="/operador.php?modulo=departamentos">Departamentos </a></li>{/if}
+                <li>{if $Permisos->verificarPermiso("estados_ver")}<a href="/operador.php?modulo=estados">Estados </a></li>{/if}
+                <li>{if $Permisos->verificarPermiso("prioridades_ver")}<a href="/operador.php?modulo=prioridades">Prioridades </a></li>{/if}
+                <li>{if $Permisos->verificarPermiso("tipoTicket_ver")}<a href="/operador.php?modulo=tipoTickets">Tipo de Ticket </a></li>{/if}
                 <li class="divider"></li>
-                <li><a href="/operador.php?modulo=operadores">Operadores </a></li>
-                <li><a href="/operador.php?modulo=perfiles">Perfiles Operador </a></li>
+                <li>{if $Permisos->verificarPermiso("operadores_ver")}<a href="/operador.php?modulo=operadores">Operadores </a></li>{/if}
+                <li>{if $Permisos->verificarPermiso("perfiles_ver")}<a href="/operador.php?modulo=perfiles">Perfiles Operador </a></li>{/if}
                 <li class="divider"></li>
-                <li><a href="/operador.php?modulo=slas">SLAs </a></li>
-                <li class="divider"></li>
-                <li><a href="/operador.php?modulo=camposPersonalizados">Campos Personalizados </a></li>
+                <li>{if $Permisos->verificarPermiso("sla_ver")}<a href="/operador.php?modulo=slas">SLAs </a></li>{/if}
+               <!-- <li class="divider"></li>-->
+                <!--<li><a href="/operador.php?modulo=camposPersonalizados">Campos Personalizados </a></li>-->
+                <!--Comentado por Lucas: Ocultamos funcionalidad Campos personalizados-->
               </ul>
             </li>
+            {/if}
+            
           </ul>
         </div>
       <!--Fin Botonera top -->  
