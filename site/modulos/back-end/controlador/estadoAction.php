@@ -32,6 +32,7 @@ function setear(Estados $estado,$em){
        $estado->setAutocierre(false);
     }
     $estado->setColor($_POST["color"]);
+    $estado->setIcono($_POST["icono"]);
     $estado->setOrden($_POST["orden"]);
     return $estado;
 }

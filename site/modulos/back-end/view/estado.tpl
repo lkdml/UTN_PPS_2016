@@ -64,6 +64,14 @@ js=''
                         </div>
                         <!--color end -->
                         <div class="box-body pad">
+                            <label for="inputDescripcion" class="col-sm-2 control-label">Icono</label>
+                            <div class="col-sm-5">
+                                <button role="iconpicker" data-search="false" data-placement="bottom" data-rows="5" data-cols="6" id="icono" name="icono" {if $Estado}data-icon='{$Estado->getIcono()}'{/if} ></button>
+                            </div>
+                        </div>
+                        <!-- body pad end -->
+                        
+                        <div class="box-body pad">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Auto-Cierre</label>
                             <div class="col-sm-5">
                                 <input type="checkbox" id="acierre" name="autocierre" 
@@ -130,10 +138,15 @@ js=''
 <link rel="stylesheet" href="{$rutaCSS}bootstrap-colorpicker.css">
 <!-- No enter for submitting v1.0 -->
 <script src="{$rutaJS}noEnter.js"></script>
+<!--Iconpicker -->
+<script src="{$rutaJS}bootstrap-iconpicker.js"></script>
 {literal} <script>
   $(function () {
      $(".my-colorpicker1").colorpicker();
   });
+   $("#icono").click(function(e){
+    e.preventDefault();
+    });
 </script>
 {/literal}
 

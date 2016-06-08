@@ -15,4 +15,7 @@ $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
 $vm->assign('OperadorLogueado',$app->getOperador());
 $vm->assign('Permisos',$permisos);
 
+$Estados = $em->getRepository('Modelo\TicketEstado')->findAll();
+    $vm->assign('Estados',$Estados);   
+
 $vm->display('dashboard.tpl');

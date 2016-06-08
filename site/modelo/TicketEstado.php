@@ -41,6 +41,13 @@ class TicketEstado
     private $color;
 
     /**
+     * @var string
+     *
+     * @Column(name="icono", type="string", length=60, nullable=false)
+     */
+    private $icono;
+
+    /**
      * @var boolean
      *
      * @Column(name="autocierre", type="boolean", nullable=false)
@@ -135,6 +142,30 @@ class TicketEstado
     public function getColor()
     {
         return $this->color;
+    }
+
+    /**
+     * Set icono
+     *
+     * @param string $icono
+     *
+     * @return TicketEstado
+     */
+    public function setIcono($icono)
+    {
+        $this->icono = $icono;
+
+        return $this;
+    }
+
+    /**
+     * Get icono
+     *
+     * @return string
+     */
+    public function getIcono()
+    {
+        return $this->icono;
     }
 
     /**

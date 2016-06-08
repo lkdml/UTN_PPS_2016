@@ -44,7 +44,7 @@ js=''
                          <div class="box-body pad">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Icono</label>
                             <div class="col-sm-5">
-                                <button role="iconpicker" data-search="false" data-placement="bottom" data-rows="5" data-cols="6" id="icono" name="icono" {if $Categoria}data-icon='{$Categoria->getIcono()}'{/if} ></button>
+                                <button role="iconpicker" data-search="false" data-placement="bottom" data-rows="5" data-cols="6" id="icono" name="icono" {if $TicketTipo}data-icon='{$TicketTipo->getIcono()}'{/if} ></button>
                             </div>
                         </div>
                         <!-- body pad end -->

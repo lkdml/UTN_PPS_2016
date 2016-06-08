@@ -81,6 +81,7 @@ js=''
               <tr>
                   <th><input type="checkbox" id="checkAll" onclick="checkAll(this)"></input></th>
                   <th>Nombre</th>
+                  <th>Icono</th>
                   <th>Descripción</th>
               </tr>
           </thead>
@@ -89,6 +90,7 @@ js=''
                   <tr>
                       <td><input class="case" type="checkbox" name="estadoId[]" value="{$estado->getEstadoId()}" ></input></td>
                       <td><small class="label" style='color:{$estado->getColor()}'>{$estado->getNombre()}</small></td>
+                      <td><small class='label glyphicon {$estado->getIcono()}' style="color:#333377"> </small></td>
                       <td>{$estado->getDescripcion()}</td>
                   </tr>
               {/foreach}

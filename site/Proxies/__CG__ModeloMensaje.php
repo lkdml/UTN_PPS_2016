@@ -353,4 +353,26 @@ class Mensaje extends \Modelo\Mensaje implements \Doctrine\ORM\Proxy\Proxy
         return parent::getArchivo();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function getCreadorOperadorNombre()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreadorOperadorNombre', []);
+
+        return parent::getCreadorOperadorNombre();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCreadorUsuarioNombre()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreadorUsuarioNombre', []);
+
+        return parent::getCreadorUsuarioNombre();
+    }
+
 }

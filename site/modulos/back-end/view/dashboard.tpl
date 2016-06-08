@@ -45,8 +45,8 @@ js=''
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>!</h3>
-              <p>Soporte N1<small>El más activo</small></p>
+              <h3>90</h3>
+              <p>Tus tickets<small>cerrados en el mes</small></p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
@@ -76,36 +76,8 @@ js=''
      <div class="row">
         <!--INICIO COLUMNA IZQUIERDA -->
             <div class="col-md-6">
-              <div class="row">
-                <div class="col-md-4 col-sm-8 col-xs-12">
-                  <div class="info-box">
-                    <span class="info-box-icon bg-acua"><i class="fa fa-envelope-o"></i></span>
-                    <div class="info-box-content">
-                      <span class="info-box-text">Abiertos </span>
-                      <span class="info-box-number" id="ticketsOperadorAbiertos"></span>
-                    </div><!-- /.info-box-content -->
-                  </div><!-- /.info-box -->
-                </div><!-- /.col -->
+              <div class="row" id="widgetEstados">
 
-                <div class="col-md-4 col-sm-8 col-xs-12">
-                  <div class="info-box">
-                    <span class="info-box-icon bg-red"><i class="fa fa-files-o"></i></span>
-                    <div class="info-box-content">
-                      <span class="info-box-text">En Curso</span>
-                      <span class="info-box-number" id="ticketsOperadorEnCurso"></span>
-                    </div><!-- /.info-box-content -->
-                  </div><!-- /.info-box -->
-                </div><!-- /.col -->
-
-                <div class="col-md-4 col-sm-8 col-xs-12">
-                  <div class="info-box">
-                    <span class="info-box-icon bg-black"><i class="fa fa-star-o"></i></span>
-                    <div class="info-box-content">
-                      <span class="info-box-text">Cerrados</span>
-                      <span class="info-box-number" id="ticketsOperadorCerrados"></span>
-                    </div><!-- /.info-box-content -->
-                  </div><!-- /.info-box -->
-                </div><!-- /.col -->
               </div>
             <!-- AREA CHART -->
             <div class="box box-primary">
@@ -233,8 +205,41 @@ js=''
 <script src="{$rutaJS}w-tiempo-vs-tiempo.js"></script>
 <script src="{$rutaJS}ticketsPendientesAccion.js"></script>
 <script src="{$rutaJS}cantidadUsuariosExistentes.js"></script>
-<script src="{$rutaJS}ticketsAbiertosOperador.js"></script>
-<script src="{$rutaJS}ticketsEnCursoOperador.js"></script>
-<script src="{$rutaJS}ticketsCerradosOperador.js"></script>
+
+
+{literal}
+<script>
+
+$( document ).ready(function() {
+     $.ajax({
+          url:'operador.php?modulo=widgets',
+          type:'GET',
+          datatype:'JSON',
+          data:{datosAjax:'widgetEstados'},
+          success: function (response){
+                      var array = jQuery.parseJSON( response );
+                  
+                      for(var i=0;i<array.length;i++)
+                      {
+                      
+                         $('#widgetEstados').append('<div class="col-md-4 col-sm-8 col-xs-12">\
+                            <div class="info-box">\
+                              <span class="info-box-icon bg-acua" style=background-color:'+array[i].color+';color:white><i class="glyphicon '+array[i].icono+'"></i></span>\
+                              <div class="info-box-content">\
+                                <span class="info-box-text">'+array[i].nombre+'</span>\
+                                <span class="info-box-number" >'+array[i].cantidad+'</span>\
+                              </div>\
+                            </div>\
+                          </div>'); 
+
+                      }
+            
+                  }
+        });
+});
+
+</script>
+{/literal}
+
 
 {include file='footer.tpl'}
