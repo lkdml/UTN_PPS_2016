@@ -16,7 +16,7 @@ class FileManager {
     public function getExtensionesPermitidas(){return $this->extensionesPermitidas;}
     public function getRutaUpload(){return $this->rutaUpload;}
     public function getArrayNombres(){return $this->arrayNombres;}
-    public function getRutaUploadRelativa(){str_replace(\CORE\Controlador\Config::getPublic('Ruta_App'),"",$this->rutaUpload);}
+    public function getRutaUploadRelativa(){return str_replace(\CORE\Controlador\Config::getPublic('Ruta_App'),"",$this->rutaUpload);}
     
     public function setArrayNombres($NombresArray) {$this->arrayNombres = $NombresArray;}
     public function setExtensionesPermitidas($extensiones_Permitidas) {$this->extensionesPermitidas = $extensiones_Permitidas;}
@@ -50,7 +50,7 @@ class FileManager {
      * 
      * @return array con nombres asignados por cada llave dentro del $_Files[nombreClave]
      * */
-    public function guardarArvhivosDePost($filesArray, $NombreClave = null ,$sobreEscribir=false){
+    public function guardarArchivosDePost($filesArray, $NombreClave = null ,$sobreEscribir=false){
         $this->arrayNombres =  array();
         if (is_null($NombreClave)){$NombreClave=key($filesArray);}
             foreach( $filesArray[ $NombreClave ][ 'tmp_name' ] as $index => $tmpName ) {
@@ -62,8 +62,8 @@ class FileManager {
                         switch ($this->moverArchivo($tmpName,null,$this->rutaUpload,$filename,true)) {
                             case true:
                                 $this->arrayNombres[] = array('name'=>$filesArray[$NombreClave]["name"][$index],
-                                                            'hashName' =>  $this->getRutaUploadRelativa().$filename,
-                                                            'path' => $this->rutaUpload);
+                                                            'hashName' =>  $filename,
+                                                            'path' => $this->getRutaUploadRelativa());
                                 \CORE\Controlador\Dbug::getInstancia()->escribirLog("Se guardó satisfactoriamente el archivo: ".$this->rutaUpload.$filename,"FileManager");
                                 break;
                             case -1:
@@ -76,8 +76,8 @@ class FileManager {
                                 }
                                 $this->moverArchivo($tmpName,null,$this->rutaUpload,$filename,true);
                                 $this->arrayNombres[] = array('name'=>$filesArray[$NombreClave]["name"][$index],
-                                                            'hashName' =>  $this->getRutaUploadRelativa().$filename,
-                                                            'path' => $this->rutaUpload);
+                                                            'hashName' =>  $filename,
+                                                            'path' => $this->getRutaUploadRelativa());
                                 \CORE\Controlador\Dbug::getInstancia()->escribirLog("Se guardó satisfactoriamente el archivo: ".$this->rutaUpload.$filename,"FileManager");
                                 break;
                             

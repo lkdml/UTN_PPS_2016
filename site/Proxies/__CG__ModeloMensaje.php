@@ -64,10 +64,10 @@ class Mensaje extends \Modelo\Mensaje implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'mensajeId', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'texto', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'fecha', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'tipoMensaje', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'creadorOperador', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'creadorUsuario', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'ticket', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'archivo'];
+            return ['__isInitialized__', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'mensajeId', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'texto', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'fecha', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'tipoMensaje', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'creadorOperador', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'creadorUsuario', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'ticket'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'mensajeId', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'texto', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'fecha', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'tipoMensaje', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'creadorOperador', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'creadorUsuario', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'ticket', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'archivo'];
+        return ['__isInitialized__', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'mensajeId', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'texto', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'fecha', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'tipoMensaje', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'creadorOperador', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'creadorUsuario', '' . "\0" . 'Modelo\\Mensaje' . "\0" . 'ticket'];
     }
 
     /**
@@ -323,56 +323,23 @@ class Mensaje extends \Modelo\Mensaje implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function addArchivo(\Modelo\Archivo $archivo)
+    public function getCreador()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addArchivo', [$archivo]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreador', []);
 
-        return parent::addArchivo($archivo);
+        return parent::getCreador();
     }
 
     /**
      * {@inheritDoc}
      */
-    public function removeArchivo(\Modelo\Archivo $archivo)
+    public function getMisArchivos($MensajeId)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeArchivo', [$archivo]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMisArchivos', [$MensajeId]);
 
-        return parent::removeArchivo($archivo);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getArchivo()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getArchivo', []);
-
-        return parent::getArchivo();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getCreadorOperadorNombre()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreadorOperadorNombre', []);
-
-        return parent::getCreadorOperadorNombre();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getCreadorUsuarioNombre()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCreadorUsuarioNombre', []);
-
-        return parent::getCreadorUsuarioNombre();
+        return parent::getMisArchivos($MensajeId);
     }
 
 }

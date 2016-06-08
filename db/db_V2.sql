@@ -327,7 +327,6 @@ CREATE TABLE IF NOT EXISTS `tmh`.`ticket` (
   `ultima_actividad_operador` DATETIME NULL,
   `fecha_creacion` DATETIME NOT NULL,
   `fecha_vto` DATETIME NULL,
-  `tiene_archivos` TINYINT(1) NULL,
   `editado` TINYINT(1) NULL,
   `custom_fields` LONGTEXT NULL,
   `tipo_ticket_id` INT NOT NULL,
@@ -440,35 +439,21 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`archivo` (
   `archivo_id` INT NOT NULL AUTO_INCREMENT,
+  `mensaje_id` INT NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
-  `Hash` VARCHAR(45) NOT NULL,
+  `Hash` VARCHAR(255) NOT NULL,
   `fecha_creacion` DATETIME NOT NULL,
   `directorio` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`archivo_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `tmh`.`ticket_archivo`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`ticket_archivo` (
-  `archivo_ticket_id` INT NOT NULL ,
-  `ticket_id` INT NOT NULL,
-  PRIMARY KEY (`archivo_ticket_id`, `ticket_id`),
-  INDEX `fk_ticket_archivo_ticket_idx` (`ticket_id` ASC),
-  CONSTRAINT `fk_ticket_archivo_archivo`
-    FOREIGN KEY (`archivo_ticket_id`)
-    REFERENCES `tmh`.`archivo` (`archivo_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ticket_archivo_ticket`
-    FOREIGN KEY (`ticket_id`)
-    REFERENCES `tmh`.`ticket` (`ticket_id`)
+  PRIMARY KEY (`archivo_id`),
+  INDEX `FK_archivo_mensaje_idx` (`mensaje_id` ASC),
+  CONSTRAINT `FK_archivo_mensaje`
+    FOREIGN KEY (`mensaje_id`)
+    REFERENCES `tmh`.`mensaje` (`mensaje_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
+
 
 
 -- -----------------------------------------------------
@@ -493,26 +478,6 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
--- -----------------------------------------------------
--- Table `tmh`.`mensaje_archivo`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`mensaje_archivo` (
-  `mensaje_id` INT NOT NULL,
-  `archivo_id` INT NOT NULL,
-  PRIMARY KEY (`mensaje_id`, `archivo_id`),
-  INDEX `FK_mensaje_archivo_mensaje_idx` (`archivo_id` ASC),
-  CONSTRAINT `FK_mensaje_archivo_archivo`
-    FOREIGN KEY (`archivo_id`)
-    REFERENCES `tmh`.`archivo` (`archivo_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_mensaje_archivo_mensaje`
-    FOREIGN KEY (`mensaje_id`)
-    REFERENCES `tmh`.`mensaje` (`mensaje_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------

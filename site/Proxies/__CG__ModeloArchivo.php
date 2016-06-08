@@ -64,10 +64,10 @@ class Archivo extends \Modelo\Archivo implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'archivoId', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'nombre', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'hash', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'fechaCreacion', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'directorio', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'mensaje', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'ticket'];
+            return ['__isInitialized__', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'archivoId', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'nombre', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'hash', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'fechaCreacion', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'directorio', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'mensaje'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'archivoId', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'nombre', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'hash', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'fechaCreacion', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'directorio', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'mensaje', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'ticket'];
+        return ['__isInitialized__', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'archivoId', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'nombre', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'hash', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'fechaCreacion', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'directorio', '' . "\0" . 'Modelo\\Archivo' . "\0" . 'mensaje'];
     }
 
     /**
@@ -279,23 +279,12 @@ class Archivo extends \Modelo\Archivo implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function addMensaje(\Modelo\Mensaje $mensaje)
+    public function setMensaje(\Modelo\Mensaje $mensaje = NULL)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addMensaje', [$mensaje]);
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setMensaje', [$mensaje]);
 
-        return parent::addMensaje($mensaje);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function removeMensaje(\Modelo\Mensaje $mensaje)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeMensaje', [$mensaje]);
-
-        return parent::removeMensaje($mensaje);
+        return parent::setMensaje($mensaje);
     }
 
     /**
@@ -307,39 +296,6 @@ class Archivo extends \Modelo\Archivo implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMensaje', []);
 
         return parent::getMensaje();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function addTicket(\Modelo\Ticket $ticket)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addTicket', [$ticket]);
-
-        return parent::addTicket($ticket);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function removeTicket(\Modelo\Ticket $ticket)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeTicket', [$ticket]);
-
-        return parent::removeTicket($ticket);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getTicket()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTicket', []);
-
-        return parent::getTicket();
     }
 
 }

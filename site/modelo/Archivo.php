@@ -5,7 +5,7 @@ namespace Modelo;
 /**
  * Archivo
  *
- * @Table(name="archivo")
+ * @Table(name="archivo", indexes={@Index(name="FK_archivo_mensaje_idx", columns={"mensaje_id"})})
  * @Entity
  */
 class Archivo
@@ -48,35 +48,15 @@ class Archivo
     private $directorio;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var \Mensaje
      *
-     * @ManyToMany(targetEntity="Mensaje", mappedBy="archivo")
+     * @ManyToOne(targetEntity="Mensaje")
+     * @JoinColumns({
+     *   @JoinColumn(name="mensaje_id", referencedColumnName="mensaje_id")
+     * })
      */
     private $mensaje;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ManyToMany(targetEntity="Ticket", inversedBy="archivoTicket")
-     * @JoinTable(name="ticket_archivo",
-     *   joinColumns={
-     *     @JoinColumn(name="archivo_ticket_id", referencedColumnName="archivo_id")
-     *   },
-     *   inverseJoinColumns={
-     *     @JoinColumn(name="ticket_id", referencedColumnName="ticket_id")
-     *   }
-     * )
-     */
-    private $ticket;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->mensaje = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->ticket = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get archivoId
@@ -185,71 +165,27 @@ class Archivo
     }
 
     /**
-     * Add mensaje
+     * Set mensaje
      *
      * @param \Mensaje $mensaje
      *
      * @return Archivo
      */
-    public function addMensaje(Mensaje $mensaje)
+    public function setMensaje(Mensaje $mensaje = null)
     {
-        $this->mensaje[] = $mensaje;
+        $this->mensaje = $mensaje;
 
         return $this;
-    }
-
-    /**
-     * Remove mensaje
-     *
-     * @param \Mensaje $mensaje
-     */
-    public function removeMensaje(Mensaje $mensaje)
-    {
-        $this->mensaje->removeElement($mensaje);
     }
 
     /**
      * Get mensaje
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Mensaje
      */
     public function getMensaje()
     {
         return $this->mensaje;
-    }
-
-    /**
-     * Add ticket
-     *
-     * @param \Ticket $ticket
-     *
-     * @return Archivo
-     */
-    public function addTicket(Ticket $ticket)
-    {
-        $this->ticket[] = $ticket;
-
-        return $this;
-    }
-
-    /**
-     * Remove ticket
-     *
-     * @param \Ticket $ticket
-     */
-    public function removeTicket(Ticket $ticket)
-    {
-        $this->ticket->removeElement($ticket);
-    }
-
-    /**
-     * Get ticket
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getTicket()
-    {
-        return $this->ticket;
     }
 }
 

@@ -87,7 +87,7 @@ js=''
                   <th>#</th>
                   <th>Asunto</th>
                   <th>Estado</th>
-                  <th>Usuario</th>
+                  <th>Usuario/Operador</th>
                   <th>Asignado</th>
                   <th>Departamento</th>
                   <th>SLA</th>
@@ -101,10 +101,18 @@ js=''
                       <td><small class="label glyphicon glyphicon-flag" style='color:{$ticket->getPrioridad()->getColor()}'> </small><br><small>{$ticket->getPrioridad()->getNombre()}</small></td>
                       <td>{$ticket->getNumeroTicket()}</td>
                       <td>{$ticket->getAsunto()}</td>
-                      <td><small class="label" style='color:{$ticket->getEstado()->getColor()}'>{$ticket->getEstado()->getNombre()}</small></td>
-                      <td>{$ticket->getUsuario()->getEmail()} <br>
-                          {$ticket->getUsuario()->getNombre()}<br>
-                          <!--<Small>{$ticket->getUsuario()->getEmail()}</Small> -->
+                      <td><small class="label " style='color:{$ticket->getEstado()->getColor()}'>{$ticket->getEstado()->getNombre()}</small></td>
+                      <td>{if $ticket->getUsuario() == null}
+                            <small class="label bg-olive">Operador: </small><br>
+                            {$ticket->getOperador()->getEmail()} <br>
+                            {$ticket->getOperador()->getNombre()}<br>
+                            <!--<Small>{$ticket->getOperador()->getEmail()}</Small> -->
+                          {else}
+                            <small class="label bg-blue">Usuario: </small><br>
+                            {$ticket->getUsuario()->getEmail()} <br>
+                            {$ticket->getUsuario()->getNombre()}<br>
+                            <!--<Small>{$ticket->getUsuario()->getEmail()}</Small> -->
+                          {/if}
                       </td>
                       <td>{if $ticket->getOperador()}
                               {$ticket->getOperador()->getNombreUsuario()}<br> <Small>{$ticket->getOperador()->getNombreUsuario()}</Small><br><small>{$ticket->getOperador()->getEmail()}</small>

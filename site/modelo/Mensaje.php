@@ -64,28 +64,6 @@ class Mensaje
      */
     private $ticket;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ManyToMany(targetEntity="Archivo", inversedBy="mensaje")
-     * @JoinTable(name="mensaje_archivo",
-     *   joinColumns={
-     *     @JoinColumn(name="mensaje_id", referencedColumnName="mensaje_id")
-     *   },
-     *   inverseJoinColumns={
-     *     @JoinColumn(name="archivo_id", referencedColumnName="archivo_id")
-     *   }
-     * )
-     */
-    private $archivo;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->archivo = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get mensajeId
@@ -240,53 +218,21 @@ class Mensaje
     {
         return $this->ticket;
     }
-
-    /**
-     * Add archivo
-     *
-     * @param \Archivo $archivo
-     *
-     * @return Mensaje
-     */
-    public function addArchivo(Archivo $archivo)
-    {
-        $this->archivo[] = $archivo;
-
-        return $this;
-    }
-
-    /**
-     * Remove archivo
-     *
-     * @param \Archivo $archivo
-     */
-    public function removeArchivo(Archivo $archivo)
-    {
-        $this->archivo->removeElement($archivo);
-    }
-
-    /**
-     * Get archivo
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getArchivo()
-    {
-        return $this->archivo;
+    
+    public function getCreador(){
+        if (is_null($this->creadorOperador)){
+            $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+            $creador = $em->getRepository('Modelo\Usuario')->find($this->creadorUsuario);
+        } else {
+            $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+            $creador = $em->getRepository('Modelo\Operador')->find($this->creadorOperador);
+        }
+        return $creador;
     }
     
-    public function getCreadorOperadorNombre() {
+    public function getMisArchivos($MensajeId){
         $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-        $oper = $em->getRepository('Modelo\Operador')->find($this->creadorOperador);
-        $nombreCompleto = $oper->getNombre() ." " .$oper->getApellido(); 
-        return $nombreCompleto;
-    }
-    
-    public function getCreadorUsuarioNombre() {
-        $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-        $usr = $em->getRepository('Modelo\Usuario')->find($this->creadorUsuario);
-        $nombreCompleto = $usr->getNombre() ." " .$usr->getApellido(); 
-        return $nombreCompleto;
+        return $em->getRepository('Modelo\Archivo')->findBy(array('mensaje'=>$MensajeId));
     }
 }
 

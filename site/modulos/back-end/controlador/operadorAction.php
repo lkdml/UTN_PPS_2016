@@ -33,7 +33,7 @@ if (validarRequisitos()){
         } else if (($_GET['actualiza']=='foto')){
             $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
             $archivo = new FileManager($em->getRepository('Modelo\ConfiguracionGlobal')->find("extensiones_permitidas_imagenes")->getValor(),'modulos/back-end/imagenes/avatars/');
-            $archivo->guardarArvhivosDePost($_FILES);
+            $archivo->guardarArchivosDePost($_FILES);
             //TODO faltan agregar al TPL
             $getOperador->setHashFoto($archivo->getArrayNombres()[0]['hashName']);
             $em->persist($getOperador);

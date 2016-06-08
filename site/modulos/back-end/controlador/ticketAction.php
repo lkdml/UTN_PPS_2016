@@ -20,9 +20,14 @@ if (isset($_GET['TicketId'])){
 } else {
     $Ticket = setearTicket(new Ticket(),$em);
     $Mensaje = setearMensaje(new Mensaje, $Ticket, $em);
+    //$Mensaje = setearArchivosEnMensaje($Mensaje, $em);
     $em->persist($Ticket);
     $em->persist($Mensaje);
+    $Mensaje = setearArchivosEnMensaje($Mensaje, $em);
+   
     $em->flush();
+   // $em->merge($Mensaje);
+    //$em->flush();
 }
 
 
@@ -96,20 +101,6 @@ function setearTicket(Ticket $ticket,$em){
     $propietariUsuario = $em->getRepository('Modelo\Usuario')->findBy(array("email"=>$_POST["Propietario"]));
     $ticket->setUsuario($propietariUsuario[0]);
     
-    $archivo = new FileManager($em->getRepository('Modelo\ConfiguracionGlobal')->find("extensiones_permitidas_archivos")->getValor(),\CORE\Controlador\Config::getPublic('Ruta_Uploads'));
-    $archivo->guardarArvhivosDePost($_FILES);
-    \CORE\Controlador\Dbug::vdump($archivo);
-    foreach ($archivo->getArrayNombres() as $archivo) {
-        $dbArchivo = new Archivo();
-        $dbArchivo->setNombre($archivo['name']);
-        $dbArchivo->setHash($archivo['hashName']);
-        $dbArchivo->setFechaCreacion(new DateTime("NOW"));
-        $dbArchivo->setDirectorio($archivo['path']);
-        // code...
-    }
-    //TODO faltan agregar al TPL
-    $getOperador->setHashFoto([0]);
-    
     return $ticket;
 }
 
@@ -122,15 +113,29 @@ function setearMensaje(Mensaje $mensaje, Ticket $ticket,$em){
         $mensaje->setFecha(new DateTime("NOW"));
         $mensaje->setTipoMensaje(1); //TODO: No se lo que es tipo de mensaje integer pero le paso 1 como parametro
         $mensaje->setTicket($ticket);
-        if (!is_null($propietariUsuario)){
+        if (!empty($propietariUsuario)){
             $mensaje->setCreadorUsuario($propietariUsuario[0]->getUsuarioId());
-        } else if (!is_null($propietarioOperador)){
+        } else if (!empty($propietarioOperador)){
             $mensaje->setCreadorOperador($propietarioOperador[0]->getOperadorId());
         }   
     }
     return $mensaje;
 }
 
+function setearArchivosEnMensaje($mensaje, $em){
+    $archivo = new FileManager($em->getRepository('Modelo\ConfiguracionGlobal')->find("extensiones_permitidas_archivos")->getValor(),\CORE\Controlador\Config::getPublic('Ruta_Uploads'));
+    $archivo->guardarArchivosDePost($_FILES);
+    foreach ($archivo->getArrayNombres() as $archivo) {
+        $dbArchivo = new Archivo();
+        $dbArchivo->setNombre($archivo['name']);
+        $dbArchivo->setHash($archivo['hashName']);
+        $dbArchivo->setFechaCreacion(new DateTime("NOW"));
+        $dbArchivo->setDirectorio($archivo['path']);
+        $dbArchivo->setMensaje($mensaje);
+        $em->persist($dbArchivo);
+    }
+    return $mensaje;
+}
 
 //TODO Esto hay que cambiarlo, Hay que agregarle un template y hacer un parseo para reemplazar data
 function setearEmailQueue($remitente,$destinatario,$ticketNumber,$em){

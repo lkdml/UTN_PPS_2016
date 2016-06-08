@@ -29,7 +29,7 @@ class Ticket
     /**
      * @var string
      *
-     * @Column(name="numero_Ticket", type="string", nullable=false)
+     * @Column(name="numero_Ticket", type="string", length=10, nullable=false)
      */
     private $numeroTicket;
 
@@ -95,13 +95,6 @@ class Ticket
      * @Column(name="fecha_vto", type="datetime", nullable=true)
      */
     private $fechaVto;
-
-    /**
-     * @var boolean
-     *
-     * @Column(name="tiene_archivos", type="boolean", nullable=true)
-     */
-    private $tieneArchivos;
 
     /**
      * @var boolean
@@ -177,20 +170,6 @@ class Ticket
      */
     private $tipoTicket;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ManyToMany(targetEntity="Archivo", mappedBy="ticket")
-     */
-    private $archivoTicket;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->archivoTicket = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get ticketId
@@ -229,7 +208,7 @@ class Ticket
     /**
      * Set numeroTicket
      *
-     * @param integer $numeroTicket
+     * @param string $numeroTicket
      *
      * @return Ticket
      */
@@ -243,7 +222,7 @@ class Ticket
     /**
      * Get numeroTicket
      *
-     * @return integer
+     * @return string
      */
     public function getNumeroTicket()
     {
@@ -467,30 +446,6 @@ class Ticket
     }
 
     /**
-     * Set tieneArchivos
-     *
-     * @param boolean $tieneArchivos
-     *
-     * @return Ticket
-     */
-    public function setTieneArchivos($tieneArchivos)
-    {
-        $this->tieneArchivos = $tieneArchivos;
-
-        return $this;
-    }
-
-    /**
-     * Get tieneArchivos
-     *
-     * @return boolean
-     */
-    public function getTieneArchivos()
-    {
-        return $this->tieneArchivos;
-    }
-
-    /**
      * Set editado
      *
      * @param boolean $editado
@@ -681,40 +636,5 @@ class Ticket
     {
         return $this->tipoTicket;
     }
-
-    /**
-     * Add archivoTicket
-     *
-     * @param \Archivo $archivoTicket
-     *
-     * @return Ticket
-     */
-    public function addArchivoTicket(Archivo $archivoTicket)
-    {
-        $this->archivoTicket[] = $archivoTicket;
-
-        return $this;
-    }
-
-    /**
-     * Remove archivoTicket
-     *
-     * @param \Archivo $archivoTicket
-     */
-    public function removeArchivoTicket(Archivo $archivoTicket)
-    {
-        $this->archivoTicket->removeElement($archivoTicket);
-    }
-
-    /**
-     * Get archivoTicket
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getArchivoTicket()
-    {
-        return $this->archivoTicket;
-    }
-    
 }
 

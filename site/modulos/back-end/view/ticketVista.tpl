@@ -224,8 +224,8 @@ js=''
             <div class="nav-tabs-custom">
              <ul class="nav nav-tabs">
                 <li class="active"><a href="#tab_1" data-toggle="tab">Evolución</a></li>
-                <li class=""><a href="#tab_2" data-toggle="tab">Comentario General</a></li>
-                <li class=""><a href="#tab_3" data-toggle="tab">Comentario Operador</a></li>
+                <li class=""><a href="#tab_2" data-toggle="tab">Agregar avance</a></li>
+                <li class=""><a href="#tab_3" data-toggle="tab">Agregar Nota de Operador</a></li>
                 
               </ul>
               <div class="tab-content">
@@ -253,45 +253,25 @@ js=''
                                   {foreach from=$Mensajes item=$mensaje}
                                     <div class="direct-chat-msg">
                                         <div class="direct-chat-info clearfix">
-                                          <span class="direct-chat-name pull-left"><font size = 5>{if $mensaje->getCreadorOperador() != null}
-                                                                                                          {$mensaje->getCreadorOperadorNombre()}
-                                                                                                      
-                                                                                                  {else}
-                                                                                                      {$mensaje->getCreadorUsuarioNombre()}
+                                            {if $mensaje->getCreador() != null} {$Creador=$mensaje->getCreador()} {/if}
+                                          <span class="direct-chat-name pull-left"><font size = 5>{if $Creador != null}
+                                                                                                          {$Creador->getNombre()} {$Creador->getApellido()} 
                                                                                                 {/if}</font></span>
                                           <span class="direct-chat-timestamp pull-right">{$mensaje->getFecha()|date_format:"%d-%m-%Y %H:%m"}</span>
                                         </div><!-- /.direct-chat-info -->
-                                        <img class="direct-chat-img" src="{$rutaIMG}/avatars/{if $Operador}{$Operador->getHashFoto()}{else}UserDefault.jpg{/if}" alt="message user image"><!-- /.direct-chat-img -->
+                                        <img class="direct-chat-img" src="{$rutaIMG}avatars/{if (get_class($Creador) == 'Proxies\__CG__\Modelo\Usuario') && ($Creador->getFotoHash() != null)}{$Creador->getFotoHash()}{elseif get_class($Creador) == 'Modelo\Operador'}{$Creador->getHashFoto()}{else}UserDefault.jpg{/if}" alt="message user image"><!-- /.direct-chat-img -->
                                         <div class="direct-chat-text">
                                           {$mensaje->getTexto()}
-                                          <p><a href="https://www.facebook.com/lukas77.25"><font size = 3>Adjunto 1</font></a></p>
+                                          {$archivos=$mensaje->getMisArchivos($mensaje->getMensajeId())}
+                                          {foreach from=$archivos item=$archivo}
+                                          
+                                          <p><a href="{$archivo->getDirectorio()}{$archivo->getHash()}" target="_blank"><font size = 3>{$archivo->getNombre()}</font></a></p>
+                                          {/foreach}
                                         </div><!-- /.direct-chat-text -->
                                     </div><!-- /.direct-chat-msg -->
                                   {/foreach}
                                 {/if}
                               <!-- Message. Default to the left -->
-                              
-                                 <!-- Message. Default to the left -->
-                              <div class="direct-chat-msg">
-                                <div class="direct-chat-info clearfix">
-                                  <span class="direct-chat-name pull-left"><font size = 5>Elizabeth DeWitt</font></span>
-                                  <span class="direct-chat-timestamp pull-right">19 Abril 1:30 pm</span>
-                                </div><!-- /.direct-chat-info -->
-                                <img class="direct-chat-img" src="{$rutaIMG}avatar2.png" alt="message user image"><!-- /.direct-chat-img -->
-                                <div class="direct-chat-text">
-                                  Is this template really for free? That's unbelievable!Lorem ipsum dolor sit amet, consectetur 
-                                  adipiscing elit. Maecenas leo leo, congue vel quam sit amet, viverra auctor eros. Ut vulputate
-                                  ac erat ac eleifend. Morbi malesuada pretium accumsan. Vestibulum tincidunt velit eget velit 
-                                  sodales, in hendrerit purus hendrerit. Integer auctor quis felis sed consectetur. 
-                                  Maecenas scelerisque orci lorem, nec vehicula diam tincidunt at. Sed ultrices dui eu 
-                                  hendrerit congue. Morbi iaculis sit amet erat at finibus. Integer sollicitudin pulvinar dolor id pharetra. 
-                                  Aenean eget elit dui.
-                                  
-                                  <p><a href="https://www.facebook.com/lukas77.25"><font size = 3>Adjunto 1</font></a></p>
-                                
-                                  
-                                </div><!-- /.direct-chat-text -->
-                              </div><!-- /.direct-chat-msg -->
                         	 </div>
                             </div>
                         </div>
