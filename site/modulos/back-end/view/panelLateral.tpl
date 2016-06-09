@@ -33,17 +33,6 @@
       <li class="treeview">
         <a href="#"><i class="fa fa-th" ></i><span>Departamentos</span> <small class="label pull-right bg-blue" id="totalDeptosTickets"></small></a>
         <ul class="treeview-menu" id="dinamicDeptos">
-          <!--
-          <li class="treeview">
-            <a href="#"><i class="fa fa-th" ></i><span>Soporte N2</span> <small class="label pull-right bg-blue">10</small></a>
-            <ul class="treeview-menu">
-              <li><a href="/operador.php?modulo=tickets&departamento=2&estado=1">Abiertos<small class="label pull-right bg-green">1</small></li></a>
-              <li><a href="/operador.php?modulo=tickets&departamento=2&estado=2">En Curso<small class="label pull-right bg-red">8</small></li></a>
-              <li><a href="/operador.php?modulo=tickets&departamento=2&estado=3">Respondidos<small class="label pull-right bg-yellow">1</small></li></a>
-              <li><a href="/operador.php?modulo=tickets&departamento=2&estado=4">Cerrados<small class="label pull-right bg-black">6</small></li></a>
-            </ul>
-          </li>
-          -->
         </ul>
       </li>
     </ul>
@@ -125,9 +114,7 @@ $( document ).ready(function obtenerLateralDepartamentos() {
                         for(var j=0;j<array[i].dataTickets.length;j++)
                         {
                           $('#'+(array[i].nombre).replace(" ", "_")+array[i].id+'').append('<li><a href="/operador.php?modulo=tickets&departamento='+array[i].id+'&estado='+array[i].dataTickets[j].id+'">'+array[i].dataTickets[j].nombre+'<small class="label pull-right" style=background-color:'+array[i].dataTickets[j].color+'>'+array[i].dataTickets[j].cantidad+'</small></li></a>');
-                         
-                         
-                         //$( '<li><a href="/operador.php?modulo=tickets&departamento='+array[i].id+'&estado='+array[i].dataTickets[j].id+'">'+array[i].dataTickets[j].nombre+'<small class="label pull-right" style=background-color:'+array[i].dataTickets[j].color+'>'+array[i].dataTickets[j].cantidad+'</small></li></a>').appendTo( $( '#'+array[i].nombre+array[i].id+'' ) );
+
                           totalDepto=totalDepto+array[i].dataTickets[j].cantidad;
                         }
                         //FIN DE TICKETS DEL DEPTO
@@ -146,20 +133,7 @@ $( document ).ready(function obtenerLateralDepartamentos() {
                         
                       }
                       $('#totalDeptosTickets').html(totalGeneral);
-          /*
-          <li class="treeview">
-            <a href="#"><i class="fa fa-th" ></i><span>Soporte N2</span> <small class="label pull-right bg-blue">10</small></a>
-            <ul class="treeview-menu">
-              <li><a href="/operador.php?modulo=tickets&departamento=2&estado=1">Abiertos<small class="label pull-right bg-green">1</small></li></a>
-              <li><a href="/operador.php?modulo=tickets&departamento=2&estado=2">En Curso<small class="label pull-right bg-red">8</small></li></a>
-              <li><a href="/operador.php?modulo=tickets&departamento=2&estado=3">Respondidos<small class="label pull-right bg-yellow">1</small></li></a>
-              <li><a href="/operador.php?modulo=tickets&departamento=2&estado=4">Cerrados<small class="label pull-right bg-black">6</small></li></a>
-            </ul>
-          </li>
-            
-          */
-          
-          
+        
                   }
         });
 });

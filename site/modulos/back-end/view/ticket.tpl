@@ -1,5 +1,5 @@
 {include file="header.tpl"
-css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css"><link rel="stylesheet" href="./modulos/back-end/css/jquery.auto-complete.css">'
+css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css"><link rel="stylesheet" href="./modulos/back-end/css/jquery-ui.css"> '
 js='' 
 }
 {include file="panelLateral.tpl"}
@@ -32,8 +32,12 @@ js=''
                     <div class="box-body pad">
                       <label for="inputAsunto" class="col-md-2 control-label">Propietario</label>
                       <div class="col-md-5">
-                        <input type="text" class="form-control" id="searchUsuario" name="Propietario" autocomplete="on">
+                        <input type="text" class="form-control" id="searchUsuario" name="Creador" autocomplete="on">
                       </div>
+                      <div class="col-md-3">
+                        <input type="hidden" id="Propietario" name="Propietario">
+                        <input type="hidden" id="Tipo" name="Tipo">
+                       </div>
                     </div>  
                   </div>
                   <div class="form-group">
@@ -247,7 +251,7 @@ js=''
 <script src="{$rutaJS}jquery-validator-min.js"></script>
 <script src="{$rutaJS}validacionNuevoTicket.js"></script>
 <script src="{$rutaJS}bootstrap3-wysihtml5.all.js"></script>
-<script src="{$rutaJS}jquery.auto-complete.js"></script>
+<script src="{$rutaJS}jquery-ui.js"></script>
 <!-- No enter for submitting v1.0 -->
 <script src="{$rutaJS}noEnter.js"></script>
 
@@ -261,13 +265,31 @@ js=''
 
 <script type="text/javascript">
 $().ready(function() {
-var xhr;
-$('input[name="Propietario"]').autoComplete({
-    source: function(term, response){
+ $( "#searchUsuario" ).autocomplete({
+      minLength: 3,
+      source: function(term, response){
         try { xhr.abort(); } catch(e){}
-        xhr = $.getJSON('modulos/back-end/controlador/buscarEmailUsuarios.php', { q: term }, function(data){ response(data); });
-    }
-});
+        xhr = $.getJSON('modulos/back-end/controlador/buscarEmailUsuarios.php',term, function(data){ response(data); });
+    },
+      focus: function( event, ui ) {
+        $( "#searchUsuario" ).val( ui.item.Creador );
+        return false;
+      },
+      select: function( event, ui ) {
+        $( "#searchUsuario" ).val( ui.item.Creador );
+        $( "#Propietario" ).html( ui.item.Nombre );
+        $( "#Tipo" ).val( ui.item.Tipo );
+        //$( "#project-icon" ).attr( "src", "images/" + ui.item.icon );
+ 
+        return false;
+      }
+    })
+    .autocomplete( "instance" )._renderItem = function( ul, item ) {
+      return $( "<li>" )
+        .append( "<a>" + item.Creador + "<br>" + item.Tipo + "</a>" )
+        .appendTo( ul );
+    };
+
  });
 </script>
 
