@@ -20,7 +20,6 @@ use \Modelo\Ticket as Ticket;
 $test = new Ticket();
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 $ticket = $em->getRepository('Modelo\Ticket')->findAll();
-
 $vm->assign('Tickets',$ticket);
 
 $vm->display('grilla_tickets.tpl');

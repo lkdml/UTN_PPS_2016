@@ -114,8 +114,8 @@ js=''
                             <!--<Small>{$ticket->getUsuario()->getEmail()}</Small> -->
                           {/if}
                       </td>
-                      <td>{if $ticket->getOperador()}
-                              {$ticket->getOperador()->getNombreUsuario()}<br> <Small>{$ticket->getOperador()->getNombreUsuario()}</Small><br><small>{$ticket->getOperador()->getEmail()}</small>
+                      <td>{if $ticket->getAsignadoAOperador()}
+                              {$ticket->getAsignadoAOperador()->getNombreUsuario()}<br> <Small>{$ticket->getAsignadoAOperador()->getNombreUsuario()}</Small><br><small>{$ticket->getAsignadoAOperador()->getEmail()}</small>
                           {/if}    
                       </td>
                       <td>{$ticket->getDepartamento()->getNombre()}</td>

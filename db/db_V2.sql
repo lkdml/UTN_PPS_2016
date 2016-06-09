@@ -320,7 +320,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`ticket` (
   `numero_Ticket` VARCHAR(10) NOT NULL,
   `email_queue_id` INT NOT NULL,
   `asignado` TINYINT(1) NULL,
-  `owner_operador_id` INT NULL,
+  `asignado_a_operador_id` INT(11) NULL,
   `asunto` VARCHAR(45) NOT NULL,
   `ultima_actividad` DATETIME NULL,
   `ultima_actividad_User` DATETIME NULL,
@@ -336,6 +336,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`ticket` (
   INDEX `fk_ticket_prioridad_idx` (`prioridad_id` ASC),
   INDEX `fk_ticket_departamento_idx` (`departamento_id` ASC),
   INDEX `fk_ticket_operador_idx` (`operador_id` ASC),
+  INDEX `fk_ticket_operador_asignado_idx` (`asignado_a_operador_id` ASC),
   INDEX `fk_ticket_tipo_ticket_idx` (`tipo_ticket_id` ASC),
   CONSTRAINT `fk_ticket_usuario`
     FOREIGN KEY (`usuario_id`)
@@ -357,8 +358,13 @@ CREATE TABLE IF NOT EXISTS `tmh`.`ticket` (
     REFERENCES `tmh`.`departamento` (`departamento_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ticket_operador`
+  CONSTRAINT `fk_ticket_operador_asignado`
     FOREIGN KEY (`operador_id`)
+    REFERENCES `tmh`.`operador` (`operador_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ticket_operador`
+    FOREIGN KEY (`asignado_a_operador_id`)
     REFERENCES `tmh`.`operador` (`operador_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,

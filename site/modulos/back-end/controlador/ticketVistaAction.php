@@ -13,35 +13,29 @@ $app->startSession(true);
 $operador = $app->getOperador();
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
-if (isset($_GET['TicketId'])){
-    $Ticket =  $em->getRepository('Modelo\Ticket')->find($_GET["TicketId"]);
+if (isset($_SESSION['LastTicketID'])){
+    $Ticket =  $em->getRepository('Modelo\Ticket')->find($_SESSION['LastTicketID']);
     $em->persist(setearTicket($Ticket,$em));
+    $em->persist($Ticket);
+    if ((!empty($_POST["Respuesta"])) || (!empty($_POST["NotaOperador"]))){
+        $Mensaje = setearMensaje(new Mensaje, $Ticket, $em, $operador->getOperadorId());
+        $em->persist($Mensaje);
+        $Mensaje = setearArchivosEnMensaje($Mensaje, $em);
+    }
+    //$Mensaje = setearArchivosEnMensaje($Mensaje, $em);
+    
     $em->flush();
 } else {
-    $Ticket = setearTicket(new Ticket(),$em);
-    $Mensaje = setearMensaje(new Mensaje, $Ticket, $em);
-    //$Mensaje = setearArchivosEnMensaje($Mensaje, $em);
-    $em->persist($Ticket);
-    $em->persist($Mensaje);
-    $Mensaje = setearArchivosEnMensaje($Mensaje, $em);
-   
-    $em->flush();
-   // $em->merge($Mensaje);
-    //$em->flush();
+    header("location:/operador.php?modulo=tickets&estado=1");
 }
 
-function setearTicket(Ticket $ticket,$em){
-   
-    $ticket->setNumeroTicket($ticket->generarCodigoTicket($em));
-    $ticket->setAsunto($_POST["Asunto"]);
 
-    $ticket->setDescripcion($_POST["descripcion"]);
-    $ticket->setEmailQueueID(1);
+
+
+function setearTicket(Ticket $ticket,$em){
+
     if ($_POST["Departamento"]!="-1"){
         $ticket->setDepartamento($em->getRepository('Modelo\Departamento')->find($_POST["Departamento"]));
-    }
-    if ($_POST["TicketTipo"]!="-1"){
-        $ticket->setTipoTicket($em->getRepository('Modelo\TicketTipo')->find($_POST["TicketTipo"]));
     }
     if ($_POST["Prioridad"]!="-1"){
         $ticket->setPrioridad($em->getRepository('Modelo\Prioridad')->find($_POST["Prioridad"]));
@@ -52,63 +46,45 @@ function setearTicket(Ticket $ticket,$em){
     if ($_POST["OperadorAsignado"]!="-1"){
         $ticket->setAsignadoAOperador($em->getRepository('Modelo\Operador')->find($_POST["OperadorAsignado"]));
         $ticket->setAsignado(1); // TODO: Debemos arreglar el asignado 1 o 0
+    } else {
+        $ticket->setAsignadoAOperador(null);
+        $ticket->setAsignado(0); // TODO: Debemos arreglar el asignado 1 o 0
     }
     //TODO Ticket no tiene SLA en la BD
     if ($_POST["SLA"]!="-1"){
        // $ticket->setSla($em->getRepository('Modelo\SLA')->find($_POST["SLA"]));
     }
     $ticket->setUltimaActividad(new DateTime("NOW"));
-    $ticket->setUltimaActividadUser(new DateTime("NOW"));
+    //$ticket->setUltimaActividadUser(new DateTime("NOW"));
     $ticket->setUltimaActividadOperador(new DateTime("NOW"));
-    $ticket->setFechaCreacion(new DateTime("NOW"));
-    $ticket->setFechaVto(new DateTime("NOW"));
-
-    $ticket->setEditado(0);
+    //$ticket->setFechaCreacion(new DateTime("NOW"));
+    $vencimietno = new DateTime();
+    $ticket->setFechaVto($vencimietno->setTimeStamp(strtotime('+2 hours'))); //TODO: cambiar vencimiento cuando este el sla
+//TODO: setear campos custom cuando existan.
     if (($_POST["CustomFields"]!="-1") && (!is_null($_POST["CustomFields"]))){
         $ticket->setCustomFields($em->getRepository('Modelo\TicketCustomFields')->find($_POST["CustomFields"]));
     }
-    switch ($_POST["Propietario-Tipo"]) {
-        case 'Operador':
-            $creador = $em->getRepository('Modelo\Operador')->findBy(array("email"=>$_POST["Creador"]));
-            $ticket->setOperador($creador[0]);
-            break;
-        
-        case 'Usuario': 
-            $creador = $em->getRepository('Modelo\Usuario')->findBy(array("email"=>$_POST["Creador"]));
-            $ticket->setUsuario($creador[0]);
-            break;
-        default:
-            \CORE\Controlador\Dbug::getInstancia()->escribirLog("No existe el Propietario-Tipo declarado: ","TicketAction",true);
-            header("location:/operador.php?modulo=tickets&error=4004");
-            break;
-    }
-    
-    
     return $ticket;
 }
 
-function setearMensaje(Mensaje $mensaje, Ticket $ticket,$em){
-    if ($_POST["Descripcion"]) {
+function setearMensaje(Mensaje $mensaje, Ticket $ticket,$em, $operadorId){
+    if (!empty($_POST["Respuesta"])) {
+        echo "paso por respuesta";
         $mensaje = new Mensaje();
-        $mensaje->setTexto($_POST["Descripcion"]);
+        $mensaje->setTexto($_POST["Respuesta"]);
         $mensaje->setFecha(new DateTime("NOW"));
-        $mensaje->setTipoMensaje(1); //TODO: No se lo que es tipo de mensaje integer pero le paso 1 como parametro
+        $mensaje->setTipoMensaje(1); //TODO: No se lo que es tipo de mensaje integer pero le paso 1 como parametro para mensajes 
         $mensaje->setTicket($ticket);
-        switch ($_POST["Propietario-Tipo"]) {
-            case 'Operador':
-                $creador = $em->getRepository('Modelo\Operador')->findBy(array("email"=>$_POST["Creador"]));
-                $mensaje->setCreadorOperador($creador[0]->getOperadorId());
-                break;
-            
-            case 'Usuario': 
-                $creador = $em->getRepository('Modelo\Usuario')->findBy(array("email"=>$_POST["Creador"]));
-                $mensaje->setCreadorUsuario($creador[0]->getUsuarioId());
-                break;
-            default:
-                \CORE\Controlador\Dbug::getInstancia()->escribirLog("No existe el Propietario-Tipo declarado: ","TicketAction",true);
-                header("location:/operador.php?modulo=tickets&error=4004");
-                break;
-        }
+        $mensaje->setCreadorOperador($operadorId);
+    } else if (!empty($_POST["NotaOperador"])) {
+        echo "nota";
+        $mensaje = new Mensaje();
+        $mensaje->setTexto($_POST["NotaOperador"]);
+        $mensaje->setFecha(new DateTime("NOW"));
+        $mensaje->setTipoMensaje(0); //TODO: No se lo que es tipo de mensaje integer pero le paso 0 como parametro para notas internas
+        $mensaje->setTicket($ticket);
+        $mensaje->setCreadorOperador($operadorId);
+        
     }
     return $mensaje;
 }

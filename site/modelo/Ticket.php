@@ -5,7 +5,7 @@ namespace Modelo;
 /**
  * Ticket
  *
- * @Table(name="ticket", indexes={@Index(name="fk_ticket_usuario_idx", columns={"usuario_id"}), @Index(name="fk_ticket_estado_idx", columns={"estado_id"}), @Index(name="fk_ticket_prioridad_idx", columns={"prioridad_id"}), @Index(name="fk_ticket_departamento_idx", columns={"departamento_id"}), @Index(name="fk_ticket_operador_idx", columns={"operador_id"}), @Index(name="fk_ticket_tipo_ticket_idx", columns={"tipo_ticket_id"})})
+ * @Table(name="ticket", indexes={@Index(name="fk_ticket_usuario_idx", columns={"usuario_id"}), @Index(name="fk_ticket_estado_idx", columns={"estado_id"}), @Index(name="fk_ticket_prioridad_idx", columns={"prioridad_id"}), @Index(name="fk_ticket_departamento_idx", columns={"departamento_id"}), @Index(name="fk_ticket_operador_idx", columns={"operador_id"}), @Index(name="fk_ticket_operador_asignado_idx", columns={"asignado_a_operador_id"}), @Index(name="fk_ticket_tipo_ticket_idx", columns={"tipo_ticket_id"})})
  * @Entity
  */
 class Ticket
@@ -46,13 +46,6 @@ class Ticket
      * @Column(name="asignado", type="boolean", nullable=true)
      */
     private $asignado;
-
-    /**
-     * @var integer
-     *
-     * @Column(name="owner_operador_id", type="integer", nullable=true)
-     */
-    private $ownerOperadorId;
 
     /**
      * @var string
@@ -159,6 +152,16 @@ class Ticket
      * })
      */
     private $operador;
+
+    /**
+     * @var \Operador
+     *
+     * @ManyToOne(targetEntity="Operador")
+     * @JoinColumns({
+     *   @JoinColumn(name="asignado_a_operador_id", referencedColumnName="operador_id")
+     * })
+     */
+    private $asignadoAOperador;
 
     /**
      * @var \TicketTipo
@@ -275,30 +278,6 @@ class Ticket
     public function getAsignado()
     {
         return $this->asignado;
-    }
-
-    /**
-     * Set ownerOperadorId
-     *
-     * @param integer $ownerOperadorId
-     *
-     * @return Ticket
-     */
-    public function setOwnerOperadorId($ownerOperadorId)
-    {
-        $this->ownerOperadorId = $ownerOperadorId;
-
-        return $this;
-    }
-
-    /**
-     * Get ownerOperadorId
-     *
-     * @return integer
-     */
-    public function getOwnerOperadorId()
-    {
-        return $this->ownerOperadorId;
     }
 
     /**
@@ -614,6 +593,30 @@ class Ticket
     }
 
     /**
+     * Set asignadoAOperador
+     *
+     * @param \Operador $asignadoAOperador
+     *
+     * @return Ticket
+     */
+    public function setAsignadoAOperador(Operador $asignadoAOperador = null)
+    {
+        $this->asignadoAOperador = $asignadoAOperador;
+
+        return $this;
+    }
+
+    /**
+     * Get asignadoAOperador
+     *
+     * @return \Operador
+     */
+    public function getAsignadoAOperador()
+    {
+        return $this->asignadoAOperador;
+    }
+
+    /**
      * Set tipoTicket
      *
      * @param \TicketTipo $tipoTicket
@@ -635,6 +638,31 @@ class Ticket
     public function getTipoTicket()
     {
         return $this->tipoTicket;
+    }
+    
+    public function generarCodigoTicket($em){
+        $unique =   FALSE;
+        $length =   7;
+        $chrDb  =   array('A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','0','1','2','3','4','5','6','7','8','9');
+        while (!$unique){
+              $str = '';
+              for ($count = 0; $count < $length; $count++){
+                  $chr = $chrDb[rand(0,count($chrDb)-1)];
+                  if (rand(0,1) == 0){
+                     $chr = strtolower($chr);
+                  }
+                  if (3 == $count){
+                     $str .= '-';
+                  }
+                  $str .= $chr;
+              }
+              /* check if unique */
+              $existingCode = $em->getRepository('Modelo\Ticket')->findBy(array("numeroTicket"=>$str));
+              if (!$existingCode){
+                 $unique = TRUE;
+              }
+        }
+        return $str;
     }
 }
 

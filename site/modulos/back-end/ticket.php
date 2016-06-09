@@ -48,7 +48,8 @@ switch(strtolower($_POST["accion"])){
    $vm->display('ticket.tpl');
     break;
   case ("ver"):
-    //TODO: falta validar permisos para esta accion.
+    //TODO: falta validar permisos para esta accion. 
+    $_SESSION['LastTicketID']=$_POST["ticketId"][0];
     $Ticket = $em->getRepository('Modelo\Ticket')->find($_POST["ticketId"][0]);
     $Mensajes = $em->getRepository('Modelo\Mensaje')->findBy(array("ticket"=>$_POST["ticketId"][0]));
     $vm->assign('Ticket',$Ticket); 

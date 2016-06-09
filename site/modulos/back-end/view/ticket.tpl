@@ -35,8 +35,7 @@ js=''
                         <input type="text" class="form-control" id="searchUsuario" name="Creador" autocomplete="on">
                       </div>
                       <div class="col-md-3">
-                        <input type="hidden" id="Propietario" name="Propietario">
-                        <input type="hidden" id="Tipo" name="Tipo">
+                        <input type="hidden" id="Propietario-Tipo" name="Propietario-Tipo">
                        </div>
                     </div>  
                   </div>
@@ -277,8 +276,8 @@ $().ready(function() {
       },
       select: function( event, ui ) {
         $( "#searchUsuario" ).val( ui.item.Creador );
-        $( "#Propietario" ).html( ui.item.Nombre );
-        $( "#Tipo" ).val( ui.item.Tipo );
+        //$( "#Propietario" ).html( ui.item.Nombre );
+        $( "#Propietario-Tipo" ).val( ui.item.Tipo );
         //$( "#project-icon" ).attr( "src", "images/" + ui.item.icon );
  
         return false;
@@ -286,7 +285,7 @@ $().ready(function() {
     })
     .autocomplete( "instance" )._renderItem = function( ul, item ) {
       return $( "<li>" )
-        .append( "<a>" + item.Creador + "<br>" + item.Tipo + "</a>" )
+        .append( "<a> <small>" + item.Tipo + "</small> " +  item.Nombre + "<br>" +  item.Creador + "</a>" )
         .appendTo( ul );
     };
 

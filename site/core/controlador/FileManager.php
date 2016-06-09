@@ -52,30 +52,40 @@ class FileManager {
      * */
     public function guardarArchivosDePost($filesArray, $NombreClave = null ,$sobreEscribir=false){
         $this->arrayNombres =  array();
-        if (is_null($NombreClave)){$NombreClave=key($filesArray);}
-            foreach( $filesArray[ $NombreClave ][ 'tmp_name' ] as $index => $tmpName ) {
+        if (is_null($NombreClave)){
+            foreach ($filesArray as $clave=>$valor){
+                if ( $valor['error'][0] == '0'){
+                    $NombreClave[ ]=$clave;
+                } else {
+                    \CORE\Controlador\Dbug::getInstancia()->escribirLog("El archivo subió con errores ","FileManager",true);
+                }
+            }
+            
+        }
+        foreach ($NombreClave as $clave) {
+            foreach( $filesArray[ $clave ][ 'tmp_name' ] as $index => $tmpName ) {
                 //si no hay error en la subida
-                if( empty( $filesArray[ $NombreClave ][ 'error' ][ $index ] ) ) {
+                if( empty( $filesArray[ $clave ][ 'error' ][ $index ] ) ) {
                     //verifico que el resto de los elementos esten ok y procedo a mover los archivos
-                    if( !empty( $tmpName ) && is_uploaded_file( $tmpName ) && $this->verificarExtension($filesArray[$NombreClave]["name"][$index])){
-                        $filename = $this->crearHashDeArchivo($filesArray[$NombreClave]["name"][$index]);
+                    if( !empty( $tmpName ) && is_uploaded_file( $tmpName ) && $this->verificarExtension($filesArray[$clave]["name"][$index])){
+                        $filename = $this->crearHashDeArchivo($filesArray[$clave]["name"][$index]);
                         switch ($this->moverArchivo($tmpName,null,$this->rutaUpload,$filename,true)) {
                             case true:
-                                $this->arrayNombres[] = array('name'=>$filesArray[$NombreClave]["name"][$index],
+                                $this->arrayNombres[] = array('name'=>$filesArray[$clave]["name"][$index],
                                                             'hashName' =>  $filename,
                                                             'path' => $this->getRutaUploadRelativa());
                                 \CORE\Controlador\Dbug::getInstancia()->escribirLog("Se guardó satisfactoriamente el archivo: ".$this->rutaUpload.$filename,"FileManager");
                                 break;
                             case -1:
                                 $int=0;
-                                $filename = $this->crearHashDeArchivo($filesArray[$NombreClave]["name"][$index]);
+                                $filename = $this->crearHashDeArchivo($filesArray[$clave]["name"][$index]);
                                 while (file_exists($this->rutaUpload . $filename)){
                                         $archivo = pathinfo($filname);
                                         $filename=$archivo['filename'].'_'.$int.$archivo['extension'];
                                         $int ++;
                                 }
                                 $this->moverArchivo($tmpName,null,$this->rutaUpload,$filename,true);
-                                $this->arrayNombres[] = array('name'=>$filesArray[$NombreClave]["name"][$index],
+                                $this->arrayNombres[] = array('name'=>$filesArray[$clave]["name"][$index],
                                                             'hashName' =>  $filename,
                                                             'path' => $this->getRutaUploadRelativa());
                                 \CORE\Controlador\Dbug::getInstancia()->escribirLog("Se guardó satisfactoriamente el archivo: ".$this->rutaUpload.$filename,"FileManager");
@@ -89,6 +99,7 @@ class FileManager {
                 }
                      
             }
+        }
         return $this->arrayNombres;
     }
     
