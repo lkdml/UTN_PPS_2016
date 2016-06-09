@@ -137,10 +137,37 @@ use \Modelo\Ticket as Ticket;
                                  ->getQuery()
                                  ->getResult());
             
-            $data[]=array('nombre'=>$estado->getNombre(),'icono'=>$estado->getIcono(),'color'=>$estado->getColor(),'cantidad'=>$cantidad);
+            $data[]=array('nombre'=>$estado->getNombre(),'icono'=>$estado->getIcono(),'color'=>$estado->getColor(),'cantidad'=>$cantidad,'id'=>$estado->getEstadoId());
           }
           
           echo json_encode($data);die;
+          
+          break;
+          
+        case strtolower('lateralDepartamentos'):
+          
+          $departamentos=$em->getRepository('Modelo\Operador')->find($app->getOperador()->getOperadorId())->getDepartamento();
+
+          $estados=$em->getRepository('Modelo\TicketEstado')->findAll();
+          foreach($departamentos as $depto)
+          {
+              unset($dataDepto);
+              foreach($estados as $estado)
+              {
+                 $cantidad= count($em->getRepository('Modelo\Ticket')->createQueryBuilder('t')
+                                     ->where('t.departamento = :id')
+                                     ->Andwhere('t.estado = :estado')
+                                     ->setParameter('id',$depto->getDepartamentoId())
+                                     ->setParameter('estado',$estado->getEstadoId())
+                                     ->getQuery()
+                                     ->getResult());
+                
+                $dataDepto[]=array('nombre'=>$estado->getNombre(),'icono'=>$estado->getIcono(),'color'=>$estado->getColor(),'cantidad'=>$cantidad,'id'=>$estado->getEstadoId());
+              }
+              
+              $lateralDepto[]=array('id'=>$depto->getDepartamentoId(),'nombre'=>$depto->getNombre(),'dataTickets'=>$dataDepto);
+          }
+          echo json_encode($lateralDepto);die;
           
           break;
 
