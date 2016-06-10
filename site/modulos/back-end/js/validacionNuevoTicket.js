@@ -21,6 +21,18 @@
              ddSLAS: {
               required:true,
             },
+            Creador:{
+                    required:true,
+                    remote: {
+                        url: "modulos/back-end/controlador/validarEmail.php",
+                        type: "post",
+                        data: {
+                            email: function() {
+                                return $( "#Creador" ).val();
+                            }
+                        }
+                      }
+            }
             
         },
         
@@ -46,6 +58,10 @@
                 required: "(*)Por favor, seleccione un SLA de la Lista.",
                 
             },
+                Creador:{
+                    required:"(*)Por favor, ingrese un email de usuario o operador.",
+                    remote: jQuery.validator.format("(*)El email {0} no existe.")
+                }
           
         }
     })
