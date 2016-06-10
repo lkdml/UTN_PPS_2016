@@ -9,7 +9,7 @@ js=''
      <!-- Content Header (Page header) -->
      <section class="content-header">
        <h1>
-          <strong>Ticket {$Ticket->getNumeroTicket()}</strong>
+          <strong>Ticket {$Ticket->getNumeroTicket()|upper}</strong>
          <small></small>
        </h1>
        <ol class="breadcrumb">
@@ -176,11 +176,19 @@ js=''
                     </div><!-- /.box-body Campos Custom -->        
                 {/if}
                    <!--Boton Cerrar Ticket-->
-                <div class="col-md-2 pull-right">
-                    <br>
-                    <button type="submit" class="btn btn-danger btn-block">Cerrar Ticket</button>
-                    <br>
+                <div class="col-md-6 pull-right">
+                    <div class="col-md-2 pull-right">
+                        <button onclick="history.go(-1);" class="btn btn-info pull-right">Cancelar</button>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <button type="submit" class="btn btn-danger btn-block">Cerrar Ticket</button>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <button type="submit" class="btn btn-primary pull-left">Enviar</button>
+                    </div>
                 </div>
+                
+                
                     <!--Fin Boton Cerrar Ticket-->
                 <!-- CUSTOM TABS-->
                 
@@ -207,14 +215,14 @@ js=''
                                   <div class="box-header with-border">
                                     <h3 class="box-title"></h3>
                                     <div class="box-tools pull-right">
-                                      <span data-toggle="tooltip" title="2 Nuevas actividades" class="badge bg-red">2</span>
+                                      <!--<span data-toggle="tooltip" title="2 Nuevas actividades" class="badge bg-red">2</span>-->
                                       <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                                     
                                     </div>
                                   </div><!-- /.box-header -->
                                   <div class="box-body">
                                     <!-- Conversations are loaded here -->
-                                    <div class="direct-chat-messages">
+                                    <div class="">
                                         {if $Mensajes}
                                           {foreach from=$Mensajes item=$mensaje}
                                             <div class="direct-chat-msg">
@@ -254,31 +262,26 @@ js=''
                              <div class="box-body pad">
                                <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                                  <div class="col-sm-10">
-                                   <textarea class="textarea" name="Respuesta" placeholder="Ingrese una Descripción" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
+                                   <textarea class="textarea_msg" name="Respuesta" placeholder="Ingrese una Descripción" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
                                  </div>
                                <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
                                <input class="col-sm-10" type="file" id="Archivos" name="ArchivosRespuesta[]">
-                             </div>
-                             <div class="box-footer">
-                               <button type="submit" class="btn btn-info pull-right">Enviar</button>
                              </div>
                            </div>
                            
                            
                         <div class="tab-pane" id="tab_3">
                            <!--<div class="form-group">-->
+                            <div class="box-body pad">
+                               <label for="inputDescripcion" class="col-sm-8 control-label">Las notas de Operador, son solo visibles entre Operadores</label>
+                            </div>
                              <div class="box-body pad">
                                <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                                  <div class="col-sm-10">
-                                   <textarea class="textarea" name="NotaOperador" placeholder="Ingrese una Descripción" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
+                                   <textarea class="textarea_msg" name="NotaOperador" placeholder="Ingrese una Descripción" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
                                  </div>
                                <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
                                <input class="col-sm-10" type="file" id="archivo" name="ArchivosNotaOperador[]">
-                             </div>
-                             <div class="box-footer">
-                               
-                               <button type="submit" class="btn btn-info pull-left">Enviar</button>
-                                <button onclick="history.go(-1);" class="btn btn-danger pull-right">Cancelar</button>
                              </div>
                            </div>
                            

@@ -268,6 +268,7 @@ insert into configuracion_global values ("mail_Password","");
 insert into configuracion_global values ("directorio_Uploads","");
 insert into configuracion_global values ("extensiones_permitidas_imagenes",'["jpg","png","gif","TIF"]');
 insert into configuracion_global values ("extensiones_permitidas_archivos",'["jpg","png","gif","TIF","doc","pdf","docx","csv","xls","XLSX","rar","ZIP","bz","gz"]');
+insert into configuracion_global values ("ordenamiento_mensajes",'DESC'); /*o ASC*/
 /*insert into configuracion_global values ("","");*/
 /*!40000 ALTER TABLE `configuracion_global` ENABLE KEYS */;
 UNLOCK TABLES;

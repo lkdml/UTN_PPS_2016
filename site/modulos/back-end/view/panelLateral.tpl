@@ -78,7 +78,7 @@ $( document ).ready(function obtenerTicketsOperador() {
                       for(var i=0;i<array.length;i++)
                       {
                       
-                         $('#dinamicTicketMenuOperador').append('<li><a href="/operador.php?modulo=tickets&estado='+array[i].id+'">'+array[i].nombre+'<small class="label pull-right" style=background-color:'+array[i].color+'>'+array[i].cantidad+'</small></li></a>'); 
+                         $('#dinamicTicketMenuOperador').append('<li><a href="/operador.php?modulo=tickets&Estados='+array[i].id+'">'+array[i].nombre+'<small class="label pull-right" style=background-color:'+array[i].color+'>'+array[i].cantidad+'</small></li></a>'); 
                         total=total+array[i].cantidad;
                       }
                       $('#totalticketOperador').html(total);
@@ -113,7 +113,7 @@ $( document ).ready(function obtenerLateralDepartamentos() {
                         //INICIO DE TICKETS DEL DEPTO
                         for(var j=0;j<array[i].dataTickets.length;j++)
                         {
-                          $('#'+(array[i].nombre).replace(" ", "_")+array[i].id+'').append('<li><a href="/operador.php?modulo=tickets&departamento='+array[i].id+'&estado='+array[i].dataTickets[j].id+'">'+array[i].dataTickets[j].nombre+'<small class="label pull-right" style=background-color:'+array[i].dataTickets[j].color+'>'+array[i].dataTickets[j].cantidad+'</small></li></a>');
+                          $('#'+(array[i].nombre).replace(" ", "_")+array[i].id+'').append('<li><a href="/operador.php?modulo=tickets&Deptos='+array[i].id+'&Estados='+array[i].dataTickets[j].id+'">'+array[i].dataTickets[j].nombre+'<small class="label pull-right" style=background-color:'+array[i].dataTickets[j].color+'>'+array[i].dataTickets[j].cantidad+'</small></li></a>');
 
                           totalDepto=totalDepto+array[i].dataTickets[j].cantidad;
                         }

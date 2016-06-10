@@ -50,8 +50,10 @@ switch(strtolower($_POST["accion"])){
   case ("ver"):
     //TODO: falta validar permisos para esta accion. 
     $_SESSION['LastTicketID']=$_POST["ticketId"][0];
+    $ordenamiento_mensajes = $em->getRepository('Modelo\ConfiguracionGlobal')->find('ordenamiento_mensajes');
     $Ticket = $em->getRepository('Modelo\Ticket')->find($_POST["ticketId"][0]);
-    $Mensajes = $em->getRepository('Modelo\Mensaje')->findBy(array("ticket"=>$_POST["ticketId"][0]));
+    $Mensajes = $em->getRepository('Modelo\Mensaje')->findBy(array("ticket"=>$_POST["ticketId"][0]),
+                                                            array('fecha' => $ordenamiento_mensajes->getValor()));
     $vm->assign('Ticket',$Ticket); 
     $vm->assign('Mensajes',$Mensajes);
     $vm->display('ticketVista.tpl');

@@ -6,7 +6,7 @@ namespace CORE\Controlador;
    
 
 class Aplicacion {
-    public $session;
+    public  $session;
     private $usuario;
     private $loggedIn;
     private $operador;

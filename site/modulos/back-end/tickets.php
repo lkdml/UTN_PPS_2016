@@ -16,10 +16,22 @@ $vm->assign('OperadorLogueado',$app->getOperador());
 $vm->assign('Permisos',$permisos);
 
 use \Modelo\Ticket as Ticket;
-
-$test = new Ticket();
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-$ticket = $em->getRepository('Modelo\Ticket')->findAll();
+$criterio = array();
+
+if (isset($_GET['Deptos'])){
+    $deptos = explode (',',$_GET['Deptos']);
+    $criterio['departamento']= $deptos;
+}
+if (isset($_GET['Estados'])){
+    $estados = explode(',',$_GET['Estados']);
+    $criterio['estado'] = $estados;
+}
+if (empty($criterio)){
+    $ticket = $em->getRepository('Modelo\Ticket')->findAll();
+} else {
+    $ticket = $em->getRepository('Modelo\Ticket')->findBy($criterio);
+}
 $vm->assign('Tickets',$ticket);
 
 $vm->display('grilla_tickets.tpl');
