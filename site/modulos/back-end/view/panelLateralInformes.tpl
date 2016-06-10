@@ -41,39 +41,16 @@
             Tiempos de respuesta promedios. (En período de tiempo | de Operadores determinados | Departamentos determinados)
             Tiempos de resolución promedios. (En período de tiempo | de Operadores determinados | Departamentos determinados)
      --> 
-         <!-- Sidebar Menu -->
-    <ul class="sidebar-menu">
+        <ul class="sidebar-menu">
       <li class="header">Tickets</li>
       <li class="treeview">
-        <a href="#"><i class="fa fa-th" ></i><span>Tickets</span> <small class="label pull-right bg-blue">20</small></a>
-        <ul class="treeview-menu">
-          <li><a href="/operador.php?modulo=tickets&estado=1">Abiertos<small class="label pull-right bg-green">5</small></li></a>
-          <li><a href="/operador.php?modulo=tickets&estado=2">En Curso<small class="label pull-right bg-red">8</small></li></a>
-          <li><a href="/operador.php?modulo=tickets&estado=3">Respondidos<small class="label pull-right bg-yellow">7</small></li></a>
-          <li><a href="/operador.php?modulo=tickets&estado=4">Cerrados<small class="label pull-right bg-black">15</small></li></a>
+        <a href="#"><i class="fa fa-th" ></i><span>Tickets</span> <small class="label pull-right bg-blue" id="totalticketOperador"></small></a>
+        <ul class="treeview-menu" id="dinamicTicketMenuOperador">
         </ul>
       </li>
       <li class="treeview">
-        <a href="#"><i class="fa fa-th" ></i><span>Departamentos</span> <small class="label pull-right bg-blue">20</small></a>
-        <ul class="treeview-menu">
-          <li class="treeview">
-            <a href="#"><i class="fa fa-th" ></i><span>Soporte N1</span> <small class="label pull-right bg-blue">10</small></a>
-            <ul class="treeview-menu">
-              <li><a href="/operador.php?modulo=tickets&departamento=1&estado=1">Abiertos<small class="label pull-right bg-green">2</small></li></a>
-              <li><a href="/operador.php?modulo=tickets&departamento=1&estado=2">En Curso<small class="label pull-right bg-red">5</small></li></a>
-              <li><a href="/operador.php?modulo=tickets&departamento=1&estado=3">Respondidos<small class="label pull-right bg-yellow">3</small></li></a>
-              <li><a href="/operador.php?modulo=tickets&departamento=1&estado=4">Cerrados<small class="label pull-right bg-black">9</small></li></a>
-            </ul>
-          </li>
-          <li class="treeview">
-            <a href="#"><i class="fa fa-th" ></i><span>Soporte N2</span> <small class="label pull-right bg-blue">10</small></a>
-            <ul class="treeview-menu">
-              <li><a href="/operador.php?modulo=tickets&departamento=2&estado=1">Abiertos<small class="label pull-right bg-green">1</small></li></a>
-              <li><a href="/operador.php?modulo=tickets&departamento=2&estado=2">En Curso<small class="label pull-right bg-red">8</small></li></a>
-              <li><a href="/operador.php?modulo=tickets&departamento=2&estado=3">Respondidos<small class="label pull-right bg-yellow">1</small></li></a>
-              <li><a href="/operador.php?modulo=tickets&departamento=2&estado=4">Cerrados<small class="label pull-right bg-black">6</small></li></a>
-            </ul>
-          </li>
+        <a href="#"><i class="fa fa-th" ></i><span>Departamentos</span> <small class="label pull-right bg-blue" id="totalDeptosTickets"></small></a>
+        <ul class="treeview-menu" id="dinamicDeptos">
         </ul>
       </li>
     </ul>
@@ -98,3 +75,92 @@
   </aside>
 
   <!-- =============================================== -->
+  
+    
+  <!-- jQuery 2.2.0 -->
+<script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<script src="{$rutaJS}bootstrap.min.js"></script>
+  {literal}
+<script>
+
+$( document ).ready(function obtenerTicketsOperador() {
+     $.ajax({
+          url:'operador.php?modulo=widgets',
+          type:'GET',
+          datatype:'JSON',
+          data:{datosAjax:'widgetEstados'},
+          success: function (response){
+                      var array = jQuery.parseJSON( response );
+                      var total=0;
+                      for(var i=0;i<array.length;i++)
+                      {
+                      
+                         $('#dinamicTicketMenuOperador').append('<li><a href="/operador.php?modulo=tickets&Estados='+array[i].id+'">'+array[i].nombre+'<small class="label pull-right" style=background-color:'+array[i].color+'>'+array[i].cantidad+'</small></li></a>'); 
+                        total=total+array[i].cantidad;
+                      }
+                      $('#totalticketOperador').html(total);
+            
+                  }
+        });
+});
+
+
+
+
+$( document ).ready(function obtenerLateralDepartamentos() {
+     $.ajax({
+          url:'operador.php?modulo=widgets',
+          type:'GET',
+          datatype:'JSON',
+          data:{datosAjax:'lateralDepartamentos'},
+          success: function (response){
+                      var array = jQuery.parseJSON( response );
+                      console.log(array);
+                      var totalGeneral=0;
+                      var totalDepto=0;
+               
+                      for(var i=0;i<array.length;i++)
+                      {
+                        //INICIO DEL TREE DE DEPTO
+                         $('#dinamicDeptos').append('<li class="treeview">\
+                                                    <a href="#"><i class="fa fa-th" ></i><span>'+array[i].nombre+'</span>\
+                                                    <small class="label pull-right bg-blue" id="'+array[i].id+'"></small></a>\
+                                                    <ul class="treeview-menu" id="'+(array[i].nombre).replace(" ", "_")+array[i].id+'">'); 
+                        
+                        //INICIO DE TICKETS DEL DEPTO
+                        for(var j=0;j<array[i].dataTickets.length;j++)
+                        {
+                          $('#'+(array[i].nombre).replace(" ", "_")+array[i].id+'').append('<li><a href="/operador.php?modulo=tickets&Deptos='+array[i].id+'&Estados='+array[i].dataTickets[j].id+'">'+array[i].dataTickets[j].nombre+'<small class="label pull-right" style=background-color:'+array[i].dataTickets[j].color+'>'+array[i].dataTickets[j].cantidad+'</small></li></a>');
+
+                          totalDepto=totalDepto+array[i].dataTickets[j].cantidad;
+                        }
+                        //FIN DE TICKETS DEL DEPTO
+                        
+                        //PONGO EL SUBTOTAL DEL DEPTO
+                        $('#'+array[i].id+'').html(totalDepto);
+                        
+                        totalGeneral=totalGeneral+totalDepto;
+                        
+                        //RESETEO EL SUBTOTAL DE DEPTO
+                        totalDepto=0;
+                        
+                        //APPEND DEL FIN DEL TREE DE DEPTO
+                         $('#dinamicDeptos').append('</ul></li>');
+                         
+                        
+                      }
+                      $('#totalDeptosTickets').html(totalGeneral);
+        
+                  }
+        });
+});
+
+setInterval(function() {
+  obtenerTicketsOperador();
+  obtenerLateralDepartamentos();
+},120000);
+
+
+</script>
+{/literal}
