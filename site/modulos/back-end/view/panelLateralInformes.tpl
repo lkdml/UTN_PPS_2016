@@ -80,7 +80,7 @@
   <!-- jQuery 2.2.0 -->
 <script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="{$rutaJS}bootstrap.min.js"></script>
+<!--<script src="{$rutaJS}bootstrap.min.js"></script>-->
   {literal}
 <script>
 

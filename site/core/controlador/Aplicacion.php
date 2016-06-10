@@ -16,7 +16,7 @@ class Aplicacion {
     public function getOperador(){return $this->operador;}
     public function getUsuario(){return $this->usuario;}
     public function getPermisos(){
-        $this->permisos->obtenerPermisosOperador($this->permisos->getPerfilId);
+        $this->permisos->obtenerPermisosOperador();
         return $this->permisos;
     }
     
