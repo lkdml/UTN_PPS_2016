@@ -34,8 +34,26 @@ js=''
               <ul class="nav nav-pills nav-stacked">
                 <li class="active"><a href="#"><i class="fa fa-inbox"></i> Todos
                   <span class="label label-primary pull-right">1</span></a></li> <!-- Insertar la cantidad de no leidos -->
-                <li><a href="#"><i class="fa fa-envelope-o"></i> Enviados</a></li>
-                <li><a href="#"><i class="fa fa-file-text-o"></i> Pendientes de Resolución</a></li>
+                <li><a href="#"><i class="fa fa-envelope-o"></i> Abiertos</a></li>
+                <li><a href="#"><i class="fa fa-file-text-o"></i> En Curso</a></li>
+                <li><a href="#"><i class="fa fa-circle"></i> En Cerrados</a></li>
+              </ul>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Departamentos</h3>
+              <div class="box-tools">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="box-body no-padding">
+              <ul class="nav nav-pills nav-stacked">
+                <li><a href="#"><i class="fa fa-circle-o text-red"></i> Soporte N1</a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Ventas</a></li>
+                <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Soporte N2</a></li>
               </ul>
             </div>
             <!-- /.box-body -->
