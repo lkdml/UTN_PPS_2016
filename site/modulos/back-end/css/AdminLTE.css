@@ -4916,3 +4916,14 @@ table.text-center th {
     white-space: normal !important;
   }
 }
+
+a.w-estados {
+  color: #000;
+}
+a.w-estados:hover,
+a.w-estados:active,
+a.w-estados:focus {
+  outline: none;
+  text-decoration: none;
+  color: #72afd2;
+}

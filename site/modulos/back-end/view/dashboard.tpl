@@ -223,6 +223,7 @@ $( document ).ready(function() {
                       {
                       
                          $('#widgetEstados').append('<div class="col-md-4 col-sm-8 col-xs-12">\
+                            <a class="w-estados" href="/operador.php?modulo=tickets&Estados='+array[i].id+'"  >\
                             <div class="info-box">\
                               <span class="info-box-icon bg-acua" style=background-color:'+array[i].color+';color:white><i class="glyphicon '+array[i].icono+'"></i></span>\
                               <div class="info-box-content">\
@@ -230,6 +231,7 @@ $( document ).ready(function() {
                                 <span class="info-box-number" >'+array[i].cantidad+'</span>\
                               </div>\
                             </div>\
+                            </a>\
                           </div>'); 
 
                       }
