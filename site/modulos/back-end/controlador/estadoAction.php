@@ -31,6 +31,13 @@ function setear(Estados $estado,$em){
     else{
        $estado->setAutocierre(false);
     }
+    if ($_POST["estadoFinal"] == 'on')
+    {
+      $estado->getEstadofinal(true);   
+    }
+    else{
+       $estado->getEstadofinal(false);
+    }
     $estado->setColor($_POST["color"]);
     $estado->setIcono($_POST["icono"]);
     $estado->setOrden($_POST["orden"]);

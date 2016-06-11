@@ -55,6 +55,13 @@ class TicketEstado
     private $autocierre;
 
     /**
+     * @var boolean
+     *
+     * @Column(name="estadoFinal", type="boolean", nullable=false)
+     */
+    private $estadofinal;
+
+    /**
      * @var integer
      *
      * @Column(name="orden", type="integer", nullable=true)
@@ -190,6 +197,30 @@ class TicketEstado
     public function getAutocierre()
     {
         return $this->autocierre;
+    }
+
+    /**
+     * Set estadofinal
+     *
+     * @param boolean $estadofinal
+     *
+     * @return TicketEstado
+     */
+    public function setEstadofinal($estadofinal)
+    {
+        $this->estadofinal = $estadofinal;
+
+        return $this;
+    }
+
+    /**
+     * Get estadofinal
+     *
+     * @return boolean
+     */
+    public function getEstadofinal()
+    {
+        return $this->estadofinal;
     }
 
     /**

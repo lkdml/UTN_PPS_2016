@@ -93,6 +93,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`ticket_estado` (
   `color` VARCHAR(45) NOT NULL,
   `icono` VARCHAR(60) NOT NULL ,
   `autocierre` TINYINT(1) NOT NULL,
+  `estadoFinal` TINYINT(1) NOT NULL,
   `orden` INT NULL,
   PRIMARY KEY (`estado_id`))
 ENGINE = InnoDB

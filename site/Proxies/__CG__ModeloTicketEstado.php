@@ -64,10 +64,10 @@ class TicketEstado extends \Modelo\TicketEstado implements \Doctrine\ORM\Proxy\P
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'estadoId', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'nombre', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'color', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'icono', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'autocierre', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'orden'];
+            return ['__isInitialized__', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'estadoId', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'nombre', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'color', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'icono', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'autocierre', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'estadofinal', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'orden'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'estadoId', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'nombre', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'color', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'icono', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'autocierre', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'orden'];
+        return ['__isInitialized__', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'estadoId', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'nombre', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'color', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'icono', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'autocierre', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'estadofinal', '' . "\0" . 'Modelo\\TicketEstado' . "\0" . 'orden'];
     }
 
     /**
@@ -296,6 +296,28 @@ class TicketEstado extends \Modelo\TicketEstado implements \Doctrine\ORM\Proxy\P
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAutocierre', []);
 
         return parent::getAutocierre();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setEstadofinal($estadofinal)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEstadofinal', [$estadofinal]);
+
+        return parent::setEstadofinal($estadofinal);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEstadofinal()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEstadofinal', []);
+
+        return parent::getEstadofinal();
     }
 
     /**

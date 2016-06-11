@@ -84,6 +84,19 @@ js=''
                                 </input>
                             </div>
                         </div>
+                        <div class="box-body pad">
+                            <label for="inputDescripcion" class="col-sm-2 control-label">Es estado final?</label>
+                            <div class="col-sm-5">
+                                <input type="checkbox" id="acierre" name="estadoFinal" 
+                                {if $Estado}
+                                    {if $Estado->getEstadofinal()==1}
+                                        checked
+                                    {/if}
+                                {/if}
+                                >
+                                </input>
+                            </div>
+                        </div>
                         <!-- body pad end -->
                          <!-- Orden Picker -->
                        <!-- <div class="box-body pad">
