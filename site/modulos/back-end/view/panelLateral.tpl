@@ -71,7 +71,7 @@ $( document ).ready(function obtenerTicketsOperador() {
           url:'operador.php?modulo=widgets',
           type:'GET',
           datatype:'JSON',
-          data:{datosAjax:'widgetEstados'},
+          data:{datosAjax:'lateralTickets'},
           success: function (response){
                       var array = jQuery.parseJSON( response );
                       var total=0;

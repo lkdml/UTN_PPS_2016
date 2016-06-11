@@ -124,23 +124,77 @@ use \Modelo\Ticket as Ticket;
               $usuariosExistentes=count($em->getRepository('Modelo\Usuario')->findAll());
               echo $usuariosExistentes;
             break;
-        case strtolower('widgetEstados'):
-          $estados=($em->getRepository('Modelo\TicketEstado')->findAll());
-          foreach($estados as $estado)
-          {
-            
-             $cantidad= count($em->getRepository('Modelo\Ticket')->createQueryBuilder('t')
-                                 ->where('t.operador = :id')
+        case strtolower('w-ticketsCerradosMesActual'):
+              $fecha=new \DateTime("now");
+              $fechaInicio=new \DateTime($fecha->format("Y-m-1")." 00:00:00");
+              $fechaFin= new \DateTime($fecha->format("Y-m-t")." 23:59:59");
+             
+              $ticketCerrados= count($em->getRepository('Modelo\Ticket')->createQueryBuilder('t')
+                                 ->where('t.asignadoAOperador = :id')
                                  ->Andwhere('t.estado = :estado')
+                                 //->Andwhere('t.ultima_actividad BETWEEN :fechaInicio AND :fechaFin')
+                                 ->Andwhere('month(t.ultima_actividad) = :mes')
+                                // ->Andwhere('t.ultima_actividad <= :fechaFin')
                                  ->setParameter('id',$app->getOperador()->getOperadorId())
-                                 ->setParameter('estado',$estado->getEstadoId())
+                                 ->setParameter('estado',3)
+                                 //->setParameter('fechaInicio',$fechaInicio)
+                                 //->setParameter('fechaFin',$fechaFin)
+                                 ->setParameter('mes',6)
                                  ->getQuery()
                                  ->getResult());
-            
-            $data[]=array('nombre'=>$estado->getNombre(),'icono'=>$estado->getIcono(),'color'=>$estado->getColor(),'cantidad'=>$cantidad,'id'=>$estado->getEstadoId());
+              echo $ticketCerrados;
+            break;
+        case strtolower('widgetEstados'):
+          $departamentos=$em->getRepository('Modelo\Operador')->find($app->getOperador()->getOperadorId())->getDepartamento();
+          $estados=($em->getRepository('Modelo\TicketEstado')->findAll());
+          
+          foreach($departamentos as $depto)
+          {
+            $deptosDelOperador[]=$depto->getDepartamentoId();
           }
           
-          echo json_encode($data);die;
+          foreach($estados as $estado)
+          {
+             $cantidad= count($em->getRepository('Modelo\Ticket')->createQueryBuilder('t')
+                                 ->where('t.asignadoAOperador = :id')
+                                 ->Andwhere('t.estado = :estado')
+                                 ->Andwhere('t.departamento IN (:depto)')
+                                 ->setParameter('id',$app->getOperador()->getOperadorId())
+                                 ->setParameter('estado',$estado->getEstadoId())
+                                 ->setParameter('depto',$deptosDelOperador)
+                                 ->getQuery()
+                                 ->getResult());
+            $data[]=array('nombre'=>$estado->getNombre(),'icono'=>$estado->getIcono(),'color'=>$estado->getColor(),'cantidad'=>$cantidad,'id'=>$estado->getEstadoId());
+          }
+         
+          
+          echo json_encode($data);
+          
+          break;
+          
+        case strtolower('lateralTickets'):
+          $departamentos=$em->getRepository('Modelo\Operador')->find($app->getOperador()->getOperadorId())->getDepartamento();
+          $estados=($em->getRepository('Modelo\TicketEstado')->findAll());
+          
+          foreach($departamentos as $depto)
+          {
+            $deptosDelOperador[]=$depto->getDepartamentoId();
+          }
+          
+          foreach($estados as $estado)
+          {
+             $cantidad= count($em->getRepository('Modelo\Ticket')->createQueryBuilder('t')
+                                 ->Andwhere('t.estado = :estado')
+                                 ->Andwhere('t.departamento IN (:depto)')
+                                 ->setParameter('estado',$estado->getEstadoId())
+                                 ->setParameter('depto',$deptosDelOperador)
+                                 ->getQuery()
+                                 ->getResult());
+            $data[]=array('nombre'=>$estado->getNombre(),'icono'=>$estado->getIcono(),'color'=>$estado->getColor(),'cantidad'=>$cantidad,'id'=>$estado->getEstadoId());
+          }
+         
+          
+          echo json_encode($data);
           
           break;
           
@@ -167,7 +221,7 @@ use \Modelo\Ticket as Ticket;
               
               $lateralDepto[]=array('id'=>$depto->getDepartamentoId(),'nombre'=>$depto->getNombre(),'dataTickets'=>$dataDepto);
           }
-          echo json_encode($lateralDepto);die;
+          echo json_encode($lateralDepto);
           
           break;
 

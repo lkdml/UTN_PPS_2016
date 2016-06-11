@@ -45,7 +45,7 @@ js=''
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>90</h3>
+              <h3 id="ticketsCerradosMesActual"></h3>
               <p>Tus tickets<small>cerrados en el mes</small></p>
             </div>
             <div class="icon">
@@ -205,7 +205,7 @@ js=''
 <script src="{$rutaJS}w-tiempo-vs-tiempo.js"></script>
 <script src="{$rutaJS}ticketsPendientesAccion.js"></script>
 <script src="{$rutaJS}cantidadUsuariosExistentes.js"></script>
-
+<script src="{$rutaJS}ticketsCerradosMesActual.js"></script>
 
 {literal}
 <script>
