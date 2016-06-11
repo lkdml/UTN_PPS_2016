@@ -126,13 +126,14 @@ use \Modelo\Ticket as Ticket;
             break;
         case strtolower('w-ticketsCerradosMesActual'):
               $fecha=new \DateTime("now");
+              $estados=($em->getRepository('Modelo\TicketEstado')->findByEstadofinal('1'));
               $query = $em->createQuery("SELECT t.ultimaActividad FROM Modelo\Ticket t 
                                           WHERE t.ultimaActividad LIKE CONCAT(:date,'%') 
                                           AND t.asignadoAOperador = :id
-                                          AND t.estado = :estado");
+                                          AND t.estado IN (:estado)");
               $query->setParameter('date', $fecha->format('Y-m'));
               $query->setParameter('id',$app->getOperador()->getOperadorId());
-              $query->setParameter('estado',3);
+              $query->setParameter('estado',$estados);
               $ticketCerrados = count($query->getResult());
               echo $ticketCerrados;
             break;
