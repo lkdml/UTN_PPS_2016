@@ -3,7 +3,18 @@ css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css"><link r
 js='' 
 }
 {include file="panelLateral.tpl"}
-
+{literal}
+<style>
+.has-error {
+    border-color: red;
+    color:red;
+    }
+.has-success {
+    border-color: green;
+    color:green;
+    }
+</style>
+{/literal}
   <!-- =============================================== -->
   
    <div class="content-wrapper">
@@ -32,7 +43,10 @@ js=''
                     <div class="box-body pad">
                       <label for="inputAsunto" class="col-md-2 control-label">Propietario</label>
                       <div class="col-md-5">
-                        <input type="text" class="form-control" id="searchUsuario" name="Creador" autocomplete="on">
+                        <div class="input-group col-md-12"> 
+                            <input type="text" class="form-control" id="searchUsuario" name="Creador" autocomplete="on">
+                            <span class="glyphicon form-control-feedback" aria-hidden="true" id="emailValido">
+                        </div>
                       </div>
                       <div class="col-md-3">
                         <input type="hidden" id="Propietario-Tipo" name="Propietario-Tipo">
@@ -276,10 +290,8 @@ $().ready(function() {
       },
       select: function( event, ui ) {
         $( "#searchUsuario" ).val( ui.item.Creador );
-        //$( "#Propietario" ).html( ui.item.Nombre );
         $( "#Propietario-Tipo" ).val( ui.item.Tipo );
-        //$( "#project-icon" ).attr( "src", "images/" + ui.item.icon );
- 
+      
         return false;
       }
     })

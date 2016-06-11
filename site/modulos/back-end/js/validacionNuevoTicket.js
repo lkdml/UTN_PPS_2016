@@ -35,7 +35,27 @@
             }
             
         },
-        
+
+        highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+            $(element).nextAll('.glyphicon').removeClass('hidden');
+            $(element).nextAll('.glyphicon').removeClass('glyphicon-ok').addClass('glyphicon-remove');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+            $(element).nextAll('.glyphicon').removeClass('hidden');
+            $(element).nextAll('.glyphicon').removeClass('glyphicon-remove').addClass('glyphicon-ok');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function(error, element) {
+            if(element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        },
+
         // Specify the validation error messages
         messages: {
              txtAsunto: {
