@@ -64,10 +64,10 @@ class Ticket extends \Modelo\Ticket implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ticketId', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'numeroTicket', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'emailQueueId', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'asignado', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ownerOperadorId', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'asunto', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ultimaActividad', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ultimaActividadUser', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ultimaActividadOperador', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'fechaCreacion', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'fechaVto', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'editado', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'customFields', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'usuario', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'estado', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'prioridad', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'departamento', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'operador', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'tipoTicket'];
+            return ['__isInitialized__', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ticketId', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'numeroTicket', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'emailQueueId', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'asignado', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'asunto', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ultimaActividad', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ultimaActividadUser', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ultimaActividadOperador', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'fechaCreacion', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'fechaVto', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'editado', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'customFields', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'usuario', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'estado', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'prioridad', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'departamento', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'operador', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'asignadoAOperador', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'tipoTicket'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ticketId', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'numeroTicket', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'emailQueueId', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'asignado', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ownerOperadorId', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'asunto', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ultimaActividad', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ultimaActividadUser', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ultimaActividadOperador', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'fechaCreacion', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'fechaVto', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'editado', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'customFields', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'usuario', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'estado', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'prioridad', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'departamento', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'operador', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'tipoTicket'];
+        return ['__isInitialized__', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ticketId', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'numeroTicket', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'emailQueueId', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'asignado', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'asunto', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ultimaActividad', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ultimaActividadUser', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'ultimaActividadOperador', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'fechaCreacion', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'fechaVto', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'editado', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'customFields', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'usuario', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'estado', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'prioridad', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'departamento', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'operador', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'asignadoAOperador', '' . "\0" . 'Modelo\\Ticket' . "\0" . 'tipoTicket'];
     }
 
     /**
@@ -274,28 +274,6 @@ class Ticket extends \Modelo\Ticket implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAsignado', []);
 
         return parent::getAsignado();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function setOwnerOperadorId($ownerOperadorId)
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setOwnerOperadorId', [$ownerOperadorId]);
-
-        return parent::setOwnerOperadorId($ownerOperadorId);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function getOwnerOperadorId()
-    {
-
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOwnerOperadorId', []);
-
-        return parent::getOwnerOperadorId();
     }
 
     /**
@@ -587,6 +565,28 @@ class Ticket extends \Modelo\Ticket implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function setAsignadoAOperador(\Modelo\Operador $asignadoAOperador = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setAsignadoAOperador', [$asignadoAOperador]);
+
+        return parent::setAsignadoAOperador($asignadoAOperador);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAsignadoAOperador()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAsignadoAOperador', []);
+
+        return parent::getAsignadoAOperador();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setTipoTicket(\Modelo\TicketTipo $tipoTicket = NULL)
     {
 
@@ -604,6 +604,17 @@ class Ticket extends \Modelo\Ticket implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTipoTicket', []);
 
         return parent::getTipoTicket();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function generarCodigoTicket($em)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'generarCodigoTicket', [$em]);
+
+        return parent::generarCodigoTicket($em);
     }
 
 }

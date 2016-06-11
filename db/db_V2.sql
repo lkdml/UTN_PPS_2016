@@ -538,7 +538,7 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `tmh`.`configuracion_global`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`configuracion_global` (
-  `nombre` VARCHAR(45) NOT NULL,
+  `nombre` VARCHAR(128) NOT NULL,
   `valor` LONGTEXT NOT NULL,
   PRIMARY KEY (`nombre`))
 ENGINE = InnoDB

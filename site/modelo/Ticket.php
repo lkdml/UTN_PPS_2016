@@ -662,7 +662,7 @@ class Ticket
                  $unique = TRUE;
               }
         }
-        return $str;
+        return strtoupper($str);
     }
 }
 

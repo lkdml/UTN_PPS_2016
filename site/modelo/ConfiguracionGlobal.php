@@ -15,7 +15,7 @@ class ConfiguracionGlobal
     /**
      * @var string
      *
-     * @Column(name="nombre", type="string", length=45, nullable=false)
+     * @Column(name="nombre", type="string", length=128, nullable=false)
      * @Id
      * @GeneratedValue(strategy="IDENTITY")
      */
