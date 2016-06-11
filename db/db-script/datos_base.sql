@@ -289,10 +289,11 @@ insert into configuracion_global values ("empresa_url_ssl","https://ide.c9.io/lk
 insert into configuracion_global values ("empresa_url","http://ide.c9.io/lkdml/t-m-h");
 insert into configuracion_global values ("empresa_SSL_front",0);
 insert into configuracion_global values ("empresa_SSL_back",0);
-insert into configuracion_global values ("empresa_logo","iconologo.png");
+insert into configuracion_global values ("empresa_logo","tipografia.png");
 insert into configuracion_global values ("empresa_favicom","favicon.ico");
+insert into configuracion_global values ("usuarios_terminos","terminos y condiciones a desarrollar");
 insert into configuracion_global values ("usuarios_permitirRegistro",0);
-insert into configuracion_global values ("","");
+
 insert into configuracion_global values ("","");
 insert into configuracion_global values ("","");
 
