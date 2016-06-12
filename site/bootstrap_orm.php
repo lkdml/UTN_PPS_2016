@@ -33,6 +33,9 @@ $config->setProxyNamespace('Proxies');
 
 
 $EntityManager = EntityManager::create($dbParams, $config);
+$EntityManager->getEventManager()->addEventSubscriber(
+                new \Doctrine\DBAL\Event\Listeners\MysqlSessionInit('utf8', 'utf8_unicode_ci')
+);
 $em=$EntityManager;
 $em1 = Entity_Manager::getInstancia();
 $em1->setEntityManager($EntityManager);
