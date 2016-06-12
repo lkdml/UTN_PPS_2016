@@ -46,10 +46,10 @@ function setear(Estados $estado,$em){
     }
     if ($_POST["estadoFinal"] == 'on')
     {
-      $estado->getEstadofinal(true);   
+      $estado->setEstadofinal(true);   
     }
     else{
-       $estado->getEstadofinal(false);
+       $estado->setEstadofinal(false);
     }
     $estado->setColor($_POST["color"]);
     $estado->setIcono($_POST["icono"]);

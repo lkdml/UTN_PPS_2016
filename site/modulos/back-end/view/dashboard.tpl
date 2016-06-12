@@ -72,110 +72,117 @@ js=''
       
 
       
-      
-     <div class="row">
-        <!--INICIO COLUMNA IZQUIERDA -->
-            <div class="col-md-6">
+    
+      <div class="row">
+        <div class="col-md-12">
               <div class="row" id="widgetEstados">
 
               </div>
-            <!-- AREA CHART -->
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Informe Tiempo Estimado vs Tiempo Real de Resolución</h3>
-    
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                    </div>
-                </div>
-                <div class="box-body">
-                    <div class="chart">
-                        <canvas id="areaChart" style="height:250px"></canvas>
-                    </div>
-                </div>
-                <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
-            
-            
-            
-            <!-- BAR  Chart Tiempo Primera Respuesta  -->
-            <div class="box box-success">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Informe Tiempo de Primera Respuesta</h3>
+        </div
+          <!--INICIO COLUMNA IZQUIERDA -->
+            <div class="col-md-6">
+              {if $Permisos->verificarPermiso("informes_widgets")}
+                <!-- AREA CHART -->
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Informe Tiempo Estimado vs Tiempo Real de Resolución</h3>
         
-                  <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                  </div>
-                </div>
-                <div class="box-body">
-                  <div class="chart">
-                    <canvas id="barChart" style="height:250px"></canvas>
-                  </div>
-                </div>
-                <!-- /.box-body -->
-            </div>
-            <!-- /.box Chart Tiempo Primera Respuesta -->
-        </div>
-        <!-- columna Izquierda-->
-        
-        
-        <!--INICIO COLUMNA Derecha -->
-        <div class="col-md-6">
-            
-            <!-- DONUT CHART -->
-            <div class="box box-danger">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Informe Estado de Tickets</h3>
-
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
                     </div>
-                </div>
-                <div class="box-body pieChart">
-                  <canvas id="pieChart" style="height:250px"></canvas>
-                </div>
-                <!-- /.box-body -->
-            </div>
-            <!-- /.box -->
-          
-            <!-- Radar CHART -->
-            <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Informe Tickets por Prioridad</h3>
-
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    <div class="box-body">
+                        <div class="chart">
+                            <canvas id="areaChart" style="height:250px"></canvas>
+                        </div>
                     </div>
+                    <!-- /.box-body -->
                 </div>
-                <div class="box-body">
-                  <canvas id="radarChart" style="height:250px"></canvas>
-                </div>
+                <!-- /.box -->
                 
-              {if $Error}{$Error->getHtmlModal()}{/if}
-
-                <!-- /.box-body -->
-            </div>
-            <!-- /.box -->          
+                
+                
+                <!-- BAR  Chart Tiempo Primera Respuesta  -->
+                <div class="box box-success">
+                    <div class="box-header with-border">
+                      <h3 class="box-title">Informe Tiempo de Primera Respuesta</h3>
+            
+                      <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                      </div>
+                    </div>
+                    <div class="box-body">
+                      <div class="chart">
+                        <canvas id="barChart" style="height:250px"></canvas>
+                      </div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box Chart Tiempo Primera Respuesta -->
+              {/if}
+          </div>
+          <!-- columna Izquierda-->
           
-
-        </div>
-        <!-- columna Derecha-->
-        
-        
-        
-        
-        
-    </div>
-    <!-- fin row -->
+          
+          <!--INICIO COLUMNA Derecha -->
+          <div class="col-md-6">
+              
+              {if $Permisos->verificarPermiso("informes_widgets")}
+                <!-- DONUT CHART -->
+                <div class="box box-danger">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Informe Estado de Tickets</h3>
+    
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body pieChart">
+                      <canvas id="pieChart" style="height:250px"></canvas>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+              
+                <!-- Radar CHART -->
+                <div class="box box-info">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Informe Tickets por Prioridad</h3>
+    
+                        <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                      <canvas id="radarChart" style="height:250px"></canvas>
+                    </div>
+                    
+                  {if $Error}{$Error->getHtmlModal()}{/if}
+    
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->          
+              {/if}
+  
+          </div>
+          <!-- columna Derecha-->
+          
+          
+          
+          
+          
+      </div>
+      <!-- fin row -->
+  
+    
  
     </section>
     <!-- /.content -->
@@ -222,11 +229,17 @@ $( document ).ready(function() {
           data:{datosAjax:'widgetEstados'},
           success: function (response){
                       var array = jQuery.parseJSON( response );
+                      var encabezado;
+                      if ((array.length % 2) == 1){
+                        encabezado = '<div class="col-md-4 col-sm-8 col-xs-12">';
+                      } else {
+                        encabezado ='<div class="col-md-3 col-sm-6 col-xs-9">';
+                      }
                   
                       for(var i=0;i<array.length;i++)
                       {
                       
-                         $('#widgetEstados').append('<div class="col-md-4 col-sm-8 col-xs-12">\
+                         $('#widgetEstados').append(encabezado+'\
                             <a class="w-estados" href="/operador.php?modulo=tickets&Estados='+array[i].id+'"  >\
                             <div class="info-box">\
                               <span class="info-box-icon bg-acua" style=background-color:'+array[i].color+';color:white><i class="glyphicon '+array[i].icono+'"></i></span>\
