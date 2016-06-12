@@ -32,7 +32,8 @@ if (validarRequisitos()){
             if (($_GET['actualiza']=='clave')){
                 $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
                 if (($getOperador->verificarClave($_POST["clave"])) && ($_POST["nuevaclave1"]==$_POST["nuevaclave2"])){
-                    $getOperador->setClave($getOperador->encriptarClave($_POST["nuevaclave1"]));
+                    $claveNueva = $getOperador->encriptarClave($_POST["nuevaclave1"]);
+                    $getOperador->setClave($claveNueva);
                 }
                 $em->persist($getOperador);
                 $em->flush();
@@ -88,7 +89,6 @@ function setearOperador(Operador $operador,$em){
     $operador->setNombreUsuario($_POST["username"]);
     
     if (($_GET['Operador']==null)){
-        var_dump($operador->encriptarClave($_POST["nuevaclave1"]));
         $operador->encriptarClave($_POST["nuevaclave1"]);
     }
     $operador->setEmail($_POST["email"]);

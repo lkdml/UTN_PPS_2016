@@ -15,52 +15,39 @@ Aplicacion::startSession(true);
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
-if (validarRequisitos()){
+
    
-    if (isset($_GET['Operador'])){
-        if (($_GET['actualiza']=='clave')){
-            $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
-            if (($getOperador->verificarClave($_POST["clave"])) && ($_POST["nuevaclave1"]==$_POST["nuevaclave2"])){
-                $getOperador->setClave($getOperador->encriptarClave($_POST["nuevaclave1"]));
-            }
+if (isset($_GET['Operador'])){
+    $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
+    if (($_GET['actualiza']=='clave')){
+        if (($getOperador->verificarClave($_POST["clave"])) && ($_POST["nuevaclave1"]==$_POST["nuevaclave2"])){
+            $claveNueva = $getOperador->encriptarClave($_POST["nuevaclave1"]);
+            $getOperador->setClave($claveNueva);
             $em->persist($getOperador);
             $em->flush();
             $opActualizado=$em->getRepository('Modelo\Operador')->find($getOperador->getOperadorId());
-            $app->setoperador($getOperador);
-            $app->guardarOperadorEnSession();
-        } else if (($_GET['actualiza']=='foto')){
-            $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
-            $archivo = new FileManager($em->getRepository('Modelo\ConfiguracionGlobal')->find("extensiones_permitidas_imagenes")->getValor(),'modulos/back-end/imagenes/avatars/');
-            $archivo->guardarArchivosDePost($_FILES);
-            //TODO faltan agregar al TPL
-            $getOperador->setHashFoto($archivo->getArrayNombres()[0]['hashName']);
-            $em->persist($getOperador);
-            $em->flush();
-            if ($getOperador->getOperadorId()==$app->getOperador()->getOperadorId()){
-                $app->setoperador($getOperador);
-                $app->guardarOperadorEnSession();
-            }
-        } else {
-            $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
-            $Operador = setearOperador($getOperador,$em);
-            $em->persist($Operador);
-            $em->flush();
-            $app->setoperador($Operador);
+            $app->setoperador($opActualizado);
             $app->guardarOperadorEnSession();
         }
+    } else if (($_GET['actualiza']=='foto')){
+        $archivo = new FileManager($em->getRepository('Modelo\ConfiguracionGlobal')->find("extensiones_permitidas_imagenes")->getValor(),'modulos/back-end/imagenes/avatars/');
+        $archivo->guardarArchivosDePost($_FILES);
+        //TODO faltan agregar al TPL
+        $getOperador->setHashFoto($archivo->getArrayNombres()[0]['hashName']);
+        $em->persist($getOperador);
+        $em->flush();
+        if ($getOperador->getOperadorId()==$app->getOperador()->getOperadorId()){
+            $app->setoperador($getOperador);
+            $app->guardarOperadorEnSession();
+        }
+    } else {
+        $Operador = setearOperador($getOperador,$em);
+        $em->persist($Operador);
+        $em->flush();
+        $app->setoperador($Operador);
+        $app->guardarOperadorEnSession();
     }
-}
 
-function validarRequisitos(){
-    $rta=false;
-    $countRequisitos=0;
-    $maxRequisitosAValidar=1;
-    //veriico igualdad de claves
-    if ($_POST["nuevaclave1"]==$_POST["nuevaclave2"]){$countRequisitos++;}
-    
-    
-    if ($countRequisitos==$maxRequisitosAValidar){$rta=true;}
-    return $rta;
 }
 
 function setearOperador(Operador $operador,$em){

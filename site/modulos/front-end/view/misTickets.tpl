@@ -24,19 +24,26 @@ js=''
         <div class="col-md-3">
           <div class="box box-solid">
             <div class="box-header with-border">
-              <h3 class="box-title">Carpetas</h3>
+              <h3 class="box-title">Estados</h3>
               <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
               </div>
             </div>
             <div class="box-body no-padding">
-              <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#"><i class="fa fa-inbox"></i> Todos
-                  <span class="label label-primary pull-right">1</span></a></li> <!-- Insertar la cantidad de no leidos -->
-                <li><a href="#"><i class="fa fa-envelope-o"></i> Abiertos</a></li>
-                <li><a href="#"><i class="fa fa-file-text-o"></i> En Curso</a></li>
-                <li><a href="#"><i class="fa fa-circle"></i> En Cerrados</a></li>
+              <ul class="nav nav-pills nav-stacked" id="Estados">
+                <li class="active">
+                  <a href="/index.php?modulo=misTickets">
+                  <i class="glyphicon glyphicon-inbox"></i> Todos
+                  <span class="label label-primary pull-right">1</span></a>
+                </li> 
+                {foreach from=$Estados item=$estado}
+                  <li>
+                    <a href="/index.php?modulo=misTickets&Estados={$estado->getEstadoId()}">
+                      <i class="glyphicon {$estado->getIcono()}"></i> {$estado->getNombre()}
+                    <span class="label label-primary pull-right" id="Estado-{$estado->getEstadoId()}">1</span></a>
+                  </li>
+                {/foreach}
               </ul>
             </div>
             <!-- /.box-body -->
@@ -51,9 +58,13 @@ js=''
             </div>
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
-                <li><a href="#"><i class="fa fa-circle-o text-red"></i> Soporte N1</a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Ventas</a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Soporte N2</a></li>
+                {foreach from=$Departamentos item=$departamento}
+                  <li>
+                    <a href="/index.php?modulo=misTickets&Departamentos={$departamento->getDepartamentoId()}">
+                      <i class="fa fa-circle-o"></i> {$departamento->getNombre()}
+                    <span class="label label-primary pull-right" id="Estado-{$departamento->getDepartamentoId()}">1</span></a>
+                  </li>
+                {/foreach}
               </ul>
             </div>
             <!-- /.box-body -->
@@ -69,9 +80,13 @@ js=''
             </div>
             <div class="box-body no-padding">
               <ul class="nav nav-pills nav-stacked">
-                <li><a href="#"><i class="fa fa-circle-o text-red"></i> Importante</a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Medio</a></li>
-                <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Bajo</a></li>
+                {foreach from=$TicketTipos item=$tTipo}
+                  <li>
+                    <a href="/index.php?modulo=misTickets&tipoTicket={$tTipo->getTipoTicketId()}">
+                      <i class="glyphicon {$tTipo->getIcono()}"></i> {$tTipo->getNombre()}
+                    <span class="label label-primary pull-right" id="Estado-{$tTipo->getTipoTicketId()}">1</span></a>
+                  </li>
+                {/foreach}
               </ul>
             </div>
             <!-- /.box-body -->
@@ -83,60 +98,33 @@ js=''
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Bandeja</h3>
-                 <div class="box-tools">
-                  <div class="input-group input-group-sm" style="width: 150px;">
-                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-  
-                    <div class="input-group-btn">
-                      <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                    </div>
-                  </div>
-              </div>
+              
             </div>
             
            
             <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-              <table class="table table-hover">
-                <tr>
-                  <th>ID</th>
-                  <th>User</th>
-                  <th>Date</th>
-                  <th>Status</th>
-                  <th>Reason</th>
-                </tr>
-                 
-                <tr>
-                  <td><a href="/index.php?modulo=vistaTicket">67890</a></td>
-                  <td>John Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-success">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-               
-                <tr>
-                  <td>219</td>
-                  <td>Alexander Pierce</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-warning">Pending</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>657</td>
-                  <td>Bob Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-primary">Approved</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-                <tr>
-                  <td>175</td>
-                  <td>Mike Doe</td>
-                  <td>11-7-2014</td>
-                  <td><span class="label label-danger">Denied</span></td>
-                  <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                </tr>
-              </table>
-            </div>
+            {if $Tickets}
+              <div class="box-body table-responsive no-padding">
+                <table class="table table-hover">
+                  <tr>
+                    <th>ID</th>
+                    <th>Estado</th>
+                    <th>Ult. Act.</th>
+                    <th>Departamento</th>
+                    <th>Reason</th>
+                  </tr>
+                  {foreach from=$Tickets item=$ticket} 
+                  <tr>
+                    <td><a href="/index.php?modulo=vistaTicket&ticket={$ticket->getTicketId()}">{$ticket->getNumeroTicket()}</input></td>
+                    <td><small class="label " style='color:white; background-color:{$ticket->getEstado()->getColor()}'>{$ticket->getEstado()->getNombre()}</small></td>
+                    <td>{$ticket->getUltimaActividad()|date_format:"%D, %H:%M"}</td>
+                    <td>{$ticket->getDepartamento()->getNombre()}</td>
+                    <td>{$ticket->getAsunto()}</td>
+                  </tr>
+                  {/foreach}
+                </table>
+              </div>
+            {/if}
           </div>
           <!-- /. box -->
         </div>
