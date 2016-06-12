@@ -85,7 +85,7 @@ js=''
                 <!-- AREA CHART -->
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Informe Tiempo Estimado vs Tiempo Real de Resolución</h3>
+                        <h3 class="box-title">Informe tickets cerrados en el año actual</h3>
         
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -95,7 +95,7 @@ js=''
                     </div>
                     <div class="box-body">
                         <div class="chart">
-                            <canvas id="areaChart" style="height:250px"></canvas>
+                            <canvas id="lineChart" style="height:250px"></canvas>
                         </div>
                     </div>
                     <!-- /.box-body -->
@@ -212,7 +212,7 @@ js=''
 <script src="{$rutaJS}w-primera-respuesta.js"></script>
 <script src="{$rutaJS}w-ticket-prioridad.js"></script>
 <script src="{$rutaJS}w-ticket-estados.js"></script>
-<script src="{$rutaJS}w-tiempo-vs-tiempo.js"></script>
+<script src="{$rutaJS}w-ticketsCerrados-Anual.js"></script>
 <script src="{$rutaJS}ticketsPendientesAccion.js"></script>
 <script src="{$rutaJS}cantidadUsuariosExistentes.js"></script>
 <script src="{$rutaJS}ticketsCerradosMesActual.js"></script>

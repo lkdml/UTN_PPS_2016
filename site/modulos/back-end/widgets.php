@@ -48,33 +48,42 @@ use \Modelo\Ticket as Ticket;
                   }
                   echo json_encode($respuesta); die;
             break;
-        case strtolower('w-tiempo-vs-tiempo'):
-            $result = '{
-                  "labels": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio"],
-                  "datasets": [
-                    {
-                      "label": "Tiempo Estimado",
-                      "fillColor": "rgba(210, 214, 222, 1)",
-                      "strokeColor": "rgba(210, 214, 222, 1)",
-                      "pointColor": "rgba(210, 214, 222, 1)",
-                      "pointStrokeColor": "#c1c7d1",
-                      "pointHighlightFill": "#fff",
-                      "pointHighlightStroke": "rgba(220,220,220,1)",
-                      "data": [65, 59, 80, 81, 56, 55, 40]
-                    },
-                    {
-                      "label": "Tiempo Real",
-                      "fillColor": "rgba(60,141,188,0.9)",
-                      "strokeColor": "rgba(60,141,188,0.8)",
-                      "pointColor": "#3b8bba",
-                      "pointStrokeColor": "rgba(60,141,188,1)",
-                      "pointHighlightFill": "#fff",
-                      "pointHighlightStroke": "rgba(60,141,188,1)",
-                      "data": [28, 48, 40, 19, 86, 27, 90]
-                    }
-                  ]
-                }';
-            die(($result));
+        case strtolower('w-ticketsCerrados-Anual'):
+            $estados=($em->getRepository('Modelo\TicketEstado')->findByEstadofinal('1'));
+            $fecha=new \DateTime("now");
+            $qb=$em->createQueryBuilder();
+             $qb->select('COUNT(t.ultimaActividad) AS Cantidad,substring(t.ultimaActividad,6,2) AS groupMes')
+             ->from('Modelo\Ticket','t')
+             ->where('t.asignadoAOperador = :id')
+             ->Andwhere('t.estado IN (:estado)')
+             ->Andwhere('t.ultimaActividad LIKE :date')
+             ->setParameter('id',$app->getOperador()->getOperadorId())
+             ->setParameter('estado',$estados)
+             ->setParameter('date', $fecha->format('Y').'%')
+             ->groupBy('groupMes');
+              
+             $resultado=$qb->getQuery()->getResult();
+              
+             for ($i = 1; $i < 13; $i++) {
+                $cantidadMes[$i]=0;
+             }
+             for ($i = 0; $i < count($resultado); $i++) {
+                $cantidadMes[intval($resultado[$i][groupMes])]=intval($resultado[$i][Cantidad]);
+             }
+                
+            $labels=array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+            
+            $datasets=array("label"=>"Tickets Cerrados",
+                            "fillColor"=>"rgba(210, 214, 222, 1)",
+                            "strokeColor"=>"rgba(210, 214, 222, 1)",
+                            "pointColor"=>"rgba(210, 214, 222, 1)",
+                            "pointStrokeColor"=>"#c1c7d1",
+                            "pointHighlightFill"=>"#fff",
+                            "pointHighlightStroke"=>"rgba(220,220,220,1)",
+                            "data"=>array_values($cantidadMes));
+                            
+            $respuesta=array("labels"=>$labels,"datasets"=>array($datasets));
+            echo json_encode($respuesta);
             break;
         case strtolower('w-TicketXPrioridad'):
 
@@ -117,14 +126,16 @@ use \Modelo\Ticket as Ticket;
         case strtolower('w-ticketsCerradosMesActual'):
               $fecha=new \DateTime("now");
               $estados=($em->getRepository('Modelo\TicketEstado')->findByEstadofinal('1'));
-              $query = $em->createQuery("SELECT t.ultimaActividad FROM Modelo\Ticket t 
-                                          WHERE t.ultimaActividad LIKE CONCAT(:date,'%') 
-                                          AND t.asignadoAOperador = :id
-                                          AND t.estado IN (:estado)");
-              $query->setParameter('date', $fecha->format('Y-m'));
-              $query->setParameter('id',$app->getOperador()->getOperadorId());
-              $query->setParameter('estado',$estados);
-              $ticketCerrados = count($query->getResult());
+              $qb=$em->createQueryBuilder();
+                   $qb->select('t.ultimaActividad')
+                   ->from('Modelo\Ticket','t')
+                   ->where('t.asignadoAOperador = :id')
+                   ->Andwhere('t.estado IN (:estado)')
+                   ->Andwhere('t.ultimaActividad LIKE :date')
+                   ->setParameter('id',$app->getOperador()->getOperadorId())
+                   ->setParameter('estado',$estados)
+                   ->setParameter('date', $fecha->format('Y-m').'%');
+              $ticketCerrados = count($qb->getQuery()->getResult());
               echo $ticketCerrados;
             break;
         case strtolower('widgetEstados'):
