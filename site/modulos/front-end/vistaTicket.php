@@ -12,6 +12,7 @@ $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Front').'css/',
                 \CORE\Controlador\Config::getPublic('Ruta_Front').'js/',
                 \CORE\Controlador\Config::getPublic('Ruta_Front').'imagenes/');
 $vm->assign("RutaAvatars", \CORE\Controlador\Config::getPublic('Ruta_Avatars'));
+$vm->assign('UsuarioLogueado',$app->getUsuario());
                   
 $Departamentos = $em->getRepository('Modelo\Departamento')->findAll();
 $vm->assign('Departamentos',$Departamentos);

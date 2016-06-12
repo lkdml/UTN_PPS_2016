@@ -9,10 +9,11 @@ $app = Aplicacion::getInstancia();
 $app->startSession(false);
 
 $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Front_SMARTY_TemplateDir'),null);
-$vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Front').'css/',\CORE\Controlador\Config::getPublic('Ruta_Front').'js/',\CORE\Controlador\Config::getPublic('Ruta_Front').'imagenes/');
-
-$vm->assign('UsuarioLogeado',$app->getUsuario());
-
+$vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Front').'css/',
+                \CORE\Controlador\Config::getPublic('Ruta_Front').'js/',
+                \CORE\Controlador\Config::getPublic('Ruta_Front').'imagenes/');
+$vm->assign("RutaAvatars", \CORE\Controlador\Config::getPublic('Ruta_Avatars'));
+$vm->assign('UsuarioLogueado',$app->getUsuario());
 $UsuarioLogeado=$em->getRepository('Modelo\Usuario')->findby(array('usuarioId' => $app->getUsuario()->getUsuarioId()));
 
 $Empresa=$em->getRepository('Modelo\Empresa')->findby(array('empresaId' => $UsuarioLogeado[0]->getEmpresa()->getEmpresaId()));

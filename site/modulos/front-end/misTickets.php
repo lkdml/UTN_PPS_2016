@@ -9,8 +9,10 @@ $app = Aplicacion::getInstancia();
 
 $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Front_SMARTY_TemplateDir'),null);
 $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Front').'css/',
-                  \CORE\Controlador\Config::getPublic('Ruta_Front').'js/',
-                  \CORE\Controlador\Config::getPublic('Ruta_Front').'imagenes/');
+                \CORE\Controlador\Config::getPublic('Ruta_Front').'js/',
+                \CORE\Controlador\Config::getPublic('Ruta_Front').'imagenes/');
+$vm->assign("RutaAvatars", \CORE\Controlador\Config::getPublic('Ruta_Avatars'));
+$vm->assign('UsuarioLogueado',$app->getUsuario());
 if ($app->ifHayError()){
       $error =$app->recuperarErrorDeSession();
       $vm->assign('Error',$error);
