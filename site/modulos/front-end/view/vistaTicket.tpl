@@ -8,7 +8,7 @@ css='<link rel="stylesheet" href="./modulos/front-end/css/validacion.css">'
      <!-- Content Header (Page header) -->
      <section class="content-header">
        <h1>
-          <strong>Ticket N°67890</strong>
+          <strong>Ticket {$Ticket->getNumeroTicket()|upper}</strong>
          <small></small>
        </h1>
        <ol class="breadcrumb">
@@ -107,7 +107,7 @@ css='<link rel="stylesheet" href="./modulos/front-end/css/validacion.css">'
                               <label for="comboPrioridad" class="col-sm-2 control-label">Operador Asignado:</label>
                               <div class="col-sm-5">
                                <select class="form-control select2" id="ddOperadorAsignado" name="OperadorAsignado" style="width: 100%;" disabled>
-                                   <option value = "-1">Seleccione un Operador</option>
+                                   <option value = "-1">Ninguno</option>
                                    {if $Operadores}
                                       {foreach from=$Operadores item=$operador}
                                         <option value="{$operador->getOperadorId()}"  {if $Ticket->getAsignadoAOperador() != null && $operador->getOperadorId() == $Ticket->getAsignadoAOperador()->getOperadorId()} selected {/if}>{$operador->getNombre()}</option>
