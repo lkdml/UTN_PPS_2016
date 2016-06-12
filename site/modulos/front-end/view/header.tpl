@@ -77,16 +77,15 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="{$RutaAvatars}{if $UsuarioLogueado->getFotoHash()}{$UsuarioLogueado->getFotoHash()}{else}UserDefault.jpg{/if}" class="user-image" alt="User Image">
-              <span class="hidden-xs">Mariano López Senés</span>
+              <span class="hidden-xs"><small>{if $UsuarioLogueado}{$UsuarioLogueado->getNombre()} {$UsuarioLogueado->getApellido()}{/if}</small></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
                 <img src="{$RutaAvatars}{if $UsuarioLogueado->getFotoHash()}{$UsuarioLogueado->getFotoHash()}{else}UserDefault.jpg{/if}" class="img-circle" alt="User Image">
-
                 <p>
-                  lkdml - Web Developer
-                  <small>Mariano López Senés</small>
+                  {if $UsuarioLogueado}{$UsuarioLogueado->getEmail()}{/if}
+                  <small>{if $UsuarioLogueado}{$UsuarioLogueado->getNombre()} {$UsuarioLogueado->getApellido()}{/if}</small>
                 </p>
               </li>
               <!-- Menu Footer-->
