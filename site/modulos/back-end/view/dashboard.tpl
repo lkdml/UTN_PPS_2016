@@ -18,8 +18,8 @@ js=''
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3 id="pendientesAccion"></h3>
-              <p>Tickets <small>Pendientes de acción</small></p>
+              <h3 id="cantidadSinCerrar"></h3>
+              <p>Tickets <small>sin cerrar</small></p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -27,19 +27,20 @@ js=''
           </div>
         </div>
         <!-- ./col -->
-        <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-yellow">
+          <div class="small-box bg-green">
             <div class="inner">
-              <h3 id="usuariosExistentes"></h3>
-              <p>Usuarios <small>Existentes</small></p>
+               <h3 id="cantidadAsignados"></h3>
+
+              <p>Tus tickets<small>asignados.</small></p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="ion ion-stats-bars"></i>
             </div>
           </div>
         </div>
+        
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
@@ -54,19 +55,22 @@ js=''
           </div>
         </div>
         <!-- ./col -->
+        <!-- ./col -->
+        
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-green">
+          <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-              <p>Tu tiempo <small>de respuesta promedio.</small></p>
+              <h3 id="usuariosExistentes"></h3>
+              <p>Usuarios <small>Existentes</small></p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="ion ion-person-add"></i>
             </div>
           </div>
         </div>
+        
+        
       </div>
         
       
@@ -213,7 +217,8 @@ js=''
 <script src="{$rutaJS}w-ticket-prioridad.js"></script>
 <script src="{$rutaJS}w-ticket-estados.js"></script>
 <script src="{$rutaJS}w-ticketsCerrados-Anual.js"></script>
-<script src="{$rutaJS}ticketsPendientesAccion.js"></script>
+<script src="{$rutaJS}ticketsSinCerrar.js"></script>
+<script src="{$rutaJS}ticketsAsignados.js"></script>
 <script src="{$rutaJS}cantidadUsuariosExistentes.js"></script>
 <script src="{$rutaJS}ticketsCerradosMesActual.js"></script>
 <script src="{$rutaJS}tmh-error.js"></script>

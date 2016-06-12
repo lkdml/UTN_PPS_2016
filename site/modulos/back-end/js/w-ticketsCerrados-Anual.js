@@ -1,4 +1,5 @@
-$(document).ready(function(){
+cargarTicketsCerradosAnual();
+  function cargarTicketsCerradosAnual(){
    $.ajax({
         url:'operador.php?modulo=widgets',
         type:'GET',
@@ -56,4 +57,7 @@ $(document).ready(function(){
 
                }
         });
-});
+}
+setInterval(function() {
+  cargarTicketsCerradosAnual();  
+},120000);

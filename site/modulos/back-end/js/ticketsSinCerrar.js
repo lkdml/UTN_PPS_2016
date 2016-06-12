@@ -1,18 +1,18 @@
-calcularCantidadTicketsPendientesAccion();
-function calcularCantidadTicketsPendientesAccion(){
+calcularCantidadTicketsSinCerrar();
+function calcularCantidadTicketsSinCerrar(){
    $.ajax({
         url:'operador.php?modulo=widgets',
         type:'GET',
         datatype:'JSON',
-        data:{datosAjax:'w-ticketsPendientesAccion'},
+        data:{datosAjax:'w-ticketsSinCerrar'},
         success: function (response){
                     var datos=response;
-                    $("#pendientesAccion").html(datos);
+                    $("#cantidadSinCerrar").html(datos);
                         }
                     });
 }
 
 
 setInterval(function() {
-  calcularCantidadTicketsPendientesAccion();  
+  calcularCantidadTicketsSinCerrar();  
 },120000);

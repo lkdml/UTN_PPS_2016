@@ -115,9 +115,16 @@ use \Modelo\Ticket as Ticket;
 
                 echo json_encode($arrReturn);die;
             break;
-        case strtolower('w-ticketsPendientesAccion'):
-              $pendientesAccion=count($em->getRepository('Modelo\Ticket')->findBy(array("estado"=>1)));
-              echo $pendientesAccion;
+        case strtolower('w-ticketsSinCerrar'):
+              $estados=($em->getRepository('Modelo\TicketEstado')->findByEstadofinal('0'));
+              $cantidadSinCerrar=count($em->getRepository('Modelo\Ticket')->findBy(array("estado"=>$estados)));
+              echo $cantidadSinCerrar;
+            break;
+        case strtolower('w-ticketsAsignados'):
+              $estados=($em->getRepository('Modelo\TicketEstado')->findByEstadofinal('0'));
+              $operador=$app->getOperador();
+              $cantidadAsignados=count($em->getRepository('Modelo\Ticket')->findBy(array("asignadoAOperador"=>$operador,"estado"=>$estados)));
+              echo $cantidadAsignados;
             break;
         case strtolower('w-usuariosExistentes'):
               $usuariosExistentes=count($em->getRepository('Modelo\Usuario')->findAll());
