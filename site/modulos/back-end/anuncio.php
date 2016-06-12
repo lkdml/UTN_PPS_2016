@@ -8,6 +8,8 @@ $app = Aplicacion::getInstancia();
 $app->startSession($modoOP);
 $permisos =$app->getPermisos();
 
+
+
 $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateDir'),null);
 $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
                   \CORE\Controlador\Config::getPublic('Ruta_Back').'js/',
@@ -26,39 +28,55 @@ $EmpresasPorHabilitar = $em->getRepository('Modelo\Empresa')->findAll();
 
 switch(strtolower($_POST["accion"])){
   case ("nuevo"):default:
-    // Si el parametro que envio en accion es alta, solo debo validar permisos
-    //var_dump($_POST);die;
-   // $vm->assign('accion',$_POST["accion"]);
+    if (!$permisos->verificarPermiso("anuncios_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=anuncios");
+    }  
     break;
   case ("editar"):
-    //TODO: falta validar permisos para esta accion.
-    $Anuncio = $em->getRepository('Modelo\Anuncio')->find($_POST["anuncioId"][0]);
-    $vm->assign('Anuncio',$Anuncio);
-    
-    
-    $empresasAsignadas=$Anuncio->getEmpresa();
-    $vm->assign('EmpresasAsignadas',$empresasAsignadas);   
-
-    $EmpresasHabilitadas=$Anuncio->getEmpresa();
-    foreach ( $EmpresasPorHabilitar as $empresahab){
-      foreach ($empresasAsignadas as $kop=>$empresa){
-        if ($empresahab == $empresa){
-          unset($EmpresasPorHabilitar[$kop]);
+    if (!$permisos->verificarPermiso("anuncios_ver")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=anuncios");
+    } else{
+      $Anuncio = $em->getRepository('Modelo\Anuncio')->find($_POST["anuncioId"][0]);
+      $vm->assign('Anuncio',$Anuncio);
+      
+      
+      $empresasAsignadas=$Anuncio->getEmpresa();
+      $vm->assign('EmpresasAsignadas',$empresasAsignadas);   
+  
+      $EmpresasHabilitadas=$Anuncio->getEmpresa();
+      foreach ( $EmpresasPorHabilitar as $empresahab){
+        foreach ($empresasAsignadas as $kop=>$empresa){
+          if ($empresahab == $empresa){
+            unset($EmpresasPorHabilitar[$kop]);
+          }
         }
       }
     }
-    
     break;
   case ("borrar"):
-    $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-    foreach ($_POST['anuncioId'] as $anuncio) {
-      $em->remove($em->getRepository('Modelo\Anuncio')->find($anuncio));
-    }
-    $em->flush();
-    
-    header("location:/operador.php?modulo=anuncios");
+    if (!$permisos->verificarPermiso("anuncios_eliminar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=anuncios");
+    } else {
+      $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+      foreach ($_POST['anuncioId'] as $anuncio) {
+        $em->remove($em->getRepository('Modelo\Anuncio')->find($anuncio));
+      }
+      $em->flush();
+    }      
+      header("location:/operador.php?modulo=anuncios");
+
     break;
 
 }
 
   $vm->display('anuncio.tpl');
+

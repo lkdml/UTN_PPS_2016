@@ -6,20 +6,34 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/bootstrap_orm.php');
  */
 use \CORE\Controlador\Aplicacion;
 Aplicacion::startSession(true);
+$app = Aplicacion::getInstancia();
+$permisos =$app->getPermisos();
 
 use \Modelo\Departamento as Departamento;
 use \Modelo\Operador as Operador;
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 if (isset($_GET['Departamento'])){
-    $dpto =  $em->getRepository('Modelo\Departamento')->find($_GET["Departamento"]);
-    $departamento = setear($dpto,$em);
-    $em->persist($departamento);
-    $em->flush();
+    if (!$permisos->verificarPermiso("departamentos_editar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+    } else {
+        $dpto =  $em->getRepository('Modelo\Departamento')->find($_GET["Departamento"]);
+        $departamento = setear($dpto,$em);
+        $em->persist($departamento);
+        $em->flush();
+    }
 } else {
-    $departamento = setear(new Departamento(),$em);
-    $em->persist($departamento);
-    $em->flush();
+    if (!$permisos->verificarPermiso("departamentos_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+    } else {
+        $departamento = setear(new Departamento(),$em);
+        $em->persist($departamento);
+        $em->flush();
+    }
 }
 
 

@@ -21,23 +21,39 @@ $Categorias = $em->getRepository('Modelo\CategoriaAnuncios')->findAll();
 
 switch(strtolower($_POST["accion"])){
   case ("nuevo"):
-    // Si el parametro que envio en accion es alta, solo debo validar permisos
-    //var_dump($_POST);die;
-   // $vm->assign('accion',$_POST["accion"]);
+    if (!$permisos->verificarPermiso("categorias_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=categorias");
+    }
     break;
   case ("editar"):
-    //TODO: falta validar permisos para esta accion.
-    $Categoria = $em->getRepository('Modelo\CategoriaAnuncios')->find($_POST["categoriaId"][0]);
-    $vm->assign('Categoria',$Categoria);
+    if (!$permisos->verificarPermiso("categorias_ver")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=categorias");
+    } else{
+      $Categoria = $em->getRepository('Modelo\CategoriaAnuncios')->find($_POST["categoriaId"][0]);
+      $vm->assign('Categoria',$Categoria);
+    }
     break;
   case ("borrar"):
-    $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-    foreach ($_POST['categoriaId'] as $categoria) {
-      $em->remove($em->getRepository('Modelo\CategoriaAnuncios')->find($categoria));
+    if (!$permisos->verificarPermiso("categorias_eliminar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=categorias");
+    } else{
+        $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+      foreach ($_POST['categoriaId'] as $categoria) {
+        $em->remove($em->getRepository('Modelo\CategoriaAnuncios')->find($categoria));
+      }
+      $em->flush();
+      
+      header("location:/operador.php?modulo=categorias");
     }
-    $em->flush();
-    
-    header("location:/operador.php?modulo=categorias");
     break;
    default:
      die;

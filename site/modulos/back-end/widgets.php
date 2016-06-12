@@ -5,18 +5,8 @@ use \CORE\Controlador\Aplicacion;
 $app = Aplicacion::getInstancia();
 $app->startSession(true);
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-
-
 use \Modelo\Ticket as Ticket;
-//      \CORE\Controlador\Aplicacion::starSession();
-    //require_once(CORE\Config::getPublic('CORE').'singleton.class.php');
-    //require(\CORE\Config::getPublic('CORE').'aplicacion.class.php');
-    //session_start();
- /**       if (!($_SESSION["autenticado"]==true)) {
-            $ejecutandoAPP = false;
-            session_destroy();
-            header("location:login.php");
-        }*/
+
 
     switch  (strtolower($_GET['datosAjax'])){
         case strtolower('W-TiempoEstimadoVs'):

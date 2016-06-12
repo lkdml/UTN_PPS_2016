@@ -7,17 +7,30 @@ use \Modelo\Sla as Sla;
 
 $app = Aplicacion::getInstancia();
 $app->startSession(true);
+$permisos =$app->getPermisos();
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 if (isset($_GET['slaId'])){
-    $Sla =  $em->getRepository('Modelo\Sla')->find($_GET["slaId"]);
-    $em->persist(setear($Sla,$em));
-    $em->flush();
+    if (!$permisos->verificarPermiso("sla_editar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+    } else {
+        $Sla =  $em->getRepository('Modelo\Sla')->find($_GET["slaId"]);
+        $em->persist(setear($Sla,$em));
+        $em->flush();
+    }
 } else {
-    $Sla = setear(new Sla(),$em);
-    $em->persist($Sla);
-    $em->flush();
+    if (!$permisos->verificarPermiso("sla_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+    } else {
+        $Sla = setear(new Sla(),$em);
+        $em->persist($Sla);
+        $em->flush();
+    }
 }
 
 

@@ -5,17 +5,31 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/bootstrap_orm.php');
 use \CORE\Controlador\Aplicacion;
 use \Modelo\Prioridad as Prioridad;
 Aplicacion::startSession(true);
+$app = Aplicacion::getInstancia();
+$permisos =$app->getPermisos();
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 if (isset($_GET['prioridadId'])){
-    $Prioridad =  $em->getRepository('Modelo\Prioridad')->find($_GET["prioridadId"]);
-    $em->persist(setear($Prioridad,$em));
-    $em->flush();
+    if (!$permisos->verificarPermiso("prioridades_editar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+    } else {
+        $Prioridad =  $em->getRepository('Modelo\Prioridad')->find($_GET["prioridadId"]);
+        $em->persist(setear($Prioridad,$em));
+        $em->flush();
+    }
 } else {
-    $Prioridad = setear(new Prioridad(),$em);
-    $em->persist($Prioridad);
-    $em->flush();
+    if (!$permisos->verificarPermiso("prioridades_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+    } else {
+        $Prioridad = setear(new Prioridad(),$em);
+        $em->persist($Prioridad);
+        $em->flush();
+    }
 }
 
 

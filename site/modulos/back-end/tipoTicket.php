@@ -19,23 +19,39 @@ $vm->assign('Permisos',$permisos);
 
 switch(strtolower($_POST["accion"])){
   case ("nuevo"):
-    // Si el parametro que envio en accion es alta, solo debo validar permisos
-    //var_dump($_POST);die;
-   // $vm->assign('accion',$_POST["accion"]);
+    if (!$permisos->verificarPermiso("tipoTicket_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=tipoTickets");
+    } 
     break;
   case ("editar"):
-    //TODO: falta validar permisos para esta accion.
-    $TicketTipo = $em->getRepository('Modelo\TicketTipo')->find($_POST["tipoTicketId"][0]);
-    $vm->assign('TicketTipo',$TicketTipo);
+    if (!$permisos->verificarPermiso("tipoTicket_ver")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=tipoTickets");
+    } else{
+      $TicketTipo = $em->getRepository('Modelo\TicketTipo')->find($_POST["tipoTicketId"][0]);
+      $vm->assign('TicketTipo',$TicketTipo);
+    }
     break;
   case ("borrar"):
-    $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-    foreach ($_POST['tipoTicketId'] as $TicketTipo) {
-      $em->remove($em->getRepository('Modelo\TicketTipo')->find($TicketTipo));
+    if (!$permisos->verificarPermiso("tipoTicket_eliminar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=tipoTickets");
+    } else{
+      $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+      foreach ($_POST['tipoTicketId'] as $TicketTipo) {
+        $em->remove($em->getRepository('Modelo\TicketTipo')->find($TicketTipo));
+      }
+      $em->flush();
+      
+      header("location:/operador.php?modulo=tipoTickets");
     }
-    $em->flush();
-    
-    header("location:/operador.php?modulo=tipoTickets");
     break;
    default:
      die;

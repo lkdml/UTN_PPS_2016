@@ -21,23 +21,39 @@ $Prioridades = $em->getRepository('Modelo\Prioridad')->findAll();
 
 switch(strtolower($_POST["accion"])){
   case ("nuevo"):
-    // Si el parametro que envio en accion es alta, solo debo validar permisos
-    //var_dump($_POST);die;
-   // $vm->assign('accion',$_POST["accion"]);
+    if (!$permisos->verificarPermiso("prioridades_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=prioridades");
+    } 
     break;
   case ("editar"):
-    //TODO: falta validar permisos para esta accion.
-    $Prioridad = $em->getRepository('Modelo\Prioridad')->find($_POST["prioridadId"][0]);
-    $vm->assign('Prioridad',$Prioridad);
+    if (!$permisos->verificarPermiso("prioridades_ver")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=prioridades");
+    } else{
+      $Prioridad = $em->getRepository('Modelo\Prioridad')->find($_POST["prioridadId"][0]);
+      $vm->assign('Prioridad',$Prioridad);
+    }
     break;
   case ("borrar"):
-    $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-    foreach ($_POST['prioridadId'] as $prioridad) {
-      $em->remove($em->getRepository('Modelo\Prioridad')->find($prioridad));
+    if (!$permisos->verificarPermiso("prioridades_eliminar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=prioridades");
+    } else{
+      $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+      foreach ($_POST['prioridadId'] as $prioridad) {
+        $em->remove($em->getRepository('Modelo\Prioridad')->find($prioridad));
+      }
+      $em->flush();
+      
+      header("location:/operador.php?modulo=prioridades");
     }
-    $em->flush();
-    
-    header("location:/operador.php?modulo=prioridades");
     break;
    default:
      die;

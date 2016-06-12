@@ -8,7 +8,7 @@
           <img src="{$rutaIMG}avatars/{if $OperadorLogueado->getHashFoto()}{$OperadorLogueado->getHashFoto()}{else}UserDefault.jpg{/if}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>{if $OperadorLogueado}{$OperadorLogueado->getNombre()} {$OperadorLogueado->getApellido()}{/if}</p>
+          <p>{if $OperadorLogueado}{$OperadorLogueado->getNombre()}<br><small>{$OperadorLogueado->getApellido()}</small>{/if}</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -78,7 +78,7 @@ $( document ).ready(function obtenerTicketsOperador() {
                       for(var i=0;i<array.length;i++)
                       {
                       
-                         $('#dinamicTicketMenuOperador').append('<li><a href="/operador.php?modulo=tickets&Estados='+array[i].id+'">'+array[i].nombre+'<small class="label pull-right" style=background-color:'+array[i].color+'>'+array[i].cantidad+'</small></li></a>'); 
+                         $('#dinamicTicketMenuOperador').append('<li><a href="/operador.php?modulo=tickets&Estados='+array[i].id+'">'+array[i].nombre+'<small class="label pull-right" style=background-color:'+array[i].color+'>'+array[i].cantidad+'</small></a></li>'); 
                         total=total+array[i].cantidad;
                       }
                       $('#totalticketOperador').html(total);

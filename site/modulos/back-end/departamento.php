@@ -25,38 +25,52 @@ $OperadoresPorHabilitar = $em->getRepository('Modelo\Operador')->findAll();
 
 switch(strtolower($_POST["accion"])){
   case ("nuevo"):
-    // Si el parametro que envio en accion es alta, solo debo validar permisos
-    //var_dump($_POST);die;
-   // $vm->assign('accion',$_POST["accion"]);
+    if (!$permisos->verificarPermiso("departamentos_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=departamentos");
+    } 
     break;
   case ("editar"):
-    //TODO: falta validar permisos para esta accion.
-    $departamento = $em->getRepository('Modelo\Departamento')->find($_POST["departamentoId"][0]);
-    $vm->assign('Departamento',$departamento);   
-
-     $operadoresAsignados=$departamento->getOperador();
-    $vm->assign('OperadoresAsignados',$operadoresAsignados);   
-
-    
-    $OperadoresHabilitados=$departamento->getOperador();
-    foreach ( $OperadoresPorHabilitar as $operadorhab){
-      foreach ($operadoresAsignados as $kop=>$operador){
-        if ($operadorhab == $operador){
-          unset($OperadoresPorHabilitar[$kop]);
+    if (!$permisos->verificarPermiso("departamentos_ver")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=departamentos");
+    } else{
+      $departamento = $em->getRepository('Modelo\Departamento')->find($_POST["departamentoId"][0]);
+      $vm->assign('Departamento',$departamento);   
+  
+       $operadoresAsignados=$departamento->getOperador();
+      $vm->assign('OperadoresAsignados',$operadoresAsignados);   
+  
+      
+      $OperadoresHabilitados=$departamento->getOperador();
+      foreach ( $OperadoresPorHabilitar as $operadorhab){
+        foreach ($operadoresAsignados as $kop=>$operador){
+          if ($operadorhab == $operador){
+            unset($OperadoresPorHabilitar[$kop]);
+          }
         }
       }
     }
-    
-
     break;
   case ("borrar"):
-    $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-    foreach ($_POST['departamentoId'] as $departamento) {
-      $em->remove($em->getRepository('Modelo\Departamento')->find($departamento));
+    if (!$permisos->verificarPermiso("departamentos_eliminar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=departamentos");
+    } else{
+      $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+      foreach ($_POST['departamentoId'] as $departamento) {
+        $em->remove($em->getRepository('Modelo\Departamento')->find($departamento));
+      }
+      $em->flush();
+      
+      header("location:/operador.php?modulo=departamentos");
     }
-    $em->flush();
-    
-    header("location:/operador.php?modulo=departamentos");
     break;
    default:
      die;
