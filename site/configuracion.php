@@ -17,6 +17,7 @@ use \CORE\Controlador\Config as Config;
  Config::setPublic('Ruta_Modulos',Config::getPublic('Ruta_App').'modulos'.'/');
  Config::setPublic('Ruta_Modelo',Config::getPublic('Ruta_App').'modelo'.'/');
  Config::setPublic('Ruta_Uploads','uploads/');
+ Config::setPublic('Ruta_Avatars','uploads/avatars/');
  
  //TODO: cambiar el logWarn a false
  Config::setPublic('LogWarn',true); // habilita el logueo forsado  recomendado false

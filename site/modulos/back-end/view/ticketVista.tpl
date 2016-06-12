@@ -236,7 +236,7 @@ js=''
                                                                                                         {/if}</font></span>
                                                   <span class="direct-chat-timestamp pull-right">{$mensaje->getFecha()|date_format:"%d-%m-%Y %H:%m"}</span>
                                                 </div><!-- /.direct-chat-info -->
-                                                <img class="direct-chat-img" src="{$rutaIMG}avatars/{if (get_class($Creador) == 'Proxies\__CG__\Modelo\Usuario')}{if ($Creador->getFotoHash() != null)}{$Creador->getFotoHash()}{else}UserDefault.jpg{/if}{elseif get_class($Creador) == 'Modelo\Operador'}{if $Creador->getHashFoto() != null}{$Creador->getHashFoto()}{else}UserDefault.jpg{/if}{/if}" alt="message user image"><!-- /.direct-chat-img -->
+                                                <img class="direct-chat-img" src="{$RutaAvatars}{if (get_class($Creador) == 'Proxies\__CG__\Modelo\Usuario')}{if ($Creador->getFotoHash() != null)}{$Creador->getFotoHash()}{else}UserDefault.jpg{/if}{elseif get_class($Creador) == 'Modelo\Operador'}{if $Creador->getHashFoto() != null}{$Creador->getHashFoto()}{else}UserDefault.jpg{/if}{/if}" alt="message user image"><!-- /.direct-chat-img -->
                                                 <div class="direct-chat-text">
                                                   {$mensaje->getTexto()}
                                                   {$archivos=$mensaje->getMisArchivos($mensaje->getMensajeId())}
@@ -287,7 +287,6 @@ js=''
                                <input class="col-sm-10" type="file" id="archivo" name="ArchivosNotaOperador[]">
                              </div>
                            </div>
-                           
                          </div>
                        </div>
                        <!-- /.tab-content -->
