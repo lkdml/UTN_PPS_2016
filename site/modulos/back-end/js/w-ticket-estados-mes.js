@@ -4,7 +4,7 @@ cargarChart();
             url:'operador.php?modulo=widgets',
             type:'GET',
             datatype:'JSON',
-            data:{datosAjax:'W-estdosTicket'},
+            data:{datosAjax:'W-estadosTicket-Mes'},
             success: function (response){
                          //- PIE CHART -
                         //-------------

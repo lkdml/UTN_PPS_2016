@@ -111,7 +111,7 @@ js=''
                 <!-- BAR  Chart Tiempo Primera Respuesta  -->
                 <div class="box box-success">
                     <div class="box-header with-border">
-                      <h3 class="box-title">Informe Tiempo de Primera Respuesta</h3>
+                      <h3 class="box-title">Informe tipo de ticket en el mes</h3>
             
                       <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -139,7 +139,7 @@ js=''
                 <!-- DONUT CHART -->
                 <div class="box box-danger">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Informe Estado de Tickets</h3>
+                        <h3 class="box-title">Informe estado de tickets por mes</h3>
     
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -157,7 +157,7 @@ js=''
                 <!-- Radar CHART -->
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Informe Tickets por Prioridad</h3>
+                        <h3 class="box-title">Informe tickets por prioridad en el mes</h3>
     
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -213,9 +213,9 @@ js=''
 <script src="{$rutaJS}demo.js"></script>
 <!-- ChartJS 1.0.1 -->
 <script src="{$rutaJS}Chart.min.js"></script>
-<script src="{$rutaJS}w-primera-respuesta.js"></script>
-<script src="{$rutaJS}w-ticket-prioridad.js"></script>
-<script src="{$rutaJS}w-ticket-estados.js"></script>
+<script src="{$rutaJS}w-tipoTicket-mes.js"></script>
+<script src="{$rutaJS}w-ticket-prioridad-mes.js"></script>
+<script src="{$rutaJS}w-ticket-estados-mes.js"></script>
 <script src="{$rutaJS}w-ticketsCerrados-Anual.js"></script>
 <script src="{$rutaJS}ticketsSinCerrar.js"></script>
 <script src="{$rutaJS}ticketsAsignados.js"></script>

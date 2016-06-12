@@ -3,7 +3,7 @@ $(document).ready(function(){
         url:'operador.php?modulo=widgets',
         type:'GET',
         datatype:'JSON',
-        data:{datosAjax:'W-TiempoEstimadoVs'},
+        data:{datosAjax:'W-tipoTicketMes'},
         success: function (response){
                     var barChartCanvas = $("#barChart").get(0).getContext("2d");
                     var barChart = new Chart(barChartCanvas);
@@ -12,6 +12,7 @@ $(document).ready(function(){
                     barChartData.datasets[0].strokeColor = "#00a65a";
                     barChartData.datasets[0].pointColor = "#00a65a";
                     var barChartOptions = {
+                   
                       //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
                       scaleBeginAtZero: true,
                       //Boolean - Whether grid lines are shown across the chart
