@@ -168,13 +168,10 @@ js=''
                     <div class="box-body">
                       <canvas id="radarChart" style="height:250px"></canvas>
                     </div>
-                    
-                  {if $Error}{$Error->getHtmlModal()}{/if}
-    
-                    <!-- /.box-body -->
+                     <!-- /.box-body -->
                 </div>
-                <!-- /.box -->          
-              {/if}
+                <!-- /.box -->
+              
   
           </div>
           <!-- columna Derecha-->
@@ -186,7 +183,10 @@ js=''
       </div>
       <!-- fin row -->
   
+    {if $Error}{$Error->getHtmlModal()}{/if}
     
+                             
+    {/if}
  
     </section>
     <!-- /.content -->
