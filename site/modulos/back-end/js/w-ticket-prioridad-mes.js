@@ -4,7 +4,7 @@ cargarRadarChart();
         url:'operador.php?modulo=widgets',
         type:'GET',
         datatype:'JSON',
-        data:{datosAjax:'w-TicketXPrioridad'},
+        data:{datosAjax:'w-TicketXPrioridad-Mes'},
         success: function (response){
                      //----------------
                     //RADAR CHART
@@ -50,6 +50,9 @@ cargarRadarChart();
                             datasetStrokeWidth : 2,
                             //Boolean - Whether to fill the dataset with a colour
                             datasetFill : true,
+                            responsive: true,
+                            // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+                            maintainAspectRatio: true,
                             //String - A legend template
                             legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<datasets.length; i++){%><li><span style=\"background-color:<%=datasets[i].strokeColor%>\"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>"
                               

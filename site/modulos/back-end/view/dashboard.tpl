@@ -18,8 +18,8 @@ js=''
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3 id="pendientesAccion"></h3>
-              <p>Tickets <small>Pendientes de acción</small></p>
+              <h3 id="cantidadSinCerrar"></h3>
+              <p>Tickets <small>sin cerrar</small></p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -27,19 +27,20 @@ js=''
           </div>
         </div>
         <!-- ./col -->
-        <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-yellow">
+          <div class="small-box bg-green">
             <div class="inner">
-              <h3 id="usuariosExistentes"></h3>
-              <p>Usuarios <small>Existentes</small></p>
+               <h3 id="cantidadAsignados"></h3>
+
+              <p>Tus tickets<small>asignados.</small></p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <i class="ion ion-stats-bars"></i>
             </div>
           </div>
         </div>
+        
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
@@ -54,19 +55,22 @@ js=''
           </div>
         </div>
         <!-- ./col -->
+        <!-- ./col -->
+        
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-green">
+          <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-              <p>Tu tiempo <small>de respuesta promedio.</small></p>
+              <h3 id="usuariosExistentes"></h3>
+              <p>Usuarios <small>Existentes</small></p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="ion ion-person-add"></i>
             </div>
           </div>
         </div>
+        
+        
       </div>
         
       
@@ -107,7 +111,7 @@ js=''
                 <!-- BAR  Chart Tiempo Primera Respuesta  -->
                 <div class="box box-success">
                     <div class="box-header with-border">
-                      <h3 class="box-title">Informe Tiempo de Primera Respuesta</h3>
+                      <h3 class="box-title">Informe tipo de ticket en el mes</h3>
             
                       <div class="box-tools pull-right">
                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -135,7 +139,7 @@ js=''
                 <!-- DONUT CHART -->
                 <div class="box box-danger">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Informe Estado de Tickets</h3>
+                        <h3 class="box-title">Informe estado de tickets por mes</h3>
     
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -153,7 +157,7 @@ js=''
                 <!-- Radar CHART -->
                 <div class="box box-info">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Informe Tickets por Prioridad</h3>
+                        <h3 class="box-title">Informe tickets por prioridad en el mes</h3>
     
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -164,13 +168,10 @@ js=''
                     <div class="box-body">
                       <canvas id="radarChart" style="height:250px"></canvas>
                     </div>
-                    
-                  {if $Error}{$Error->getHtmlModal()}{/if}
-    
-                    <!-- /.box-body -->
+                     <!-- /.box-body -->
                 </div>
-                <!-- /.box -->          
-              {/if}
+                <!-- /.box -->
+              
   
           </div>
           <!-- columna Derecha-->
@@ -182,7 +183,10 @@ js=''
       </div>
       <!-- fin row -->
   
+    {if $Error}{$Error->getHtmlModal()}{/if}
     
+                             
+    {/if}
  
     </section>
     <!-- /.content -->
@@ -209,11 +213,12 @@ js=''
 <script src="{$rutaJS}demo.js"></script>
 <!-- ChartJS 1.0.1 -->
 <script src="{$rutaJS}Chart.min.js"></script>
-<script src="{$rutaJS}w-primera-respuesta.js"></script>
-<script src="{$rutaJS}w-ticket-prioridad.js"></script>
-<script src="{$rutaJS}w-ticket-estados.js"></script>
+<script src="{$rutaJS}w-tipoTicket-mes.js"></script>
+<script src="{$rutaJS}w-ticket-prioridad-mes.js"></script>
+<script src="{$rutaJS}w-ticket-estados-mes.js"></script>
 <script src="{$rutaJS}w-ticketsCerrados-Anual.js"></script>
-<script src="{$rutaJS}ticketsPendientesAccion.js"></script>
+<script src="{$rutaJS}ticketsSinCerrar.js"></script>
+<script src="{$rutaJS}ticketsAsignados.js"></script>
 <script src="{$rutaJS}cantidadUsuariosExistentes.js"></script>
 <script src="{$rutaJS}ticketsCerradosMesActual.js"></script>
 <script src="{$rutaJS}tmh-error.js"></script>

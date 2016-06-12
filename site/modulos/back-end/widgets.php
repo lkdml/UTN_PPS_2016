@@ -9,44 +9,68 @@ use \Modelo\Ticket as Ticket;
 
 
     switch  (strtolower($_GET['datosAjax'])){
-        case strtolower('W-TiempoEstimadoVs'):
+        case strtolower('W-tipoTicketMes'):
+          $departamentos=$em->getRepository('Modelo\Operador')->find($app->getOperador()->getOperadorId())->getDepartamento(); 
+          foreach($departamentos as $depto)
+          {
+            $deptosDelOperador[]=$depto->getDepartamentoId();
+          }
+          $tipoTickets=$em->getRepository('Modelo\TicketTipo')->findAll();
+          $fecha=new \DateTime("now");
+          foreach ($tipoTickets as $ticket) {
+            $labels[]=$ticket->getNombre();
+            $qb=$em->createQueryBuilder();
+                   $qb->select('t.ultimaActividad')
+                   ->from('Modelo\Ticket','t')
+                   ->where('t.asignadoAOperador = :id')
+                   ->Andwhere('t.ultimaActividad LIKE :date')
+                   ->Andwhere('t.tipoTicket = :tipoTicket')
+                   ->Andwhere('t.departamento IN (:depto)')
+                   ->setParameter('id',$app->getOperador()->getOperadorId())
+                   ->setParameter('date', $fecha->format('Y-m').'%')
+                   ->setParameter('tipoTicket',$ticket)
+                   ->setParameter('depto',$deptosDelOperador);
+            $cantidadporTipo[]=count($qb->getQuery()->getResult());
+          }
           
-          
-            $result = '{
-                          "labels": ["<1 Hora", "1-3 Horas", "3-6 Horas", "6-12 Horas", "12-24 Horas", "+24 Horas"],
-                          "datasets": [
-                            {
-                              "label": "Respuesta Mes Actual",
-                              "fillColor": "rgba(60,141,188,0.9)",
-                              "strokeColor": "rgba(60,141,188,0.8)",
-                              "pointColor": "#3b8bba",
-                              "pointStrokeColor": "rgba(60,141,188,1)",
-                              "pointHighlightFill": "#fff",
-                              "pointHighlightStroke": "rgba(60,141,188,1)",
-                              "data": [40, 20, 30, 20, 20, 20]
-                            }
-                          ]
-                        }';
-            die(($result));
+          $datasets=array("label"=>"Tipo de tickets asignados por mes",
+                          "fillColor"=>"rgba(60,141,188,0.9)",
+                          "strokeColor"=>"rgba(60,141,188,0.8)",
+                          "pointColor"=>"#3b8bba",
+                          "pointStrokeColor"=>"rgba(60,141,188,1)",
+                          "pointHighlightFill"=>"#fff",
+                          "pointHighlightStroke"=>"rgba(60,141,188,1)",
+                          "data"=>$cantidadporTipo);
+                          
+            $respuesta=array("labels"=>$labels,"datasets"=>array($datasets));
+            echo json_encode($respuesta);
             break;
-        case strtolower('W-estdosTicket'):
-
-                  $estados = $ticket = $em->getRepository('Modelo\TicketEstado')->findAll();
-                  foreach ($estados as $estado) {
-                    $arraydatos[$estado->getNombre()] = count($em->getRepository('Modelo\Ticket')->findBy(array("estado"=>$estado->getEstadoId())));
-                    $arrayEstadoColor[$estado->getNombre()] =$estado->getColor();
-                  }
-                  unset($respuesta);
-                  $i=0;
-                  foreach($estados as $estado)
-                  {
-                    $respuesta[$i]['value'] =$arraydatos[$estado->getNombre()];
-                    $respuesta[$i]['color']= $arrayEstadoColor[$estado->getNombre()];
-                    $respuesta[$i]['highlight'] =$arrayEstadoColor[$estado->getNombre()];
-                    $respuesta[$i]['label'] = $estado->getNombre();
-                    $i++;
-                  }
-                  echo json_encode($respuesta); die;
+        case strtolower('W-estadosTicket-Mes'):
+            $departamentos=$em->getRepository('Modelo\Operador')->find($app->getOperador()->getOperadorId())->getDepartamento(); 
+            foreach($departamentos as $depto)
+            {
+              $deptosDelOperador[]=$depto->getDepartamentoId();
+            }
+            $estados = $ticket = $em->getRepository('Modelo\TicketEstado')->findAll();
+            $fecha=new \DateTime("now");
+            foreach ($estados as $estado) {
+              
+              $qb=$em->createQueryBuilder();
+                     $qb->select('t.ultimaActividad')
+                     ->from('Modelo\Ticket','t')
+                     ->where('t.asignadoAOperador = :id')
+                     ->Andwhere('t.ultimaActividad LIKE :date')
+                     ->Andwhere('t.estado = :estado')
+                     ->Andwhere('t.departamento IN (:depto)')
+                     ->setParameter('id',$app->getOperador()->getOperadorId())
+                     ->setParameter('date', $fecha->format('Y-m').'%')
+                     ->setParameter('estado',$estado)
+                     ->setParameter('depto',$deptosDelOperador);
+              $cantidad=count($qb->getQuery()->getResult());
+              
+              $datosChart[]=array('value'=>$cantidad,'color'=>$estado->getColor(),'highlight'=>$estado->getColor(),'label'=>$estado->getNombre());
+            }
+            echo json_encode($datosChart);
             break;
         case strtolower('w-ticketsCerrados-Anual'):
             $estados=($em->getRepository('Modelo\TicketEstado')->findByEstadofinal('1'));
@@ -85,39 +109,55 @@ use \Modelo\Ticket as Ticket;
             $respuesta=array("labels"=>$labels,"datasets"=>array($datasets));
             echo json_encode($respuesta);
             break;
-        case strtolower('w-TicketXPrioridad'):
-
-                $prioridades = $ticket = $em->getRepository('Modelo\Prioridad')->findAll();
-                foreach ($prioridades as $prioridad) {
-                  $arraydatos[$prioridad->getNombre()] = count($em->getRepository('Modelo\Ticket')->findBy(array("prioridad"=>$prioridad->getPrioridadId())));
-                  //$arrayPrioridadColor[$prioridad->getNombre()] =$prioridad->getColor();
-                }
-                unset($labels);
-                unset($datos);
-                $i=0;
-                foreach($prioridades as $prioridad)
-                {
-                  $labels[]=  iconv('UTF-8', 'UTF-8//IGNORE', utf8_encode($prioridad->getNombre()));
-                  $datos['data'][$i]=$arraydatos[$prioridad->getNombre()];
-                  $i++;
-                }
+        case strtolower('w-TicketXPrioridad-Mes'):
+          $departamentos=$em->getRepository('Modelo\Operador')->find($app->getOperador()->getOperadorId())->getDepartamento(); 
+          foreach($departamentos as $depto)
+          {
+            $deptosDelOperador[]=$depto->getDepartamentoId();
+          }      
                 
-                $arrDatasets = array('label' => "Tickets segun prioridad"
-                 ,'fillColor' => "rgba(220,220,220,0.2)"
-                 , 'strokeColor' => "rgba(220,220,220,1)"
-                 , 'pointColor' => "rgba(220,220,220,1)"
-                 , 'pointStrokeColor' => "#fff"
-                 , 'pointHighlightFill' => "#fff"
-                 , 'pointHighlightStroke' => "rgba(220,220,220,1)"
-                 , 'data' => $datos['data']);
-                   
-                $arrReturn = array('labels' => $labels, 'datasets' => array($arrDatasets));
+          $prioridades = $ticket = $em->getRepository('Modelo\Prioridad')->findAll();
+          $fecha=new \DateTime("now");
+          foreach ($prioridades as $prioridad) {
+            $labels[]=$prioridad->getNombre();
+            $qb=$em->createQueryBuilder();
+                   $qb->select('t.ultimaActividad')
+                   ->from('Modelo\Ticket','t')
+                   ->where('t.asignadoAOperador = :id')
+                   ->Andwhere('t.ultimaActividad LIKE :date')
+                   ->Andwhere('t.prioridad = :prioridad')
+                   ->Andwhere('t.departamento IN (:depto)')
+                   ->setParameter('id',$app->getOperador()->getOperadorId())
+                   ->setParameter('date', $fecha->format('Y-m').'%')
+                   ->setParameter('prioridad',$prioridad)
+                   ->setParameter('depto',$deptosDelOperador);
+            $cantidadporPrioridad[]=count($qb->getQuery()->getResult());
+          }
+          
+          $datasets=array("label"=>"Prioridad de ticket asignados por mes"
+                           ,'fillColor' => "rgba(220,220,220,0.2)"
+                           , 'strokeColor' => "rgba(220,220,220,1)"
+                           , 'pointColor' => "rgba(220,220,220,1)"
+                           , 'pointStrokeColor' => "#fff"
+                           , 'pointHighlightFill' => "#fff"
+                           , 'pointHighlightStroke' => "rgba(220,220,220,1)"
+                           , 'data'=>$cantidadporPrioridad);
+                          
+            $respuesta=array("labels"=>$labels,"datasets"=>array($datasets));
 
-                echo json_encode($arrReturn);die;
+             
+            echo json_encode($respuesta);
             break;
-        case strtolower('w-ticketsPendientesAccion'):
-              $pendientesAccion=count($em->getRepository('Modelo\Ticket')->findBy(array("estado"=>1)));
-              echo $pendientesAccion;
+        case strtolower('w-ticketsSinCerrar'):
+              $estados=($em->getRepository('Modelo\TicketEstado')->findByEstadofinal('0'));
+              $cantidadSinCerrar=count($em->getRepository('Modelo\Ticket')->findBy(array("estado"=>$estados)));
+              echo $cantidadSinCerrar;
+            break;
+        case strtolower('w-ticketsAsignados'):
+              $estados=($em->getRepository('Modelo\TicketEstado')->findByEstadofinal('0'));
+              $operador=$app->getOperador();
+              $cantidadAsignados=count($em->getRepository('Modelo\Ticket')->findBy(array("asignadoAOperador"=>$operador,"estado"=>$estados)));
+              echo $cantidadAsignados;
             break;
         case strtolower('w-usuariosExistentes'):
               $usuariosExistentes=count($em->getRepository('Modelo\Usuario')->findAll());
@@ -139,9 +179,8 @@ use \Modelo\Ticket as Ticket;
               echo $ticketCerrados;
             break;
         case strtolower('widgetEstados'):
-          $departamentos=$em->getRepository('Modelo\Operador')->find($app->getOperador()->getOperadorId())->getDepartamento();
           $estados=($em->getRepository('Modelo\TicketEstado')->findAll());
-          
+          $departamentos=$em->getRepository('Modelo\Operador')->find($app->getOperador()->getOperadorId())->getDepartamento(); 
           foreach($departamentos as $depto)
           {
             $deptosDelOperador[]=$depto->getDepartamentoId();
