@@ -10,7 +10,11 @@ use \Modelo\Ticket as Ticket;
 
     switch  (strtolower($_GET['datosAjax'])){
         case strtolower('W-tipoTicketMes'):
-
+          $departamentos=$em->getRepository('Modelo\Operador')->find($app->getOperador()->getOperadorId())->getDepartamento(); 
+          foreach($departamentos as $depto)
+          {
+            $deptosDelOperador[]=$depto->getDepartamentoId();
+          }
           $tipoTickets=$em->getRepository('Modelo\TicketTipo')->findAll();
           $fecha=new \DateTime("now");
           foreach ($tipoTickets as $ticket) {
@@ -21,9 +25,11 @@ use \Modelo\Ticket as Ticket;
                    ->where('t.asignadoAOperador = :id')
                    ->Andwhere('t.ultimaActividad LIKE :date')
                    ->Andwhere('t.tipoTicket = :tipoTicket')
+                   ->Andwhere('t.departamento IN (:depto)')
                    ->setParameter('id',$app->getOperador()->getOperadorId())
                    ->setParameter('date', $fecha->format('Y-m').'%')
-                   ->setParameter('tipoTicket',$ticket);
+                   ->setParameter('tipoTicket',$ticket)
+                   ->setParameter('depto',$deptosDelOperador);
             $cantidadporTipo[]=count($qb->getQuery()->getResult());
           }
           
@@ -40,6 +46,11 @@ use \Modelo\Ticket as Ticket;
             echo json_encode($respuesta);
             break;
         case strtolower('W-estadosTicket-Mes'):
+            $departamentos=$em->getRepository('Modelo\Operador')->find($app->getOperador()->getOperadorId())->getDepartamento(); 
+            foreach($departamentos as $depto)
+            {
+              $deptosDelOperador[]=$depto->getDepartamentoId();
+            }
             $estados = $ticket = $em->getRepository('Modelo\TicketEstado')->findAll();
             $fecha=new \DateTime("now");
             foreach ($estados as $estado) {
@@ -50,9 +61,11 @@ use \Modelo\Ticket as Ticket;
                      ->where('t.asignadoAOperador = :id')
                      ->Andwhere('t.ultimaActividad LIKE :date')
                      ->Andwhere('t.estado = :estado')
+                     ->Andwhere('t.departamento IN (:depto)')
                      ->setParameter('id',$app->getOperador()->getOperadorId())
                      ->setParameter('date', $fecha->format('Y-m').'%')
-                     ->setParameter('estado',$estado);
+                     ->setParameter('estado',$estado)
+                     ->setParameter('depto',$deptosDelOperador);
               $cantidad=count($qb->getQuery()->getResult());
               
               $datosChart[]=array('value'=>$cantidad,'color'=>$estado->getColor(),'highlight'=>$estado->getColor(),'label'=>$estado->getNombre());
@@ -97,7 +110,11 @@ use \Modelo\Ticket as Ticket;
             echo json_encode($respuesta);
             break;
         case strtolower('w-TicketXPrioridad-Mes'):
-                
+          $departamentos=$em->getRepository('Modelo\Operador')->find($app->getOperador()->getOperadorId())->getDepartamento(); 
+          foreach($departamentos as $depto)
+          {
+            $deptosDelOperador[]=$depto->getDepartamentoId();
+          }      
                 
           $prioridades = $ticket = $em->getRepository('Modelo\Prioridad')->findAll();
           $fecha=new \DateTime("now");
@@ -109,9 +126,11 @@ use \Modelo\Ticket as Ticket;
                    ->where('t.asignadoAOperador = :id')
                    ->Andwhere('t.ultimaActividad LIKE :date')
                    ->Andwhere('t.prioridad = :prioridad')
+                   ->Andwhere('t.departamento IN (:depto)')
                    ->setParameter('id',$app->getOperador()->getOperadorId())
                    ->setParameter('date', $fecha->format('Y-m').'%')
-                   ->setParameter('prioridad',$prioridad);
+                   ->setParameter('prioridad',$prioridad)
+                   ->setParameter('depto',$deptosDelOperador);
             $cantidadporPrioridad[]=count($qb->getQuery()->getResult());
           }
           
