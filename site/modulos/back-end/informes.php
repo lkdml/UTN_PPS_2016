@@ -14,5 +14,9 @@ $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
                   \CORE\Controlador\Config::getPublic('Ruta_Back').'imagenes/');
 $vm->assign('OperadorLogueado',$app->getOperador());
 $vm->assign('Permisos',$permisos);
+if ($app->ifHayError()){
+    $error =$app->recuperarErrorDeSession();
+    $vm->assign('Error',$error);
+}
 
 $vm->display('informes.tpl');

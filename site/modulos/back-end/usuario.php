@@ -20,24 +20,39 @@ $vm->assign('Empresas',$Empresas);
 
 switch(strtolower($_POST["accion"])){
   case ("nuevo"):default:
-    // Si el parametro que envio en accion es alta, solo debo validar permisos
-    //var_dump($_POST);die;
-   // $vm->assign('accion',$_POST["accion"]);
+    if (!$permisos->verificarPermiso("usuarios_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=usuarios");
+    } 
     break;
   case ("editar"):
-    //TODO: falta validar permisos para esta accion.
-    $usuario = $em->getRepository('Modelo\Usuario')->find($_POST["usuarioId"][0]);
-    $vm->assign('Usuario',$usuario);   
-
+    if (!$permisos->verificarPermiso("usuarios_ver")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=usuarios");
+    } else{
+      $usuario = $em->getRepository('Modelo\Usuario')->find($_POST["usuarioId"][0]);
+      $vm->assign('Usuario',$usuario);   
+    }
     break;
   case ("borrar"):
-    $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-    foreach ($_POST['usuarioId'] as $user) {
-      $em->remove($em->getRepository('Modelo\Usuario')->find($user));
+    if (!$permisos->verificarPermiso("usuarios_eliminar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=usuarios");
+    } else{
+      $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+      foreach ($_POST['usuarioId'] as $user) {
+        $em->remove($em->getRepository('Modelo\Usuario')->find($user));
+      }
+      $em->flush();
+      
+      header("location:/operador.php?modulo=usuarios");
     }
-    $em->flush();
-    
-    header("location:/operador.php?modulo=usuarios");
     break;
    
 }

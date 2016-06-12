@@ -11,6 +11,7 @@ class Aplicacion {
     private $loggedIn;
     private $operador;
     private $permisos;
+    private $error;
     private static $instancia;
     
     public function getOperador(){return $this->operador;}
@@ -19,10 +20,18 @@ class Aplicacion {
         $this->permisos->obtenerPermisosOperador();
         return $this->permisos;
     }
+    public function getError(boolean $unset=null){
+        $ultimoError = $this->error;
+        if (is_null($unset)){
+            $this->error=null;
+        }
+        return $ultimoError;
+    }
     
     public function setoperador($operador){$this->operador = $operador;}
     public function setUsuario($usuario){$this->usuario = $usuario;}
     public function setPermisos($permisos){$this->permisos = $permisos;}
+    public function setError($error){$this->error = $error;}
     
 
     
@@ -42,7 +51,25 @@ class Aplicacion {
       return self::$instancia;
     }
     
-    public function guardarPermisosEnSession(){
+    public function ifHayError(){
+        if (isset($_SESSION['Aplicacion']['Error'])){
+            return true;
+        }
+        return false;
+    }
+    
+    public function guardarErrorEnSession(){
+        unset($_SESSION['Aplicacion']['Error']);
+        $_SESSION['Aplicacion']['Error']=serialize($this->error);
+    }
+
+    public function recuperarErrorDeSession(){
+        $this->error = unserialize($_SESSION['Aplicacion']['Error']);
+        unset($_SESSION['Aplicacion']['Error']);
+        return $this->error;
+    }
+    
+        public function guardarPermisosEnSession(){
         unset($_SESSION['Aplicacion']['Permisos']);
         $_SESSION['Aplicacion']['Permisos']=serialize($this->permisos);
     }

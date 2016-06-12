@@ -10,24 +10,34 @@ use \Modelo\Archivo as Archivo;
 use \Modelo\EmailQueue as EmailQueue;
 $app = Aplicacion::getInstancia();
 $app->startSession(true);
+$permisos =$app->getPermisos();
 $operador = $app->getOperador();
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 if (isset($_GET['TicketId'])){
-    $Ticket =  $em->getRepository('Modelo\Ticket')->find($_GET["TicketId"]);
-    $em->persist(setearTicket($Ticket,$em));
-    $em->flush();
+    if (!$permisos->verificarPermiso("ticket_editar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+    } else {
+        $Ticket =  $em->getRepository('Modelo\Ticket')->find($_GET["TicketId"]);
+        $em->persist(setearTicket($Ticket,$em));
+        $em->flush();
+    }
 } else {
-    $Ticket = setearTicket(new Ticket(),$em);
-    $Mensaje = setearMensaje(new Mensaje, $Ticket, $em);
-    //$Mensaje = setearArchivosEnMensaje($Mensaje, $em);
-    $em->persist($Ticket);
-    $em->persist($Mensaje);
-    $Mensaje = setearArchivosEnMensaje($Mensaje, $em);
-   
-    $em->flush();
-   // $em->merge($Mensaje);
-    //$em->flush();
+    if (!$permisos->verificarPermiso("ticket_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+    } else {
+        $Ticket = setearTicket(new Ticket(),$em);
+        $Mensaje = setearMensaje(new Mensaje, $Ticket, $em);
+        $em->persist($Ticket);
+        $em->persist($Mensaje);
+        $Mensaje = setearArchivosEnMensaje($Mensaje, $em);
+        $em->flush();
+    }
+
 }
 
 function setearTicket(Ticket $ticket,$em){

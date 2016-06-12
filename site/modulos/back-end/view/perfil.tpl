@@ -90,6 +90,7 @@ js=''
                 <div class="box box-primary">
                       <div class="form-group">
                           <div class="col-sm-11 checkbox">
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[tipoTicket_listar]"{if $tipoTicket_listar} checked{/if}></input>Listar Tipos de Tickets</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[tipoTicket_ver]"{if $tipoTicket_ver} checked{/if}></input>Ver Tipos de Tickets</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[tipoTicket_crear]"{if $tipoTicket_crear} checked{/if}></input>Crear Tipos de Tickets</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[tipoTicket_editar]"{if $tipoTicket_editar} checked{/if}></input>Editar Tipos de Tickets</label>
@@ -129,6 +130,7 @@ js=''
                 <div class="box box-primary">
                       <div class="form-group">
                         <div class="col-sm-11 checkbox">
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[categorias_listar]"{if $categorias_listar} checked{/if}></input>Listar Categorias</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[categorias_ver]"{if $categorias_ver} checked{/if}></input>Ver Categorias</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[categorias_crear]"{if $categorias_crear} checked{/if}></input>Crear Categoría </label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[categorias_editar]"{if $categorias_editar} checked{/if}></input>Editar Categoría</label>
@@ -140,6 +142,7 @@ js=''
                 <div class="box box-primary">
                       <div class="form-group">        
                         <div class="col-sm-11 checkbox">  
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[perfiles_listar]" {if $perfiles_listar} checked{/if}></input>Listar Perfiles</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[perfiles_ver]" {if $perfiles_ver} checked{/if}></input>Ver Perfiles</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[perfiles_crear]" {if $perfiles_crear} checked{/if}></input>Crear Perfil</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[perfiles_editar]" {if $perfiles_editar} checked{/if}></input>editar Perfil</label>
@@ -169,7 +172,7 @@ js=''
                 <div class="box box-primary">
                       <div class="form-group">
                         <div class="col-sm-11 checkbox">
-                          
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[departamentos_listar]" {if $departamentos_listar} checked{/if}></input>Listar Departamentos</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[departamentos_ver]" {if $departamentos_ver} checked{/if}></input>Ver Departamentos</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[departamentos_crear]" {if $departamentos_crear} checked{/if}></input>Crear Departamentos</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[departamentos_editar]" {if $departamentos_editar} checked{/if}></input>Editar Departamentos</label>
@@ -181,6 +184,7 @@ js=''
                 <div class="box box-primary">
                       <div class="form-group">
                           <div class="col-sm-11 checkbox">
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[sla_listar]" {if $sla_listar} checked{/if}></input>Listar SLA</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[sla_ver]" {if $sla_ver} checked{/if}></input>Ver SLA</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[sla_crear]" {if $sla_crear} checked{/if}></input>Crear SLA</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[sla_editar]" {if $sla_editar} checked{/if}></input>Editar SLA</label>
@@ -192,6 +196,7 @@ js=''
                 <div class="box box-primary">
                       <div class="form-group">
                         <div class="col-sm-11 checkbox">
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[prioridades_listar]" {if $prioridades_listar} checked{/if}></input>Listar Prioridades</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[prioridades_ver]" {if $prioridades_ver} checked{/if}></input>Ver Prioridades</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[prioridades_crear]" {if $prioridades_crear} checked{/if}></input>Crear Prioridades</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[prioridades_editar]" {if $prioridades_editar} checked{/if}></input>Editar Prioridades</label>
@@ -203,6 +208,7 @@ js=''
                 <div class="box box-primary">
                       <div class="form-group">        
                         <div class="col-sm-11 checkbox">
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[estados_listar]" {if $estados_listar} checked{/if}></input>Listar Estados</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[estados_ver]" {if $estados_ver} checked{/if}></input>Ver Estados</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[estados_crear]" {if $estados_crear} checked{/if}></input>Crear Estados</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[estados_editar]" {if $estados_editar} checked{/if}></input>Editar Estados</label>
@@ -214,6 +220,7 @@ js=''
                 <div class="box box-primary">
                       <div class="form-group">
                         <div class="col-sm-11 checkbox">
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[usuarios_listar]" {if $usuarios_listar} checked{/if}></input>Listar Usuarios</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[usuarios_ver]" {if $usuarios_ver} checked{/if}></input>Ver Usuarios</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[usuarios_crear]" {if $usuarios_crear} checked{/if}></input>Crear Usuario</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[usuarios_editar]" {if $usuarios_editar} checked{/if}></input>Editar Usuarios</label>
@@ -226,6 +233,7 @@ js=''
                 <div class="box box-primary">
                       <div class="form-group">        
                         <div class="col-sm-11 checkbox">
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[empresas_listar]" {if $empresas_listar} checked{/if}></input>Listar Empresas</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[empresas_ver]" {if $empresas_ver} checked{/if}></input>Ver Empresas</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[empresas_crear]" {if $empresas_crear} checked{/if}></input>Crear Empresa</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[empresas_editar]" {if $empresas_editar} checked{/if}></input>Editar Empresa</label>
@@ -240,6 +248,7 @@ js=''
                 <div class="box box-primary">
                       <div class="form-group">
                         <div class="col-sm-11 checkbox">
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[operadores_listar]" {if $operadores_listar} checked{/if}></input>Listar Operadores</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[operadores_ver]" {if $operadores_ver} checked{/if}></input>Ver Operadores</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[operadores_crear]" {if $operadores_crear} checked{/if}></input>Crear Operador</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[operadores_editar]" {if $operadores_editar} checked{/if}></input>Editar Operador</label>
@@ -252,9 +261,11 @@ js=''
             </div>
             <!-- Fin Columna Derecha -->
  
-           <div class="box-footer col-sm-3 pull-right">
-                  <button onclick="history.go(-1);" class="btn btn-danger pull-left btn-lg">Cancelar</button>
-                  <button type="submit" class="btn btn-info pull-right btn-lg">Enviar</button>
+                <div class="box-footer col-sm-3 pull-right">
+                  <button onclick="window.location='/operador.php?modulo=perfiles';return false;" class="btn btn-danger pull-left btn-lg">Cancelar</button>
+                  {if $Permisos->verificarPermiso(array("perfiles_crear","perfiles_editar"))}
+                      <button type="submit" class="btn btn-info pull-right btn-lg">Enviar</button>
+                  {/if}
                 </div>
         </form>
         <!-- form end -->

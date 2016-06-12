@@ -159,6 +159,9 @@ js=''
                 <div class="box-body">
                   <canvas id="radarChart" style="height:250px"></canvas>
                 </div>
+                
+              {if $Error}{$Error->getHtmlModal()}{/if}
+
                 <!-- /.box-body -->
             </div>
             <!-- /.box -->          
@@ -206,6 +209,7 @@ js=''
 <script src="{$rutaJS}ticketsPendientesAccion.js"></script>
 <script src="{$rutaJS}cantidadUsuariosExistentes.js"></script>
 <script src="{$rutaJS}ticketsCerradosMesActual.js"></script>
+<script src="{$rutaJS}tmh-error.js"></script>
 
 {literal}
 <script>
@@ -239,6 +243,7 @@ $( document ).ready(function() {
                   }
         });
 });
+
 
 </script>
 {/literal}

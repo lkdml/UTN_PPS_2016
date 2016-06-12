@@ -22,23 +22,39 @@ $Estados = $em->getRepository('Modelo\TicketEstado')->findAll();
 
 switch(strtolower($_POST["accion"])){
   case ("nuevo"):
-    // Si el parametro que envio en accion es alta, solo debo validar permisos
-    //var_dump($_POST);die;
-   // $vm->assign('accion',$_POST["accion"]);
+    if (!$permisos->verificarPermiso("estados_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=estados");
+    } 
     break;
   case ("editar"):
-    //TODO: falta validar permisos para esta accion.
-    $Estado = $em->getRepository('Modelo\TicketEstado')->find($_POST["estadoId"][0]);
-    $vm->assign('Estado',$Estado);
+    if (!$permisos->verificarPermiso("estados_ver")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=estados");
+    } else{
+      $Estado = $em->getRepository('Modelo\TicketEstado')->find($_POST["estadoId"][0]);
+      $vm->assign('Estado',$Estado);
+    }
     break;
   case ("borrar"):
-    $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-    foreach ($_POST['estadoId'] as $estado) {
-      $em->remove($em->getRepository('Modelo\TicketEstado')->find($estado));
+    if (!$permisos->verificarPermiso("estados_eliminar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=estados");
+    } else{
+      $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+      foreach ($_POST['estadoId'] as $estado) {
+        $em->remove($em->getRepository('Modelo\TicketEstado')->find($estado));
+      }
+      $em->flush();
+      
+      header("location:/operador.php?modulo=estados");
     }
-    $em->flush();
-    
-    header("location:/operador.php?modulo=estados");
     break;
    default:
      die;

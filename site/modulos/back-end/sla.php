@@ -38,28 +38,43 @@ $vm->assign('TipoTickets',$TipoTickets);
 
 switch(strtolower($_POST["accion"])){
   case ("nuevo"):default:
-    // Si el parametro que envio en accion es alta, solo debo validar permisos
-    //var_dump($_POST);die;
-   // $vm->assign('accion',$_POST["accion"]);
+    if (!$permisos->verificarPermiso("sla_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=slas");
+    } 
     break;
   case ("editar"):
-    //TODO: falta validar permisos para esta accion.
-    $sla = $em->getRepository('Modelo\Sla')->find($_POST["slaId"][0]);
-    $vm->assign('Sla',$sla);   
-
+    if (!$permisos->verificarPermiso("sla_ver")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=slas");
+    } else{
+      $sla = $em->getRepository('Modelo\Sla')->find($_POST["slaId"][0]);
+      $vm->assign('Sla',$sla);   
+    }
     break;
   case ("borrar"):
-    $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-    
-    foreach ($_POST['slaId'] as $sla) {
-      $SlaUpdatear =  $em->getRepository('Modelo\Sla')->find($sla);
-      $SlaUpdatear->setEliminado(true);
-      $SlaUpdatear->setEstado(0);
-      $em->persist($SlaUpdatear);
+    if (!$permisos->verificarPermiso("sla_eliminar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=slas");
+    } else{
+      $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+      
+      foreach ($_POST['slaId'] as $sla) {
+        $SlaUpdatear =  $em->getRepository('Modelo\Sla')->find($sla);
+        $SlaUpdatear->setEliminado(true);
+        $SlaUpdatear->setEstado(0);
+        $em->persist($SlaUpdatear);
+      }
+      $em->flush();
+      
+      header("location:/operador.php?modulo=slas");
     }
-    $em->flush();
-    
-    header("location:/operador.php?modulo=slas");
     break;
    
 }

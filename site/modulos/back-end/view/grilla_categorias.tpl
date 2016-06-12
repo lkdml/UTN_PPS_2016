@@ -87,7 +87,7 @@ js=''
  
     </section>
     <!-- /.content -->
-    
+    {if $Error}{$Error->getHtmlModal()}{/if}
   </div>
  
   <!-- Add the sidebar's background. This div must be placed
@@ -121,6 +121,7 @@ js=''
 <!-- Borrado Modal-->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}borradoModal.js"></script>
 
+<script src="{$rutaJS}tmh-error.js"></script>
 
 {literal}
 <script>

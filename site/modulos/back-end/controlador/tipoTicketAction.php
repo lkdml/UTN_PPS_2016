@@ -5,18 +5,31 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/bootstrap_orm.php');
 use \CORE\Controlador\Aplicacion;
 use \Modelo\TicketTipo as TicketTipo;
 Aplicacion::startSession(true);
+$permisos =$app->getPermisos();
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 if (isset($_GET['tipoTicket'])){
-    $TTipo =  $em->getRepository('Modelo\TicketTipo')->find($_GET["tipoTicket"]);
-    $TicketTipo = setear($TTipo,$em);
-    $em->persist($TicketTipo);
-    $em->flush();
+    if (!$permisos->verificarPermiso("tipoTicket_editar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+    } else {
+        $TTipo =  $em->getRepository('Modelo\TicketTipo')->find($_GET["tipoTicket"]);
+        $TicketTipo = setear($TTipo,$em);
+        $em->persist($TicketTipo);
+        $em->flush();
+    }
 } else {
-    $TicketTipo = setear(new TicketTipo(),$em);
-    $em->persist($TicketTipo);
-    $em->flush();
+    if (!$permisos->verificarPermiso("tipoTicket_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+    } else {
+        $TicketTipo = setear(new TicketTipo(),$em);
+        $em->persist($TicketTipo);
+        $em->flush();
+    }
 }
 
 

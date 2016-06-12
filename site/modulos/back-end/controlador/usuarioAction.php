@@ -6,18 +6,32 @@ use \CORE\Controlador\Aplicacion;
 use \Modelo\Usuario as Usuario;
 
 Aplicacion::startSession(true);
+$app = Aplicacion::getInstancia();
+$permisos =$app->getPermisos();
 // TODO antes de generar el usuario, debo verificar que el username y el mail no existan previamente. (o bien manejar el error que devolverá el sql si eso pasara.)
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 if (isset($_GET['usuarioId'])){
-    $Usuario =  $em->getRepository('Modelo\Usuario')->find($_GET["usuarioId"]);
-    $em->persist(setear($Usuario,$em));
-    $em->flush();
+    if (!$permisos->verificarPermiso("usuarios_editar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+    } else {
+        $Usuario =  $em->getRepository('Modelo\Usuario')->find($_GET["usuarioId"]);
+        $em->persist(setear($Usuario,$em));
+        $em->flush();
+    }
 } else {
-    $Usuario = setear(new Usuario(),$em);
-    $em->persist($Usuario);
-    $em->flush();
+    if (!$permisos->verificarPermiso("usuarios_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+    } else {
+        $Usuario = setear(new Usuario(),$em);
+        $em->persist($Usuario);
+        $em->flush();
+    }
 }
 
 

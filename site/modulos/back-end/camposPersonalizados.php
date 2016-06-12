@@ -8,17 +8,28 @@ $app = Aplicacion::getInstancia();
 $app->startSession($modoOP);
 $permisos =$app->getPermisos();
 
-$vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateDir'),null);
-$vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
-                  \CORE\Controlador\Config::getPublic('Ruta_Back').'js/',
-                  \CORE\Controlador\Config::getPublic('Ruta_Back').'imagenes/');
-$vm->assign('OperadorLogueado',$app->getOperador());
-$vm->assign('Permisos',$permisos);
-
-$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-$ticketCustom = $em->getRepository('Modelo\TicketCustomFields')->findAll();
-
-
-$vm->assign('TicketCustomFields',$ticketCustom);
-
-$vm->display('grilla_camposPersonalizados.tpl');
+if (!$permisos->verificarPermiso("")){
+        $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+    $app->setError($error);
+    $app->guardarErrorEnSession();
+    $permisos->redirigir("/operador.php?modulo=dashboard");
+    } else {
+    $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateDir'),null);
+    $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
+                      \CORE\Controlador\Config::getPublic('Ruta_Back').'js/',
+                      \CORE\Controlador\Config::getPublic('Ruta_Back').'imagenes/');
+    $vm->assign('OperadorLogueado',$app->getOperador());
+    $vm->assign('Permisos',$permisos);
+    if ($app->ifHayError()){
+        $error =$app->recuperarErrorDeSession();
+        $vm->assign('Error',$error);
+    }
+    
+    $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+    $ticketCustom = $em->getRepository('Modelo\TicketCustomFields')->findAll();
+    
+    
+    $vm->assign('TicketCustomFields',$ticketCustom);
+    
+    $vm->display('grilla_camposPersonalizados.tpl');
+}

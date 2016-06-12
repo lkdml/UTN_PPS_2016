@@ -12,6 +12,7 @@ use \CORE\Controlador\FileManager as FileManager;
 use \CORE\Controlador\Aplicacion;
 $app = Aplicacion::getInstancia();
 Aplicacion::startSession(true);
+$permisos =$app->getPermisos();
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
@@ -23,38 +24,51 @@ $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 if (validarRequisitos()){
     if (isset($_GET['Operador'])){
-        if (($_GET['actualiza']=='clave')){
-            $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
-            if (($getOperador->verificarClave($_POST["clave"])) && ($_POST["nuevaclave1"]==$_POST["nuevaclave2"])){
-                $getOperador->setClave($getOperador->encriptarClave($_POST["nuevaclave1"]));
-            }
-            $em->persist($getOperador);
-            $em->flush();
-        } else if (($_GET['actualiza']=='foto')){
-            $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
-            $archivo = new FileManager($em->getRepository('Modelo\ConfiguracionGlobal')->find("extensiones_permitidas_imagenes")->getValor(),'modulos/back-end/imagenes/avatars/');
-            $archivo->guardarArchivosDePost($_FILES);
-            //TODO faltan agregar al TPL
-            $getOperador->setHashFoto($archivo->getArrayNombres()[0]['hashName']);
-            $em->persist($getOperador);
-            $em->flush();
-            if ($getOperador->getOperadorId()==$app->getOperador()->getOperadorId()){
-                $app->setoperador($getOperador);
-                $app->guardarOperadorEnSession();
-            }
+        if (!$permisos->verificarPermiso("operadores_editar")){
+          $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+          $app->setError($error);
+          $app->guardarErrorEnSession();
         } else {
-            $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
-            $Operador = setearOperador($getOperador,$em);
-            $em->persist($Operador);
-            $em->flush();
+            if (($_GET['actualiza']=='clave')){
+                $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
+                if (($getOperador->verificarClave($_POST["clave"])) && ($_POST["nuevaclave1"]==$_POST["nuevaclave2"])){
+                    $getOperador->setClave($getOperador->encriptarClave($_POST["nuevaclave1"]));
+                }
+                $em->persist($getOperador);
+                $em->flush();
+            } else if (($_GET['actualiza']=='foto')){
+                $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
+                $archivo = new FileManager($em->getRepository('Modelo\ConfiguracionGlobal')->find("extensiones_permitidas_imagenes")->getValor(),'modulos/back-end/imagenes/avatars/');
+                $archivo->guardarArchivosDePost($_FILES);
+                //TODO faltan agregar al TPL
+                $getOperador->setHashFoto($archivo->getArrayNombres()[0]['hashName']);
+                $em->persist($getOperador);
+                $em->flush();
+                if ($getOperador->getOperadorId()==$app->getOperador()->getOperadorId()){
+                    $app->setoperador($getOperador);
+                    $app->guardarOperadorEnSession();
+                }
+            } else {
+                $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
+                $Operador = setearOperador($getOperador,$em);
+                $em->persist($Operador);
+                $em->flush();
+            }
         }
     } else {
-       $Operador = setearOperador(new Operador(),$em);
-       $em->persist($Operador);
-       $em->flush();
+       if (!$permisos->verificarPermiso("operadores_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+    } else {
+            $Operador = setearOperador(new Operador(),$em);
+           $em->persist($Operador);
+           $em->flush();
+        }
     }
-
 }
+
+header("location:/operador.php?modulo=operadores");
 
 function validarRequisitos(){
     $rta=false;
@@ -104,6 +118,6 @@ function setearOperador(Operador $operador,$em){
     return $operador;
 }
 
-header("location:/operador.php?modulo=operadores");
+
 
 ?>

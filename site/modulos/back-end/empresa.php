@@ -17,24 +17,39 @@ $vm->assign('Permisos',$permisos);
 
 switch(strtolower($_POST["accion"])){
   case ("nuevo"):
-    // Si el parametro que envio en accion es alta, solo debo validar permisos
-    //var_dump($_POST);die;
-   // $vm->assign('accion',$_POST["accion"]);
+    if (!$permisos->verificarPermiso("empresas_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=empresas");
+    } 
     break;
   case ("editar"):
-    //TODO: falta validar permisos para esta accion.
-    $Empresa = $em->getRepository('Modelo\Empresa')->find($_POST["empresaId"][0]);
-    $vm->assign('Empresa',$Empresa);
-    
+    if (!$permisos->verificarPermiso("empresas_ver")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=empresas");
+    } else{
+      $Empresa = $em->getRepository('Modelo\Empresa')->find($_POST["empresaId"][0]);
+      $vm->assign('Empresa',$Empresa);
+    }
     break;
   case ("borrar"):
-    $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-    foreach ($_POST['empresaId'] as $empresa) {
-      $em->remove($em->getRepository('Modelo\Empresa')->find($empresa));
+    if (!$permisos->verificarPermiso("empresas_eliminar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=empresas");
+    } else{
+      $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+      foreach ($_POST['empresaId'] as $empresa) {
+        $em->remove($em->getRepository('Modelo\Empresa')->find($empresa));
+      }
+      $em->flush();
+      
+      header("location:/operador.php?modulo=empresas");
     }
-    $em->flush();
-    
-    header("location:/operador.php?modulo=empresas");
     break;
    default:
      die;

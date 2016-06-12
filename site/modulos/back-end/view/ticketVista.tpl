@@ -178,14 +178,17 @@ js=''
                    <!--Boton Cerrar Ticket-->
                 <div class="col-md-6 pull-right">
                     <div class="col-md-2 pull-right">
-                        <button onclick="history.go(-1);" class="btn btn-info pull-right">Cancelar</button>
+                        <button onclick="window.location='/operador.php?modulo=tickets';return false;" class="btn btn-danger pull-left btn-lg">Cancelar</button>
                     </div>
-                    <div class="col-md-2 pull-right">
-                        <button type="submit" class="btn btn-danger btn-block">Cerrar Ticket</button>
-                    </div>
-                    <div class="col-md-2 pull-right">
-                        <button type="submit" class="btn btn-primary pull-left">Enviar</button>
-                    </div>
+                    
+                    {if $Permisos->verificarPermiso("ticket_editar")}
+                        <div class="col-md-2 pull-right">
+                            <button type="submit" class="btn btn-danger btn-block">Cerrar Ticket</button>
+                        </div>
+                        <div class="col-md-2 pull-right">
+                            <button type="submit" class="btn btn-primary pull-left">Enviar</button>
+                        </div>
+                    {/if}
                 </div>
                 
                 

@@ -8,18 +8,32 @@ use \Modelo\Rol as Rol;
  * Valido que el operador esté con la session habilitadas
  */
 use \CORE\Controlador\Aplicacion;
+$app = Aplicacion::getInstancia();
 Aplicacion::startSession(true);
+$permisos =$app->getPermisos();
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 if (isset($_GET['perfil'])){
-    $getPerfil =  $em->getRepository('Modelo\Perfil')->find($_GET["perfil"]);
+    if (!$permisos->verificarPermiso("perfiles_editar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+    } else {
+        $getPerfil =  $em->getRepository('Modelo\Perfil')->find($_GET["perfil"]);
         $Perfil = setearPerfil($getPerfil,$em);
         $em->merge($Perfil);
         $em->flush();
+    }
 } else {
-   $Perfil = setearPerfil(new Perfil(),$em);
-   $em->persist($Perfil);
-   $em->flush();
+    if (!$permisos->verificarPermiso("perfiles_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+    } else {
+       $Perfil = setearPerfil(new Perfil(),$em);
+       $em->persist($Perfil);
+       $em->flush();
+    }
 }
 
 function setearPerfil(Perfil $perfil,$em){

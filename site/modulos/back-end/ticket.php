@@ -42,24 +42,38 @@ $vm->assign('Operadores',$Operadores);
 
 switch(strtolower($_POST["accion"])){
   case ("nuevo"):default:
-    // Si el parametro que envio en accion es alta, solo debo validar permisos
-    //var_dump($_POST);die;
-   // $vm->assign('accion',$_POST["accion"]);
+    if (!$permisos->verificarPermiso("ticket_crear")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=tickets");
+    } 
    $vm->display('ticket.tpl');
     break;
   case ("ver"):
-    //TODO: falta validar permisos para esta accion. 
-    $_SESSION['LastTicketID']=$_POST["ticketId"][0];
-    $ordenamiento_mensajes = $em->getRepository('Modelo\ConfiguracionGlobal')->find('ordenamiento_mensajes');
-    $Ticket = $em->getRepository('Modelo\Ticket')->find($_POST["ticketId"][0]);
-    $Mensajes = $em->getRepository('Modelo\Mensaje')->findBy(array("ticket"=>$_POST["ticketId"][0]),
-                                                            array('fecha' => $ordenamiento_mensajes->getValor()));
-    $vm->assign('Ticket',$Ticket); 
-    $vm->assign('Mensajes',$Mensajes);
-    $vm->display('ticketVista.tpl');
-
+    if (!$permisos->verificarPermiso("ticket_ver")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=tickets");
+    } else{ 
+      $_SESSION['LastTicketID']=$_POST["ticketId"][0];
+      $ordenamiento_mensajes = $em->getRepository('Modelo\ConfiguracionGlobal')->find('ordenamiento_mensajes');
+      $Ticket = $em->getRepository('Modelo\Ticket')->find($_POST["ticketId"][0]);
+      $Mensajes = $em->getRepository('Modelo\Mensaje')->findBy(array("ticket"=>$_POST["ticketId"][0]),
+                                                              array('fecha' => $ordenamiento_mensajes->getValor()));
+      $vm->assign('Ticket',$Ticket); 
+      $vm->assign('Mensajes',$Mensajes);
+      $vm->display('ticketVista.tpl');
+    }
     break;
   case ("borrar"):
+    if (!$permisos->verificarPermiso("ticket_borrar")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=tickets");
+    } else{
     //No es correcto borrar tickes de la BD, se deshabilita esta función.
     /**$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
     foreach ($_POST['ticketId'] as $departamento) {
@@ -67,7 +81,8 @@ switch(strtolower($_POST["accion"])){
     }
     $em->flush();
     */
-    header("location:/operador.php?modulo=tickets");
+      header("location:/operador.php?modulo=tickets");
+    }
     break;
 }
 

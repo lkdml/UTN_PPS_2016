@@ -119,8 +119,10 @@ js=''
                 </div>
                 <!-- box end -->
                  <div class="box-footer col-sm-3 pull-right">
-                  <button onclick="history.go(-1);" class="btn btn-danger pull-left btn-lg">Cancelar</button>
-                  <button type="submit" class="btn btn-info pull-right btn-lg">Enviar</button>
+                  <button onclick="window.location='/operador.php?modulo=estados';return false;" class="btn btn-danger pull-left btn-lg">Cancelar</button>
+                  {if $Permisos->verificarPermiso(array("estados_crear","estados_editar"))}
+                      <button type="submit" class="btn btn-info pull-right btn-lg">Enviar</button>
+                  {/if}
                 </div>
             </div>
             <!-- box body end -->

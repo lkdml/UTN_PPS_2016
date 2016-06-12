@@ -173,7 +173,7 @@ js=''
 
     </section>
     <!-- /.content -->
-    
+    {if $Error}{$Error->getHtmlModal()}{/if}
   </div>
  
   <!-- Add the sidebar's background. This div must be placed
@@ -193,6 +193,7 @@ js=''
 <!-- AdminLTE App -->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}app.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+<script src="{$rutaJS}tmh-error.js"></script>
 <script>
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor

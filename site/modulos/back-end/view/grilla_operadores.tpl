@@ -108,7 +108,7 @@ js=''
      </form>
     </section>
     <!-- /.content -->
-    
+    {if $Error}{$Error->getHtmlModal()}{/if}
   </div>
  
   <!-- Add the sidebar's background. This div must be placed
@@ -130,6 +130,7 @@ js=''
 
 <!-- DataTables -->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}jquery.dataTables.js"></script>
+<script src="{$rutaJS}tmh-error.js"></script>
 
 {literal}
 <script>

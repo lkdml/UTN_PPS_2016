@@ -45,5 +45,12 @@ class Permisos {
             $this->permisos[] = $rol;
         }
     }
+    
+    public function redirigir($url=null){
+        if (is_null($url)){
+            $url="/";
+        }
+        header("location:".$url);
+    }
 }
 ?>
