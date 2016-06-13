@@ -33,6 +33,7 @@ if (isset($_SESSION['LastTicketID'])){
 } else {
     header("location:/operador.php?modulo=tickets");
 }
+header("location:/operador.php?modulo=tickets");
 
 
 
@@ -130,6 +131,5 @@ function setearEmailQueue($remitente,$destinatario,$ticketNumber,$em){
     return $queue;
     
 }
-header("location:/operador.php?modulo=tickets");
 
 ?>

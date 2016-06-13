@@ -39,6 +39,7 @@ if (isset($_GET['TicketId'])){
     }
 
 }
+header("location:/operador.php?modulo=tickets");
 
 function setearTicket(Ticket $ticket,$em){
    
@@ -159,6 +160,5 @@ function setearEmailQueue($remitente,$destinatario,$ticketNumber,$em){
     return $queue;
     
 }
-header("location:/operador.php?modulo=tickets&estado=1");
 
 ?>
