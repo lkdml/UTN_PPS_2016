@@ -223,7 +223,6 @@ js=''
 <!-- Validaciones FrontEnd -->
 <script src="{$rutaJS}jquery-validator-min.js"></script>
 <script src="{$rutaJS}validacionNuevoTicket.js"></script>
-
 <script src="{$rutaJS}bootstrap3-wysihtml5.all.js"></script>
 
 {literal} 
