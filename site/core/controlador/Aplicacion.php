@@ -70,27 +70,27 @@ class Aplicacion {
     }
     
         public function guardarPermisosEnSession(){
-        unset($_SESSION['Aplicacion']['Permisos']);
-        $_SESSION['Aplicacion']['Permisos']=serialize($this->permisos);
+        unset($_SESSION['back']['Permisos']);
+        $_SESSION['back']['Permisos']=serialize($this->permisos);
     }
 
     public function recuperarPermisosDeSession(){
-        $this->permisos = unserialize($_SESSION['Aplicacion']['Permisos']);
+        $this->permisos = unserialize($_SESSION['back']['Permisos']);
     }
 
     public function guardarOperadorEnSession(){
-        $_SESSION['Aplicacion']['Operador']=serialize($this->operador);
+        $_SESSION['back']['Operador']=serialize($this->operador);
     }
     
     public function recuperarOperadorDeSession(){
-        $this->operador=unserialize($_SESSION['Aplicacion']['Operador']);
+        $this->operador=unserialize($_SESSION['back']['Operador']);
     }
     public function guardarUsuarioEnSession(){
-        $_SESSION['Aplicacion']['Usuario']=serialize($this->usuario);
+        $_SESSION['front']['Usuario']=serialize($this->usuario);
     }
     
     public function recuperarUsuarioDeSession(){
-        $this->usuario=unserialize($_SESSION['Aplicacion']['Usuario']);
+        $this->usuario=unserialize($_SESSION['front']['Usuario']);
     }
 
     protected function __construct(){}
@@ -138,11 +138,11 @@ class Aplicacion {
     
     public function autenticarFrontOBack($backend){
             if ($backend==true) {
-                $_SESSION['tiempo']=strtotime('+10 minute') ;
-                $_SESSION["backAutenticado"]=true;
+                $_SESSION['back']['tiempo']=strtotime('+10 minute') ;
+                $_SESSION['back']["Autenticado"]=true;
             } else {
-                $_SESSION['tiempo']=strtotime('+10 minute') ;
-                $_SESSION["frontAutenticado"]=true;    
+                $_SESSION['front']['tiempo']=strtotime('+10 minute') ;
+                $_SESSION['front']["Autenticado"]=true;    
             }
     }
 
@@ -150,14 +150,14 @@ class Aplicacion {
             $rta=false;
             if ($backend)
             {
-                if ($_SESSION["backAutenticado"]==true) {
-                    if (isset($_SESSION['tiempo'])) {
-                        if ($_SESSION['tiempo'] > time()) {
-                            $_SESSION['tiempo'] = strtotime('+10 minute');
+                if ($_SESSION['back']["Autenticado"]==true) {
+                    if (isset($_SESSION['back']['tiempo'])) {
+                        if ($_SESSION['back']['tiempo'] > time()) {
+                            $_SESSION['back']['tiempo'] = strtotime('+10 minute');
                             $rta=true;
                         }
                     }
-                    if (isset($_SESSION['Aplicacion']['Operador'])){
+                    if (isset($_SESSION['back']['Operador'])){
                         $this->recuperarOperadorDeSession();
                         if (isset($this->permisos)){
                             $this->permisos = new \CORE\Controlador\Permisos();
@@ -166,14 +166,14 @@ class Aplicacion {
                     }
                 }
             } else {
-                if ($_SESSION["frontAutenticado"]==true) {
-                    if (isset($_SESSION['tiempo'])) {
-                        if ($_SESSION['tiempo'] > time()) {
-                            $_SESSION['tiempo'] = strtotime('+5 minute');
+                if ($_SESSION['front']["Autenticado"]==true) {
+                    if (isset($_SESSION['front']['tiempo'])) {
+                        if ($_SESSION['front']['tiempo'] > time()) {
+                            $_SESSION['front']['tiempo'] = strtotime('+10 minute');
                             $rta=true;
                         }
                     }
-                    if (isset($_SESSION['Aplicacion']['Usuario'])){
+                    if (isset($_SESSION['front']['Usuario'])){
                         $this->recuperarUsuarioDeSession();
                     }
                 }
@@ -187,7 +187,7 @@ class Aplicacion {
         $operador =  $em->getRepository('Modelo\Operador')->findBy(array('nombreUsuario'=>$operador));
         if (!empty($operador)){
             if ($operador[0]->verificarClave($clave)){
-                $this->loggedIn = true;
+                $this->loggedIn = array("Operador"=>true);
                 $this->setoperador($operador[0]); 
                 $this->startSession(true,true);
                 $this->guardarOperadorEnSession();
@@ -207,7 +207,7 @@ class Aplicacion {
              
        if (!empty($usuario)){
             if ($usuario[0]->verificarClave($clave)){
-                $this->loggedIn = true;
+                $this->loggedIn = array("Usuario"=>true);
                 $this->setUsuario($usuario[0]); 
                 $this->startSession(false,true);
                 $this->guardarUsuarioEnSession();
@@ -219,14 +219,37 @@ class Aplicacion {
     
 
     
-    public function logout() {
-            session_start();
-            session_unset();
-            session_destroy();
-            unset($this);
-            unset($this);
+    public function logout($modo=null) {
+            switch ($modo) {
+                case 'front':
+                    $this->unsetUsuario();
+                    break;
+                case 'back':
+                    $this->unsetOperador();
+                    break;
+                
+                default:
+                    $this->unsetOperador();
+                    $this->unsetUsuario();
+                    session_destroy();
+                    break;
+            }
+    }
+    
+    public function unsetOperador(){
+        session_start();
+        unset($this->loggedIn["Operador"]);
+        unset($this->permisos);
+        unset($this->operador);
+        unset($_SESSION['back']);
     }
 
+    public function unsetUsuario(){
+        session_start();
+        unset($this->loggedIn["Usuario"]);
+        unset($this->usuario);
+        unset($_SESSION['front']);
+    }
 
 
     public  function get_remoteIp() {

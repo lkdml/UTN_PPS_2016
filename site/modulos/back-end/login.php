@@ -6,7 +6,7 @@ require_once (\CORE\Controlador\Config::getPublic('Ruta_Core_Controlador')."View
 $app = \CORE\Controlador\Aplicacion::getInstancia();
 
 if ($_GET["logOut"]=='1'){
-  $app->logout();
+  $app->logout('back');
 }
 
 $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateDir'),null);

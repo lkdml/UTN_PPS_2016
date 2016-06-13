@@ -10,18 +10,6 @@
 require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php'); 
 
 use \CORE\Controlador\Aplicacion as Aplicacion;
-/**
-require_once($_SERVER["DOCUMENT_ROOT"].'/bootstrap_orm.php');
-$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-$Operador =  $em->getRepository('Modelo\Operador')->find(1);
-echo "<pre>";
-Doctrine\Common\Util\Debug::dump($Operador);
-echo "</pre>";
-//var_dump($Operador->getRoles());
-die;
-**/
-
-
 $app = Aplicacion::getInstancia();
 
 if ($app->loginOperador($_POST["operador"],$_POST["clave"])){
