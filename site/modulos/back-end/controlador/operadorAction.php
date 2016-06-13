@@ -31,9 +31,9 @@ if (validarRequisitos()){
         } else {
             if (($_GET['actualiza']=='clave')){
                 $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
-                if (($getOperador->verificarClave($_POST["clave"])) && ($_POST["nuevaclave1"]==$_POST["nuevaclave2"])){
-                    $claveNueva = $getOperador->encriptarClave($_POST["nuevaclave1"]);
-                    $getOperador->setClave($claveNueva);
+                if (($getOperador->verificarClave($_POST["clave"])) && ($_POST["nuevaclave1"]==$_POST["nuevaclave2"]))
+                {
+                    $getOperador->encriptarClave($_POST["nuevaclave1"]);
                 }
                 $em->persist($getOperador);
                 $em->flush();

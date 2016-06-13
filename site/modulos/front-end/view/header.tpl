@@ -91,7 +91,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="/index.php?modulo=perfil" class="btn btn-default btn-flat">Configuración</a>
+                  <a href="/index.php?modulo=perfilOperador" class="btn btn-default btn-flat">Configuración</a>
                 </div>
                 <div class="pull-right">
                   <a href="/index.php?modulo=login&logOut=1" class="btn btn-default btn-flat">Salir</a>

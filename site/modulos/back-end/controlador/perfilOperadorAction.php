@@ -21,8 +21,7 @@ if (isset($_GET['Operador'])){
     $getOperador =  $em->getRepository('Modelo\Operador')->find($_GET["Operador"]);
     if (($_GET['actualiza']=='clave')){
         if (($getOperador->verificarClave($_POST["clave"])) && ($_POST["nuevaclave1"]==$_POST["nuevaclave2"])){
-            $claveNueva = $getOperador->encriptarClave($_POST["nuevaclave1"]);
-            $getOperador->setClave($claveNueva);
+            $getOperador->encriptarClave($_POST["nuevaclave1"]);
             $em->persist($getOperador);
             $em->flush();
             $opActualizado=$em->getRepository('Modelo\Operador')->find($getOperador->getOperadorId());

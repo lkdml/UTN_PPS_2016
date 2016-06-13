@@ -24,7 +24,7 @@ js=''
                   
                   <form action="{$rutaCSS}../controlador/perfilUserAction.php?actualiza=foto{if $UsuarioLogueado}&Usuario={$UsuarioLogueado->getUsuarioId()}{/if}" class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="box-body box-profile">
-                      <img class="profile-user-img img-responsive img-circle" src="{$rutaIMG}avatars/{if $UsuarioLogueado}{$OperadorLogueado->getFotoHash()}{else}UserDefault.jpg{/if}" alt="User profile picture">
+                      <img class="profile-user-img img-responsive img-circle" src="{$RutaAvatars}{if $UsuarioLogueado->getFotoHash()}{$UsuarioLogueado->getFotoHash()}{else}UserDefault.jpg{/if}" alt="User profile picture">
                 
                       <h3 class="profile-username text-center">{if $UsuarioLogueado}{$UsuarioLogueado->getNombre()}{/if} {if $UsuarioLogueado}{$UsuarioLogueado->getApellido()}{/if}</h3>
                 
@@ -91,50 +91,50 @@ js=''
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Nombre" name="nombre" {if $UsuarioLogueado}value={$UsuarioLogueado->getNombre()}{/if}>
+                              <input class="form-control" id="inputNombre" placeholder="Nombre" name="nombre" {if $UsuarioLogueado}value='{$UsuarioLogueado->getNombre()}'{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputApellido" class="col-sm-2 control-label">Apellido</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputApellido" placeholder="Apellido" name="apellido" {if $UsuarioLogueado}value={$UsuarioLogueado->getApellido()}{/if}>
+                              <input class="form-control" id="inputApellido" placeholder="Apellido" name="apellido" {if $UsuarioLogueado}value='{$UsuarioLogueado->getApellido()}'{/if}>
                             </div>
                           </div>
                          
                           <div class="form-group">
                             <label for="inputDireccion" class="col-sm-2 control-label">Direccion</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputDireccion" placeholder="Dirección" name="direccion" {if $UsuarioLogueado}value={$UsuarioLogueado->getDireccion()}{/if}>
+                              <input class="form-control" id="inputDireccion" placeholder="Dirección" name="direccion" {if $UsuarioLogueado}value='{$UsuarioLogueado->getDireccion()}'{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputCodigoPostal" class="col-sm-2 control-label">Código Postal</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputCodigoPostal" placeholder="Código Postal" name="codigoPostal" {if $UsuarioLogueado}value={$UsuarioLogueado->getCodigoPostal()}{/if}>
+                              <input class="form-control" id="inputCodigoPostal" placeholder="Código Postal" name="codigoPostal" {if $UsuarioLogueado}value='{$UsuarioLogueado->getCodigoPostal()}'{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputCiudad" class="col-sm-2 control-label">Ciudad</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputCiudad" placeholder="Ciudad" name="ciudad" {if $UsuarioLogueado}value={$UsuarioLogueado->getCiudad()}{/if}>
+                              <input class="form-control" id="inputCiudad" placeholder="Ciudad" name="ciudad" {if $UsuarioLogueado}value='{$UsuarioLogueado->getCiudad()}'{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputTelefono" class="col-sm-2 control-label">Telefono</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputTelefono" placeholder="Teléfono / Celular" name="telefono" {if $UsuarioLogueado}value={$UsuarioLogueado->getTelefono()}{/if}>
+                              <input class="form-control" id="inputTelefono" placeholder="Teléfono / Celular" name="telefono" {if $UsuarioLogueado}value='{$UsuarioLogueado->getTelefono()}'{/if}>
                             </div>
                           </div>
                          <div class="form-group">
                             <label for="inputMailAdicional" class="col-sm-2 control-label">Email Adicional</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputMailAdicional" type="mail" placeholder="Correo Electrónico Adicional" name="mailAdicional" {if $UsuarioLogueado}value={$UsuarioLogueado->getMailAdicional()}{/if}>
+                              <input class="form-control" id="inputMailAdicional" type="mail" placeholder="Correo Electrónico Adicional" name="mailAdicional" {if $UsuarioLogueado}value='{$UsuarioLogueado->getMailAdicional()}'{/if}>
                             </div>
                          </div>
                          
                          
                 <div class="box-footer col-sm-5 pull-right">
-                  <button onclick="history.go(-1);" class="btn btn-danger pull-left btn-lg">Cancelar</button>
+                  <button onclick="history.go(-1);" class="btn btn-danger pull-right btn-lg">Cancelar</button>
                   <button type="submit" class="btn btn-info pull-right btn-lg">Enviar</button>
                 </div>
                             

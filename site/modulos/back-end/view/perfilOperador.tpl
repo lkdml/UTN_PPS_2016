@@ -22,9 +22,9 @@ js=''
                 <div class="box box-primary">
                   <form action="{$rutaCSS}../controlador/perfilOperadorAction.php?actualiza=foto{if $OperadorLogueado}&Operador={$OperadorLogueado->getOperadorId()}{/if}" class="form-horizontal" method="post" enctype="multipart/form-data">
                     <div class="box-body box-profile">
-                      <img class="profile-user-img img-responsive img-circle" src="{$rutaIMG}avatars/{if $OperadorLogueado->getHashFoto()}{$OperadorLogueado->getHashFoto()}{else}UserDefault.jpg{/if}" alt="User profile picture">
+                      <img class="profile-user-img img-responsive img-circle" src="{$RutaAvatars}{if $OperadorLogueado->getHashFoto()}{$OperadorLogueado->getHashFoto()}{else}UserDefault.jpg{/if}" alt="User profile picture">
                 
-                      <h3 class="profile-username text-center">{if $OperadorLogueado}{$OperadorLogueado->getNombre()}{/if} {if $OperadorLogueado}{$OperadorLogueado->getApellido()}{/if}</h3>
+                      <h3 class="profile-username text-center">{if $OperadorLogueado}{$OperadorLogueado->getNombre()} {$OperadorLogueado->getApellido()}{/if}</h3>
                 
                       <p class="text-muted text-center">Operador</p>
                 
@@ -89,45 +89,31 @@ js=''
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Nombre" name="nombre" {if $OperadorLogueado}value={$OperadorLogueado->getNombre()}{/if}>
+                              <input class="form-control" id="inputNombre" placeholder="Nombre" name="nombre" {if $OperadorLogueado}value='{$OperadorLogueado->getNombre()}'{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Apellido</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputApellido" placeholder="Apellido" name="apellido" {if $OperadorLogueado}value={$OperadorLogueado->getApellido()}{/if}>
+                              <input class="form-control" id="inputApellido" placeholder="Apellido" name="apellido" {if $OperadorLogueado}value='{$OperadorLogueado->getApellido()}'{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Usuario</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputUsuario" placeholder="Nombre de Usuario" name="username" {if $OperadorLogueado}value={$OperadorLogueado->getNombreUsuario()}{/if}>
+                              <input class="form-control" id="inputUsuario" placeholder="Nombre de Usuario" name="username" {if $OperadorLogueado}value='{$OperadorLogueado->getNombreUsuario()}'{/if}>
                             </div>
                           </div>
-                          {if !$Operador}
-                            <div class="form-group">
-                              <label for="inputNombre" class="col-sm-2 control-label">Contraseña</label>
-                              <div class="col-sm-9">
-                                <input class="form-control" id="inputContraseña" type="password" placeholder="Contraseña" name="nuevaclave1">
-                              </div>
-                            </div>
-                            <div class="form-group">
-                              <label for="inputNombre" class="col-sm-2 control-label">Contraseña</label>
-                              <div class="col-sm-9">
-                                <input class="form-control" id="inputContraseña2" type="password" placeholder="Contraseña" name="nuevaclave2">
-                              </div>
-                            </div>
-                          {/if}
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Correo Electrónico</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputMail" type="mail" placeholder="Correo Electrónico" name="email" {if $OperadorLogueado}value={$OperadorLogueado->getEmail()}{/if}>
+                              <input class="form-control" id="inputMail" type="mail" placeholder="Correo Electrónico" name="email" {if $OperadorLogueado}value='{$OperadorLogueado->getEmail()}'{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Telefono</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Teléfono / Celular" name="tel" {if $OperadorLogueado}value={$OperadorLogueado->getCelular()}{/if}>
+                              <input class="form-control" id="inputNombre" placeholder="Teléfono / Celular" name="tel" {if $OperadorLogueado}value='{$OperadorLogueado->getCelular()}'{/if}>
                             </div>
                           </div>
                           <div class="form-group">
@@ -140,8 +126,8 @@ js=''
                           </div>
                          
                          
-                <div class="box-footer col-sm-5 pull-right">
-                  <button onclick="history.go(-1);" class="btn btn-danger pull-left btn-lg">Cancelar</button>
+                <div class="box-footer col-md-4 pull-right">
+                  <button onclick="history.go(-1);" class="btn btn-danger pull-right btn-lg">Cancelar</button>
                   <button type="submit" class="btn btn-info pull-right btn-lg">Enviar</button>
                 </div>
                             

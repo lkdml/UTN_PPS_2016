@@ -10,7 +10,7 @@ use \CORE\Controlador\FileManager as FileManager;
  */
 use \CORE\Controlador\Aplicacion;
 $app = Aplicacion::getInstancia();
-Aplicacion::startSession(true);
+Aplicacion::startSession(false);
 
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
@@ -20,9 +20,8 @@ $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 if (isset($_GET['Usuario'])){
     $getUsuario=  $em->getRepository('Modelo\Usuario')->find($_GET["Usuario"]);
     if (($_GET['actualiza']=='clave')){
-        if (($getOperador->verificarClave($_POST["clave"])) && ($_POST["nuevaclave1"]==$_POST["nuevaclave2"])){
-            $claveNueva = $getUsuario->encriptarClave($_POST["nuevaclave1"]);
-            $getUsuario->setClave($claveNueva);
+        if (($getUsuario->verificarClave($_POST["clave"])) && ($_POST["nuevaclave1"]==$_POST["nuevaclave2"])){
+            $getUsuario->encriptarClave($_POST["nuevaclave1"]);
             $em->persist($getUsuario);
             $em->flush();
             $usActualizado=$em->getRepository('Modelo\Usuario')->find($getUsuario->getUsuarioId());
