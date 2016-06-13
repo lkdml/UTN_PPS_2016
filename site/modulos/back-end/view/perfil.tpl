@@ -35,13 +35,13 @@ js=''
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label" >Nombre</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" name="Nombre" {if $Nombre}value={$Nombre}{/if} placeholder="Nombre del Perfíl">
+                              <input class="form-control" id="inputNombre" name="Nombre" {if $Nombre}value='{$Nombre}'{/if} placeholder="Nombre del Perfíl">
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Descripcion</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputDescripcion" name="Descripcion"  {if $Descripcion}value={$Descripcion}{/if} placeholder="Descripcion del perfíl">
+                              <input class="form-control" id="inputDescripcion" name="Descripcion"  {if $Descripcion}value='{$Descripcion}'{/if} placeholder="Descripcion del perfíl">
                             </div>
                           </div>
                           <br>

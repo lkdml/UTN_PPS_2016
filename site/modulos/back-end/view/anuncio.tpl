@@ -60,7 +60,7 @@ js=''
                                   <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                   </div>
-                                  <input type="text" class="form-control" id="datepicker" name="fechaFinPublicacion" {if $Anuncio}value={$Anuncio->getFechaFinPublicacion()|date_format:"%m/%d/%Y "}{/if}>
+                                  <input type="text" class="form-control" id="datepicker" name="fechaFinPublicacion" {if $Anuncio}value='{$Anuncio->getFechaFinPublicacion()|date_format:"%m/%d/%Y "}'{/if}>
                                 </div>
                                 <!-- /.input group -->
                             </div>

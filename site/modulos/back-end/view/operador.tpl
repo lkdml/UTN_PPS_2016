@@ -97,19 +97,19 @@ js=''
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Nombre" name="nombre" {if $Operador}value={$Operador->getNombre()}{/if}>
+                              <input class="form-control" id="inputNombre" placeholder="Nombre" name="nombre" {if $Operador}value='{$Operador->getNombre()}'{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Apellido</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputApellido" placeholder="Apellido" name="apellido" {if $Operador}value={$Operador->getApellido()}{/if}>
+                              <input class="form-control" id="inputApellido" placeholder="Apellido" name="apellido" {if $Operador}value='{$Operador->getApellido()}'{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Usuario</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputUsuario" placeholder="Nombre de Usuario" name="username" {if $Operador}value={$Operador->getNombreUsuario()}{/if}>
+                              <input class="form-control" id="inputUsuario" placeholder="Nombre de Usuario" name="username" {if $Operador}value='{$Operador->getNombreUsuario()}'{/if}>
                             </div>
                           </div>
                           {if !$Operador}
@@ -129,13 +129,13 @@ js=''
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Correo Electrónico</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputMail" type="mail" placeholder="Correo Electrónico" name="email" {if $Operador}value={$Operador->getEmail()}{/if}>
+                              <input class="form-control" id="inputMail" type="mail" placeholder="Correo Electrónico" name="email" {if $Operador}value='{$Operador->getEmail()}'{/if}>
                             </div>
                           </div>
                           <div class="form-group">
                             <label for="inputNombre" class="col-sm-2 control-label">Telefono</label>
                             <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Teléfono / Celular" name="tel" {if $Operador}value={$Operador->getCelular()}{/if}>
+                              <input class="form-control" id="inputNombre" placeholder="Teléfono / Celular" name="tel" {if $Operador}value='{$Operador->getCelular()}'{/if}>
                             </div>
                           </div>
                           <div class="form-group">

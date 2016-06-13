@@ -29,14 +29,14 @@ js=''
                         <div class="box-body pad">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputNombre" name="nombre" {if $Departamento}value={$Departamento->getNombre()}{/if}>
+                              <input type="text" class="form-control" id="inputNombre" name="nombre" {if $Departamento}value='{$Departamento->getNombre()}'{/if}>
                             </div>
                         </div>
                         <!-- body pad end -->
                          <div class="box-body pad">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputDescripcion" name="descripcion" {if $Departamento}value={$Departamento->getDescripcion()}{/if} >
+                              <input type="text" class="form-control" id="inputDescripcion" name="descripcion" {if $Departamento}value='{$Departamento->getDescripcion()}'{/if} >
                             </div>
                         </div>
                         <!-- body pad end -->
