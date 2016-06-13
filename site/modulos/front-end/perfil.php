@@ -12,5 +12,5 @@ $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Front').'css/',
                 \CORE\Controlador\Config::getPublic('Ruta_Front').'imagenes/');
 $vm->assign("RutaAvatars", \CORE\Controlador\Config::getPublic('Ruta_Avatars'));
 $vm->assign('UsuarioLogueado',$app->getUsuario());
-  $vm->display('perfil.tpl');
+$vm->display('perfil.tpl');
 ?>
