@@ -12,8 +12,6 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/bootstrap_orm.php');
 
 use \Modelo\Usuario as Usuario;
 use \Modelo\Empresa;
-
-echo '<pre>';var_dump($_POST); echo '</pre>';
 //TODO esto es solo para probar
 if (!is_null($_POST["Email"])){
     $usuario = new Usuario();
@@ -27,8 +25,6 @@ $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 $empresa = new Empresa();
 $empresa->setRazon_Social('No vinculado');
-echo '<pre>';var_dump($usuario); echo '</pre>';
-echo '<pre>';var_dump($empresa); echo '</pre>';
 //$em->persist($empresa);
 $em->persist($usuario);
 echo "resultado de em:".$em->flush();

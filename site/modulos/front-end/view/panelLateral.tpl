@@ -22,7 +22,7 @@
           </a>
         </li>
         <li class="../forms/general.html">
-          <a href="/index.php?modulo=nuevoTicket">
+          <a href="/index.php?modulo=vistaTicket&accion=nuevo">
             <i class="fa fa-edit"></i> <span>Nuevo Ticket</span>
           </a>
         </li>

@@ -98,7 +98,6 @@ js=''
           <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Bandeja</h3>
-              
             </div>
             
            
@@ -115,7 +114,7 @@ js=''
                   </tr>
                   {foreach from=$Tickets item=$ticket} 
                   <tr>
-                    <td><a href="/index.php?modulo=vistaTicket&ticket={$ticket->getTicketId()}&accion=ver">{$ticket->getNumeroTicket()}</input></td>
+                    <td><a href="/index.php?modulo=vistaTicket&ticket={$ticket->getTicketId()}&accion=ver">{$ticket->getNumeroTicket()}</a></td>
                     <td><small class="label " style='color:white; background-color:{$ticket->getEstado()->getColor()}'>{$ticket->getEstado()->getNombre()}</small></td>
                     <td>{$ticket->getUltimaActividad()|date_format:"%D, %H:%M"}</td>
                     <td>{$ticket->getDepartamento()->getNombre()}</td>

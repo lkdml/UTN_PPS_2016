@@ -17,107 +17,152 @@ js=''
         <li class="active">Nuevo Ticket</li>
       </ol>
     </section>
- 
+    <section class="content">
  <!-- Horizontal Form -->
-          <div class="box box-info">
+          <div class="box box-info ">
             <div class="box-header with-border">
               <h3 class="box-title">Nuevo Ticket</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <form action="{$rutaCSS}../controlador/nuevoTicketAction.php" id="nuevoTicketForm" class="form-horizontal">
+            <form action="{$rutaCSS}../controlador/nuevoTicketAction.php" id="nuevoTicketForm" class="form-horizontal" method="POST" enctype="multipart/form-data">
               <div class="box-body">
                 <div class="box">
                     <div class="form-group">
                       <div class="box-body pad">
                         <label for="comboDepto" class="col-sm-2 control-label">Departamento</label>
-                          <div class="col-sm-10">
-                           <select class="form-control select2"  name="ddDepartamentos" id="ddDepartamentos" style="width: 100%;">
-                              <option value = "">Seleccione Departamento...</option>
-                              <option>Depto2</option>
-                              <option>Depto3</option>
-                              <option>Depto4</option>
-                              <option>Depto5</option>
-                              <option>Depto6</option>
-                              <option>Depto7</option>
-                            </select>
+                          <div class="col-sm-2">
+                           <select class="form-control select2" id="ddDepartamentos" name="Departamento" style="width: 100%;">
+                            <option value = "-1" datos-depto="Seleccione un departamento 'Destino' para su ticket">Seleccione un Departamento...</option>
+                            {if $Departamentos}
+                              {foreach from=$Departamentos item=$departamento}
+                                <option value="{$departamento->getDepartamentoId()}" datos-depto="{$departamento->getDescripcion()}">{$departamento->getNombre()}</option>
+                              {/foreach}
+                            {/if}
+                          </select>
                           </div>
-                        </div>  
+                          <label for="comboSLA" class="col-md-2 control-label">Descripcion:</label>
+                            <div class="col-sm-6">
+                               <text id="descripcion-depto">...</text>
+                            </div>
+                      </div>  
                    </div>
                     <div class="form-group">
                       <div class="box-body pad">
                         <label for="comboTipo" class="col-sm-2 control-label">Tipo</label>
-                        <div class="col-sm-10">
-                         <select class="form-control select2" name="ddTipos" id="ddTipos" style="width: 100%;">
-                            <option value="">Seleccione Tipo...</option>
-                            <option>Tipo2</option>
-                            <option>Tipo3</option>
-                            <option>Tipo4</option>
-                            <option>Tipo5</option>
-                            <option>Tipo6</option>
-                            <option>Tipo7</option>
-                          </select>
+                        <div class="col-sm-2">
+                         <select class="form-control select2" id="ddTipos" name="TicketTipo" style="width: 100%;">
+                         <option value = "-1" datos-tipo="Seleccione un Tipo de Ticket, estos permiten organizar mejor su solicitud">Seleccione un Tipo...</option>
+                              {if $TicketTipos}
+                                {foreach from=$TicketTipos item=$TicketTipo}
+                                  <option value="{$TicketTipo->getTipoTicketId()}" datos-tipo="{$TicketTipo->getDescripcion()}">{$TicketTipo->getNombre()}</option>
+                                {/foreach}
+                              {/if}
+                        </select>
                         </div>
+                        <label for="comboSLA" class="col-md-2 control-label">Descripcion:</label>
+                            <div class="col-sm-6 ">
+                               <text id="descripcion-tTicket">...</text>
+                            </div>
+                      </div>
+                     </div>
+                     <div class="form-group">
+                      <div class="box-body pad">
+                        <label for="comboTipo" class="col-sm-2 control-label">Tipo</label>
+                        <div class="col-sm-2">
+                         <select class="form-control select2" id="ddEstados" name="Estado" style="width: 100%;">
+                            {if $TicketEstados}
+                              {foreach from=$TicketEstados item=$Estado}
+                                <option value="{$Estado->getEstadoId()}" datos-estado="{$Estado->getDescripcion()}">{$Estado->getNombre()}</option>
+                              {/foreach}
+                            {/if}
+                        </select>
+                        </div>
+                        <label for="comboSLA" class="col-md-2 control-label">Descripcion:</label>
+                            <div class="col-sm-6 ">
+                               <text id="descripcion-Estado">...</text>
+                            </div>
+                      </div>
+                     </div>
+                     <div class="form-group">
+                      <div class="box-body pad">
+                        <label for="comboTipo" class="col-sm-2 control-label">Tipo</label>
+                        <div class="col-sm-2">
+                         <select class="form-control select2" id="ddPrioridades" name="Prioridad" style="width: 100%;">
+                         <option value = "-1" datos-prioridad="Seleccione una Prioridad para organizar mejor su solicitud">Seleccione una Prioridad...</option>
+                            {if $Prioridades}
+                              {foreach from=$Prioridades item=$Prioridad}
+                                <option value="{$Prioridad->getPrioridadId()}" datos-prioridad="{$Prioridad->getDescripcion()}">{$Prioridad->getNombre()}</option>
+                              {/foreach}
+                            {/if}
+                        </select>
+                        </div>
+                        <label for="comboSLA" class="col-md-2 control-label">Descripcion:</label>
+                            <div class="col-sm-6 ">
+                               <text id="descripcion-Prioridad">...</text>
+                            </div>
                       </div>
                      </div>
                   </div>
                 </div><!-- /.box-body Datos Principales -->
                 
-                <div class="box-body"><!-- /.box-body Campos Custom -->
-                  <div class="box">
-                    <div class="box-header">
-                      <h3 class="box-title">Campos Personalizados
-                      </h3>
-                    </div>
-                    <!-- /.box-header -->
-
-                    <div class="form-group">
-                      <label for="titulo" class="col-sm-2 control-label">Sistema Operativo</label>
-                      <div class="col-md-4 radio">
-                          <label>
-                            <input type="radio" name="optionsRadios" id="optnWin" value="optnWindows" checked>
-                            Windows
-                          </label>
+                {if $CamposCustom} 
+                  <div class="box-body"><!-- /.box-body Campos Custom -->
+                    <div class="box">
+                      <div class="box-header">
+                        <h3 class="box-title">Campos Personalizados
+                        </h3>
                       </div>
-                      <div class="col-md-4 radio">
-                          <label>
-                            <input type="radio" name="optionsRadios" id="optnLinux" value="optnLinux">
-                            Linux
-                          </label>
-                      </div>
-                    </div>
+                      <!-- /.box-header -->
   
-                
-                    <div class="form-group">
-                      <label for="comboTipo" class="col-sm-2 control-label">Tipo Evento</label>
-                      <div class="col-sm-10">
-                       <select class="form-control select2" style="width: 100%;">
-                          <option selected="selected">Evento1</option>
-                          <option>Evento1</option>
-                          <option>Evento3</option>
-                          <option>Evento4</option>
-                          <option>Evento5</option>
-                          <option>Evento6</option>
-                          <option>Evento7</option>
-                        </select>
+                      <div class="form-group">
+                        <label for="titulo" class="col-sm-2 control-label">Sistema Operativo</label>
+                        <div class="col-md-4 radio">
+                            <label>
+                              <input type="radio" name="optionsRadios" id="optnWin" value="optnWindows" checked>
+                              Windows
+                            </label>
+                        </div>
+                        <div class="col-md-4 radio">
+                            <label>
+                              <input type="radio" name="optionsRadios" id="optnLinux" value="optnLinux">
+                              Linux
+                            </label>
+                        </div>
                       </div>
-                     
-                    </div>
-            
-                    <div class="form-group">
-                      <label for="lblTelefono" class="col-sm-2 control-label">Teléfono</label>
-                      <div class="col-sm-10">
-                        <div class="col-sm-4 input-group">
-                          <div class="input-group-addon">
-                            <i class="fa fa-phone"></i>
-                          </div>
-                          <input type="text" class="form-control" data-inputmask='"mask": "9-999-9999"' data-mask>
-                          </div>
+    
+                  
+                      <div class="form-group">
+                        <label for="comboTipo" class="col-sm-2 control-label">Tipo Evento</label>
+                        <div class="col-sm-10">
+                         <select class="form-control select2" style="width: 100%;">
+                            <option selected="selected">Evento1</option>
+                            <option>Evento1</option>
+                            <option>Evento3</option>
+                            <option>Evento4</option>
+                            <option>Evento5</option>
+                            <option>Evento6</option>
+                            <option>Evento7</option>
+                          </select>
+                        </div>
+                       
                       </div>
-                    </div>
-                    <br>
-                </div><!-- /.box-body Campos Custom -->
-              </div>
+              
+                      <div class="form-group">
+                        <label for="lblTelefono" class="col-sm-2 control-label">Teléfono</label>
+                        <div class="col-sm-10">
+                          <div class="col-sm-4 input-group">
+                            <div class="input-group-addon">
+                              <i class="fa fa-phone"></i>
+                            </div>
+                            <input type="text" class="form-control" data-inputmask='"mask": "9-999-9999"' data-mask>
+                            </div>
+                        </div>
+                      </div>
+                      <br>
+                  </div><!-- /.box-body Campos Custom -->
+                </div>
+                {/if}
                 <div class="box-body"><!-- /.box-body Asunto Descripcion y Adjuntos -->
                     <div class="box">
                       <div class="box-header">
@@ -130,19 +175,19 @@ js=''
                         <div class="box-body pad">
                           <label for="inputAsunto" class="col-sm-2 control-label">Asunto</label>
                           <div class="col-sm-10">
-                            <input type="text" class="form-control" id="txtAsunto" name="txtAsunto">
+                            <input type="text" class="form-control" id="txtAsunto" name="Asunto">
                           </div>
                         </div>  
                         <div class="box-body pad">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                             
                                 <div class="col-sm-10">
-                                  <textarea class="textarea_msg" placeholder="Ingrese una Descripción" name="txtDescripcion" id="txtDescripcion" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
+                                  <textarea class="textarea_msg" placeholder="Ingrese una Descripción" name="Descripcion" id="txtDescripcion" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
                                 <!--  -->
                                 </div>
                             
                             <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
-                            <input class="col-sm-10" type="file" id="archivo">
+                            <input class="col-sm-10" type="file" id="archivo" name="adjuntos[]">
                          </div> 
                       </div>
                     </div>
@@ -156,12 +201,9 @@ js=''
               </div>
               <!-- /.box-footer -->
             </form>
-          </div>
-          
-          
-           
+  </div> 
+    </section>
  <link rel="stylesheet" href="{$rutaCSS}bootstrap3-wysihtml5.min.css">
-
 </div>
 <script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
@@ -178,11 +220,33 @@ js=''
 
 <script src="{$rutaJS}bootstrap3-wysihtml5.all.js"></script>
 
-{literal} <script>
+{literal} 
+<script>
   $(function () {
     //bootstrap WYSIHTML5 - text editor
     $(".textarea_msg").wysihtml5();
   });
+</script>
+<script>
+
+$(document).ready(function(){
+        $("#ddDepartamentos").change(function(){
+                var op = $("#ddDepartamentos option:selected").attr("datos-depto");
+                $('#descripcion-depto').html(op);
+        });
+        $("#ddTipos").change(function(){
+                var op = $("#ddTipos option:selected").attr("datos-tipo");
+                $('#descripcion-tTicket').html(op);
+        });
+        $("#ddEstados").change(function(){
+                var op = $("#ddEstados option:selected").attr("datos-estado");
+                $('#descripcion-Estado').html(op);
+        });
+        $("#ddPrioridades").change(function(){
+                var op = $("#ddPrioridades option:selected").attr("datos-prioridad");
+                $('#descripcion-Prioridad').html(op);
+        });
+});
 </script>
 {/literal}
 

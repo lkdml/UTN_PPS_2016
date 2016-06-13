@@ -55,13 +55,15 @@ class FileManager {
         if (is_null($NombreClave)){
             foreach ($filesArray as $clave=>$valor){
                 if ( $valor['error'][0] == '0'){
-                    $NombreClave[ ]=$clave;
+                    $NombreClave[]=$clave;
                 } else {
                     \CORE\Controlador\Dbug::getInstancia()->escribirLog("El archivo subió con errores ","FileManager",true);
+                    return null;
                 }
             }
             
         }
+        var_dump($NombreClave);
         foreach ($NombreClave as $clave) {
             foreach( $filesArray[ $clave ][ 'tmp_name' ] as $index => $tmpName ) {
                 //si no hay error en la subida

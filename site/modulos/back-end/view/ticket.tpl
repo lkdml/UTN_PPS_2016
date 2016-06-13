@@ -28,7 +28,7 @@ js=''
         <li class="active">Crear/Modificar Ticket</li>
       </ol>
     </section>
- 
+ <section class="content">
  <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
@@ -102,7 +102,7 @@ js=''
                     <div class="box-body pad">
                       <label for="comboPrioridad" class="col-md-2 control-label" >Estado</label>
                       <div class="col-md-5">
-                       <select class="form-control select2" id="ddPrioridades" name="Estado" style="width: 100%;">
+                       <select class="form-control select2" id="ddEstado" name="Estado" style="width: 100%;">
                           <option value = "-1">Seleccione una Estado...</option>
                             {if $TicketEstados}
                               {foreach from=$TicketEstados item=$Estado}
@@ -247,7 +247,7 @@ js=''
 
             </form>
           </div>
-          
+     </section>      
           
            
  <link rel="stylesheet" href="{$rutaCSS}bootstrap3-wysihtml5.min.css">
