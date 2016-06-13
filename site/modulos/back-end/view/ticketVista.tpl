@@ -31,6 +31,18 @@ js=''
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
+                        <div class="box-body pad">
+                            <label for="inputAsunto" class="col-sm-2 control-label">Asunto</label>
+                            <div class="col-sm-5">
+                              <input type="text" class="form-control" id="inputAsunto" value='{$Ticket->getAsunto()}' disabled>
+                            </div>
+                            <label for="inputTipoTicket" class="col-sm-2 control-label">Tipo de Ticket</label>
+                            <div class="col-sm-2">
+                              <input type="text" class="form-control" id="inputTipoTicket" value='{$Ticket->getTipoTicket()->getNombre()}' disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                       <div class="box-body pad">
                         <label for="comboDepto" class="col-sm-2 control-label">Departamento</label>
                         <div class="col-sm-5">
@@ -66,18 +78,6 @@ js=''
                           <input type="text" class="form-control" id="inputFechaModificacion" value='{$Ticket->getUltimaActividad()|date_format:"%d-%m-%Y %H:%m"}' disabled>
                         </div>
                       </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="box-body pad">
-                            <label for="inputAsunto" class="col-sm-2 control-label">Asunto</label>
-                            <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputAsunto" value='{$Ticket->getAsunto()}' disabled>
-                            </div>
-                            <label for="inputTipoTicket" class="col-sm-2 control-label">Tipo de Ticket</label>
-                            <div class="col-sm-2">
-                              <input type="text" class="form-control" id="inputTipoTicket" value='{$Ticket->getTipoTicket()->getNombre()}' disabled>
-                            </div>
-                        </div>
                     </div>
                     <div class="form-group">
                         <div class="box-body pad">
@@ -265,7 +265,7 @@ js=''
                              <div class="box-body pad">
                                <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                                  <div class="col-sm-10">
-                                   <textarea class="textarea_msg" name="Respuesta" placeholder="Ingrese una Descripción" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
+                                   <textarea class="textarea_msg" name="Respuesta" placeholder="Ingrese una Descripción" style="width: 100%; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
                                  </div>
                                <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
                                <input class="col-sm-10" type="file" id="Archivos" name="ArchivosRespuesta[]">
@@ -281,7 +281,7 @@ js=''
                              <div class="box-body pad">
                                <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                                  <div class="col-sm-10">
-                                   <textarea class="textarea_msg" name="NotaOperador" placeholder="Ingrese una Descripción" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
+                                   <textarea class="textarea_msg" name="NotaOperador" placeholder="Ingrese una Descripción" style="width: 100%; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
                                  </div>
                                <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
                                <input class="col-sm-10" type="file" id="archivo" name="ArchivosNotaOperador[]">

@@ -191,7 +191,7 @@ js=''
                         <div class="box-body pad">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                             <div class="col-sm-6">
-                              <textarea class="textarea_msg" placeholder="Ingrese una Descripción" name="Descripcion" id="txtDescripcion" style="width: 521px; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
+                              <textarea class="textarea_msg" placeholder="Ingrese una Descripción" name="Descripcion" id="txtDescripcion" style="width: 100%; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
                             </div>
                         </div> 
                         <div class="box-body pad">
