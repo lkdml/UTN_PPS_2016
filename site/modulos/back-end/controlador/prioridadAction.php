@@ -38,6 +38,11 @@ function setear(Prioridad $prioridad,$em){
     $prioridad->setDescripcion($_POST["descripcion"]);
     $prioridad->setColor($_POST["color"]);
     $prioridad->setOrden($_POST["orden"]);
+    if ($_POST["visibleFront"]=='on'){
+        $prioridad->setVisibleFront(1);
+    } else {
+        $prioridad->setVisibleFront(0);
+    }
     return $prioridad;
 }
 

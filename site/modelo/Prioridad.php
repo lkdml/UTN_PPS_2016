@@ -47,7 +47,13 @@ class Prioridad
      */
     private $orden;
 
-
+    /**
+     * @var boolean
+     *
+     * @Column(name="visible_front", type="boolean", nullable=true)
+     */
+    private $visibleFront;
+    
     /**
      * Get prioridadId
      *
@@ -152,6 +158,30 @@ class Prioridad
     public function getOrden()
     {
         return $this->orden;
+    }
+    
+    /**
+     * Set visibleFront
+     *
+     * @param boolean $visibleFront
+     *
+     * @return Prioridad
+     */
+    public function setVisibleFront($visibleFront)
+    {
+        $this->visibleFront = $visibleFront;
+
+        return $this;
+    }
+
+    /**
+     * Get visibleFront
+     *
+     * @return boolean
+     */
+    public function getVisibleFront()
+    {
+        return $this->visibleFront;
     }
 }
 

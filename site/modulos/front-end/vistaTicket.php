@@ -18,10 +18,8 @@ $Departamentos = $em->getRepository('Modelo\Departamento')->findAll();
 $vm->assign('Departamentos',$Departamentos);
 $TicketTipos = $em->getRepository('Modelo\TicketTipo')->findAll();
 $vm->assign('TicketTipos',$TicketTipos);
-$Prioridades = $em->getRepository('Modelo\Prioridad')->findAll();
-$vm->assign('Prioridades',$Prioridades);
-$Estados = $em->getRepository('Modelo\TicketEstado')->findAll();
-$vm->assign('TicketEstados',$Estados);
+
+
 $SLAs = $em->getRepository('Modelo\Sla')->findAll();
 $vm->assign('SLAs',$SLAs);
 
@@ -35,9 +33,17 @@ $vm->assign('Operadores',$Operadores);
 
 switch(strtolower($_GET["accion"])){
   case ("nuevo"):
-   $vm->display('nuevoTicket.tpl');
+    $Prioridades = $em->getRepository('Modelo\Prioridad')->findBy(array("visibleFront"=>1));
+    $vm->assign('Prioridades',$Prioridades);
+    $Estados = $em->getRepository('Modelo\TicketEstado')->findBy(array("visibleFront"=>1));
+    $vm->assign('TicketEstados',$Estados);
+    $vm->display('nuevoTicket.tpl');
     break;
   case ("ver"):
+    $Prioridades = $em->getRepository('Modelo\Prioridad')->findAll();
+    $vm->assign('Prioridades',$Prioridades);
+    $Estados = $em->getRepository('Modelo\TicketEstado')->findAll();
+    $vm->assign('TicketEstados',$Estados);
     if (!empty($_GET["ticket"])){
       $_SESSION['LastTicketID']=$_GET["ticket"];
       $ordenamiento_mensajes = $em->getRepository('Modelo\ConfiguracionGlobal')->find('ordenamiento_mensajes');

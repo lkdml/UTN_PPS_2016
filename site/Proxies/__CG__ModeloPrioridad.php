@@ -64,10 +64,10 @@ class Prioridad extends \Modelo\Prioridad implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'prioridadId', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'nombre', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'color', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'orden'];
+            return ['__isInitialized__', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'prioridadId', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'nombre', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'color', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'orden', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'visibleFront'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'prioridadId', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'nombre', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'color', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'orden'];
+        return ['__isInitialized__', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'prioridadId', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'nombre', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'color', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'orden', '' . "\0" . 'Modelo\\Prioridad' . "\0" . 'visibleFront'];
     }
 
     /**
@@ -274,6 +274,28 @@ class Prioridad extends \Modelo\Prioridad implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOrden', []);
 
         return parent::getOrden();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setVisibleFront($visibleFront)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setVisibleFront', [$visibleFront]);
+
+        return parent::setVisibleFront($visibleFront);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getVisibleFront()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getVisibleFront', []);
+
+        return parent::getVisibleFront();
     }
 
 }

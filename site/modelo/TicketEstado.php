@@ -68,6 +68,12 @@ class TicketEstado
      */
     private $orden;
 
+    /**
+     * @var boolean
+     *
+     * @Column(name="visible_front", type="boolean", nullable=true)
+     */
+    private $visibleFront;
 
     /**
      * Get estadoId
@@ -245,6 +251,30 @@ class TicketEstado
     public function getOrden()
     {
         return $this->orden;
+    }
+    
+    /**
+     * Set visibleFront
+     *
+     * @param boolean $visibleFront
+     *
+     * @return TicketEstado
+     */
+    public function setVisibleFront($visibleFront)
+    {
+        $this->visibleFront = $visibleFront;
+
+        return $this;
+    }
+
+    /**
+     * Get visibleFront
+     *
+     * @return boolean
+     */
+    public function getVisibleFront()
+    {
+        return $this->visibleFront;
     }
 }
 

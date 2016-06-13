@@ -47,6 +47,19 @@ js=''
                                 <input type="text" class="form-control my-colorpicker1" id="inputColor" name="color" {if $Prioridad}value='{$Prioridad->getColor()}'{/if}>
                             </div>
                         </div>
+                        <div class="box-body pad">
+                            <label for="inputDescripcion" class="col-sm-2 control-label">Visible en el Front-end?</label>
+                            <div class="col-sm-2">
+                                <input type="checkbox" id="acierre" name="visibleFront" 
+                                {if $Prioridad}
+                                    {if $Prioridad->getVisibleFront()==1}
+                                        checked
+                                    {/if}
+                                {/if}
+                                >
+                                </input>
+                            </div>
+                        </div>
                         <!--color end -->
                         <!-- Orden Picker -- >
                         <div class="box-body pad">

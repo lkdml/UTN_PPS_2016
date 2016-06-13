@@ -95,6 +95,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`ticket_estado` (
   `autocierre` TINYINT(1) NOT NULL,
   `estadoFinal` TINYINT(1) NOT NULL,
   `orden` INT NULL,
+  `visible_front` TINYINT(1) NULL,
   PRIMARY KEY (`estado_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
@@ -189,6 +190,7 @@ CREATE TABLE IF NOT EXISTS `tmh`.`prioridad` (
   `descripcion` VARCHAR(45) NULL,
   `color` VARCHAR(45) NOT NULL,
   `orden` INT NULL,
+  `visible_front` TINYINT(1) NULL,
   PRIMARY KEY (`prioridad_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;

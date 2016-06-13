@@ -63,7 +63,6 @@ class FileManager {
             }
             
         }
-        var_dump($NombreClave);
         foreach ($NombreClave as $clave) {
             foreach( $filesArray[ $clave ][ 'tmp_name' ] as $index => $tmpName ) {
                 //si no hay error en la subida

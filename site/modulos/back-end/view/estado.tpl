@@ -97,6 +97,19 @@ js=''
                                 </input>
                             </div>
                         </div>
+                        <div class="box-body pad">
+                            <label for="inputDescripcion" class="col-sm-2 control-label">Visible en el Front-end?</label>
+                            <div class="col-sm-2">
+                                <input type="checkbox" id="acierre" name="visibleFront" 
+                                {if $Estado}
+                                    {if $Estado->getVisibleFront()==1}
+                                        checked
+                                    {/if}
+                                {/if}
+                                >
+                                </input>
+                            </div>
+                        </div>
                         <!-- body pad end -->
                          <!-- Orden Picker -->
                        <!-- <div class="box-body pad">

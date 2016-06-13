@@ -217,9 +217,9 @@ UNLOCK TABLES;
 
 LOCK TABLES `ticket_estado` WRITE;
 /*!40000 ALTER TABLE `ticket_estado` DISABLE KEYS */;
-insert into ticket_estado values (1,'Abierto','Para tickets nuevos o respondidos','#fd8f00','glyphicon-folder-open',0,0,null),
-                                (2,'En Curso','Para cuando se está trabajando con el ticket','#f44f00','glyphicon-pushpin',0,0,null),
-                                (3,'Cerrado','Cuando se finalizaron los trabajos relacionados.','#234f00','glyphicon-ok-sign',0,1,null);
+insert into ticket_estado values (1,'Abierto','Para tickets nuevos o respondidos','#fd8f00','glyphicon-folder-open',0,0,null,1),
+                                (2,'En Curso','Para cuando se está trabajando con el ticket','#f44f00','glyphicon-pushpin',0,0,null,0),
+                                (3,'Cerrado','Cuando se finalizaron los trabajos relacionados.','#234f00','glyphicon-ok-sign',0,1,null,0);
 /*!40000 ALTER TABLE `ticket_estado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,11 +239,11 @@ UNLOCK TABLES;
 
 LOCK TABLES `prioridad` WRITE;
 /*!40000 ALTER TABLE `prioridad` DISABLE KEYS */;
-insert into prioridad values (1,'Urgente','Necesita atenderse ya','#fd0000',null),
-                                (2,'Crítica','Prioridad crítica','#fd003d',null),
-                                (3,'Alta','Prioridad alta','#fd5b00',null),
-                                (4,'Media','Prioridad media','#fde400',null),
-                                (5,'Baja','Prioridad baja','#234f00',null);
+insert into prioridad values (1,'Urgente','Necesita atenderse ya','#fd0000',null,0),
+                                (2,'Crítica','Prioridad crítica','#fd003d',null,0),
+                                (3,'Alta','Prioridad alta','#fd5b00',null,0),
+                                (4,'Media','Prioridad media','#fde400',null,1),
+                                (5,'Baja','Prioridad baja','#234f00',null,1);
 /*!40000 ALTER TABLE `prioridad` ENABLE KEYS */;
 UNLOCK TABLES;
 
