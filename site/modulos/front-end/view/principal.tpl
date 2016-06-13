@@ -6,7 +6,7 @@ js=''
 
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  <div class="content-wrapper ">
 
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -22,8 +22,8 @@ js=''
     <!-- Main content -->
     <section class="content">
       
-      <div class="row">
-        <div class="col-md-12">
+      <div class="row t">
+        <div class="col-md-11 ">
         <!--<div class="">-->
         
         <ul class="timeline">
