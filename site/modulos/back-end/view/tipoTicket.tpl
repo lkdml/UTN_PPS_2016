@@ -47,6 +47,20 @@ js=''
                                 <button role="iconpicker" data-search="false" data-placement="bottom" data-rows="5" data-cols="6" id="icono" name="icono" {if $TicketTipo}data-icon='{$TicketTipo->getIcono()}'{/if} ></button>
                             </div>
                         </div>
+                        <div class="box-body pad">
+                          <label for="comboPrioridad" class="col-md-2 control-label" >Estado</label>
+                          <div class="col-md-5">
+                           <select class="form-control select2" id="ddEstado" name="Estado" style="width: 100%;">
+                              <option value = "-1">Seleccione una Estado...</option>
+                                {if $TicketEstados}
+                                  {foreach from=$TicketEstados item=$Estado}
+                                    <option value="{$Estado->getEstadoId()}" {if $TicketTipo->getEstadoCierre()->getEstadoId() == $Estado->getEstadoId()} selected {/if}>{$Estado->getNombre()}</option>
+                                  {/foreach}
+                                {/if}
+                            </select>
+                          </div>
+                        </div>
+                  
                         <!-- body pad end -->
                     </div>
                     <!-- form group end -->

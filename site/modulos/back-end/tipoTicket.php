@@ -16,7 +16,8 @@ $vm->assign("RutaAvatars", \CORE\Controlador\Config::getPublic('Ruta_Avatars'));
 $vm->assign('OperadorLogueado',$app->getOperador());
 $vm->assign('Permisos',$permisos);
                   
-
+$Estados = $em->getRepository('Modelo\TicketEstado')->findByEstadofinal(1);
+$vm->assign('TicketEstados',$Estados);
 
 switch(strtolower($_POST["accion"])){
   case ("nuevo"):
