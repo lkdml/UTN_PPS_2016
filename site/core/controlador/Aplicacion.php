@@ -126,7 +126,7 @@ class Aplicacion {
             }
             //Si no esta authenticado,  mato todo
             if (!($app->isLoggedIn($backEnd))) {
-                session_destroy();
+                $this->logout($backEnd);
                 if ($backEnd){
                         header("location:/operador.php");
                 } else {
