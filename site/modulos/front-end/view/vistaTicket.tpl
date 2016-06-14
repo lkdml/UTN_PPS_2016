@@ -193,7 +193,7 @@ css='<link rel="stylesheet" href="./modulos/front-end/css/validacion.css">'
                         </button>
                     </div>
                     <div class="col-md-2 pull-right">
-                        <button type="submit" class="btn btn-primary pull-left">Enviar</button>
+                        <button type="submit" class="btn btn-primary pull-left" id="btnEnviar">Enviar</button>
                     </div>
                 </div>
                 <br>
@@ -327,6 +327,13 @@ css='<link rel="stylesheet" href="./modulos/front-end/css/validacion.css">'
 {literal}
 <script>
 $(document).ready(function() {
+    //Deshabilito el boton enviar cuando el ticket esta cerrado
+    if ($.trim($("#btnCerrar").html()) != $.trim("Cerrar Ticket"))
+    {
+        $('#btnEnviar').prop('disabled', true);
+    }
+    
+    
     $("#btnCerrar").click(function(e){
         if ($.trim($("#btnCerrar").html()) == $.trim("Cerrar Ticket"))
         {
