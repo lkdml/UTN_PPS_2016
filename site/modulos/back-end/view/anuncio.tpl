@@ -22,7 +22,7 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/anuncioAction.php{if $Anuncio}?anuncioId={$Anuncio->getAnuncioId()}{/if}" class="form-horizontal"  method="post">
+        <form action="{$rutaCSS}../controlador/anuncioAction.php{if $Anuncio}?anuncioId={$Anuncio->getAnuncioId()}{/if}" class="form-horizontal" id="nuevoAnuncioForm"  method="post">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
@@ -38,7 +38,7 @@ js=''
                             <label for="comboCategorias" class="col-sm-2 control-label">Categoria</label>
                             <div class="col-sm-5">
                                  <select class="form-control select2" id="comboCategorias" name="categoria" style="width: 100%;">
-                                    <option value = "">Seleccione una Categoria...</option>
+                                    <option value = "-1">Seleccione una Categoria...</option>
                                     {if $Categorias}
                                         {foreach from=$Categorias item=categoria}
                                           <option value ="{$categoria->getCategoriaId()}"
@@ -166,6 +166,7 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
+<script src="{$rutaJS}validacionNuevoAnuncio.js"></script>
 <!-- No enter for submitting v1.0 -->
 <script src="{$rutaJS}noEnter.js"></script>
 

@@ -1,22 +1,24 @@
 $().ready(function() {
-  
+    
+     $.validator.addMethod("valueNotEquals", function(value, element, arg){
+      return arg != value;
+     }, "(*)Por favor, seleccione un valor.");
     // Setup form validation on the #register-form element
     $("#nuevoAnuncioForm").validate({
     
         // Specify the validation rules
         rules: {
             
-            txtTitulo: {required:true},
-            ddEmpresas: {required:true},
+            titulo: {required:true},
+            categoria: { valueNotEquals: "-1" },
             
         },
         
         // Specify the validation error messages
         messages: {
-             txtTitulo: {
+             titulo: {
                 required: "(*)Por favor, ingresa un Titulo."},
-            ddEmpresas: {
-                required: "(*)Por favor, seleccione una Empresa."},
+            
          
         }
     })

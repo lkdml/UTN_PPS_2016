@@ -48,13 +48,14 @@ js=''
                             </div>
                         </div>
                         <div class="box-body pad">
-                          <label for="comboEstadosCierre" class="col-md-2 control-label" >Estado de apertura</label>
+                          <label for="comboEstadosApertura" class="col-md-2 control-label" >Estado de apertura</label>
                           <div class="col-md-5">
-                           <select class="form-control select2" id="ddEstado" name="EstadoApertura" style="width: 100%;">
+                           <select class="form-control select2" id="comboEstadosApertura" name="EstadoApertura" style="width: 100%;">
                               <option value = "-1">Seleccione un Estado...</option>
+                             
                                 {if $TicketEstadosApertura}
                                   {foreach from=$TicketEstadosApertura item=$Estado}
-                                    <option value="{$Estado->getEstadoId()}" {if $TicketTipo->getEstadoApertura()->getEstadoId() == $Estado->getEstadoId()} selected {/if}>{$Estado->getNombre()}</option>
+                                    <option value="{$Estado->getEstadoId()}" {if $TicketTipo} {if $TicketTipo->getEstadoApertura()->getEstadoId() == $Estado->getEstadoId()} selected {/if}{/if}>{$Estado->getNombre()}</option>
                                   {/foreach}
                                 {/if}
                             </select>
@@ -63,11 +64,11 @@ js=''
                         <div class="box-body pad">
                           <label for="comboEstadosCierre" class="col-md-2 control-label" >Estado de cierre</label>
                           <div class="col-md-5">
-                           <select class="form-control select2" id="ddEstado" name="EstadoCierre" style="width: 100%;">
+                           <select class="form-control select2" id="comboEstadosCierre" name="EstadoCierre" style="width: 100%;">
                               <option value = "-1">Seleccione un Estado...</option>
                                 {if $TicketEstadosCierre}
                                   {foreach from=$TicketEstadosCierre item=$Estado}
-                                    <option value="{$Estado->getEstadoId()}" {if $TicketTipo->getEstadoCierre()->getEstadoId() == $Estado->getEstadoId()} selected {/if}>{$Estado->getNombre()}</option>
+                                    <option value="{$Estado->getEstadoId()}" {if $TicketTipo} {if $TicketTipo->getEstadoCierre()->getEstadoId() == $Estado->getEstadoId()} selected {/if}{/if}>{$Estado->getNombre()}</option>
                                   {/foreach}
                                 {/if}
                             </select>
