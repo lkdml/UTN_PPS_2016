@@ -11,11 +11,12 @@ use \Modelo\Archivo as Archivo;
 use \Modelo\EmailQueue as EmailQueue;
 $app = Aplicacion::getInstancia();
 $app->startSession(false);
-$usuario = $app->getUsuario();
+//TODO: esta linea se debe mejorar para usar el usuario desde session o app
+$usuario = $em->getRepository('Modelo\Usuario')->find($app->getUsuario()->getUsuarioId());
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 
-$Ticket = setearTicket(new Ticket(),$em);
+$Ticket = setearTicket(new Ticket(),$usuario,$em);
 $Mensaje = setearMensaje(new Mensaje, $Ticket, $usuario, $em);
 $em->persist($Ticket);
 $em->persist($Mensaje);
@@ -23,7 +24,7 @@ $Mensaje = setearArchivosEnMensaje($Mensaje, $em);
 $em->flush();
 header("location:/index.php?modulo=vistaTicket&ticket=".$Ticket->getTicketId()."&accion=ver");
 
-function setearTicket(Ticket $ticket,$em){
+function setearTicket(Ticket $ticket,Usuario $usuario, $em){
    
     $ticket->setNumeroTicket($ticket->generarCodigoTicket($em));
     $ticket->setAsunto($_POST["Asunto"]);
