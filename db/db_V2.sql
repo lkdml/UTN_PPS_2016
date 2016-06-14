@@ -237,10 +237,17 @@ CREATE TABLE IF NOT EXISTS `tmh`.`ticket_tipo` (
   `nombre` VARCHAR(45) NOT NULL,
   `descripcion` VARCHAR(45) NULL,
   `icono` VARCHAR(60) NULL,
+  `estado_apertura` INT(11) NOT NULL,
   `estado_cierre` INT(11) NOT NULL,
   PRIMARY KEY (`tipo_ticket_id`),
-  INDEX `fk_ticket_tipo_ticket_estado_idx` (`estado_cierre` ASC),
-  CONSTRAINT `fk_ticket_tipo_ticket_estado`
+  INDEX `fk_ticket_tipo_ticket_estado_aperturaidx` (`estado_apertura` ASC),
+  INDEX `fk_ticket_tipo_ticket_estado_cierreidx` (`estado_cierre` ASC),
+  CONSTRAINT `fk_ticket_tipo_ticket_estado_apertura`
+    FOREIGN KEY (`estado_apertura`)
+    REFERENCES `tmh`.`ticket_estado` (`estado_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ticket_tipo_ticket_estado_cierre`
     FOREIGN KEY (`estado_cierre`)
     REFERENCES `tmh`.`ticket_estado` (`estado_id`)
     ON DELETE NO ACTION

@@ -40,9 +40,9 @@ function setearTicket(Ticket $ticket,Usuario $usuario, $em){
     if ($_POST["Prioridad"]!="-1"){
         $ticket->setPrioridad($em->getRepository('Modelo\Prioridad')->find($_POST["Prioridad"]));
     }
-    if ($_POST["Estado"]!="-1"){
-        $ticket->setEstado($em->getRepository('Modelo\TicketEstado')->find($_POST["Estado"]));
-    }
+
+    $ticket->setEstado($em->getRepository('Modelo\TicketTipo')->find($_POST["TicketTipo"])->getEstadoApertura());
+    
 
     //TODO Ticket no tiene SLA en la BD
     if ($_POST["SLA"]!="-1"){

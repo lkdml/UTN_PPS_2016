@@ -16,8 +16,10 @@ $vm->assign("RutaAvatars", \CORE\Controlador\Config::getPublic('Ruta_Avatars'));
 $vm->assign('OperadorLogueado',$app->getOperador());
 $vm->assign('Permisos',$permisos);
                   
-$Estados = $em->getRepository('Modelo\TicketEstado')->findByEstadofinal(1);
-$vm->assign('TicketEstados',$Estados);
+$EstadosApertura = $em->getRepository('Modelo\TicketEstado')->findByEstadofinal(0);
+$vm->assign('TicketEstadosApertura',$EstadosApertura);
+$EstadosCierre = $em->getRepository('Modelo\TicketEstado')->findByEstadofinal(1);
+$vm->assign('TicketEstadosCierre',$EstadosCierre);
 
 switch(strtolower($_POST["accion"])){
   case ("nuevo"):

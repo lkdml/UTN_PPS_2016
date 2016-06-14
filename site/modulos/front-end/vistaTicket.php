@@ -43,6 +43,7 @@ switch(strtolower($_GET["accion"])){
     $Prioridades = $em->getRepository('Modelo\Prioridad')->findAll();
     $vm->assign('Prioridades',$Prioridades);
     $Estados = $em->getRepository('Modelo\TicketEstado')->findAll();
+    $posiblesEstadosCierre=$em->getRepository('Modelo\TicketEstado')->findByEstadofinal('1');
     $vm->assign('TicketEstados',$Estados);
     if (!empty($_GET["ticket"])){
       $_SESSION['LastTicketID']=$_GET["ticket"];
@@ -55,6 +56,7 @@ switch(strtolower($_GET["accion"])){
             $Mensajes = $em->getRepository('Modelo\Mensaje')->findBy(array("ticket"=>$_GET["ticket"],"tipoMensaje"=>1),
                                                                 array('fecha' => $ordenamiento_mensajes->getValor()));
             $vm->assign('Ticket',$Ticket); 
+            $vm->assign('EstadosCierre',$posiblesEstadosCierre);
             $vm->assign('Mensajes',$Mensajes);
             $vm->display('vistaTicket.tpl');
         }

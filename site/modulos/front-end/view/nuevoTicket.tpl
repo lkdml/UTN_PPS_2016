@@ -70,27 +70,7 @@ js=''
                           </div>
                       </div>  
                    </div>
-                   <div class="box-body pad">
-                      <div class="form-group">
-                          <label for="comboTipo" class="col-sm-2 control-label">Estado</label>
-                          <div class="col-sm-3">
-                          <select class="form-control select2" id="ddEstados" name="Estado" style="width: 100%;">
-                            <option value = "-1" datos-estado="Seleccione un estado para el ticket a crear">Seleccione un Estado...</option>
-                            {if $TicketEstados}
-                              {foreach from=$TicketEstados item=$Estado}
-                                <option value="{$Estado->getEstadoId()}" datos-estado="{$Estado->getDescripcion()}">{$Estado->getNombre()}</option>
-                              {/foreach}
-                            {/if}
-                          </select>
-                          </div>
-                          <div class="form-group">
-                            <label for="textTipoTicket" class="col-sm-1 control-label">Descripcion:</label>
-                            <div class="col-sm-5">
-                               <p class="form-control-static" id="descripcion-Estado">...</p>
-                            </div>
-                          </div>
-                      </div>  
-                   </div>
+                   
                    <div class="box-body pad">
                       <div class="form-group">
                           <label for="comboTipo" class="col-sm-2 control-label">Prioridad</label>
@@ -244,10 +224,6 @@ $(document).ready(function(){
                 var op = $("#ddTipos option:selected").attr("datos-tipo");
                 $('#descripcion-tTicket').html(op);
         });
-        $("#ddEstados").change(function(){
-                var op = $("#ddEstados option:selected").attr("datos-estado");
-                $('#descripcion-Estado').html(op);
-        });
         $("#ddPrioridades").change(function(){
                 var op = $("#ddPrioridades option:selected").attr("datos-prioridad");
                 $('#descripcion-Prioridad').html(op);
@@ -255,7 +231,7 @@ $(document).ready(function(){
         $("#ddDepartamentos").val("-1").trigger('change');
         $("#ddTipos").val("-1").trigger('change');
         $("#ddPrioridades").val("-1").trigger('change');
-        $("#ddEstados").val("-1").trigger('change');
+       
 });
 </script>
 {/literal}

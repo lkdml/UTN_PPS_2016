@@ -28,6 +28,12 @@ if (isset($_SESSION['LastTicketID'])){
             $Ticket->setEstado($estado);
             $em->persist($Ticket);
         }
+        elseif ($_GET['reAbreTicket']){
+            $tipoTicket=$em->getRepository('Modelo\TicketTipo')->find($Ticket->getTipoTicket());
+            $estado=$tipoTicket->getEstadoApertura();
+            $Ticket->setEstado($estado);
+            $em->persist($Ticket);
+        }
         else {
             $em->persist(setearTicket($Ticket,$em));
             $em->persist($Ticket);

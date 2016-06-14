@@ -1,11 +1,12 @@
 <?php
 
+
 namespace Modelo;
 
 /**
  * TicketTipo
  *
- * @Table(name="ticket_tipo", indexes={@Index(name="fk_ticket_tipo_ticket_estado_idx", columns={"estado_cierre"})})
+ * @Table(name="ticket_tipo", indexes={@Index(name="fk_ticket_tipo_ticket_estado_aperturaidx", columns={"estado_apertura"}), @Index(name="fk_ticket_tipo_ticket_estado_cierreidx", columns={"estado_cierre"})})
  * @Entity
  */
 class TicketTipo
@@ -39,6 +40,16 @@ class TicketTipo
      * @Column(name="icono", type="string", length=60, nullable=true)
      */
     private $icono;
+
+    /**
+     * @var \TicketEstado
+     *
+     * @ManyToOne(targetEntity="TicketEstado")
+     * @JoinColumns({
+     *   @JoinColumn(name="estado_apertura", referencedColumnName="estado_id")
+     * })
+     */
+    private $estadoApertura;
 
     /**
      * @var \TicketEstado
@@ -131,6 +142,30 @@ class TicketTipo
     public function getIcono()
     {
         return $this->icono;
+    }
+
+    /**
+     * Set estadoApertura
+     *
+     * @param \TicketEstado $estadoApertura
+     *
+     * @return TicketTipo
+     */
+    public function setEstadoApertura(TicketEstado $estadoApertura = null)
+    {
+        $this->estadoApertura = $estadoApertura;
+
+        return $this;
+    }
+
+    /**
+     * Get estadoApertura
+     *
+     * @return \TicketEstado
+     */
+    public function getEstadoApertura()
+    {
+        return $this->estadoApertura;
     }
 
     /**

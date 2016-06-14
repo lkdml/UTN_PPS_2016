@@ -176,22 +176,28 @@ css='<link rel="stylesheet" href="./modulos/front-end/css/validacion.css">'
                 {/if}
                    
                 <!-- CUSTOM TABS-->
-                <!--Boton Cerrar Ticket-->
+                <!--botones enviar/cerrar/abrir/cancelar-->
                 <div class="col-md-6 pull-right">
                     <div class="col-md-2 pull-right">
                         <button onclick="window.location='/index.php?modulo=misTickets';return false;" class="btn btn-danger pull-left ">Cancelar</button>
                     </div>
-                    <div class="col-md-3 pull-right">
-                        <button  class="btn btn-warning btn-block" id="btnCerrar">Cerrar Ticket</button>
+                    <div class="col-md-4 pull-right">
+                        <button  class="btn btn-warning btn-block" id="btnCerrar" >
+                            {foreach $EstadosCierre as $estado}
+                                {if $Ticket->getEstado() == $estado}
+                                    Re-Abrir Ticket
+                                {else}
+                                    Cerrar Ticket
+                                {/if}
+                            {/foreach}
+                        </button>
                     </div>
                     <div class="col-md-2 pull-right">
                         <button type="submit" class="btn btn-primary pull-left">Enviar</button>
                     </div>
                 </div>
                 <br>
-                
-                
-                    <!--Fin Boton Cerrar Ticket-->
+                <!--Fin botones enviar/cerrar/abrir/cancelar-->
                 <!--Body Tab-->
                 <div class="box-body">
                 <!-- Custom Tabs -->
@@ -274,6 +280,30 @@ css='<link rel="stylesheet" href="./modulos/front-end/css/validacion.css">'
            </div>
           <!-- fin box body tab--> 
 
+            <!-- Modal para Borrar-->
+                <div id="myModal" class="modal fade" role="dialog">
+                  <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Cerrar Ticket</h4></h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Esta acción cerrará el ticket. ¿Esta seguro que desea continuar?</p>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn btn-danger" id="confirmaBorrado" data-dismiss="modal" type= submit name="accion" value="borrar" >Si, estoy seguro.</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
+                      </div>
+                    </div>
+                
+                  </div>
+                </div> <!-- End Modal Content -->
+
+
+
         </form>
         <!-- form end -->
       </div>
@@ -297,10 +327,37 @@ css='<link rel="stylesheet" href="./modulos/front-end/css/validacion.css">'
 {literal}
 <script>
 $(document).ready(function() {
-    $("#btnCerrar").click(function(){
-        $('#frmVistaTicket').get(0).setAttribute('action','/modulos/front-end/controlador/vistaTicketAction.php?cierraTicket=1');
-        $('#frmVistaTicket').submit();
+    $("#btnCerrar").click(function(e){
+        if ($.trim($("#btnCerrar").html()) == $.trim("Cerrar Ticket"))
+        {
+           $('#frmVistaTicket').get(0).setAttribute('action','/modulos/front-end/controlador/vistaTicketAction.php?cierraTicket=1');
+           $('#btnCerrar').attr("data-toggle","modal");
+           $('#btnCerrar').attr("data-target","#myModal");
+           e.preventDefault();
+        }
+        else
+        {
+           $('#frmVistaTicket').get(0).setAttribute('action','/modulos/front-end/controlador/vistaTicketAction.php?reAbreTicket=1');
+           $('#frmVistaTicket').submit(); 
+        }
+        
     }); 
+});
+
+
+$("#confirmaBorrado").click(function(e){
+
+   var accion=$('<input />').attr('type', 'hidden')
+          .attr('name', "accion")
+          .attr('value', "borrar")
+          .appendTo('#frmVistaTicket');
+        $("#frmVistaTicket").submit();
+    
+});
+
+$("#btnBorrar").click(function(e){
+    e.preventDefault();
+
 });
 </script>
 {/literal}

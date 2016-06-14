@@ -249,9 +249,9 @@ UNLOCK TABLES;
 
 LOCK TABLES `ticket_tipo` WRITE;
 /*!40000 ALTER TABLE `ticket_tipo` DISABLE KEYS */;
-insert into ticket_tipo values (1,'Tarea','Tarea a realizar','glyphicon-check',3),
-                                (2,'Consulta','Duda o consulta','glyphicon-bell',3),
-                                (3,'Problema','Tengo un problema','glyphicon-wrench',3);
+insert into ticket_tipo values (1,'Tarea','Tarea a realizar','glyphicon-check',1,3),
+                                (2,'Consulta','Duda o consulta','glyphicon-bell',1,3),
+                                (3,'Problema','Tengo un problema','glyphicon-wrench',1,3);
 /*!40000 ALTER TABLE `ticket_tipo` ENABLE KEYS */;
 UNLOCK TABLES;
 

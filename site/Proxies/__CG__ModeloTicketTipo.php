@@ -64,10 +64,10 @@ class TicketTipo extends \Modelo\TicketTipo implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'tipoTicketId', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'nombre', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'icono', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'estadoCierre'];
+            return ['__isInitialized__', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'tipoTicketId', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'nombre', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'icono', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'estadoApertura', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'estadoCierre'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'tipoTicketId', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'nombre', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'icono', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'estadoCierre'];
+        return ['__isInitialized__', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'tipoTicketId', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'nombre', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'descripcion', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'icono', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'estadoApertura', '' . "\0" . 'Modelo\\TicketTipo' . "\0" . 'estadoCierre'];
     }
 
     /**
@@ -252,6 +252,28 @@ class TicketTipo extends \Modelo\TicketTipo implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getIcono', []);
 
         return parent::getIcono();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setEstadoApertura(\Modelo\TicketEstado $estadoApertura = NULL)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setEstadoApertura', [$estadoApertura]);
+
+        return parent::setEstadoApertura($estadoApertura);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEstadoApertura()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEstadoApertura', []);
+
+        return parent::getEstadoApertura();
     }
 
     /**

@@ -39,7 +39,8 @@ function setear(TicketTipo $TicketTipo,$em){
     $TicketTipo->setNombre($_POST["nombre"]);
     $TicketTipo->setDescripcion($_POST["descripcion"]);
     $TicketTipo->setIcono($_POST["icono"]);
-    $TicketTipo->setEstadoCierre($em->getRepository('Modelo\TicketEstado')->find($_POST["Estado"]));
+    $TicketTipo->setEstadoApertura($em->getRepository('Modelo\TicketEstado')->find($_POST["EstadoApertura"]));
+    $TicketTipo->setEstadoCierre($em->getRepository('Modelo\TicketEstado')->find($_POST["EstadoCierre"]));
     return $TicketTipo;
 }
 header("location:/operador.php?modulo=tipoTickets");
