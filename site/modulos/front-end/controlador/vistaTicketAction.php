@@ -40,7 +40,6 @@ function setearTicket(Ticket $ticket,$em){
 
 function setearMensaje(Mensaje $mensaje, Ticket $ticket,$em, $usuarioId){
     if (!empty($_POST["Respuesta"])) {
-        echo "paso por respuesta";
         $mensaje = new Mensaje();
         $mensaje->setTexto($_POST["Respuesta"]);
         $mensaje->setFecha(new DateTime("NOW"));

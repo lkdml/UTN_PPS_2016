@@ -75,7 +75,6 @@ function setearTicket(Ticket $ticket,$em){
 
 function setearMensaje(Mensaje $mensaje, Ticket $ticket,$em, $operadorId){
     if (!empty($_POST["Respuesta"])) {
-        echo "paso por respuesta";
         $mensaje = new Mensaje();
         $mensaje->setTexto($_POST["Respuesta"]);
         $mensaje->setFecha(new DateTime("NOW"));
@@ -83,7 +82,6 @@ function setearMensaje(Mensaje $mensaje, Ticket $ticket,$em, $operadorId){
         $mensaje->setTicket($ticket);
         $mensaje->setCreadorOperador($operadorId);
     } else if (!empty($_POST["NotaOperador"])) {
-        echo "nota";
         $mensaje = new Mensaje();
         $mensaje->setTexto($_POST["NotaOperador"]);
         $mensaje->setFecha(new DateTime("NOW"));

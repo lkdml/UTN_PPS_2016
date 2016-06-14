@@ -55,7 +55,6 @@ function setearOperador(Operador $operador,$em){
     $operador->setNombreUsuario($_POST["username"]);
     
     if (($_GET['Operador']==null)){
-        var_dump($operador->encriptarClave($_POST["nuevaclave1"]));
         $operador->encriptarClave($_POST["nuevaclave1"]);
     }
     $operador->setEmail($_POST["email"]);
