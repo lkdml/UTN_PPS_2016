@@ -286,7 +286,7 @@ js=''
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 <!-- Validaciones -->
 <script src="{$rutaJS}jquery-validator-min.js"></script>
-<script src="{$rutaJS}validacionNuevoPerfilOperador.js"></script>
+<script src="{$rutaJS}validacionNuevoPerfil.js"></script>
 <!-- No enter for submitting v1.0 -->
 <script src="{$rutaJS}noEnter.js"></script>
 <script>
