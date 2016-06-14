@@ -4,7 +4,6 @@ js=''
 }
 {include file="panelLateral.tpl"}
 
- 
  <div class="content-wrapper">
      <!-- Content Header (Page header) -->
      <section class="content-header">
@@ -234,13 +233,18 @@ js=''
                                                   <span class="direct-chat-timestamp pull-right">{$mensaje->getFecha()|date_format:"%d-%m-%Y %H:%m"}</span>
                                                 </div><!-- /.direct-chat-info -->
                                                 <img class="direct-chat-img" src="{$RutaAvatars}{if (get_class($Creador) == 'Proxies\__CG__\Modelo\Usuario' || get_class($Creador) == 'Modelo\Usuario')}{if ($Creador->getFotoHash() != null)}{$Creador->getFotoHash()}{else}UserDefault.jpg{/if}{elseif get_class($Creador) == 'Modelo\Operador'}{if $Creador->getHashFoto() != null}{$Creador->getHashFoto()}{else}UserDefault.jpg{/if}{/if}" alt="message user image"><!-- /.direct-chat-img -->
-                                                <div class="direct-chat-text">
-                                                  {$mensaje->getTexto()}
-                                                  {$archivos=$mensaje->getMisArchivos($mensaje->getMensajeId())}
-                                                  {foreach from=$archivos item=$archivo}
-                                                  
+                                                
+                                                <div class="direct-chat-text" id="divtt" style="{if $mensaje->getTipoMensaje()==0}
+                                                                                        color: #9F6000;background-color: #FEEFB3;
+                                                                                      {/if}" title="{if $mensaje->getTipoMensaje()==0}Este es un mensaje solo disponible entre operadores, el usuario no verá estos mensajes{/if}">
+                                                   
+                                                      {$mensaje->getTexto()}
+                                                      {$archivos=$mensaje->getMisArchivos($mensaje->getMensajeId())}
+                                                      {foreach from=$archivos item=$archivo}
+                                                   
                                                   <p><a href="{$archivo->getDirectorio()}{$archivo->getHash()}" target="_blank"><font size = 3>{$archivo->getNombre()}</font></a></p>
                                                   {/foreach}
+                                                   
                                                 </div><!-- /.direct-chat-text -->
                                             </div><!-- /.direct-chat-msg -->
                                           {/foreach}
@@ -327,6 +331,7 @@ js=''
     $(".textarea_msg").wysihtml5();
   });
 </script>
+
 {/literal}
   
   

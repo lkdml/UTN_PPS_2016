@@ -48,11 +48,23 @@ switch(strtolower($_GET["accion"])){
       $_SESSION['LastTicketID']=$_GET["ticket"];
       $ordenamiento_mensajes = $em->getRepository('Modelo\ConfiguracionGlobal')->find('ordenamiento_mensajes');
       $Ticket = $em->getRepository('Modelo\Ticket')->find($_GET["ticket"]);
-      $Mensajes = $em->getRepository('Modelo\Mensaje')->findBy(array("ticket"=>$_GET["ticket"]),
-                                                              array('fecha' => $ordenamiento_mensajes->getValor()));
-      $vm->assign('Ticket',$Ticket); 
-      $vm->assign('Mensajes',$Mensajes);
-      $vm->display('vistaTicket.tpl');
+      if(!empty($Ticket->getUsuario()))
+      {
+        if ($Ticket->getUsuario()->getUsuarioId()== $app->getUsuario()->getUsuarioId())
+        {
+            $Mensajes = $em->getRepository('Modelo\Mensaje')->findBy(array("ticket"=>$_GET["ticket"],"tipoMensaje"=>1),
+                                                                array('fecha' => $ordenamiento_mensajes->getValor()));
+            $vm->assign('Ticket',$Ticket); 
+            $vm->assign('Mensajes',$Mensajes);
+            $vm->display('vistaTicket.tpl');
+        }
+        else {
+          header("location:/index.php?modulo=misTickets");
+        }
+      }
+      else {
+        header("location:/index.php?modulo=misTickets");
+      }
     } else {
       header("location:/index.php?modulo=misTickets");
     }

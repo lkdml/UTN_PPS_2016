@@ -40,12 +40,10 @@ $criterio = array();
       $tTicket = explode(',',$_GET['tipoTicket']);
       $criterio['tipoTicket'] = $tTicket;
   }
-  if (empty($criterio)){
-      $ticket = $em->getRepository('Modelo\Ticket')->findAll();
-  } else {
-      $ticket = $em->getRepository('Modelo\Ticket')->findBy($criterio);
-  }
-  
+  $criterio['usuario']=$app->getUsuario();
+
+  $ticket = $em->getRepository('Modelo\Ticket')->findBy($criterio);
+
   $vm->assign('Tickets',$ticket);
 
 $vm->display('misTickets.tpl');
