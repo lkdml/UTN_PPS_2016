@@ -245,7 +245,7 @@ $( document ).ready(function() {
                       {
                       
                          $('#widgetEstados').append(encabezado+'\
-                            <a class="w-estados" href="/operador.php?modulo=tickets&Estados='+array[i].id+'"  >\
+                            <a class="w-estados" href="/operador.php?modulo=tickets&Asignados=1&Estados='+array[i].id+'"  >\
                             <div class="info-box">\
                               <span class="info-box-icon bg-acua" style=background-color:'+array[i].color+';color:white><i class="glyphicon '+array[i].icono+'"></i></span>\
                               <div class="info-box-content">\
