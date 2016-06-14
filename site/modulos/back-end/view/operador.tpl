@@ -44,7 +44,7 @@ js=''
                         </div>
                       </div>
                         <div class="pull-right">
-                            <button type="submit" class="btn btn-warning" onclick="window.location.href='/operador.php?modulo=operadores'">Modificar</button>
+                            <button type="submit" class="btn btn-warning" onclick="window.location.href='/operador.php?modulo=operadores'"{if !$Operador}disabled{/if}>Modificar</button>
                         </div>
 
                     </div>
@@ -120,7 +120,7 @@ js=''
                               </div>
                             </div>
                             <div class="form-group">
-                              <label for="inputNombre" class="col-sm-2 control-label">Contraseña</label>
+                              <label for="inputNombre" class="col-sm-2 control-label">Reingrese Contraseña</label>
                               <div class="col-sm-9">
                                 <input class="form-control" id="inputContraseña2" type="password" placeholder="Contraseña" name="nuevaclave2">
                               </div>

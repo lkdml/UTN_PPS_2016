@@ -22,7 +22,7 @@ js=''
  <section class="content">
     <div class="box box-info">
          <!-- form start -->
-        <form action="{$rutaCSS}../controlador/prioridadAction.php{if $Prioridad}?prioridadId={$Prioridad->getPrioridadId()}{/if}" class="form-horizontal"  method="post">
+        <form action="{$rutaCSS}../controlador/prioridadAction.php{if $Prioridad}?prioridadId={$Prioridad->getPrioridadId()}{/if}" class="form-horizontal"  method="post" id="nuevaPrioridadForm">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
@@ -117,6 +117,7 @@ js=''
 <script src="{$rutaJS}bootstrap-colorpicker.js"></script>
 <!-- Bootstrap Color Picker -->
 <link rel="stylesheet" href="{$rutaCSS}bootstrap-colorpicker.css">
+<script src="{$rutaJS}validacionNuevaPrioridad.js"></script>
 <!-- No enter for submitting v1.0 -->
 <script src="{$rutaJS}noEnter.js"></script>
 {literal} <script>

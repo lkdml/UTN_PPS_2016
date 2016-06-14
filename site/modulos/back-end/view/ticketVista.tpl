@@ -46,7 +46,6 @@ js=''
                         <label for="comboDepto" class="col-sm-2 control-label">Departamento</label>
                         <div class="col-sm-5">
                            <select class="form-control select2" id="ddDepartamentos" name="Departamento" style="width: 100%;">
-                              <option value = "-1">Seleccione un Departamento...</option>
                               {if $Departamentos}
                                 {foreach from=$Departamentos item=$departamento}
                                   <option value="{$departamento->getDepartamentoId()}" {if $Ticket->getDepartamento()->getDepartamentoId() == $departamento->getDepartamentoId()} selected {/if}>{$departamento->getNombre()}</option>
@@ -110,7 +109,7 @@ js=''
                                    <option value = "-1">Seleccione un Operador</option>
                                    {if $Operadores}
                                       {foreach from=$Operadores item=$operador}
-                                        <option value="{$operador->getOperadorId()}"  {if $Ticket->getAsignadoAOperador() != null && $operador->getOperadorId() == $Ticket->getAsignadoAOperador()->getOperadorId()} selected {/if}>{$operador->getNombre()}</option>
+                                        <option value="{$operador->getOperadorId()}"  {if $Ticket->getAsignadoAOperador() != null && $operador->getOperadorId() == $Ticket->getAsignadoAOperador()->getOperadorId()} selected {/if}>{$operador->getNombre()} {$operador->getApellido()}</option>
                                       {/foreach}
                                     {/if}
                                </select>
