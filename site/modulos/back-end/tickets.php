@@ -63,6 +63,10 @@ if (!$permisos->verificarPermiso("ticket_listar")){
         $estados = explode(',',$_GET['Estados']);
         $criterio['estado'] = $estados;
     }
+    if (isset($_GET['Asignados'])){
+        $estados = explode(',',$_GET['Estados']);
+        $criterio['asignadoAOperador'] = $app->getOperador();
+    }
     if (empty($criterio)){
         $ticket = $em->getRepository('Modelo\Ticket')->findAll();
     } else {
