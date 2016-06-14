@@ -183,9 +183,6 @@ js=''
                     
                     {if $Permisos->verificarPermiso("ticket_editar")}
                         <div class="col-md-2 pull-right">
-                            <button type="submit" class="btn btn-danger btn-block">Cerrar Ticket</button>
-                        </div>
-                        <div class="col-md-2 pull-right">
                             <button type="submit" class="btn btn-primary pull-left">Enviar</button>
                         </div>
                     {/if}

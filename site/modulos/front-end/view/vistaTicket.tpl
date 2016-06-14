@@ -26,7 +26,7 @@ css='<link rel="stylesheet" href="./modulos/front-end/css/validacion.css">'
          <!-- /.box-header -->
          
          <!-- form start -->
-         <form action="{$rutaCSS}../controlador/vistaTicketAction.php" class="form-horizontal" method="POST" enctype="multipart/form-data">
+         <form action="{$rutaCSS}../controlador/vistaTicketAction.php" id="frmVistaTicket" class="form-horizontal" method="POST" enctype="multipart/form-data">
             <div class="box-body">
                 <div class="box">
                     <div class="form-group">
@@ -181,6 +181,9 @@ css='<link rel="stylesheet" href="./modulos/front-end/css/validacion.css">'
                     <div class="col-md-2 pull-right">
                         <button onclick="window.location='/index.php?modulo=misTickets';return false;" class="btn btn-danger pull-left ">Cancelar</button>
                     </div>
+                    <div class="col-md-3 pull-right">
+                        <button  class="btn btn-warning btn-block" id="btnCerrar">Cerrar Ticket</button>
+                    </div>
                     <div class="col-md-2 pull-right">
                         <button type="submit" class="btn btn-primary pull-left">Enviar</button>
                     </div>
@@ -291,5 +294,17 @@ css='<link rel="stylesheet" href="./modulos/front-end/css/validacion.css">'
 <!-- Validaciones FrontEnd -->
 <script src="{$rutaJS}jquery-validator-min.js"></script>
 <script src="{$rutaJS}validacionVistaTicket.js"></script>
+{literal}
+<script>
+$(document).ready(function() {
+    $("#btnCerrar").click(function(){
+        $('#frmVistaTicket').get(0).setAttribute('action','/modulos/front-end/controlador/vistaTicketAction.php?cierraTicket=1');
+        $('#frmVistaTicket').submit();
+    }); 
+});
+</script>
+{/literal}
+
+
 {include file="footer.tpl"}
 

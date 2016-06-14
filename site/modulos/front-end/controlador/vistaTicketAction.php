@@ -15,12 +15,22 @@ $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 if (isset($_SESSION['LastTicketID'])){
     
         $Ticket =  $em->getRepository('Modelo\Ticket')->find($_SESSION['LastTicketID']);
-        $em->persist(setearTicket($Ticket,$em));
-        $em->persist($Ticket);
+       
         if ((!empty($_POST["Respuesta"]))){
             $Mensaje = setearMensaje(new Mensaje, $Ticket, $em, $usuario->getUsuarioId());
             $em->persist($Mensaje);
             $Mensaje = setearArchivosEnMensaje($Mensaje, $em);
+        }
+        if ($_GET['cierraTicket'])
+        {
+            $tipoTicket=$em->getRepository('Modelo\TicketTipo')->find($Ticket->getTipoTicket());
+            $estado=$tipoTicket->getEstadoCierre();
+            $Ticket->setEstado($estado);
+            $em->persist($Ticket);
+        }
+        else {
+            $em->persist(setearTicket($Ticket,$em));
+            $em->persist($Ticket);
         }
         $em->flush();
 }
