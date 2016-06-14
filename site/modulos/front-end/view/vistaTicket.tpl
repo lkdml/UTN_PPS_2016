@@ -181,6 +181,9 @@ css='<link rel="stylesheet" href="./modulos/front-end/css/validacion.css">'
                     <div class="col-md-2 pull-right">
                         <button onclick="window.location='/index.php?modulo=misTickets';return false;" class="btn btn-danger pull-left ">Cancelar</button>
                     </div>
+                    <div class="col-md-3 pull-right">
+                        <button  type="submit" class="btn btn-warning btn-block">Cerrar Ticket</button>
+                    </div>
                     <div class="col-md-2 pull-right">
                         <button type="submit" class="btn btn-primary pull-left">Enviar</button>
                     </div>
