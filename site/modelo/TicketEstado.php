@@ -75,6 +75,7 @@ class TicketEstado
      */
     private $visibleFront;
 
+
     /**
      * Get estadoId
      *
@@ -252,7 +253,7 @@ class TicketEstado
     {
         return $this->orden;
     }
-    
+
     /**
      * Set visibleFront
      *

@@ -5,6 +5,8 @@ require_once($_SERVER["DOCUMENT_ROOT"].'/bootstrap_orm.php');
 use \CORE\Controlador\Aplicacion;
 use \Modelo\TicketTipo as TicketTipo;
 Aplicacion::startSession(true);
+
+$app = Aplicacion::getInstancia();
 $permisos =$app->getPermisos();
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
@@ -37,6 +39,7 @@ function setear(TicketTipo $TicketTipo,$em){
     $TicketTipo->setNombre($_POST["nombre"]);
     $TicketTipo->setDescripcion($_POST["descripcion"]);
     $TicketTipo->setIcono($_POST["icono"]);
+    $TicketTipo->setEstadoCierre($em->getRepository('Modelo\TicketEstado')->find($_POST["Estado"]));
     return $TicketTipo;
 }
 header("location:/operador.php?modulo=tipoTickets");
