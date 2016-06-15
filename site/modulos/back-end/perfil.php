@@ -41,8 +41,8 @@ switch(strtolower($_POST["accion"])){
       $permisos->redirigir("/operador.php?modulo=perfiles");
     } else{
       $perfil = $em->getRepository('Modelo\Perfil')->find($_POST["perfil"][0]);
-      $vm->assign('Nombre', '"'.$perfil->getNombre().'"');
-      $vm->assign('Descripcion','"'. $perfil->getDescripcion().'"');
+      $vm->assign('Nombre', $perfil->getNombre());
+      $vm->assign('Descripcion',$perfil->getDescripcion());
       foreach ($perfil->getRolNombre() as $rol){
         $vm->assign($rol->getNombre(),true);
       }

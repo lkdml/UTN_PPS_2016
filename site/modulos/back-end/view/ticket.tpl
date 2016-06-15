@@ -121,7 +121,7 @@ js=''
                           <option value = "-1">Seleccione un Operador</option>
                           {if $Operadores}
                               {foreach from=$Operadores item=$operador}
-                                <option value="{$operador->getOperadorId()}">{$operador->getNombre()}</option>
+                                <option value="{$operador->getOperadorId()}">{$operador->getNombre()} {$operador->getApellido()}</option>
                               {/foreach}
                             {/if}
                         </select>
