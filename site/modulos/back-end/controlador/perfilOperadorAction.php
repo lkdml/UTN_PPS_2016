@@ -27,9 +27,14 @@ if (isset($_GET['Operador'])){
             $opActualizado=$em->getRepository('Modelo\Operador')->find($getOperador->getOperadorId());
             $app->setoperador($opActualizado);
             $app->guardarOperadorEnSession();
+
         }
     } else if (($_GET['actualiza']=='foto')){
+        try
+        {
+        
         $archivo = new FileManager($em->getRepository('Modelo\ConfiguracionGlobal')->find("extensiones_permitidas_imagenes")->getValor(),'uploads/avatars/');
+        var_dump($_FILES);var_dump($archivo);die;
         $archivo->guardarArchivosDePost($_FILES);
         //TODO faltan agregar al TPL
         $getOperador->setHashFoto($archivo->getArrayNombres()[0]['hashName']);
@@ -38,6 +43,12 @@ if (isset($_GET['Operador'])){
         if ($getOperador->getOperadorId()==$app->getOperador()->getOperadorId()){
             $app->setoperador($getOperador);
             $app->guardarOperadorEnSession();
+        
+            }
+        echo "Ok";
+        }
+        catch(Exception $e) {
+            echo 'Error: ',  $e->getMessage(), "\n";
         }
     } else {
         $Operador = setearOperador($getOperador,$em);
@@ -45,6 +56,8 @@ if (isset($_GET['Operador'])){
         $em->flush();
         $app->setoperador($Operador);
         $app->guardarOperadorEnSession();
+        
+        header("location:/operador.php?modulo=dashboard");
     }
 
 }
@@ -73,6 +86,6 @@ function setearOperador(Operador $operador,$em){
     return $operador;
 }
 
-header("location:/operador.php?modulo=dashboard");
+//
 
 ?>

@@ -20,7 +20,7 @@ js=''
             <div class="col-md-4">
                   <!-- Profile Image -->
                 <div class="box box-primary">
-                  <form action="{$rutaCSS}../controlador/perfilOperadorAction.php?actualiza=foto{if $OperadorLogueado}&Operador={$OperadorLogueado->getOperadorId()}{/if}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                  <form  class="form-horizontal" method="post" id="nuevaFotoForm" enctype="multipart/form-data">
                     <div class="box-body box-profile">
                       <img class="profile-user-img img-responsive img-circle" src="{$RutaAvatars}{if $OperadorLogueado->getHashFoto()}{$OperadorLogueado->getHashFoto()}{else}UserDefault.jpg{/if}" alt="User profile picture">
                 
@@ -36,7 +36,7 @@ js=''
                         </div>
                       </div>
                         <div class="pull-right">
-                            <button type="submit" class="btn btn-warning" onclick="window.location.href='/operador.php?modulo=dashboard'">Modificar</button>
+                            <button type="submit" class="btn btn-warning" id="btnCambioFoto">Modificar</button>
                         </div>
 
                     </div>
@@ -47,7 +47,7 @@ js=''
                 <!-- Cambio Clave -->
                 {if $OperadorLogueado}
                   <div class="box box-primary">
-                    <form action="{$rutaCSS}../controlador/perfilOperadorAction.php?actualiza=clave{if $OperadorLogueado}&Operador={$OperadorLogueado->getOperadorId()}{/if}" class="form-horizontal" id="nuevaClaveForm" method="post">  
+                    <form class="form-horizontal" id="nuevaClaveForm" method="post">  
                       <div class="box-body box-profile">
                       
                         <h3 class="profile-username text-center">Contraseña</h3>
@@ -73,7 +73,7 @@ js=''
                                   </div>
                               </div>
                           <div class="pull-right">
-                              <button type="submit" class="btn btn-warning" onclick="window.location.href='/operador.php?modulo=dashboard'">Cambiar</button>
+                              <button type="submit" class="btn btn-warning"  id="btnCambioClave">Cambiar</button>
                           </div>
                       </div>
                     <!-- /.box-body -->
@@ -143,6 +143,25 @@ js=''
 </div>
 
 
+<div class="modal fade" role="dialog" id="getCodeModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="tituloModal"></h4>
+      </div>
+      <div class="modal-body" id="getCode" >
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">Cerrar</button>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
 
 <!-- /.content -->
 <!-- jQuery 2.2.0 -->
@@ -161,14 +180,76 @@ js=''
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
 <!-- No enter for submitting v1.0 -->
 <script src="{$rutaJS}noEnter.js"></script>
-
+{literal}
 <script>
   $(function () {
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.
     CKEDITOR.replace('editor1');
   });
-</script>
 
+$(document).ready(function(e){
+  $("#btnCambioClave").click(function(e){
+    e.preventDefault();
+     $.ajax({
+         type: "POST",
+         url: "{/literal}{$rutaCSS}{literal}../controlador/perfilOperadorAction.php?actualiza=clave&Operador={/literal}{$OperadorLogueado->getOperadorId()}{literal}",
+         data: $('#nuevaClaveForm').serialize(),
+           success: function(){
+                  $("#getCode").html("Se actualizo la foto con éxito");
+                  $("#tituloModal").html("Actualización exitosa");
+                  $("#getCodeModal").addClass('modal-info');
+                  $("#getCodeModal").modal('show');
+                                 },
+           error: function(msg){
+           $("#getCodeModal").addClass('modal-warning');
+           $("#getCode").html(msg);
+           $("#tituloModal").html("Ups! Hubo un error");
+           }  
+           });
+   });
+});
+
+
+$(document).ready(function(e){
+  $("#btnCambioFoto").click(function(e){
+    e.preventDefault();
+    var file_data = $('#avatar_img').prop('files')[0];   
+    var form_data = new FormData(); 
+    form_data.append('file', file_data);
+    console.log(form_data);
+     $.ajax({
+         type: "POST",
+         url: "{/literal}{$rutaCSS}{literal}../controlador/perfilOperadorAction.php?actualiza=foto&Operador={/literal}{$OperadorLogueado->getOperadorId()}{literal}",
+         cache: false,
+        contentType: false,
+        processData: false,
+         data: form_data,
+           success: function(msg){
+               if(msg=="Ok")
+               {
+                  $("#getCode").html("Se actualizo la foto con éxito");
+                  $("#tituloModal").html("Actualización exitosa");
+                  $("#getCodeModal").addClass('modal-info');
+                  $("#getCodeModal").modal('show');
+                }
+                else{
+                  $("#getCode").html(msg);
+                  $("#tituloModal").html("Ups! Hubo un error");
+                  $("#getCodeModal").addClass('modal-danger');
+                  $("#getCodeModal").modal('show');
+                }
+           },
+           error: function(msg){
+           $("#getCodeModal").addClass('modal-warning');
+           $("#getCode").html(msg);
+           $("#tituloModal").html("Ups! Hubo un error");
+           }  
+           });
+   });
+});
+
+</script>
+{/literal}
 
  {include file="footer.tpl"}
