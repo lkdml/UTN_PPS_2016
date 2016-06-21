@@ -35,13 +35,13 @@ js=''
                 <li class="active">
                   <a href="/index.php?modulo=misTickets">
                   <i class="glyphicon glyphicon-inbox"></i> Todos
-                  <span class="label label-primary pull-right">1</span></a>
+                  <span class="label label-primary pull-right" id="todosEstados"></span></a>
                 </li> 
                 {foreach from=$Estados item=$estado}
                   <li>
                     <a href="/index.php?modulo=misTickets&Estados={$estado->getEstadoId()}">
                       <i class="glyphicon {$estado->getIcono()}"></i> {$estado->getNombre()}
-                    <span class="label label-primary pull-right" id="Estado-{$estado->getEstadoId()}">1</span></a>
+                    <span class="label label-primary pull-right" id="Estado-{$estado->getEstadoId()}"></span></a>
                   </li>
                 {/foreach}
               </ul>
@@ -62,7 +62,7 @@ js=''
                   <li>
                     <a href="/index.php?modulo=misTickets&Departamentos={$departamento->getDepartamentoId()}">
                       <i class="fa fa-circle-o"></i> {$departamento->getNombre()}
-                    <span class="label label-primary pull-right" id="Estado-{$departamento->getDepartamentoId()}">1</span></a>
+                    <span class="label label-primary pull-right" id="Departamento-{$departamento->getDepartamentoId()}"></span></a>
                   </li>
                 {/foreach}
               </ul>
@@ -72,7 +72,7 @@ js=''
           <!-- /. box -->
           <div class="box box-solid">
             <div class="box-header with-border">
-              <h3 class="box-title">Prioridades</h3>
+              <h3 class="box-title">Tipo de Ticket</h3>
               <div class="box-tools">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                 </button>
@@ -84,7 +84,7 @@ js=''
                   <li>
                     <a href="/index.php?modulo=misTickets&tipoTicket={$tTipo->getTipoTicketId()}">
                       <i class="glyphicon {$tTipo->getIcono()}"></i> {$tTipo->getNombre()}
-                    <span class="label label-primary pull-right" id="Estado-{$tTipo->getTipoTicketId()}">1</span></a>
+                    <span class="label label-primary pull-right" id="TipoTicket-{$tTipo->getTipoTicketId()}"></span></a>
                   </li>
                 {/foreach}
               </ul>
@@ -144,6 +144,6 @@ js=''
 <script src="{$rutaJS}app.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
-  
+<script src="{$rutaJS}cantidadMisTickets.js"></script>  
   
    {include file="footer.tpl"}
