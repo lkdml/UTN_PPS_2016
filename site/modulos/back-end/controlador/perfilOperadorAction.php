@@ -34,7 +34,6 @@ if (isset($_GET['Operador'])){
         {
         
         $archivo = new FileManager($em->getRepository('Modelo\ConfiguracionGlobal')->find("extensiones_permitidas_imagenes")->getValor(),'uploads/avatars/');
-        var_dump($_FILES);var_dump($archivo);die;
         $archivo->guardarArchivosDePost($_FILES);
         //TODO faltan agregar al TPL
         $getOperador->setHashFoto($archivo->getArrayNombres()[0]['hashName']);
