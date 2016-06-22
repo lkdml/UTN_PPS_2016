@@ -23,7 +23,7 @@ js=''
     <section class="content">
       
       <div class="row t">
-        <div class="col-md-11 ">
+        <div class="col-md-12">
         <!--<div class="">-->
         
         <ul class="timeline">

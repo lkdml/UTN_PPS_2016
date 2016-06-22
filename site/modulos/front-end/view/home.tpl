@@ -27,8 +27,6 @@ js=''
       <div class="row">
         <div class="col-md-12">
         <!--<div class="">-->
-        
-       
           <ul class="timeline">
              {foreach from=$Anuncios item=$Anuncio}
               <!-- timeline time label -->

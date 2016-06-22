@@ -31,33 +31,43 @@
         {$css|default:''}
         {$js|default:''}
 </head>
+{literal}
+<style>
+  .main-header > .navbar {
+    margin-left: 0px;
+  }
+  .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus
+  ,.navbar-default .navbar-header .navbar-toggle:hover
+  ,.navbar-default .navbar-header .navbar-toggle:active
+  ,.navbar-default .navbar-header .navbar-toggle:focus{
+    background: rgba(0, 0, 0, 0.1);
+    color: #f6f6f6;
+}
+
+</style>
+{/literal}
 <!-- ADD THE CLASS layout-boxed TO GET A BOXED LAYOUT -->
 <body class="hold-transition skin-green-light sidebar-collapse ">
-<!-- Site wrapper -->
-<div class="wrapper">
 
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="/index.php?modulo=home" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">TMH</span>
-      <!-- logo for regular state and mobile devices -->
-       <img src="{$rutaIMG}tipografia.png" alt="Logo">
-       <!--<img src="{$rutaIMG}iconologo.png" alt="Logo">-->
-      <!-- <span class="logo-lg">Sistema<b>T.H.M.</b></span>-->
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    
-  <nav class="navbar navbar-default navbar-inverse" role="navigation">
+<header class="main-header">
+  <nav class="navbar navbar-default navbar-inverse " role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-    
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- logo for regular state and mobile devices -->
+       <img src="{$rutaIMG}tipografia.png" alt="Logo">
+    </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li {if $error}class="dropdown open" {else} class="dropdown"{/if}class="dropdown" >
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" {if $error}aria-expanded="true"{/if}><i class="glyphicon glyphicon-user"></i> Ingresar<span class="caret"></span></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" {if $error}aria-expanded="true"{/if}><i class="glyphicon glyphicon-log-in"></i> Ingresar<span class="caret"></span></a>
     			<ul id="login-dp" class="dropdown-menu">
     				<li>
     					 <div class="row">
@@ -94,6 +104,5 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-
 </header>
 
