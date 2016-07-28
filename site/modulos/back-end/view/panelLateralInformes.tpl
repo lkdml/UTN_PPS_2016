@@ -84,31 +84,27 @@
   {literal}
 <script>
 
-$( document ).ready(function obtenerTicketsOperador() {
+function obtenerTicketsOperador() {
      $.ajax({
           url:'operador.php?modulo=widgets',
           type:'GET',
           datatype:'JSON',
-          data:{datosAjax:'widgetEstados'},
+          data:{datosAjax:'lateralTickets'},
           success: function (response){
                       var array = jQuery.parseJSON( response );
                       var total=0;
                       for(var i=0;i<array.length;i++)
                       {
                       
-                         $('#dinamicTicketMenuOperador').append('<li><a href="/operador.php?modulo=tickets&Estados='+array[i].id+'">'+array[i].nombre+'<small class="label pull-right" style=background-color:'+array[i].color+'>'+array[i].cantidad+'</small></li></a>'); 
+                         $('#dinamicTicketMenuOperador').append('<li><a href="/operador.php?modulo=tickets&Estados='+array[i].id+'">'+array[i].nombre+'<small class="label pull-right" style=background-color:'+array[i].color+'>'+array[i].cantidad+'</small></a></li>'); 
                         total=total+array[i].cantidad;
                       }
                       $('#totalticketOperador').html(total);
             
                   }
-        });
-});
+        })};
 
-
-
-
-$( document ).ready(function obtenerLateralDepartamentos() {
+function obtenerLateralDepartamentos() {
      $.ajax({
           url:'operador.php?modulo=widgets',
           type:'GET',
@@ -116,7 +112,6 @@ $( document ).ready(function obtenerLateralDepartamentos() {
           data:{datosAjax:'lateralDepartamentos'},
           success: function (response){
                       var array = jQuery.parseJSON( response );
-                      console.log(array);
                       var totalGeneral=0;
                       var totalDepto=0;
                
@@ -153,14 +148,17 @@ $( document ).ready(function obtenerLateralDepartamentos() {
                       $('#totalDeptosTickets').html(totalGeneral);
         
                   }
-        });
-});
+        })};
+
+$( document ).ready(function() {
+  obtenerTicketsOperador();
+  obtenerLateralDepartamentos();
+ });
 
 setInterval(function() {
   obtenerTicketsOperador();
   obtenerLateralDepartamentos();
 },120000);
-
 
 </script>
 {/literal}
