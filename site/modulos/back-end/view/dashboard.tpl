@@ -189,9 +189,8 @@ js=''
 	
 
 		<!--================================================== -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 		<!-- jQuery 2.2.0 -->
-        
+		<script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
        	<!-- AdminLTE App -->
         <script src="{$rutaJS}app.min.js"></script>
         <!-- jQuery UI -->
