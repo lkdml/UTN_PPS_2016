@@ -156,12 +156,12 @@ js=''
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">Cerrar</button>
-    </div>
+      </div>
     <!-- /.modal-content -->
-  </div>
+    </div>
   <!-- /.modal-dialog -->
+  </div>
 </div>
-
 
 <!-- /.content -->
 <!-- jQuery 2.2.0 -->

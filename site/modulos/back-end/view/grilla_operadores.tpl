@@ -114,8 +114,6 @@ js=''
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
-</div>
-<!-- ./wrapper -->
 
 <!-- jQuery 2.2.0 -->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}jQuery-2.2.0.min.js"></script>

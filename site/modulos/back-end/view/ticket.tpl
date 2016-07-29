@@ -17,7 +17,7 @@ js=''
 {/literal}
   <!-- =============================================== -->
   
-   <div class="content-wrapper">
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -28,8 +28,8 @@ js=''
         <li class="active">Crear/Modificar Ticket</li>
       </ol>
     </section>
- <section class="content">
- <!-- Horizontal Form -->
+   <section class="content">
+   <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">Ticket</h3>
@@ -243,16 +243,15 @@ js=''
                     
                   </div><!-- /.box-body Asunto Descripcion y Adjuntos -->
                  
-              </div>
+              
 
             </form>
           </div>
      </section>      
-          
-           
+       
+        
  <link rel="stylesheet" href="{$rutaCSS}bootstrap3-wysihtml5.min.css">
 
-</div>
 <script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{$rutaJS}bootstrap.min.js"></script>

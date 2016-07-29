@@ -180,13 +180,12 @@ js=''
 				<!-- end widget grid -->
 				{/if}
 
-			</div>
-			<!-- END MAIN CONTENT -->
+			
 
+		
+        	</section>
 		</div>
-		<!-- END MAIN PANEL -->
-        </section>
-	
+		<!-- END MAIN CONTENT -->
 
 		<!--================================================== -->
 		<!-- jQuery 2.2.0 -->
