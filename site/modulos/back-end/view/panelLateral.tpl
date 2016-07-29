@@ -67,6 +67,7 @@
 <script>
 
 function obtenerTicketsOperador() {
+     $('#dinamicTicketMenuOperador').empty();
      $.ajax({
           url:'operador.php?modulo=widgets',
           type:'GET',
@@ -87,6 +88,7 @@ function obtenerTicketsOperador() {
         })};
 
 function obtenerLateralDepartamentos() {
+     $('#dinamicDeptos').empty();
      $.ajax({
           url:'operador.php?modulo=widgets',
           type:'GET',

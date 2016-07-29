@@ -159,9 +159,9 @@ class Informes
           }
           
           $datasets=array("label"=>"Prioridad de ticket asignados por mes"
-                           ,'fillColor' => "rgba(220,220,220,0.2)"
-                           , 'strokeColor' => "rgba(220,220,220,1)"
-                           , 'pointColor' => "rgba(220,220,220,1)"
+                           ,'fillColor' => "rgba(36, 168, 219, 0.9)"
+                           , 'strokeColor' => "rgba(36, 168, 219, 0.9)"
+                           , 'pointColor' => "rgba(36, 168, 219, 0.9)"
                            , 'pointStrokeColor' => "#fff"
                            , 'pointHighlightFill' => "#fff"
                            , 'pointHighlightStroke' => "rgba(220,220,220,1)"
@@ -299,6 +299,184 @@ class Informes
           }
           return json_encode($lateralDepto);
     }
+    
+    /**
+      * @return JSON que contiene la cantidad de usuarios por empresa que existen en las fechas indicadas
+     * */
+    public function usuariosPorEmpresa()
+    {
+       $empresas=$this->em->getRepository('Modelo\Empresa')->findAll();
+       foreach($empresas as $empresa)
+       {
+           $qb= $this->em->createQueryBuilder();
+           $qb->select('t.usuarioId')
+                ->from('Modelo\Usuario','t')
+                ->where('t.empresa = :empresa')
+                ->setParameter('empresa',$empresa->getEmpresaId());
+            
+            $cantidadUsuarios = count($qb->getQuery()->getResult());
+            $color = $this->rand_color();
+            
+            $datosChart[]=array('value'=>$cantidadUsuarios,'color'=>$color,'highlight'=>$color,'label'=>$empresa->getRazonSocial());       
+       }
+       return json_encode($datosChart);
+    }
+    
+    /**
+      * @param  fecha desde
+      * @param  fecha hasta
+      * @return JSON que contiene la cantidad de tickets por empresa que existen en las fechas indicadas
+     * */
+    public function ticketsPorEmpresa($desde,$hasta)
+    {
+       $empresas=$this->em->getRepository('Modelo\Empresa')->findAll();
+       
+       foreach($empresas as $empresa)
+       {
+           $usuariosPorEmpresa=$this->em->getRepository('Modelo\Usuario')->findByempresa($empresa->getEmpresaId());
+           $qb= $this->em->createQueryBuilder();
+           $qb->select('t.ticketId')
+                ->from('Modelo\Ticket','t')
+                ->where('t.usuario IN (:usuariosEmpresa)')
+                ->Andwhere('t.fechaCreacion >= :desde')
+                ->Andwhere('t.fechaCreacion <= :hasta')
+                ->setParameter('usuariosEmpresa',$usuariosPorEmpresa)
+                ->setParameter('desde',$desde)
+                ->setParameter('hasta',$hasta);
+            
+            $cantidad = count($qb->getQuery()->getResult());
+            $color = $this->rand_color();
+            
+            $datosChart[]=array('value'=>$cantidad,'color'=>$color,'highlight'=>$color,'label'=>$empresa->getRazonSocial());       
+       }
+       return json_encode($datosChart);
+    }
+    
+    /**
+      * @param  fecha desde
+      * @param  fecha hasta
+      * @param  empresa elegida o -1 para todas las empresas
+      * @param  estado elegido para el reporte
+      * @return JSON que contiene la cantidad de tickets por empresa y por estado que existen en las fechas indicadas
+     * */
+    public function devolverTicketsPorEstadoPorEmpresa($desde,$hasta,$est,$emp)
+    {
+        $estado=$this->em->getRepository('Modelo\TicketEstado')->find($est);
+        $empresa=$this->em->getRepository('Modelo\Empresa')->find($emp);
+       
+        $usuariosPorEmpresa=$this->em->getRepository('Modelo\Usuario')->findBy(array("empresa"=>$empresa));
+        $qb= $this->em->createQueryBuilder();
+         $qb->select('COUNT(t.fechaCreacion) AS Cantidad,substring(t.fechaCreacion,6,2) AS groupMes')
+         ->from('Modelo\Ticket','t')
+         ->where('t.estado = :estado')
+         ->Andwhere('t.usuario IN (:usuariosEmpresa)')
+         ->Andwhere('t.fechaCreacion >= :desde')
+         ->Andwhere('t.fechaCreacion <= :hasta')
+         ->setParameter('estado',$estado)
+         ->setParameter('usuariosEmpresa',$usuariosPorEmpresa)
+         ->setParameter('desde',$desde)
+         ->setParameter('hasta',$hasta)
+         ->groupBy('groupMes');
+          
+         $resultado=$qb->getQuery()->getResult();
+          
+         for ($i = 1; $i < 13; $i++) {
+            $cantidadMes[$i]=0;
+         }
+         for ($i = 0; $i < count($resultado); $i++) {
+            $cantidadMes[intval($resultado[$i][groupMes])]=intval($resultado[$i][Cantidad]);
+         }
+            
+        $labels=array("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+        
+        $datasets=array("label"=>"Cantidad de Tickets",
+                        "fillColor"=>"rgba(210, 214, 222, 1)",
+                        "strokeColor"=>"rgba(210, 214, 222, 1)",
+                        "pointColor"=>"rgba(210, 214, 222, 1)",
+                        "pointStrokeColor"=>"#c1c7d1",
+                        "pointHighlightFill"=>"#fff",
+                        "pointHighlightStroke"=>"rgba(220,220,220,1)",
+                        "data"=>array_values($cantidadMes));
+                        
+        $respuesta=array("labels"=>$labels,"datasets"=>array($datasets));
+        return json_encode($respuesta);
+    }
+    
+    public function devolverTicketsPorDepartamento($desde,$hasta,$deptos)
+    {
+        $departamentos=array();
+        
+        if (intval($deptos) < 0)
+        {
+            $departamentos=$this->em->getRepository('Modelo\Departamento')->findAll();
+        }else
+        {
+            $departamentos=array($this->em->getRepository('Modelo\Departamento')->find($deptos));
+        }
+        
+       
+        foreach($departamentos as $depto)
+        {
+            $labels[]=$depto->getNombre();
+            $qb= $this->em->createQueryBuilder();
+                    $qb->select('t.ticketId')
+                    ->from('Modelo\Ticket','t')
+                    ->where('t.departamento = :depto')
+                    ->Andwhere('t.fechaCreacion >= :desde')
+                    ->Andwhere('t.fechaCreacion <= :hasta')
+                    ->setParameter('depto',$depto)
+                    ->setParameter('desde',$desde)
+                    ->setParameter('hasta',$hasta);
+
+            $cantidadporDepto[]=count($qb->getQuery()->getResult());
+        }
+
+          $datasets=array("label"=>"Cantidad de Tickets",
+                          "fillColor"=>"rgba(60,141,188,0.9)",
+                          "strokeColor"=>"rgba(60,141,188,0.8)",
+                          "pointColor"=>"#3b8bba",
+                          "pointStrokeColor"=>"rgba(60,141,188,1)",
+                          "pointHighlightFill"=>"#fff",
+                          "pointHighlightStroke"=>"rgba(60,141,188,1)",
+                          "data"=>$cantidadporDepto);
+                          
+            $respuesta=array("labels"=>$labels,"datasets"=>array($datasets));
+            return json_encode($respuesta);
+    }
+    
+    public function devolverTicketsPorPrioridad($desde,$hasta)
+    {
+        $prioridades = $ticket =  $this->em->getRepository('Modelo\Prioridad')->findAll();
+       
+       foreach($prioridades as $prioridad)
+       {
+           $qb= $this->em->createQueryBuilder();
+           $qb->select('t.ticketId')
+                ->from('Modelo\Ticket','t')
+                ->where('t.prioridad = :prioridad')
+                ->Andwhere('t.fechaCreacion >= :desde')
+                ->Andwhere('t.fechaCreacion <= :hasta')
+                ->setParameter('prioridad',$prioridad)
+                ->setParameter('desde',$desde)
+                ->setParameter('hasta',$hasta);
+            
+            $cantidad = count($qb->getQuery()->getResult());
+
+            $datosChart[]=array('value'=>$cantidad,'color'=>$prioridad->getColor(),'highlight'=>$prioridad->getColor(),'label'=>$prioridad->getNombre());       
+       }
+       return json_encode($datosChart);
+
+    }
+    
+    /**
+      * @return string con un color random en forma Hex
+     * */
+    private function rand_color() 
+    {
+        return sprintf('#%06X', mt_rand(0, 0xFFFFFF));
+    }
+
+    
     
     
     
