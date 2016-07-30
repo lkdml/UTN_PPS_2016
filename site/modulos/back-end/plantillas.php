@@ -7,6 +7,18 @@ use \CORE\Controlador\Aplicacion;
 use \Modelo\EmailTemplates as EmailTemplates;
 $app = Aplicacion::getInstancia();
 $app->startSession($modoOP);
+
+if(isset($_GET['plantillaId']))
+{
+    $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+    
+    $plantilla = $em->getRepository('Modelo\EmailTemplates')->find($_GET['plantillaId']);
+    
+    echo json_encode(array('nombre'=>$plantilla->getNombre(),'titulo'=>$plantilla->getAsunto(),'body'=>$plantilla->getTexto()));
+
+}
+else
+{
 $permisos =$app->getPermisos();
 
 if (!$permisos->verificarPermiso("general_plantillas")){
@@ -35,4 +47,5 @@ $vm->assign("RutaAvatars", \CORE\Controlador\Config::getPublic('Ruta_Avatars'));
     $vm->assign('EmailTemplates',$plantillas);
     
     $vm->display('grilla_plantillas.tpl');
+}
 }
