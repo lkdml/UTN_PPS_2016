@@ -12,10 +12,17 @@ if(isset($_GET['plantillaId']))
 {
     $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
     
-    $plantilla = $em->getRepository('Modelo\EmailTemplates')->find($_GET['plantillaId']);
-    
-    echo json_encode(array('nombre'=>$plantilla->getNombre(),'titulo'=>$plantilla->getAsunto(),'body'=>$plantilla->getTexto()));
-
+    if(isset($_GET['delete']))
+    {
+        $em->remove($em->getRepository('Modelo\EmailTemplates')->find($_GET['plantillaId']));
+        $em->flush();
+    }
+    else
+    {
+        $plantilla = $em->getRepository('Modelo\EmailTemplates')->find($_GET['plantillaId']);
+        
+        echo json_encode(array('nombre'=>$plantilla->getNombre(),'titulo'=>$plantilla->getAsunto(),'body'=>$plantilla->getTexto()));
+    }
 }
 else
 {

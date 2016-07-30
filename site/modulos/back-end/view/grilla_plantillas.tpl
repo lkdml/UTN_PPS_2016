@@ -1,6 +1,5 @@
 {include file="header.tpl"
-css='<link rel="stylesheet" href="./modulos/back-end/css/dataTables.bootstrap.css">
-<link rel="stylesheet" type="text/css" href="./modulos/back-end/css/jquery.dataTables.css">
+css='
 <link rel="stylesheet" href="./modulos/back-end/css/validacion.css">'
 js='' 
 }
@@ -9,10 +8,15 @@ js=''
 
 <style>
 li.template{
-  cursor: pointer;
   display: block;
   padding: 10px 15px;
   position: relative;
+}
+i.fa-pencil{
+    cursor: pointer;
+}
+i.fa-trash-o{
+    cursor: pointer;
 }
 </style>
  
@@ -64,7 +68,7 @@ li.template{
                       <ul class="nav nav-stacked">
                         {foreach from=$EmailTemplates item=$plantilla}
                           {if $plantilla->getTipo() eq 'operador'}
-                            <li class="template" id="{$plantilla->getEmailId()}">{$plantilla->getNombre()}<span class="pull-right"><i class="fa fa-pencil"></i></span></li>
+                            <li class="template">{$plantilla->getNombre()}<span class="pull-right"><i class="fa fa-pencil"  id="{$plantilla->getEmailId()}"></i></span></li>
                           {/if}
                         {/foreach}
                       </ul>
@@ -82,7 +86,7 @@ li.template{
                       <ul class="nav nav-stacked">
                         {foreach from=$EmailTemplates item=$plantilla}
                           {if $plantilla->getTipo() eq 'usuario'}
-                            <li class="template" id="{$plantilla->getEmailId()}">{$plantilla->getNombre()}<span class="pull-right"><i class="fa fa-pencil"></i></span></li>
+                            <li class="template">{$plantilla->getNombre()}<span class="pull-right"><i class="fa fa-pencil" id="{$plantilla->getEmailId()}"></i></span></li>
                           {/if}
                         {/foreach}
                       </ul>
@@ -105,7 +109,14 @@ li.template{
                       <ul class="nav nav-stacked">
                         {foreach from=$EmailTemplates item=$plantilla}
                           {if $plantilla->getTipo() eq 'custom'}
-                            <li class="template" id="{$plantilla->getEmailId()}">{$plantilla->getNombre()}<span class="pull-right"><i class="fa fa-pencil"></i></span></li>
+                            <li class="template" >
+                              {$plantilla->getNombre()}
+                              <span class="pull-right">
+                                <i class="fa fa-pencil" id="{$plantilla->getEmailId()}"></i>
+                                <i class="fa fa-trash-o" id="{$plantilla->getEmailId()}" style="padding-left: 10px;"></i>
+                              </span>
+                              
+                            </li>
                           {/if}
                         {/foreach}
                       </ul>
@@ -227,7 +238,7 @@ li.template{
 
 $(document).ready( function () {
 
-   $("li.template").click(function() { 
+   $("i.fa-pencil").click(function() { 
     var idTemplate=this.id;
     $.ajax({
             url:'operador.php?modulo=plantillas',
@@ -246,6 +257,20 @@ $(document).ready( function () {
                 }
             })
   });
+  
+   $("i.fa-trash-o").click(function() { 
+     var idTemplate=this.id;
+     var element=$(this);
+     $.ajax({
+            url:'operador.php?modulo=plantillas',
+            type:'GET',
+            datatype:'JSON',
+            data:{plantillaId:idTemplate,delete:true},
+            success: function (response){
+                element.parents('li.template').hide();
+                }
+            })
+   });
   
   $("#nuevoTemplate").click(function() {
     $('#inputNombre').val('');
