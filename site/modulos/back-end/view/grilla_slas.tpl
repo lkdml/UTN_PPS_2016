@@ -83,7 +83,6 @@ js=''
                   <th>Nombre</th>
                   <th>Descripción</th>
                   <th>Activo</th>
-                  <th>Eliminado</th>
               </tr>
           </thead>
           <tbody>
@@ -93,7 +92,6 @@ js=''
                       <td>{$sla->getNombre()}</td>
                       <td>{$sla->getDescripcion()}</td>
                       <td>{if $sla->getEstado()==1}Si{else}No{/if}</td>
-                      <td>{if $sla->getEliminado()==true}Si{else}No{/if}</td>
                   </tr>
               {/foreach}
           </tbody>

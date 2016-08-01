@@ -102,19 +102,6 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `tmh`.`perfil`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`perfil` (
-  `perfil_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NOT NULL,
-  `descripcion` VARCHAR(45) NULL,
-  `estado` TINYINT(1) NOT NULL,
-  PRIMARY KEY (`perfil_id`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
 -- Table `tmh`.`operador`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`operador` (
@@ -143,6 +130,19 @@ CREATE TABLE IF NOT EXISTS `tmh`.`operador` (
     REFERENCES `tmh`.`perfil` (`perfil_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+-- -----------------------------------------------------
+-- Table `tmh`.`perfil`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tmh`.`perfil` (
+  `perfil_id` INT(11) NOT NULL AUTO_INCREMENT,
+  `nombre` VARCHAR(45) NOT NULL,
+  `descripcion` VARCHAR(45) NULL,
+  `estado` TINYINT(1) NOT NULL,
+  PRIMARY KEY (`perfil_id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
@@ -254,43 +254,6 @@ CREATE TABLE IF NOT EXISTS `tmh`.`ticket_tipo` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
-
-
--- -----------------------------------------------------
--- Table `tmh`.`sla`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `tmh`.`sla` (
-  `sla_id` INT(11) NOT NULL AUTO_INCREMENT,
-  `nombre` VARCHAR(45) NOT NULL,
-  `descripcion` VARCHAR(45) NULL,
-  `departamento_origen` INT(11) NULL,
-  `estado_origen` INT(11) NULL,
-  `prioridad_origen` INT(11) NULL,
-  `condicion_hora` INT NOT NULL DEFAULT 1,
-  `accion_departamento` INT NULL,
-  `accion_prioridad` INT NULL,
-  `accion_estado` INT NULL,
-  `accion_operador_asignado` INT NULL,
-  `estado` INT NOT NULL,
-  `eliminado` TINYINT(1) NOT NULL,
-  `email_template_id` INT NOT NULL,
-  `tipo_ticket_origen` INT NOT NULL,
-  PRIMARY KEY (`sla_id`),
-  INDEX `FK_email_sla_email_idx` (`email_template_id` ASC),
-  INDEX `fk_sla_tipo_ticket_idx` (`tipo_ticket_origen` ASC),
-  CONSTRAINT `FK_email_sla_email`
-    FOREIGN KEY (`email_template_id`)
-    REFERENCES `tmh`.`email_templates` (`email_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_sla_tipo_ticket`
-    FOREIGN KEY (`tipo_ticket_origen`)
-    REFERENCES `tmh`.`ticket_tipo` (`tipo_ticket_id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
 
 -- -----------------------------------------------------
 -- Table `tmh`.`usuario`
@@ -565,3 +528,90 @@ DEFAULT CHARACTER SET = utf8;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+-- -----------------------------------------------------
+-- Table `tmh`.`sla_parametro`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tmh`.`sla_parametro` (
+  `sla_parametro_ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Descripcion` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`sla_parametro_ID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+-- -----------------------------------------------------
+-- Table `tmh`.`sla_condicion`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tmh`.`sla_condicion` (
+  `sla_condicion_ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` VARCHAR(45) NOT NULL,
+  `Descripcion` VARCHAR(45) NULL,
+  `tipo` ENUM('pre', 'post', 'vencimiento') NOT NULL,
+  `custom_fields_type` VARCHAR(500) NOT NULL,
+  PRIMARY KEY (`sla_condicion_ID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+-- -----------------------------------------------------
+-- Table `tmh`.`sla_condicion_parametros`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tmh`.`sla_condicion_parametros` (
+  `sla_condicion_ID` INT(11) NOT NULL,
+  `sla_parametro_ID` INT(11) NOT NULL,
+  PRIMARY KEY (`sla_condicion_ID`, `sla_parametro_ID`),
+  CONSTRAINT `fk_sla_condicion_parametros_condicion`
+    FOREIGN KEY (`sla_condicion_ID`)
+    REFERENCES `tmh`.`sla_condicion` (`sla_condicion_ID`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_sla_condicion_parametros_parametro`
+    FOREIGN KEY (`sla_parametro_ID`)
+    REFERENCES `tmh`.`sla_parametro` ( `sla_parametro_ID` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+-- -----------------------------------------------------
+-- Table `tmh`.`sla`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tmh`.`sla` (
+  `sla_ID` INT(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` VARCHAR(45) NOT NULL,
+  `Descripcion` VARCHAR(45) NOT NULL,
+  `Estado` TINYINT(1) NOT NULL,
+  PRIMARY KEY (`sla_ID`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+-- -----------------------------------------------------
+-- Table `tmh`.`sla_slas_condiciones`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `tmh`.`sla_slas_condiciones` (
+  `sla_ID` INT(11) NOT NULL,
+  `sla_condicion_ID` INT(11) NOT NULL,
+  `sla_parametro_ID` INT(11) NOT NULL,
+  `valor` VARCHAR(60) NOT NULL,
+  PRIMARY KEY (`sla_ID`, `sla_condicion_ID`,sla_parametro_ID),
+  INDEX `fk_sla_slas_condiciones_condicion_idx` (`sla_condicion_ID` ASC),
+  INDEX `fk_sla_slas_condiciones_parametro_idx` (`sla_parametro_ID` ASC),
+  CONSTRAINT `fk_sla_slas_condiciones_sla`
+    FOREIGN KEY (`sla_ID`)
+    REFERENCES `tmh`.`sla` (`sla_ID`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
+  CONSTRAINT `fk_sla_slas_condiciones_condicion`
+    FOREIGN KEY (`sla_condicion_ID`)
+    REFERENCES `tmh`.`sla_condicion` ( `sla_condicion_ID` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+    CONSTRAINT `fk_sla_slas_condiciones_parametro`
+    FOREIGN KEY (`sla_parametro_ID`)
+    REFERENCES `tmh`.`sla_parametro` ( `sla_parametro_ID` )
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = latin1;
+
+
