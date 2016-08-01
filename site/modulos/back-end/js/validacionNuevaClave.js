@@ -25,16 +25,16 @@ $().ready(function() {
         messages: {
              clave: {
                 required: "(*)Por favor, ingresa la clave actual.",
-                 minlength: "(*)La clave debe contener más de 7 dígitos.",
+                 minlength: "(*)La clave debe contener más de 7 caractéres.",
              },
               nuevaclave1: {
                 required: "(*)Por favor, ingresa la clave nueva.",
-                 minlength: "(*)La clave debe contener más de 7 dígitos.",
+                 minlength: "(*)La clave debe contener más de 7 caractéres.",
                  pwcheck:"(*)La clave debe contener una letra minúscula y un número."
              },
               nuevaclave2: {
                 required: "(*)Por favor, ingresa la clave nueva.",
-                 minlength: "(*)La clave debe contener más de 7 dígitos.",
+                 minlength: "(*)La clave debe contener más de 7 caractéres.",
                  pwcheck:"(*)La clave debe contener una letra minúscula y un número."
              }
            

@@ -16,7 +16,7 @@ $().ready(function() {
         messages: {
              nombre: {
                 required: "(*)Por favor, ingresa el Nombre.",
-                 minlength: "(*)El nombre debe contener más de 4 dígitos.",}
+                 minlength: "(*)El nombre debe contener más de 5 caractéres.",}
            
            
         }

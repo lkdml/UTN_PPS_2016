@@ -1,4 +1,4 @@
-label { width: 100em; float: left; }
+label { width: 100em; }
 label.error {
     position: block;
     right: 143px;

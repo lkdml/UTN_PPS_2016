@@ -58,7 +58,7 @@ js=''
                         <h4 class="modal-title">Eliminar Perfil</h4></h4>
                       </div>
                       <div class="modal-body">
-                        <p>Esta acción eliminará el perfil seleccionado. ¿Esta seguro que desea continuar?</p>
+                        <p>Esta acción eliminará los perfiles seleccionados. ¿Esta seguro que desea continuar?</p>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn btn-danger" id="confirmaBorrado" data-dismiss="modal" type="submit" name="accion" value="borrar">Si, estoy seguro.</button>

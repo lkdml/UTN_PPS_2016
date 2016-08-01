@@ -62,12 +62,12 @@ js=''
           <!-- /.box -->
         </div>
         
-        
+      </div>
        
     </section>
     <!-- /.content -->
     
-  </div>
+  
  
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->

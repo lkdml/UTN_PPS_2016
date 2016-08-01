@@ -55,7 +55,7 @@ js=''
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Eliminar SLA </h4></h4>
+                      <h4 class="modal-title">Eliminar Prioridad </h4></h4>
                     </div>
                     <div class="modal-body">
                       <p>Esta acción eliminará las prioridades seleccionadas. ¿Esta seguro que desea continuar?</p>

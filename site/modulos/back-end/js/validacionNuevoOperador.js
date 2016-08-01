@@ -6,11 +6,9 @@ $().ready(function() {
         // Specify the validation rules
         rules: {
             
-            nombre: {required:true,
-                     minlength:5
+            nombre: {required:true
             },
-             apellido: {required:true,
-                     minlength:5
+             apellido: {required:true
             },
              username: {required:true,
                      minlength:5
@@ -37,17 +35,13 @@ $().ready(function() {
         // Specify the validation error messages
         messages: {
             
-             nombre: {
-                required: "(*)Por favor, ingresa el Nombre.",
-                 minlength: "(*)El nombre debe contener más de 4 dígitos.",},
+             nombre: {required: "(*)Por favor, ingresa el Nombre."},
                  
-                 apellido: {
-                required: "(*)Por favor, ingresa el Apellido.",
-                 minlength: "(*)El Apellido debe contener más de 4 dígitos.",},
+                 apellido: {required: "(*)Por favor, ingresa el Apellido."},
                  
                  username: {
                 required: "(*)Por favor, ingresa el Nombre de Usuario.",
-                 minlength: "(*)El Nombre de usuario debe contener más de 4 dígitos.",},
+                 minlength: "(*)El Nombre de usuario debe contener más de 5 caractéres.",},
                  
                  email: {
                 required: "(*)Por favor, ingresa el email.",

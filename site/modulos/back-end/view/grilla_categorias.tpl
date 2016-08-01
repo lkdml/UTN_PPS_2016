@@ -54,7 +54,7 @@ js=''
                         <h4 class="modal-title">Eliminar Categoría </h4></h4>
                       </div>
                       <div class="modal-body">
-                        <p>Esta acción eliminará las categorías seleccionados. ¿Esta seguro que desea continuar?</p>
+                        <p>Esta acción eliminará las categorías seleccionadas. ¿Esta seguro que desea continuar?</p>
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn btn-danger" id="confirmaBorrado" data-dismiss="modal" type= submit name="accion" value="borrar" >Si, estoy seguro.</button>

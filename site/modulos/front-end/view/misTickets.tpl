@@ -134,7 +134,8 @@ js=''
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
-  <!-- jQuery 2.2.0 -->
+  
+<!-- jQuery 2.2.0 -->
 <script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{$rutaJS}bootstrap.min.js"></script>
@@ -145,5 +146,5 @@ js=''
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>
 <script src="{$rutaJS}cantidadMisTickets.js"></script>  
-  
-   {include file="footer.tpl"}
+
+{include file="footer.tpl"}
