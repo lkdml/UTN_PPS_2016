@@ -232,6 +232,7 @@ $(document).ready(function(e){
                   $("#tituloModal").html("Actualización exitosa");
                   $("#getCodeModal").addClass('modal-info');
                   $("#getCodeModal").modal('show');
+                  location.reload();
                 }
                 else{
                   $("#getCode").html(msg);
