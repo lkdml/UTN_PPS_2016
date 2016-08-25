@@ -174,134 +174,161 @@ js=''
                     </div><!-- /.box-body Campos Custom -->        
                 {/if}
                    <!--Boton Cerrar Ticket-->
-                <div class="col-md-6 pull-right">
-                    <div class="col-md-2 pull-right">
-                        <button onclick="window.location='/operador.php?modulo=tickets';return false;" class="btn btn-danger pull-left">Cancelar</button>
-                    </div>
-                    
-                    {if $Permisos->verificarPermiso("ticket_editar")}
+                <div class="box-body">
+                    <div class="col-md-6 pull-right">
                         <div class="col-md-2 pull-right">
-                            <button type="submit" class="btn btn-primary pull-left">Enviar</button>
+                            <button onclick="window.location='/operador.php?modulo=tickets';return false;" class="btn btn-danger pull-left">Cancelar</button>
                         </div>
-                    {/if}
+                        
+                        {if $Permisos->verificarPermiso("ticket_editar")}
+                            <div class="col-md-2 pull-right">
+                                <button type="submit" class="btn btn-primary pull-left">Enviar</button>
+                            </div>
+                        {/if}
+                    </div>
                 </div>
                 
-                
                     <!--Fin Boton Cerrar Ticket-->
-                <!-- CUSTOM TABS-->
-                
+
                 <!--Body Tab-->
                 <div class="box-body">
                 <!-- Custom Tabs -->
                     <div class="nav-tabs-custom">
-                     <ul class="nav nav-tabs">
+                    <ul class="nav nav-tabs">
                         <li class="active"><a href="#tab_1" data-toggle="tab">Evolución</a></li>
                         <li class=""><a href="#tab_2" data-toggle="tab">Agregar avance</a></li>
                         <li class=""><a href="#tab_3" data-toggle="tab">Agregar Nota de Operador</a></li>
-                        
-                      </ul>
-                      <div class="tab-content">
+                        <li class=""><a href="#tab_4" data-toggle="tab">Auditoria</a></li>
+                    </ul>
+                    <div class="tab-content">
                         <div class="tab-pane active" id="tab_1">
-                         
-                         <!--Contenido TAB -->
+                        <!--Contenido TAB -->
                          
                              
-                             <!-- Construct the box with style you want. Here we are using box-danger -->
-                                <!-- Then add the class direct-chat and choose the direct-chat-* contexual class -->
-                                <!-- The contextual class should match the box, so we are using direct-chat-danger -->
-                                <div class="box box-danger direct-chat direct-chat-danger">
-                                  <div class="box-header with-border">
-                                    <h3 class="box-title"></h3>
-                                    <div class="box-tools pull-right">
-                                      <!--<span data-toggle="tooltip" title="2 Nuevas actividades" class="badge bg-red">2</span>-->
-                                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                                    
-                                    </div>
-                                  </div><!-- /.box-header -->
-                                  <div class="box-body">
-                                    <!-- Conversations are loaded here -->
-                                    <div class="">
-                                        {if $Mensajes}
-                                          {foreach from=$Mensajes item=$mensaje}
-                                            <div class="direct-chat-msg">
-                                                <div class="direct-chat-info clearfix">
-                                                    {if $mensaje->getCreador() != null} {$Creador=$mensaje->getCreador()} {/if}
-                                                  <span class="direct-chat-name pull-left"><font size = 5>{if $Creador != null}
-                                                                                                                  {$Creador->getNombre()} {$Creador->getApellido()} 
-                                                                                                        {/if}</font></span>
-                                                  <span class="direct-chat-timestamp pull-right">{$mensaje->getFecha()|date_format:"%d-%m-%Y %H:%m"}</span>
-                                                </div><!-- /.direct-chat-info -->
-                                                <img class="direct-chat-img" src="{$RutaAvatars}{if (get_class($Creador) == 'Proxies\__CG__\Modelo\Usuario' || get_class($Creador) == 'Modelo\Usuario')}{if ($Creador->getFotoHash() != null)}{$Creador->getFotoHash()}{else}UserDefault.jpg{/if}{elseif get_class($Creador) == 'Modelo\Operador'}{if $Creador->getHashFoto() != null}{$Creador->getHashFoto()}{else}UserDefault.jpg{/if}{/if}" alt="message user image"><!-- /.direct-chat-img -->
-                                                
-                                                <div class="direct-chat-text" id="divtt" style="{if $mensaje->getTipoMensaje()==0}
-                                                                                        color: #9F6000;background-color: #FEEFB3;
-                                                                                      {/if}" title="{if $mensaje->getTipoMensaje()==0}Este es un mensaje solo disponible entre operadores, el usuario no verá estos mensajes{/if}">
-                                                   
-                                                      {$mensaje->getTexto()}
-                                                      {$archivos=$mensaje->getMisArchivos($mensaje->getMensajeId())}
-                                                      {foreach from=$archivos item=$archivo}
-                                                   
-                                                  <p><a href="{$archivo->getDirectorio()}{$archivo->getHash()}" target="_blank"><font size = 3>{$archivo->getNombre()}</font></a></p>
-                                                  {/foreach}
-                                                   
-                                                </div><!-- /.direct-chat-text -->
-                                            </div><!-- /.direct-chat-msg -->
-                                          {/foreach}
-                                        {/if}
-                                      <!-- Message. Default to the left -->
-                                	 </div>
-                                    </div>
+                            <!-- Construct the box with style you want. Here we are using box-danger -->
+                            <!-- Then add the class direct-chat and choose the direct-chat-* contexual class -->
+                            <!-- The contextual class should match the box, so we are using direct-chat-danger -->
+                            <div class="box box-danger direct-chat direct-chat-danger">
+                              <div class="box-header with-border">
+                                <h3 class="box-title"></h3>
+                                <div class="box-tools pull-right">
+                                  <!--<span data-toggle="tooltip" title="2 Nuevas actividades" class="badge bg-red">2</span>-->
+                                  <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                                
                                 </div>
+                              </div><!-- /.box-header -->
+                              <div class="box-body">
+                                <!-- Conversations are loaded here -->
+                                <div class="">
+                                    {if $Mensajes}
+                                      {foreach from=$Mensajes item=$mensaje}
+                                        <div class="direct-chat-msg">
+                                            <div class="direct-chat-info clearfix">
+                                                {if $mensaje->getCreador() != null} {$Creador=$mensaje->getCreador()} {/if}
+                                              <span class="direct-chat-name pull-left"><font size = 5>{if $Creador != null}
+                                                                                                              {$Creador->getNombre()} {$Creador->getApellido()} 
+                                                                                                    {/if}</font></span>
+                                              <span class="direct-chat-timestamp pull-right">{$mensaje->getFecha()|date_format:"%d-%m-%Y %H:%m"}</span>
+                                            </div><!-- /.direct-chat-info -->
+                                            <img class="direct-chat-img" src="{$RutaAvatars}{if (get_class($Creador) == 'Proxies\__CG__\Modelo\Usuario' || get_class($Creador) == 'Modelo\Usuario')}{if ($Creador->getFotoHash() != null)}{$Creador->getFotoHash()}{else}UserDefault.jpg{/if}{elseif get_class($Creador) == 'Modelo\Operador'}{if $Creador->getHashFoto() != null}{$Creador->getHashFoto()}{else}UserDefault.jpg{/if}{/if}" alt="message user image"><!-- /.direct-chat-img -->
+                                            
+                                            <div class="direct-chat-text" id="divtt" style="{if $mensaje->getTipoMensaje()==0}
+                                                                                    color: #9F6000;background-color: #FEEFB3;
+                                                                                  {/if}" title="{if $mensaje->getTipoMensaje()==0}Este es un mensaje solo disponible entre operadores, el usuario no verá estos mensajes{/if}">
+                                               
+                                                  {$mensaje->getTexto()}
+                                                  {$archivos=$mensaje->getMisArchivos($mensaje->getMensajeId())}
+                                                  {foreach from=$archivos item=$archivo}
+                                               
+                                              <p><a href="{$archivo->getDirectorio()}{$archivo->getHash()}" target="_blank"><font size = 3>{$archivo->getNombre()}</font></a></p>
+                                              {/foreach}
+                                               
+                                            </div><!-- /.direct-chat-text -->
+                                        </div><!-- /.direct-chat-msg -->
+                                      {/foreach}
+                                    {/if}
+                                  <!-- Message. Default to the left -->
+                            	 </div>
+                                </div>
+                            </div>
                          
                          
                          
-                         <!--Fin Contenido TAB-->
-                         
-                         
-                         </div>
-                         <!-- /.tab-pane -->
-                         <div class="tab-pane" id="tab_2">
-                           <!--<div class="form-group">-->
-                             <div class="box-body pad">
-                               <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
-                                 <div class="col-sm-10">
-                                   <textarea class="textarea_msg" name="Respuesta" placeholder="Ingrese una Descripción" style="width: 100%; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
-                                 </div>
-                               <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
-                               <input class="col-sm-10" type="file" id="Archivos" name="ArchivosRespuesta[]">
-                             </div>
-                           </div>
+                        <!--Fin Contenido TAB-->
+                        </div>
+                        <!-- /.tab-pane -->
+                        <div class="tab-pane" id="tab_2">
+                            <div class="box-body pad">
+                                <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
+                                <div class="col-sm-10">
+                                    <textarea class="textarea_msg" name="Respuesta" placeholder="Ingrese una Descripción" style="width: 100%; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
+                                </div>
+                                <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
+                                <input class="col-sm-10" type="file" id="Archivos" name="ArchivosRespuesta[]">
+                            </div>
+                        </div>
                            
                            
                         <div class="tab-pane" id="tab_3">
                            <!--<div class="form-group">-->
                             <div class="box-body pad">
-                               <label for="inputDescripcion" class="col-sm-8 control-label">Las notas de Operador, son solo visibles entre Operadores</label>
+                                <label for="inputDescripcion" class="col-sm-8 control-label">Las notas de Operador, son solo visibles entre Operadores</label>
                             </div>
-                             <div class="box-body pad">
-                               <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
-                                 <div class="col-sm-10">
-                                   <textarea class="textarea_msg" name="NotaOperador" placeholder="Ingrese una Descripción" style="width: 100%; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
-                                 </div>
-                               <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
-                               <input class="col-sm-10" type="file" id="archivo" name="ArchivosNotaOperador[]">
-                             </div>
-                           </div>
-                         </div>
-                       </div>
-                       <!-- /.tab-content -->
+                            <div class="box-body pad">
+                                <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
+                                <div class="col-sm-10">
+                                    <textarea class="textarea_msg" name="NotaOperador" placeholder="Ingrese una Descripción" style="width: 100%; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
+                                </div>
+                                <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
+                                <input class="col-sm-10" type="file" id="archivo" name="ArchivosNotaOperador[]">
+                            </div>
+                        </div>
+                        
+                        <div class="tab-pane" id="tab_4">
+                            <div class="box-body pad">
+                                <table id="jqGrid"></table>
+                                <div id="jqGridPager"></div>
+                            </div>
+                        </div>
+                           
+                           
+                           
                     </div>
-                 <!-- nav-tabs-custom -->
+                </div>
+               <!-- /.tab-content -->
+            </div>
+            <!-- nav-tabs-custom -->
                 
         </form>
         <!-- form end -->
       </div>
       <!-- fin box body tab--> 
+      
+        <!-- LOGS DEL TICKET-->
+        <!-- 
+        <div class="box box-warning">
+            <div class="box-header with-border">
+                <h3 class="box-title">Modificaciones sobre el ticket</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+                
+            </div>
+            <div class="box-body">
+                <table id="jqGrid"></table>
+                <div id="jqGridPager"></div>
+            </div>
+        </div>
+        -->
+        <!-- FIN LOGS DEL TICKET-->
+        
+        
+        
     </section>  
 </div>
 
-
-           
+<link rel="stylesheet" href="{$rutaCSS}jquery-ui.css">   
+<link rel="stylesheet" href="./modulos/back-end/css/ui.jqgrid.css">      
  <link rel="stylesheet" href="{$rutaCSS}bootstrap3-wysihtml5.min.css">
 
 <script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
@@ -315,6 +342,10 @@ js=''
 <script src="{$rutaJS}demo.js"></script>
 <!-- No enter for submitting v1.0 -->
 <script src="{$rutaJS}noEnter.js"></script>
+<!-- Grid -->
+<script src="{$rutaJS}jquery-ui.js"></script>
+<script src="{$rutaJS}/i18n/grid.locale-es.js"></script>
+<script src="{$rutaJS}jquery.jqGrid.min.js"></script>
 
 <script src="{$rutaJS}bootstrap3-wysihtml5.all.js"></script>
 
@@ -323,10 +354,40 @@ js=''
     //bootstrap WYSIHTML5 - text editor
     $(".textarea_msg").wysihtml5();
   });
-</script>
+  
+$(document).ready(function () {
 
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+      var target = $(e.target).attr("href") // activated tab
+      if (target == "#tab_4")//TAB DE AUDITORIA
+      {
+        var id="{/literal}{$Ticket->getTicketId()}{literal}";
+		var ruta="{/literal}{$rutaCSS}../controlador/logTicketAction.php{literal}";
+        $("#jqGrid").jqGrid({
+            url: ruta+'?accion=datosTicket&ticketId='+id,
+            datatype: 'json',
+            colNames:['Fecha','Responsable', 'Accion'],
+            colModel: [
+                { label: 'Fecha', name: 'Fecha', width: 75, align: 'center'},
+                { label: 'Responsable', name: 'Responsable', width: 150 },
+                { label: 'Accion', name: 'Accion', width: 200 }
+            ],
+            rowNum:10,
+           	rowList:[10,20,30],
+           	pager: '#jqGridPager',
+           	sortname: 'id',
+           	height:'auto',
+           	autowidth: true,
+           	shrinkToFit: true,
+            viewrecords: true,
+            sortorder: "desc"
+            
+        });
+        jQuery("#jqGrid").jqGrid('navGrid','#jqGridPager',{edit:false,add:false,del:false,search:false});
+      }
+    });
+    });
+</script>
 {/literal}
-  
-  
-  
+
 {include file='footer.tpl'}

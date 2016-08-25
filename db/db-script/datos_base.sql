@@ -74,7 +74,8 @@ INSERT INTO `rol` VALUES
                         ('usuarios_editar','Permite editar un usuarios'),
                         ('usuarios_eliminar','Permite eliminar a usuarios'),
                         ('usuarios_ver','Permite ver  a los usuarios'),
-                        ('usuarios_listar','Permite  listar a los usuarios');
+                        ('usuarios_listar','Permite  listar a los usuarios'),
+                        ('usuarios_actividad','Permite ver la actividad del usuario con respecto a los tickets');
 /*!40000 ALTER TABLE `rol` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,7 +189,8 @@ INSERT INTO `perfil_roles` VALUES (1,'anuncios_crear'),
                                     (1,'usuarios_editar'),
                                     (1,'usuarios_eliminar'),
                                     (1,'usuarios_ver'),
-                                    (1,'usuarios_listar');
+                                    (1,'usuarios_listar'),
+                                    (1,'usuarios_actividad');
 /*!40000 ALTER TABLE `perfil_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 

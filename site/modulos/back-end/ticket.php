@@ -85,5 +85,6 @@ switch(strtolower($_POST["accion"])){
       header("location:/operador.php?modulo=tickets");
     }
     break;
+  
 }
 

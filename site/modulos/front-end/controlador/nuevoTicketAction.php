@@ -9,6 +9,8 @@ use \Modelo\Mensaje as Mensaje;
 use \Modelo\Usuario as Usuario;
 use \Modelo\Archivo as Archivo;
 use \Modelo\EmailQueue as EmailQueue;
+use \Modelo\LogModificacionTicket as LogTicket;
+
 $app = Aplicacion::getInstancia();
 $app->startSession(false);
 //TODO: esta linea se debe mejorar para usar el usuario desde session o app
@@ -17,8 +19,10 @@ $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 
 $Ticket = setearTicket(new Ticket(),$usuario,$em);
+$Log = logearCambios(new LogTicket(),$Ticket,$em,$usuario->getUsuarioId());
 $Mensaje = setearMensaje(new Mensaje, $Ticket, $usuario, $em);
 $em->persist($Ticket);
+$em->persist($Log);
 $em->persist($Mensaje);
 $Mensaje = setearArchivosEnMensaje($Mensaje, $em);
 $em->flush();
@@ -108,6 +112,19 @@ function setearEmailQueue($remitente,$destinatario,$ticketNumber,$em){
     $queue->setEstado(0);
     $queue->setFechaEnvio(null);
     return $queue;
+    
+}
+
+function logearCambios(LogTicket $log, Ticket $ticket, $em,$usuarioId)
+{
+    $log->setUsuarioId($usuarioId);
+    $usuarioLog=$em->getRepository('Modelo\Usuario')->find($usuarioId);
+    $log->setResponsable('Usuario: '.$usuarioLog->getNombre().' '.$usuarioLog->getApellido());
+    $log->setFecha(new DateTime("NOW"));
+    $log->setTicket($ticket);
+    $log->setAccion("Alta del ticket n°: " . $ticket->getNumeroTicket());
+    
+    return $log;
     
 }
 

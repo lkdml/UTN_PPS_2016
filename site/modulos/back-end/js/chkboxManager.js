@@ -29,6 +29,7 @@ var checkboxes = document.getElementsByTagName('input');
                     $("#btnUnir").prop('disabled', true);
                     $("#btnSeparar").prop('disabled', true);
                     $("#btnVer").prop('disabled', true);
+                    $("#btnActividad").prop('disabled', true);
                     
                      
                      
@@ -41,6 +42,7 @@ var checkboxes = document.getElementsByTagName('input');
                     $("#btnUnir").prop('disabled', true);;
                     $("#btnSeparar").prop('disabled', true); // TODO: falta verificar si es un ticket unido
                     $("#btnVer").prop('disabled', false);
+                    $("#btnActividad").prop('disabled', false);
                     
                       }
                       
@@ -52,7 +54,7 @@ var checkboxes = document.getElementsByTagName('input');
                     $("#btnUnir").prop('disabled', false);
                     $("#btnSeparar").prop('disabled', true);
                     $("#btnVer").prop('disabled', true);
-                    
+                    $("#btnActividad").prop('disabled', true);
                      
                      
                  }

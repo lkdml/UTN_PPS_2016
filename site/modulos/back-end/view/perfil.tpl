@@ -222,6 +222,7 @@ js=''
                         <div class="col-sm-11 checkbox">
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[usuarios_listar]" {if $usuarios_listar} checked{/if}></input>Listar Usuarios</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[usuarios_ver]" {if $usuarios_ver} checked{/if}></input>Ver Usuarios</label>
+                          <label class="checkbox-inline"><input type="checkbox" name="permisos[usuarios_actividad]" {if $usuarios_actividad} checked{/if}></input>Ver Actividad del Usuario sobre Tickets</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[usuarios_crear]" {if $usuarios_crear} checked{/if}></input>Crear Usuario</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[usuarios_editar]" {if $usuarios_editar} checked{/if}></input>Editar Usuarios</label>
                           <label class="checkbox-inline"><input type="checkbox" name="permisos[usuarios_eliminar]" {if $usuarios_eliminar} checked{/if}></input>Eliminar Usuarios</label>

@@ -398,12 +398,16 @@ DEFAULT CHARACTER SET = utf8;
 -- Table `tmh`.`Log_Modificacion_ticket`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `tmh`.`log_modificacion_ticket` (
-  `ticket_id` INT NOT NULL AUTO_INCREMENT,
+  `log_id` INT NOT NULL AUTO_INCREMENT,
+  `ticket_id` INT NOT NULL,
+  `responsable` VARCHAR(245) NOT NULL,
   `usuario_id` INT NULL,
   `operador_id` INT NULL,
+  `sla_id` INT NULL,
   `accion` VARCHAR(245) NULL,
-  `fecha` DATETIME NULL,
-  PRIMARY KEY (`ticket_id`),
+  `fecha` DATETIME NOT NULL,
+  PRIMARY KEY (`log_id`),
+  INDEX `fk_ticket_log_idx` (`ticket_id` ASC),
   CONSTRAINT `FK_ticket_Log`
     FOREIGN KEY (`ticket_id`)
     REFERENCES `tmh`.`ticket` (`ticket_id`)

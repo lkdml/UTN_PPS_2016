@@ -27,6 +27,8 @@ switch(strtolower($_POST["accion"])){
       $app->guardarErrorEnSession();
       $permisos->redirigir("/operador.php?modulo=usuarios");
     } 
+    
+    $vm->display('usuario.tpl');
     break;
   case ("editar"):
     if (!$permisos->verificarPermiso("usuarios_ver")){
@@ -38,6 +40,8 @@ switch(strtolower($_POST["accion"])){
       $usuario = $em->getRepository('Modelo\Usuario')->find($_POST["usuarioId"][0]);
       $vm->assign('Usuario',$usuario);   
     }
+    
+    $vm->display('usuario.tpl');
     break;
   case ("borrar"):
     if (!$permisos->verificarPermiso("usuarios_eliminar")){
@@ -55,7 +59,22 @@ switch(strtolower($_POST["accion"])){
       header("location:/operador.php?modulo=usuarios");
     }
     break;
+  case ("ver"):
+    if (!$permisos->verificarPermiso("usuarios_actividad")){
+      $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));
+      $app->setError($error);
+      $app->guardarErrorEnSession();
+      $permisos->redirigir("/operador.php?modulo=usuarios");
+      
+    }
+    else{
+       
+       $usuario = $em->getRepository('Modelo\Usuario')->find($_POST["usuarioId"][0]);
+       $vm->assign('Usuario',$usuario);  
+       $vm->display('actividadUsuario.tpl');
+       
+    }
+    break;
    
 }
 
-$vm->display('usuario.tpl');

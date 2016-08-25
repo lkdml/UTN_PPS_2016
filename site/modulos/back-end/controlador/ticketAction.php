@@ -8,6 +8,8 @@ use \Modelo\Ticket as Ticket;
 use \Modelo\Mensaje as Mensaje;
 use \Modelo\Archivo as Archivo;
 use \Modelo\EmailQueue as EmailQueue;
+use \Modelo\LogModificacionTicket as LogTicket;
+
 $app = Aplicacion::getInstancia();
 $app->startSession(true);
 $permisos =$app->getPermisos();
@@ -20,8 +22,10 @@ if (isset($_GET['TicketId'])){
       $app->setError($error);
       $app->guardarErrorEnSession();
     } else {
-        $Ticket =  $em->getRepository('Modelo\Ticket')->find($_GET["TicketId"]);
-        $em->persist(setearTicket($Ticket,$em));
+        $Ticket= setearTicket($em->getRepository('Modelo\Ticket')->find($_GET["TicketId"]),$em);
+        $Log = logearCambios(new LogTicket(),$Ticket,false,$em,$operador->getOperadorId());
+        $em->persist($Ticket);
+        $em->persist($Log);
         $em->flush();
     }
 } else {
@@ -32,8 +36,10 @@ if (isset($_GET['TicketId'])){
     } else {
         $Ticket = setearTicket(new Ticket(),$em);
         $Mensaje = setearMensaje(new Mensaje, $Ticket, $em);
+        $Log = logearCambios(new LogTicket(),$Ticket,true,$em,$operador->getOperadorId());
         $em->persist($Ticket);
         $em->persist($Mensaje);
+        $em->persist($Log);
         $Mensaje = setearArchivosEnMensaje($Mensaje, $em);
         $em->flush();
     }
@@ -158,6 +164,71 @@ function setearEmailQueue($remitente,$destinatario,$ticketNumber,$em){
     $queue->setEstado(0);
     $queue->setFechaEnvio(null);
     return $queue;
+    
+}
+
+function logearCambios(LogTicket $log, Ticket $ticket,$alta, $em,$operadorId)
+{
+    $log->setOperadorId($operadorId);
+    $operadorLog=$em->getRepository('Modelo\Operador')->find($operadorId);
+    $log->setResponsable('Operador: '.$operadorLog->getNombre().' '.$operadorLog->getApellido());
+    $log->setFecha(new DateTime("NOW"));
+    $log->setTicket($ticket);
+    if($alta)
+    {
+        $log->setAccion("Alta del ticket n°: " . $ticket->getNumeroTicket());
+    }
+    else{
+        $cambios="";
+        $TicketNoUpdated =  $em->getRepository('Modelo\Ticket')->find($_GET["TicketId"]);
+        if ($TicketNoUpdated->getEmailQueueId() != $ticket->getEmailQueueId())
+        {
+            $cambios=$cambios."Cambio en Email Queue" . "\r\n";
+        }
+        
+        if ($TicketNoUpdated->getAsunto() != $ticket->getAsunto())
+        {
+            $cambios=$cambios."Modificacion de Asunto" . "\r\n";
+        }
+        
+        if ($TicketNoUpdated->getDescripcion() != $ticket->getDescripcion())
+        {
+            $cambios=$cambios."Modificacion en la descripción" . "\r\n";
+        }
+        
+        if ($TicketNoUpdated->getFechaVto() != $ticket->getFechaVto())
+        {
+            $cambios=$cambios."Modificacion en la fecha de vencimiento" . "\r\n";
+        }
+        
+        if ($TicketNoUpdated->getEstado() != $ticket->getEstado())
+        {
+            $cambios=$cambios."Cambio a estado ". $ticket->getEstado()->getNombre() . "\r\n";
+        }
+        
+        if ($TicketNoUpdated->getPrioridad() != $ticket->getPrioridad())
+        {
+            $cambios=$cambios."Cambio a prioridad ". $ticket->getPrioridad()->getNombre() . "\r\n";
+        }
+        
+        if ($TicketNoUpdated->getDepartamento() != $ticket->getDepartamento())
+        {
+            $cambios=$cambios."Cambio a departamento ". $ticket->getDepartamento()->getNombre() . "\r\n";
+        }
+
+        if ($TicketNoUpdated->getAsignadoAOperador() != $ticket->getAsignadoAOperador())
+        {
+            $cambios=$cambios."Asignado a operador". $ticket->getAsignadoAOperador()->getNombre() . "\r\n";
+        }
+        
+        if ($TicketNoUpdated->getTipoTicket() != $ticket->getTipoTicket())
+        {
+            $cambios=$cambios."Cambio a tipo de ticket ". $ticket->getTipoTicket()->getNombre() . "\r\n";
+        }
+        
+        $log->setAccion($cambios);
+    }
+    return $log;
     
 }
 

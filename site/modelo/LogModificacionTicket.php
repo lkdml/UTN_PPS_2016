@@ -5,11 +5,27 @@ namespace Modelo;
 /**
  * LogModificacionTicket
  *
- * @Table(name="log_modificacion_ticket")
+ * @Table(name="log_modificacion_ticket", indexes={@Index(name="fk_ticket_log_idx", columns={"ticket_id"})})
  * @Entity
  */
 class LogModificacionTicket
 {
+    /**
+     * @var integer
+     *
+     * @Column(name="log_id", type="integer", nullable=false)
+     * @Id
+     * @GeneratedValue(strategy="IDENTITY")
+     */
+    private $logId;
+
+    /**
+     * @var string
+     *
+     * @Column(name="responsable", type="string", length=245, nullable=false)
+     */
+    private $responsable;
+
     /**
      * @var integer
      *
@@ -25,6 +41,13 @@ class LogModificacionTicket
     private $operadorId;
 
     /**
+     * @var integer
+     *
+     * @Column(name="sla_id", type="integer", nullable=true)
+     */
+    private $slaId;
+
+    /**
      * @var string
      *
      * @Column(name="accion", type="string", length=245, nullable=true)
@@ -34,22 +57,54 @@ class LogModificacionTicket
     /**
      * @var \DateTime
      *
-     * @Column(name="fecha", type="datetime", nullable=true)
+     * @Column(name="fecha", type="datetime", nullable=false)
      */
     private $fecha;
 
     /**
      * @var \Ticket
      *
-     * @Id
-     * @GeneratedValue(strategy="NONE")
-     * @OneToOne(targetEntity="Ticket")
+     * @ManyToOne(targetEntity="Ticket")
      * @JoinColumns({
-     *   @JoinColumn(name="ticket_id", referencedColumnName="ticket_id")
+     *  @JoinColumn(name="ticket_id", referencedColumnName="ticket_id")
      * })
      */
     private $ticket;
 
+
+    /**
+     * Get logId
+     *
+     * @return integer
+     */
+    public function getLogId()
+    {
+        return $this->logId;
+    }
+
+    /**
+     * Set responsable
+     *
+     * @param string $responsable
+     *
+     * @return LogModificacionTicket
+     */
+    public function setResponsable($responsable)
+    {
+        $this->responsable = $responsable;
+
+        return $this;
+    }
+
+    /**
+     * Get responsable
+     *
+     * @return string
+     */
+    public function getResponsable()
+    {
+        return $this->responsable;
+    }
 
     /**
      * Set usuarioId
@@ -97,6 +152,30 @@ class LogModificacionTicket
     public function getOperadorId()
     {
         return $this->operadorId;
+    }
+
+    /**
+     * Set slaId
+     *
+     * @param integer $slaId
+     *
+     * @return LogModificacionTicket
+     */
+    public function setSlaId($slaId)
+    {
+        $this->slaId = $slaId;
+
+        return $this;
+    }
+
+    /**
+     * Get slaId
+     *
+     * @return integer
+     */
+    public function getSlaId()
+    {
+        return $this->slaId;
     }
 
     /**
@@ -150,11 +229,11 @@ class LogModificacionTicket
     /**
      * Set ticket
      *
-     * @param \Ticket $ticket
+     * @param Ticket $ticket
      *
      * @return LogModificacionTicket
      */
-    public function setTicket(Ticket $ticket)
+    public function setTicket(Ticket $ticket = null)
     {
         $this->ticket = $ticket;
 
@@ -164,7 +243,7 @@ class LogModificacionTicket
     /**
      * Get ticket
      *
-     * @return \Ticket
+     * @return Ticket
      */
     public function getTicket()
     {
