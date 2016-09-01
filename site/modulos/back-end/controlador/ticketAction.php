@@ -35,7 +35,7 @@ if (isset($_GET['TicketId'])){
       $app->guardarErrorEnSession();
     } else {
         $Ticket = setearTicket(new Ticket(),$em);
-        $Mensaje = setearMensaje(new Mensaje, $Ticket, $em);
+        $Mensaje = setearMensaje(new Mensaje, $Ticket, $em,$operador->getOperadorId());
         $Log = logearCambios(new LogTicket(),$Ticket,true,$em,$operador->getOperadorId());
         $em->persist($Ticket);
         $em->persist($Mensaje);
@@ -104,10 +104,18 @@ function setearTicket(Ticket $ticket,$em){
     return $ticket;
 }
 
-function setearMensaje(Mensaje $mensaje, Ticket $ticket,$em){
+function setearMensaje(Mensaje $mensaje, Ticket $ticket,$em,$operadorId){
     if ($_POST["Descripcion"]) {
         $mensaje = new Mensaje();
-        $mensaje->setTexto($_POST["Descripcion"]);
+        if ($_POST["agregaFirmaOperador"])
+        {
+            $mensajeConFirma=$_POST["Descripcion"]."\r\n".$em->getRepository('Modelo\Operador')->find($operadorId)->getFirmaMensaje();
+            $mensaje->setTexto($mensajeConFirma);
+        }
+        else {
+            $mensaje->setTexto($_POST["Descripcion"]);
+        }
+        
         $mensaje->setFecha(new DateTime("NOW"));
         $mensaje->setTipoMensaje(1); //TODO: No se lo que es tipo de mensaje integer pero le paso 1 como parametro
         $mensaje->setTicket($ticket);

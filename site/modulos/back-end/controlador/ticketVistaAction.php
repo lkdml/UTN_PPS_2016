@@ -79,7 +79,15 @@ function setearTicket(Ticket $ticket,$em){
 function setearMensaje(Mensaje $mensaje, Ticket $ticket,$em, $operadorId){
     if (!empty($_POST["Respuesta"])) {
         $mensaje = new Mensaje();
-        $mensaje->setTexto($_POST["Respuesta"]);
+        if ($_POST["agregaFirmaOperador"])
+        {
+            $mensajeConFirma=$_POST["Respuesta"]."\r\n".$em->getRepository('Modelo\Operador')->find($operadorId)->getFirmaMensaje();
+            $mensaje->setTexto($mensajeConFirma);
+        }
+        else {
+            $mensaje->setTexto($_POST["Respuesta"]);
+        }
+        
         $mensaje->setFecha(new DateTime("NOW"));
         $mensaje->setTipoMensaje(1); //TODO: No se lo que es tipo de mensaje integer pero le paso 1 como parametro para mensajes 
         $mensaje->setTicket($ticket);
