@@ -1807,7 +1807,7 @@ a:focus {
   border-top-right-radius: 0;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
-  border-top: 1px solid #f4f4f4;
+  /*border-top: 1px solid #f4f4f4;*/
   padding: 10px;
   background-color: #ffffff;
 }
@@ -2173,7 +2173,7 @@ a:focus {
  * -----------------
  */
 .btn {
-  border-radius: 3px;
+  border-radius: 40px 40px 40px 40px;
   -webkit-box-shadow: none;
   box-shadow: none;
   border: 1px solid transparent;
