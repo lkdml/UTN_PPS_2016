@@ -1,0 +1,23 @@
+#imgFrontEnd{
+    max-height:200px;
+    max-width:200px;
+    /*background-color:Silver;
+   */
+}
+#rowFile{
+    margin-top: 10px;
+}
+#imgIcono{
+  max-height:32px;
+  max-width:32px;
+  /*
+  width: expression(this.width > 32 ? 32: true);
+  height: expression(this.height > 32 ? 32: true);  
+  */
+}
+#fondoImagenTransparente{
+    background-image: url("../imagenes/fondoGrid.png");
+    background-repeat: repeat;
+    display: inline-block;
+   /* https://robohash.org/*/
+}

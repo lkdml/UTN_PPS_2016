@@ -4088,6 +4088,11 @@ table.text-center th {
   color: #720e9e;
   background-color: #ffffff;
 }
+.btn-block{
+    padding-right: 8px;
+    padding-left: 8px;
+    border-radius:4px;
+}
 /*
  * Plugin: Full Calendar
  * ---------------------
@@ -4924,4 +4929,10 @@ a.w-estados:focus {
   outline: none;
   text-decoration: none;
   color: #72afd2;
+}
+
+.descripcion {
+    color: #888;
+    font-size: 95%;
+    line-height: 1.7em;
 }
