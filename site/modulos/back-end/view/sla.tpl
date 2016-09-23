@@ -82,6 +82,45 @@ js=''
                               </tr>
                             </tbody>
                               <tr>
+                                {if $slaValores}
+                                  {foreach key=$idPreCond from=$slaValores.pre item=$slaValor}
+                                    <tr id="precond-{$idPreCond}">
+                                        <td class="text-center" id="{$idPreCond}">
+                                      <button class="btn bg-olive btn-flat quitar-preCond" type="button">-</button>
+                                        </td>
+                                        <td>
+                                          <select class="form-control select2 lkdml" id="pre-cond-{$idPreCond}" style="width: 100%;" id="ddDeptos" name="preCond[{$idPreCond}]" onchange="TMH.setDataFromSelect(this)">
+                                            <option value = "-1">Seleccione opcioan</option>
+                                            {foreach key=$keyCond from=$slaCondiciones item=$preCond}
+                                              {if $preCond->getTipo() == 'pre'}
+                                              {$data=null}
+                                                {foreach from=$preCond->getSlaParametro() item=$parametro}
+                                                  {$data[] = [$parametro->getSlaParametroId()=>['descripcion'=>$parametro->getDescripcion()]]}
+                                                {/foreach}
+                                                <option value="{$preCond->getSlaCondicionId()}" data-param='{$data|@json_encode}' {if $preCond->getSlaCondicionId() == $slaValor['condicionId'] } selected {/if}>{$preCond->getNombre()}</option>
+                                              {/if}
+                                            {/foreach}
+                                          </select>
+                                        </td>
+                                        <td class="pre-param-{$idPreCond}">
+                                          {$slaParametros.0|@var_dump}
+                                          <select class="form-control select2" style="width: 100%;" id="pre-param-{$idPreCond}"  name="preParam[{$idPreCond}]" >
+                                            {foreach key=$keyParam from=$slaParametros item=$preParam}
+                                                <option value ='{$preParam->getSlaParametroId()}' {if $preParam->getSlaParametroId() == $slaValor['parametroId'] } selected {/if} >{$preCond->getNombre()}</option>
+                                            {/foreach}
+                                          </select>
+                                        </td>
+                                        <td class="pre-valor-{$idPreCond}">
+                                          {foreach key=$keyValor from=$slaValor item=$slaValorHTML}
+                                            {if $keyValor=='html'}
+                                              {$slaValorHTML}
+                                            {/if}
+                                          {/foreach}
+                                            <!-- <input type="text" class="form-control" id="pre-valor-{$idPreCond}" name ="condicionHora" required data-msg="(*)Por favor, ingrese el valor."  disabled >    -->
+                                        </td>
+                                    </tr>
+                                  {/foreach}
+                                {/if}
                                 <td class="text-center">
                                   <button class="btn bg-olive btn-flat" id="nueva-preCond" type="button">+</button>
                                 </td>
@@ -115,6 +154,12 @@ js=''
                                 <th>Tiempo (horas)</th>
                               </tr>
                               <tr>
+                                {if $slaValores}
+                                  {foreach key=$key from=$slaValores.vencimiento item=$vencimiento}
+                                    {$vencimiento}
+                                    
+                                  {/foreach}
+                                {/if}
                                 <td class="text-center">
                                   <button class="btn bg-olive btn-flat" id="nueva-vence" type="button">+</button>
                                 </td>
@@ -146,6 +191,12 @@ js=''
                                 <th>Valor</th>
                               </tr>
                               <tr>
+                                {if $slaValores}
+                                  {foreach key=$key from=$slaValores.post item=$postCond}
+                                    {$postCond}
+                                    
+                                  {/foreach}
+                                {/if}
                                 <td class="text-center">
                                   <button class="btn bg-olive btn-flat" id="nueva-postCond" type="button">+</button>
                                 </td>
@@ -169,6 +220,25 @@ js=''
                 
             </div>
             <!-- box body end -->
+            
+            <div class="modal fade" role="dialog" id="getCodeModal">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="tituloModal"></h4>
+                  </div>
+                  <div class="modal-body" id="getCode" >
+                    
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-outline pull-right" data-dismiss="modal">Cerrar</button>
+                </div>
+                <!-- /.modal-content -->
+              </div>
+              <!-- /.modal-dialog -->
+            </div>
             
             
              

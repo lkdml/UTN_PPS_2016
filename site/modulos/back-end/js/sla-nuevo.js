@@ -1,18 +1,32 @@
     var datosTMH;
+    
 $(document).ready(function(){
     //variables para la carga global de datos
+
     $.ajax({
         url:'operador.php?modulo=sla',
         type:'GET',
         datatype:'JSON',
         data:{datosAjax:'datosTMH'},
+        beforeSend : function () {
+            TMH.loadingModal('show','Cargando información','Aguarde unos instantes');
+        },
         success: function (response){
             datosTMH = $.parseJSON(response);
-        }
+           TMH.loadingModal('hide');
+        },
+        error: function(msg){
+            TMH.loadingModal('hide');
+           $("#getCodeModal").addClass('modal-warning');
+           $("#getCode").html(msg);
+           $("#tituloModal").html("Ups! Hubo un error");
+           }  
+        
     });
     
+    
     //Inicio -->Eventos de precondiciones
-    var IdPreCond = 0;
+    var IdPreCond = $('#nueva-preCond ').length;;
     var preCondCount = $('#nueva-preCond tr').length;
     $("#nueva-preCond").click(function(){
         var preCond = '' +
@@ -21,7 +35,7 @@ $(document).ready(function(){
 '                          <button class="btn bg-olive btn-flat quitar-preCond" type="button">-</button>' +
 '                            </td>' +
 '                            <td>' +
-'                              <select class="form-control select2" id="pre-cond-'+IdPreCond+'" style="width: 100%;" id="ddDeptos" name="preCond['+IdPreCond+']" >' +
+'                              <select class="form-control select2" id="pre-cond-'+IdPreCond+'" onchange="TMH.setDataFromSelect(this)" style="width: 100%;" id="ddDeptos" name="preCond['+IdPreCond+']" >' +
 '                                <option value = "-1">Seleccione opcion</option>' +
                                     TMH.cargarComboCondicion("pre",datosTMH.condiciones) +
 '                              </select>' +
@@ -48,8 +62,9 @@ $(document).ready(function(){
             var condicionID = $(this).val();
             $('#pre-param-'+$(this).attr('id').substring(9)).prop("disabled",false);
             $("#pre-cond-"+renglonId+" option[value='-1']").remove();
-            $('#pre-param-'+$(this).attr('id').substring(9)).append(TMH.cargarComboParametro('pre-param-'+$(this).attr('id').substring(9),"pre",datosTMH.condiciones,condicionID));
+            //$('#pre-param-'+$(this).attr('id').substring(9)).append(TMH.cargarComboParametro('pre-param-'+$(this).attr('id').substring(9),"pre",datosTMH.condiciones,condicionID));
             TMH.traerElementoHTML(condicionID,'td.pre-valor-', $(this).attr('id').substring(9),'pre-valor-');
+            TMH.setDataFromOption('#pre-cond-'+renglonId,'param','#pre-param-'+renglonId);
             // cambio el attributo name del campo valor
             $('#pre-valor-'+renglonId).attr("name","pre-valor["+renglonId+"]");
         });
@@ -57,7 +72,7 @@ $(document).ready(function(){
     });
     //FIN --> Eventos de precondiciones
     //Inicio --> Eventos de vencimientos
-    var IdVence = 0;
+    var IdVence = $('#nueva-preCond').length;
     var venceCount = $('#nueva-preCond tr').length;
     $("#nueva-vence").click(function(){
         var vence = '' +
@@ -101,7 +116,7 @@ $(document).ready(function(){
     });
     //FIN --> Eventos de vencimientos
     //Inicio --> Eventos de postcondiciones
-    var IdPostCond = 0;
+    var IdPostCond = $('#nueva-preCond ').length;
     var postCondCount = $('#nueva-preCond tr').length;
     $("#nueva-postCond").click(function(){
         var postCond = '' +
@@ -168,6 +183,50 @@ $(document).ready(function(){
 //fin quitar renglones.
 
 TMH = {
+     setDataFromSelect: function(sel){
+         var opciones = '';
+         var datos = $(sel).find(":selected").data("param");
+         var selector = $(sel).prop("id").replace("cond","param");
+        $(JSON.parse(JSON.stringify(datos))).each(function(id,objeto){
+            var iD = id;
+            $.each(objeto, function(claveArrayParametro,valorArrayParametro){
+                $.each(valorArrayParametro, function(claveParametro,valorParametro){
+                    opciones += '                                <option value = "' + iD +'">'+valorParametro+'</option>';
+                });
+            }); 
+        });
+        $('#'+selector).prop("disabled",false);
+        $('#'+selector+' option').remove();
+        $('#'+selector).append(opciones);
+     },
+    //Option, el string del elemento id o class
+    // data, el nombre del campo data (sin el 'data')
+    // target, el elemento destino.
+    setDataFromOption: function(elementoOrigen, data, target){
+    ///$(elementoOrigen+' option:selected').each(function(){
+    ///    console.log($(elementoOrigen+' option:selected').data(data));
+    ///    console.log('$('+target+').text($(this).data('+data+'))');
+    ///    $(target).text($(this).data(data));
+        //$('.cp_sistemas').remove();
+        ///$('.campos_personalizados').prepend($(this).data('subset2'));
+        //$('#selector_Sub_dpto').append($(this).data('subset3'));
+    ///});
+    },
+    // Manejo de modal para cara de contenido
+    loadingModal: function(type = "show", titulo = "Mensaje", msg = "", btnClose= false) {
+            if(type == "show")
+            {
+                $("#getCodeModal").addClass('modal-info');
+                $("#getCode").html(msg);
+                $("#tituloModal").html(titulo); 
+                if (btnClose == false){
+                    $('.modal-footer').remove();
+                }
+                $("#getCodeModal").modal('show');
+            }
+            else
+               $("#getCodeModal").modal('hide');
+        },
     // funcion para procesar info en combo condiciones
     cargarComboCondicion: function(tipo,datosAjax){
         var opciones = '';
@@ -177,7 +236,7 @@ TMH = {
            // console.log(indice);
             $.each(indice, function (clave,valor){
                 if(tipo == valor.tipo) {
-                    opciones += '                                <option value = "' + clave +'" data-param="'+ valor.slaParametro +'">'+valor.nombre+'</option>';
+                    opciones += "                                <option value = '" + clave +"' data-param='"+ JSON.stringify(valor.slaParametro) +"'>"+valor.nombre+"</option>";
                     i++;
                 } 
             });
@@ -206,23 +265,6 @@ TMH = {
         });
         return opciones;
     },
-    
-    // funcion para armado de tipo de dato a ingresar  
-    cargarElementoValor: function(tipo,datosAjax,condicionID){
-        var opciones = '';
-        var i = 0;
-       // console.log(datosAjax);
-        $.each(datosAjax, function(key, indice) {
-           // console.log(indice);
-            $.each(indice, function (clave,valor){
-                if(tipo == valor.tipo) {
-                    opciones += '                                <option value = "' + clave +'" data-param="'+ valor.slaParametro +'">'+valor.nombre+'</option>';
-                    i++;
-                } 
-            });
-        });
-        return opciones;
-    },
     traerElementoHTML: function (condicionID,elementoHTML,idElementoHtml,classElementoHTML){
             $.ajax({
                 url:'operador.php?modulo=sla',
@@ -230,10 +272,10 @@ TMH = {
                 dataType : 'html',
                 data:{condicion:condicionID},
                 beforeSend: function(){
-                 $("#wait").show();
+                 TMH.loadingModal('show','Cargando datos',"Aguarde unos instantes.");
                 },
                 complete: function(){
-                 $("#wait").hide();
+                 TMH.loadingModal('hide');
                  // cambio el attributo name del campo valor
                 $('#'+classElementoHTML+idElementoHtml).attr("name",classElementoHTML+"["+idElementoHtml+"][]");
                 },
