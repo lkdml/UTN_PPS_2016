@@ -74,7 +74,8 @@ INSERT INTO `rol` VALUES
                         ('usuarios_editar','Permite editar un usuarios'),
                         ('usuarios_eliminar','Permite eliminar a usuarios'),
                         ('usuarios_ver','Permite ver  a los usuarios'),
-                        ('usuarios_listar','Permite  listar a los usuarios');
+                        ('usuarios_listar','Permite  listar a los usuarios'),
+                        ('usuarios_actividad','Permite ver la actividad del usuario con respecto a los tickets');
 /*!40000 ALTER TABLE `rol` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,7 +189,8 @@ INSERT INTO `perfil_roles` VALUES (1,'anuncios_crear'),
                                     (1,'usuarios_editar'),
                                     (1,'usuarios_eliminar'),
                                     (1,'usuarios_ver'),
-                                    (1,'usuarios_listar');
+                                    (1,'usuarios_listar'),
+                                    (1,'usuarios_actividad');
 /*!40000 ALTER TABLE `perfil_roles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -299,8 +301,8 @@ insert into configuracion_global values ("mail_Password","");
 insert into configuracion_global values ("mail_mail","");
 insert into configuracion_global values ("mail_remitente","T.M.H.");
 insert into configuracion_global values ("directorio_Uploads","");
-insert into configuracion_global values ("extensiones_permitidas_imagenes",'["jpg","png","gif","TIF"]');
-insert into configuracion_global values ("extensiones_permitidas_archivos",'["jpg","png","gif","TIF","doc","pdf","docx","csv","xls","XLSX","rar","ZIP","bz","gz"]');
+insert into configuracion_global values ("extensiones_permitidas_imagenes",'[jpg,png,gif,TIF]');
+insert into configuracion_global values ("extensiones_permitidas_archivos",'[jpg,png,gif,ico,TIF,doc,pdf,docx,csv,xls,XLSX,rar,ZIP,bz,gz]');
 insert into configuracion_global values ("ordenamiento_mensajes",'DESC'); /*o ASC*/
 insert into configuracion_global values ("empresa_nombre","Three Monkey Heads");
 insert into configuracion_global values ("empresa_titulo","T.M.H.");
@@ -310,10 +312,10 @@ insert into configuracion_global values ("empresa_url","http://ide.c9.io/lkdml/t
 insert into configuracion_global values ("empresa_SSL_front",0);
 insert into configuracion_global values ("empresa_SSL_back",0);
 insert into configuracion_global values ("empresa_logo","tipografia.png");
-insert into configuracion_global values ("empresa_favicom","favicon.ico");
+insert into configuracion_global values ("empresa_icono","monkeyIco.ico");
 insert into configuracion_global values ("usuarios_terminos","terminos y condiciones a desarrollar");
 insert into configuracion_global values ("usuarios_permitirRegistro",0);
-
+insert into configuracion_global values ("modo_mantenimiento","false");
 /*insert into configuracion_global values ("","");*/
 /*!40000 ALTER TABLE `configuracion_global` ENABLE KEYS */;
 UNLOCK TABLES;

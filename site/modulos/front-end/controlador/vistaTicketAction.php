@@ -8,6 +8,8 @@ use \Modelo\Ticket as Ticket;
 use \Modelo\Mensaje as Mensaje;
 use \Modelo\Archivo as Archivo;
 use \Modelo\EmailQueue as EmailQueue;
+use \Modelo\LogModificacionTicket as LogTicket;
+
 $app = Aplicacion::getInstancia();
 $app->startSession(false);
 $usuario = $app->getUsuario();
@@ -26,13 +28,17 @@ if (isset($_SESSION['LastTicketID'])){
             $tipoTicket=$em->getRepository('Modelo\TicketTipo')->find($Ticket->getTipoTicket());
             $estado=$tipoTicket->getEstadoCierre();
             $Ticket->setEstado($estado);
+            $Log = logearCambios(new LogTicket(),$Ticket,$em,true,$usuario->getUsuarioId());
             $em->persist($Ticket);
+            $em->persist($Log);
         }
         elseif ($_GET['reAbreTicket']){
             $tipoTicket=$em->getRepository('Modelo\TicketTipo')->find($Ticket->getTipoTicket());
             $estado=$tipoTicket->getEstadoApertura();
             $Ticket->setEstado($estado);
+            $Log = logearCambios(new LogTicket(),$Ticket,$em,false,$usuario->getUsuarioId());
             $em->persist($Ticket);
+            $em->persist($Log);
         }
         else {
             $em->persist(setearTicket($Ticket,$em));
@@ -102,6 +108,28 @@ function setearEmailQueue($remitente,$destinatario,$ticketNumber,$em){
     return $queue;
     
 }
+
+function logearCambios(LogTicket $log, Ticket $ticket, $em,$cierraTicket,$usuarioId)
+{
+    $log->setUsuarioId($usuarioId);
+    $usuarioLog=$em->getRepository('Modelo\Usuario')->find($usuarioId);
+    $log->setResponsable('Usuario: '.$usuarioLog->getNombre().' '.$usuarioLog->getApellido());
+    $log->setFecha(new DateTime("NOW"));
+    $log->setTicket($ticket);
+    if ($cierraTicket)
+    {
+        $log->setAccion("Cierre de Ticket");
+    }
+    else{
+        $log->setAccion("Re-abre el Ticket"); 
+    }
+    
+    
+    return $log;
+    
+}
+
+
 header("location:/index.php?modulo=misTickets");
 
 ?>

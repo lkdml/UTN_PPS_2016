@@ -8,9 +8,12 @@ use \Modelo\Ticket as Ticket;
 use \Modelo\Mensaje as Mensaje;
 use \Modelo\Archivo as Archivo;
 use \Modelo\EmailQueue as EmailQueue;
+use \Modelo\LogModificacionTicket as LogTicket;
+
 $app = Aplicacion::getInstancia();
 $app->startSession(true);
 $permisos =$app->getPermisos();
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 $operador = $app->getOperador();
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
@@ -20,9 +23,10 @@ if (isset($_SESSION['LastTicketID'])){
       $app->setError($error);
       $app->guardarErrorEnSession();
     } else {
-        $Ticket =  $em->getRepository('Modelo\Ticket')->find($_SESSION['LastTicketID']);
+        $Ticket= $em->getRepository('Modelo\Ticket')->find($_SESSION['LastTicketID']);
+        $Log = logearCambios(new LogTicket(),$Ticket,$em,$operador->getOperadorId());
         $em->persist(setearTicket($Ticket,$em));
-        $em->persist($Ticket);
+        $em->persist($Log);
         if ((!empty($_POST["Respuesta"])) || (!empty($_POST["NotaOperador"]))){
             $Mensaje = setearMensaje(new Mensaje, $Ticket, $em, $operador->getOperadorId());
             $em->persist($Mensaje);
@@ -76,7 +80,15 @@ function setearTicket(Ticket $ticket,$em){
 function setearMensaje(Mensaje $mensaje, Ticket $ticket,$em, $operadorId){
     if (!empty($_POST["Respuesta"])) {
         $mensaje = new Mensaje();
-        $mensaje->setTexto($_POST["Respuesta"]);
+        if ($_POST["agregaFirmaOperador"])
+        {
+            $mensajeConFirma=$_POST["Respuesta"]."\r\n".$em->getRepository('Modelo\Operador')->find($operadorId)->getFirmaMensaje();
+            $mensaje->setTexto($mensajeConFirma);
+        }
+        else {
+            $mensaje->setTexto($_POST["Respuesta"]);
+        }
+        
         $mensaje->setFecha(new DateTime("NOW"));
         $mensaje->setTipoMensaje(1); //TODO: No se lo que es tipo de mensaje integer pero le paso 1 como parametro para mensajes 
         $mensaje->setTicket($ticket);
@@ -129,5 +141,47 @@ function setearEmailQueue($remitente,$destinatario,$ticketNumber,$em){
     return $queue;
     
 }
+
+function logearCambios(LogTicket $log, Ticket $ticket,$em,$operadorId)
+{
+    $log->setOperadorId($operadorId);
+    $operadorLog=$em->getRepository('Modelo\Operador')->find($operadorId);
+    $log->setResponsable('Operador: '.$operadorLog->getNombre().' '.$operadorLog->getApellido());
+    $log->setFecha(new DateTime("NOW"));
+    $log->setTicket($ticket);
+
+    $cambios="";
+
+    if ($em->getRepository('Modelo\TicketEstado')->find($_POST["Estado"]) != $ticket->getEstado())
+    {
+        $cambios=$cambios."Cambio a estado ". $em->getRepository('Modelo\TicketEstado')->find($_POST["Estado"])->getNombre() . "\r\n";
+    }
+    if ($em->getRepository('Modelo\Prioridad')->find($_POST["Prioridad"]) != $ticket->getPrioridad())
+    {
+        $cambios=$cambios."Cambio a prioridad ". $em->getRepository('Modelo\Prioridad')->find($_POST["Prioridad"])->getNombre() . "\r\n";
+    }
+    
+    if ($em->getRepository('Modelo\Departamento')->find($_POST["Departamento"]) != $ticket->getDepartamento())
+    {
+        $cambios=$cambios."Cambio a departamento ". $em->getRepository('Modelo\Departamento')->find($_POST["Departamento"])->getNombre() . "\r\n";
+    }
+   
+    if ($em->getRepository('Modelo\Operador')->find($_POST["OperadorAsignado"]) != $ticket->getAsignadoAOperador())
+    {
+         if ($_POST["OperadorAsignado"]=="-1"){
+             $cambios=$cambios."Sin operador asignado";
+         }
+        else{
+         $cambios=$cambios."Asignado a operador". $em->getRepository('Modelo\Operador')->find($_POST["OperadorAsignado"])->getNombre() . "\r\n";   
+        }
+        
+    }
+
+    $log->setAccion($cambios);
+
+    return $log;
+    
+}
+
 
 ?>

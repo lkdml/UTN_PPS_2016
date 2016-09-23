@@ -64,10 +64,10 @@ class LogModificacionTicket extends \Modelo\LogModificacionTicket implements \Do
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return ['__isInitialized__', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'usuarioId', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'operadorId', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'accion', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'fecha', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'ticket'];
+            return ['__isInitialized__', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'logId', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'responsable', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'usuarioId', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'operadorId', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'slaId', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'accion', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'fecha', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'ticket'];
         }
 
-        return ['__isInitialized__', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'usuarioId', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'operadorId', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'accion', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'fecha', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'ticket'];
+        return ['__isInitialized__', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'logId', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'responsable', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'usuarioId', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'operadorId', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'slaId', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'accion', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'fecha', '' . "\0" . 'Modelo\\LogModificacionTicket' . "\0" . 'ticket'];
     }
 
     /**
@@ -176,6 +176,43 @@ class LogModificacionTicket extends \Modelo\LogModificacionTicket implements \Do
     /**
      * {@inheritDoc}
      */
+    public function getLogId()
+    {
+        if ($this->__isInitialized__ === false) {
+            return (int)  parent::getLogId();
+        }
+
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getLogId', []);
+
+        return parent::getLogId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setResponsable($responsable)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setResponsable', [$responsable]);
+
+        return parent::setResponsable($responsable);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getResponsable()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getResponsable', []);
+
+        return parent::getResponsable();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setUsuarioId($usuarioId)
     {
 
@@ -215,6 +252,28 @@ class LogModificacionTicket extends \Modelo\LogModificacionTicket implements \Do
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getOperadorId', []);
 
         return parent::getOperadorId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setSlaId($slaId)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setSlaId', [$slaId]);
+
+        return parent::setSlaId($slaId);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getSlaId()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSlaId', []);
+
+        return parent::getSlaId();
     }
 
     /**
@@ -264,7 +323,7 @@ class LogModificacionTicket extends \Modelo\LogModificacionTicket implements \Do
     /**
      * {@inheritDoc}
      */
-    public function setTicket(\Modelo\Ticket $ticket)
+    public function setTicket(\Modelo\Ticket $ticket = NULL)
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setTicket', [$ticket]);

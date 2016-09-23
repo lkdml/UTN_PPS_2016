@@ -8,6 +8,7 @@ use \Modelo\Departamento as Departamento;
 $app = Aplicacion::getInstancia();
 $app->startSession($modoOP);
 $permisos =$app->getPermisos();
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 if (!$permisos->verificarPermiso("departamentos_listar")){
         $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));

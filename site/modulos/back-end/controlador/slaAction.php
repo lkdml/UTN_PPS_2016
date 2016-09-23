@@ -12,6 +12,7 @@ use \Modelo\Sla as Sla;
 $app = Aplicacion::getInstancia();
 $app->startSession(true);
 $permisos =$app->getPermisos();
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 

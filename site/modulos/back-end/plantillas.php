@@ -27,6 +27,7 @@ if(isset($_GET['plantillaId']))
 else
 {
 $permisos =$app->getPermisos();
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 if (!$permisos->verificarPermiso("general_plantillas")){
         $error = new \CORE\Controlador\Error(1,"Permisos","Ud. no cuenta con los permisos para esta acción.","8002",basename(__FILE__));

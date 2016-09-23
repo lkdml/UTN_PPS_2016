@@ -7,6 +7,7 @@ use \Modelo\TicketEstado as Estados;
 Aplicacion::startSession(true);
 $app = Aplicacion::getInstancia();
 $permisos =$app->getPermisos();
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 

@@ -7,6 +7,7 @@ use \CORE\Controlador\Aplicacion;
 $app = Aplicacion::getInstancia();
 $app->startSession($modoOP);
 $permisos =$app->getPermisos();
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Back_SMARTY_TemplateDir'),null);
 $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Back').'css/',
@@ -85,5 +86,6 @@ switch(strtolower($_POST["accion"])){
       header("location:/operador.php?modulo=tickets");
     }
     break;
+  
 }
 

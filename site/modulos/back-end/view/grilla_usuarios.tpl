@@ -45,6 +45,10 @@ js=''
                   <button class="btn btn-app " id="btnBorrar" data-toggle="modal" data-target="#myModal"  name="accion" value="borrarr" disabled>
                     <i class="fa fa-trash"></i> Borrar
                   </button>
+                  <button class="btn btn-app " id="btnActividad" type="submit" name="accion" value="ver" disabled>
+                    <i class="fa fa-search-plus"></i> Ver Actividad
+                  </button>
+                  
                 
                 <!-- Modal para Borrar-->
                 <div id="myModal" class="modal fade" role="dialog">
@@ -123,7 +127,7 @@ js=''
 <script type="text/javascript" charset="utf8" src="{$rutaJS}app.min.js"></script>
 <!-- Manejador de botones y Checkbox-->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}chkboxManager.js"></script>
-<script type="text/javascript" charset="utf8" src="{$rutaJS}checkAll.js"></script>
+
 <!-- Borrado Modal-->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}borradoModal.js"></script>
 
@@ -136,10 +140,10 @@ js=''
 <script>
 $(document).ready( function () {
     $('#grilla').DataTable({
-  "columnDefs": [
-    { "width": "5px", "targets": 0 }
-  ]
-});
+      "columnDefs": [
+        { "width": "5px", "targets": 0 }
+        ]
+    });
 } );
 </script>
 {/literal}

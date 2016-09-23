@@ -11,7 +11,8 @@ use \Modelo\SlaCondicion as SlaCondicion;
 use \Modelo\Sla as Sla;
 $app = Aplicacion::getInstancia();
 $app->startSession($modoOP);
-$permisos = $app->getPermisos();
+$permisos =$app->getPermisos();
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 
 if (isset($_POST['condicion'])){

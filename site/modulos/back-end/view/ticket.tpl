@@ -223,14 +223,15 @@ js=''
                             <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                                 <div class="col-md-10">
                                   <textarea class="textarea_msg" name="Descripcion" id="txtDescripcion" style="width: 100%; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
+                                  <label class="checkbox-inline" title="Agrega la firma definida segun el perfil del operador"><input type="checkbox" name="agregaFirmaOperador" ></input>Agregar firma</label>
                                 <!--  -->
                                 </div>
                          </div> 
                       </div>
                       <div class="form-group">
                          <div class="box-body pad">
-                           <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
-                            <input class="col-sm-10" type="file" id="archivo" name="Archivos[]">
+                           <label for="archivo" class="col-sm-2 control-label" >Adjuntar</label>
+                            <input class="col-sm-10" type="file" id="archivo" name="Archivos[]" >
                             
                             <div class="box-footer col-sm-3 pull-right">
                               <button onclick="window.location='/operador.php?modulo=tickets';return false;" class="btn btn-danger pull-left btn-lg">Cancelar</button>
