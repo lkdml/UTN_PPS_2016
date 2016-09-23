@@ -13,6 +13,7 @@ use \Modelo\LogModificacionTicket as LogTicket;
 $app = Aplicacion::getInstancia();
 $app->startSession(true);
 $permisos =$app->getPermisos();
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 $operador = $app->getOperador();
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 

@@ -8,6 +8,7 @@ use \Modelo\Usuario as Usuario;
 Aplicacion::startSession(true);
 $app = Aplicacion::getInstancia();
 $permisos =$app->getPermisos();
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 // TODO antes de generar el usuario, debo verificar que el username y el mail no existan previamente. (o bien manejar el error que devolverá el sql si eso pasara.)
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();

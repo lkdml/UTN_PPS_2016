@@ -7,9 +7,11 @@ use \Modelo\Anuncio as Anuncio;
 $app = Aplicacion::getInstancia();
 $app->startSession(true);
 $permisos =$app->getPermisos();
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 $op=$app->getOperador();
 
 $permisos =$app->getPermisos();
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
     
 if (isset($_GET['anuncioId'])){

@@ -7,6 +7,7 @@ use \CORE\Controlador\Aplicacion;
 $app = Aplicacion::getInstancia();
 $app->startSession($modoOP);
 $permisos =$app->getPermisos();
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 
 

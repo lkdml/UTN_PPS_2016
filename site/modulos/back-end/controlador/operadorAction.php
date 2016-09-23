@@ -13,6 +13,7 @@ use \CORE\Controlador\Aplicacion;
 $app = Aplicacion::getInstancia();
 Aplicacion::startSession(true);
 $permisos =$app->getPermisos();
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
