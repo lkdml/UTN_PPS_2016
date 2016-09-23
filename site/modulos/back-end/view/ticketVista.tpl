@@ -292,24 +292,18 @@ js=''
                        <!-- /.tab-content -->
                     </div>
                  <!-- nav-tabs-custom -->
-                </div>
-          <!-- fin box body tab--> 
-
+                
         </form>
         <!-- form end -->
       </div>
+      <!-- fin box body tab--> 
     </section>  
-    
-    
-    
 </div>
-
 
 
            
  <link rel="stylesheet" href="{$rutaCSS}bootstrap3-wysihtml5.min.css">
 
-</div>
 <script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{$rutaJS}bootstrap.min.js"></script>

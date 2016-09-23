@@ -55,7 +55,7 @@ js=''
                   <div class="modal-content">
                     <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Eliminar SLA </h4></h4>
+                      <h4 class="modal-title">Eliminar Prioridad </h4></h4>
                     </div>
                     <div class="modal-body">
                       <p>Esta acción eliminará las prioridades seleccionadas. ¿Esta seguro que desea continuar?</p>
@@ -105,17 +105,6 @@ js=''
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
-</div>
-<!-- ./wrapper -->
-
-
-<!-- prueba manejo de boton -->
-<!-- TODO: Terminar script para manejo por rows -->
-
-
-
-
-<!-- prueba manejo de boton -->
 
 <!-- jQuery 2.2.0 -->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}jQuery-2.2.0.min.js"></script>

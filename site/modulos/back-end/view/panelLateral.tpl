@@ -66,7 +66,8 @@
   {literal}
 <script>
 
-$( document ).ready(function obtenerTicketsOperador() {
+function obtenerTicketsOperador() {
+     $('#dinamicTicketMenuOperador').empty();
      $.ajax({
           url:'operador.php?modulo=widgets',
           type:'GET',
@@ -84,13 +85,10 @@ $( document ).ready(function obtenerTicketsOperador() {
                       $('#totalticketOperador').html(total);
             
                   }
-        });
-});
+        })};
 
-
-
-
-$( document ).ready(function obtenerLateralDepartamentos() {
+function obtenerLateralDepartamentos() {
+     $('#dinamicDeptos').empty();
      $.ajax({
           url:'operador.php?modulo=widgets',
           type:'GET',
@@ -98,7 +96,6 @@ $( document ).ready(function obtenerLateralDepartamentos() {
           data:{datosAjax:'lateralDepartamentos'},
           success: function (response){
                       var array = jQuery.parseJSON( response );
-                      console.log(array);
                       var totalGeneral=0;
                       var totalDepto=0;
                
@@ -135,8 +132,12 @@ $( document ).ready(function obtenerLateralDepartamentos() {
                       $('#totalDeptosTickets').html(totalGeneral);
         
                   }
-        });
-});
+        })};
+
+$( document ).ready(function() {
+  obtenerTicketsOperador();
+  obtenerLateralDepartamentos();
+ });
 
 setInterval(function() {
   obtenerTicketsOperador();

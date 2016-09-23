@@ -13,6 +13,12 @@ $().ready(function() {
                         pwcheck: true,
                         minlength: 8
                         },
+            confirmarclave: {
+                        required: true,
+                        pwcheck: true,
+                        minlength: 8,
+                        equalTo : "#clave"
+                        },
             email: {
                 required: true,
                 emailcheck:true
@@ -33,6 +39,12 @@ $().ready(function() {
                required: "(*)Por favor, ingresa una clave.",
                 minlength: "(*)La clave debe tener mas de 7 caractéres.",
                 pwcheck:"(*)La clave debe contener una letra minúscula y un número."
+            },
+            confirmarclave: {
+               required: "(*)Por favor, ingresa re-ingresa la clave.",
+                minlength: "(*)La clave debe tener mas de 7 caractéres.",
+                pwcheck:"(*)La clave debe contener una letra minúscula y un número.",
+                equalTo: "(*)La clave ingresada no coincide."
             },
             email:{
                 required:"(*)Por favor, ingrese un email.",

@@ -17,15 +17,12 @@
       <ul class="sidebar-menu">
         <li class="treeview"><a href="/operador.php?modulo=dashboard"><i class="fa fa-dashboard"></i> <span>Dash-Board</span></a></li>
         <li class="header">Informes - Total de:</li>
-        <li class="treeview"><a href="/operador.php?modulo=informeUsuariosPorEmpresa"><i class="fa fa-file-text-o"></i> <span>Usuarios por Empresas</span></a></li>
-        <li class="treeview"><a href="/operador.php?modulo=informeTicketPorEmpresa"><i class="fa fa-file-text-o"></i> <span>Tickets por Empresa</span></a></li>
-        <li class="treeview"><a href="/operador.php?modulo=informeTicketPorEstadoEmpresa"><i class="fa fa-file-text-o"></i> <span>Ticket por Estados/Empresas</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=informeUsuariosPorEmpresa"><i class="fa fa-pie-chart"></i> <span>Usuarios por Empresas</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=informeTicketPorEmpresa"><i class="fa fa-pie-chart"></i> <span>Tickets por Empresa</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=informeTicketPorEstadoEmpresa"><i class="fa fa-area-chart"></i> <span>Ticket por Estados/Empresas</span></a></li>
 
-        <li class="treeview"><a href="/operador.php?modulo=informeTicketDepartamento"><i class="fa fa-file-text-o"></i> <span>Ticket en departamentos</span></a></li>
-        <li class="treeview"><a href="/operador.php?modulo=informeTicketPorEstado"><i class="fa fa-file-text-o"></i> <span>Tickets según estados</span></a></li>
-        <li class="treeview"><a href="/operador.php?modulo=informeTicketPorPrioridades"><i class="fa fa-file-text-o"></i> <span>Tickets según prioridades</span></a></li>
-        <li class="treeview"><a href="/operador.php?modulo=informeTiempoRespuestaPromedio"><i class="fa fa-file-text-o"></i> <span>Tiempo de respuesta promedios</span></a></li>
-        <li class="treeview"><a href="/operador.php?modulo=informeTiempoResolucionPromedio"><i class="fa fa-file-text-o"></i> <span>Tiempo de resolución promedio</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=informeTicketDepartamento"><i class="fa fa-bar-chart"></i> <span>Ticket en departamentos</span></a></li>
+        <li class="treeview"><a href="/operador.php?modulo=informeTicketPorPrioridades"><i class="fa fa-pie-chart"></i> <span>Tickets según prioridades</span></a></li>
       </ul>
       
  <!--         Informar sin restricciones:
@@ -38,10 +35,9 @@
             Tickets atendidos por Departamento. (En período de tiempo | Asignados a Operadores determinados | Departamentos determinados)
             Tickets según estados. (En período de tiempo | asignados a Operadores determinados | Departamentos determinados)
             Tickets según Prioridades. (En período de tiempo | Departamentos determinados)
-            Tiempos de respuesta promedios. (En período de tiempo | de Operadores determinados | Departamentos determinados)
-            Tiempos de resolución promedios. (En período de tiempo | de Operadores determinados | Departamentos determinados)
+
      --> 
-        <ul class="sidebar-menu">
+      <ul class="sidebar-menu">
       <li class="header">Tickets</li>
       <li class="treeview">
         <a href="#"><i class="fa fa-th" ></i><span>Tickets</span> <small class="label pull-right bg-blue" id="totalticketOperador"></small></a>
@@ -84,31 +80,29 @@
   {literal}
 <script>
 
-$( document ).ready(function obtenerTicketsOperador() {
+function obtenerTicketsOperador() {
+     $('#dinamicTicketMenuOperador').empty();
      $.ajax({
           url:'operador.php?modulo=widgets',
           type:'GET',
           datatype:'JSON',
-          data:{datosAjax:'widgetEstados'},
+          data:{datosAjax:'lateralTickets'},
           success: function (response){
                       var array = jQuery.parseJSON( response );
                       var total=0;
                       for(var i=0;i<array.length;i++)
                       {
                       
-                         $('#dinamicTicketMenuOperador').append('<li><a href="/operador.php?modulo=tickets&Estados='+array[i].id+'">'+array[i].nombre+'<small class="label pull-right" style=background-color:'+array[i].color+'>'+array[i].cantidad+'</small></li></a>'); 
+                         $('#dinamicTicketMenuOperador').append('<li><a href="/operador.php?modulo=tickets&Estados='+array[i].id+'">'+array[i].nombre+'<small class="label pull-right" style=background-color:'+array[i].color+'>'+array[i].cantidad+'</small></a></li>'); 
                         total=total+array[i].cantidad;
                       }
                       $('#totalticketOperador').html(total);
             
                   }
-        });
-});
+        })};
 
-
-
-
-$( document ).ready(function obtenerLateralDepartamentos() {
+function obtenerLateralDepartamentos() {
+     $('#dinamicDeptos').empty();
      $.ajax({
           url:'operador.php?modulo=widgets',
           type:'GET',
@@ -116,7 +110,6 @@ $( document ).ready(function obtenerLateralDepartamentos() {
           data:{datosAjax:'lateralDepartamentos'},
           success: function (response){
                       var array = jQuery.parseJSON( response );
-                      console.log(array);
                       var totalGeneral=0;
                       var totalDepto=0;
                
@@ -153,14 +146,17 @@ $( document ).ready(function obtenerLateralDepartamentos() {
                       $('#totalDeptosTickets').html(totalGeneral);
         
                   }
-        });
-});
+        })};
+
+$( document ).ready(function() {
+  obtenerTicketsOperador();
+  obtenerLateralDepartamentos();
+ });
 
 setInterval(function() {
   obtenerTicketsOperador();
   obtenerLateralDepartamentos();
 },120000);
-
 
 </script>
 {/literal}

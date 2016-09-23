@@ -37,9 +37,9 @@ js=''
                           <p class="help-block">Para agregar un avatar, debe subir una imagen.</p>
                         </div>
                       </div>
-                        <div class="pull-right">
-                            <button type="submit" class="btn btn-warning" onclick="window.location.href='/index.php?modulo=home'">Modificar</button>
-                        </div>
+                      <div class="pull-right">
+                          <button type="submit" class="btn btn-warning" onclick="window.location.href='/index.php?modulo=home'">Modificar</button>
+                      </div>
 
                     </div>
                   </form>  
@@ -56,24 +56,24 @@ js=''
                       
                         <p class="text-muted text-center">Cambiar contraseña</p>
                       
-                              <div class="form-group">
-                                  <label for="inputContraseñaOriginal" class="col-sm-4 control-label">Clave Actual</label>
-                                  <div class="col-sm-5">
-                                    <input class="form-control" id="inputNombre" type="password" name="clave">
-                                  </div>
+                          <div class="form-group">
+                              <label for="inputContraseñaOriginal" class="col-sm-4 control-label">Clave Actual</label>
+                              <div class="col-sm-5">
+                                <input class="form-control" id="inputNombre" type="password" name="clave">
                               </div>
-                              <div class="form-group">
-                                  <label for="inputNombre" class="col-sm-4 control-label">Nueva Clave</label>
-                                  <div class="col-sm-5">
-                                    <input class="form-control" id="inputContraseñaNueva" type="password" name="nuevaclave1">
-                                  </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="inputNombre" class="col-sm-4 control-label">Nueva Clave</label>
+                              <div class="col-sm-5">
+                                <input class="form-control" id="inputContraseñaNueva" type="password" name="nuevaclave1">
                               </div>
-                              <div class="form-group">
-                                  <label for="inputNombre" class="col-sm-4 control-label">Re-Ingrese Clave</label>
-                                  <div class="col-sm-5">
-                                    <input class="form-control" id="inputContraseñaNueva2" type="password" name="nuevaclave2">
-                                  </div>
+                          </div>
+                          <div class="form-group">
+                              <label for="inputNombre" class="col-sm-4 control-label">Re-Ingrese Clave</label>
+                              <div class="col-sm-5">
+                                <input class="form-control" id="inputContraseñaNueva2" type="password" name="nuevaclave2">
                               </div>
+                          </div>
                           <div class="pull-right">
                               <button type="submit" class="btn btn-warning" onclick="window.location.href='/index.php?modulo=home'">Cambiar</button>
                           </div>
@@ -85,69 +85,83 @@ js=''
   
             </div> 
             <div class="col-md-8">
-                    <div class="box box-primary">
-                        <br>
-                        <form action="{$rutaCSS}../controlador/perfilUserAction.php{if $UsuarioLogueado}?Usuario={$UsuarioLogueado->getUsuarioId()}{/if}" class="form-horizontal" id = "nuevoUsuarioForm" method="post">
-                          <div class="form-group">
-                            <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" id="inputNombre" placeholder="Nombre" name="nombre" {if $UsuarioLogueado}value='{$UsuarioLogueado->getNombre()}'{/if}>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="inputApellido" class="col-sm-2 control-label">Apellido</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" id="inputApellido" placeholder="Apellido" name="apellido" {if $UsuarioLogueado}value='{$UsuarioLogueado->getApellido()}'{/if}>
-                            </div>
-                          </div>
-                         
-                          <div class="form-group">
-                            <label for="inputDireccion" class="col-sm-2 control-label">Direccion</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" id="inputDireccion" placeholder="Dirección" name="direccion" {if $UsuarioLogueado}value='{$UsuarioLogueado->getDireccion()}'{/if}>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="inputCodigoPostal" class="col-sm-2 control-label">Código Postal</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" id="inputCodigoPostal" placeholder="Código Postal" name="codigoPostal" {if $UsuarioLogueado}value='{$UsuarioLogueado->getCodigoPostal()}'{/if}>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="inputCiudad" class="col-sm-2 control-label">Ciudad</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" id="inputCiudad" placeholder="Ciudad" name="ciudad" {if $UsuarioLogueado}value='{$UsuarioLogueado->getCiudad()}'{/if}>
-                            </div>
-                          </div>
-                          <div class="form-group">
-                            <label for="inputTelefono" class="col-sm-2 control-label">Telefono</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" id="inputTelefono" placeholder="Teléfono / Celular" name="telefono" {if $UsuarioLogueado}value='{$UsuarioLogueado->getTelefono()}'{/if}>
-                            </div>
-                          </div>
-                         <div class="form-group">
-                            <label for="inputMailAdicional" class="col-sm-2 control-label">Email Adicional</label>
-                            <div class="col-sm-9">
-                              <input class="form-control" id="inputMailAdicional" type="mail" placeholder="Correo Electrónico Adicional" name="mailAdicional" {if $UsuarioLogueado}value='{$UsuarioLogueado->getMailAdicional()}'{/if}>
-                            </div>
-                         </div>
-                         
-                         
+              <form action="{$rutaCSS}../controlador/perfilUserAction.php{if $UsuarioLogueado}?Usuario={$UsuarioLogueado->getUsuarioId()}{/if}" class="form-horizontal" id = "nuevoUsuarioForm" method="post">
+                <div class="box box-primary">
+                    <div class="form-group">
+                      <div class="box-body pad">
+                        <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
+                        <div class="col-sm-6">
+                          <input class="form-control" id="inputNombre" placeholder="Nombre" name="nombre" {if $UsuarioLogueado}value='{$UsuarioLogueado->getNombre()}'{/if}>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="box-body pad">
+                        <label for="inputApellido" class="col-sm-2 control-label">Apellido</label>
+                        <div class="col-sm-6">
+                          <input class="form-control" id="inputApellido" placeholder="Apellido" name="apellido" {if $UsuarioLogueado}value='{$UsuarioLogueado->getApellido()}'{/if}>
+                        </div>
+                      </div>
+                    </div>
+                   
+                    <div class="form-group">
+                      <div class="box-body pad">
+                        <label for="inputDireccion" class="col-sm-2 control-label">Direccion</label>
+                        <div class="col-sm-6">
+                          <input class="form-control" id="inputDireccion" placeholder="Dirección" name="direccion" {if $UsuarioLogueado}value='{$UsuarioLogueado->getDireccion()}'{/if}>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="box-body pad">
+                        <label for="inputCodigoPostal" class="col-sm-2 control-label">Código Postal</label>
+                        <div class="col-sm-6">
+                          <input class="form-control" id="inputCodigoPostal" placeholder="Código Postal" name="codigoPostal" {if $UsuarioLogueado}value='{$UsuarioLogueado->getCodigoPostal()}'{/if}>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="box-body pad">
+                        <label for="inputCiudad" class="col-sm-2 control-label">Ciudad</label>
+                        <div class="col-sm-6">
+                          <input class="form-control" id="inputCiudad" placeholder="Ciudad" name="ciudad" {if $UsuarioLogueado}value='{$UsuarioLogueado->getCiudad()}'{/if}>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="box-body pad">
+                        <label for="inputTelefono" class="col-sm-2 control-label">Telefono</label>
+                        <div class="col-sm-6">
+                          <input class="form-control" id="inputTelefono" placeholder="Teléfono / Celular" name="telefono" {if $UsuarioLogueado}value='{$UsuarioLogueado->getTelefono()}'{/if}>
+                        </div>
+                      </div>
+                    </div>
+                   <div class="form-group">
+                     <div class="box-body pad">
+                        <label for="inputMailAdicional" class="col-sm-2 control-label">Email Adicional</label>
+                        <div class="col-sm-6">
+                          <input class="form-control" id="inputMailAdicional" type="mail" placeholder="Correo Electrónico Adicional" name="mailAdicional" {if $UsuarioLogueado}value='{$UsuarioLogueado->getMailAdicional()}'{/if}>
+                        </div>
+                      </div>
+                   </div>
+                   
+                   
+                  
+                </div> 
                 <div class="box-footer col-sm-5 pull-right">
-                  <button onclick="history.go(-1);" class="btn btn-danger pull-right btn-lg">Cancelar</button>
-                  <button type="submit" class="btn btn-info pull-right btn-lg">Enviar</button>
+                    <button onclick="history.go(-1);" class="btn btn-danger pull-right btn-lg">Cancelar</button>
+                    <button type="submit" class="btn btn-info pull-right btn-lg">Enviar</button>
                 </div>
-                            
-                </form>
-              </div>
+              </form>
+              
             </div>
-                <!-- /.tab-content -->
-        </form>
-        <!-- form end -->
-    </div>
-    <!-- box info end-->
- </section>
-</div>
+            <!-- /.tab-content -->
+          </form>
+          <!-- form end -->
+        </div>
+        <!-- box info end-->
+      </section>
+  </div>
 
     <!-- jQuery 2.2.0 -->
 <script src="{$rutaJS}jQuery-2.2.0.min.js"></script>

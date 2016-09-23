@@ -21,11 +21,11 @@
         messages: {
              Nombre: {
                 required: "(*)Por favor, ingrese un nombre.",
-                minlength: "(*)El nombre debe tener más de 4 letras."
+                minlength: "(*)El nombre debe tener más de 5 caractéres."
             },
             Descripcion: {
                 required: "(*)Por favor, ingrese una Descripción.",
-                minlength: "(*)La Descripción debe tener más de 4 letras."
+                minlength: "(*)La Descripción debe tener más de 5 caractéres."
                 
             },
         

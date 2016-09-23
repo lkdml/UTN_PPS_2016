@@ -16,4 +16,14 @@ $vm->assign("RutaAvatars", \CORE\Controlador\Config::getPublic('Ruta_Avatars'));
 $vm->assign('OperadorLogueado',$app->getOperador());
 $vm->assign('Permisos',$permisos);
 
+$Estados = $em->getRepository('Modelo\TicketEstado')->findAll();
+$vm->assign('Estados',$Estados);
+
+$Empresas = $em->getRepository('Modelo\Empresa')->createQueryBuilder('t')
+                                     ->where('t.empresaId > 0')
+                                     ->getQuery()
+                                     ->getResult();
+
+$vm->assign('Empresas',$Empresas);
+
 $vm->display('informeTicketPorEstadoEmpresa.tpl');

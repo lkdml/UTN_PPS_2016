@@ -1,5 +1,5 @@
 {include file="header.tpl"
-css=''
+css='<link rel="stylesheet" href="./modulos/back-end/css/validacion.css">'
 js=''
 }
 {include file="panelLateral.tpl"}
@@ -29,14 +29,24 @@ js=''
                         <div class="box-body pad">
                             <label for="inputNombre" class="col-sm-2 control-label">Nombre</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputNombre" name="nombre" {if $Prioridad}value='{$Prioridad->getNombre()}'{/if}>
+                              <input type="text" class="form-control" id="inputNombre" name="nombre"
+                                {if $Prioridad}
+                                    value='{$Prioridad->getNombre()}'
+                                {/if}
+                                >
+                                </input>
                             </div>
                         </div>
                         <!-- body pad end -->
                          <div class="box-body pad">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
                             <div class="col-sm-5">
-                              <input type="text" class="form-control" id="inputDescripcion" name="descripcion" {if $Prioridad}value='{$Prioridad->getDescripcion()}'{/if}>
+                              <input type="text" class="form-control" id="inputDescripcion" name="descripcion" 
+                                {if $Prioridad}
+                                    value='{$Prioridad->getDescripcion()}'
+                                {/if}
+                                >
+                                </input>
                             </div>
                         </div>
                         <!-- body pad end -->
@@ -44,7 +54,12 @@ js=''
                         <div class="box-body pad">
                             <label for="inputColor" class="col-sm-2 control-label">Color</label>
                             <div class="col-sm-5">
-                                <input type="text" class="form-control my-colorpicker1" id="inputColor" name="color" {if $Prioridad}value='{$Prioridad->getColor()}'{/if}>
+                                <input type="text" class="form-control my-colorpicker1" id="inputColor" name="color"
+                                {if $Prioridad}
+                                    value='{$Prioridad->getColor()}'
+                                {/if}
+                                >
+                                </input>
                             </div>
                         </div>
                         <div class="box-body pad">
@@ -98,6 +113,7 @@ js=''
         <!-- form end -->
     </div>
     <!-- box info end-->
+    </section>
 </div>
   
   
@@ -117,7 +133,11 @@ js=''
 <script src="{$rutaJS}bootstrap-colorpicker.js"></script>
 <!-- Bootstrap Color Picker -->
 <link rel="stylesheet" href="{$rutaCSS}bootstrap-colorpicker.css">
+
+<!-- Validaciones -->
+<script src="{$rutaJS}jquery-validator-min.js"></script>
 <script src="{$rutaJS}validacionNuevaPrioridad.js"></script>
+
 <!-- No enter for submitting v1.0 -->
 <script src="{$rutaJS}noEnter.js"></script>
 {literal} <script>

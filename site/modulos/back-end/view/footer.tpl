@@ -1,5 +1,5 @@
 
-  </div>
+ 
 
   <!-- /.content-wrapper -->
   <footer class="main-footer">
@@ -8,5 +8,6 @@
     </div>
     <strong>Copyright &copy; 2016 <a href="http://thm.com">Three Monkey Heads</a>.</strong> Derechos reservados.
   </footer>
+   </div>
   </body>
 </html>

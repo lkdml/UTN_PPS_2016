@@ -16,4 +16,7 @@ $vm->assign("RutaAvatars", \CORE\Controlador\Config::getPublic('Ruta_Avatars'));
 $vm->assign('OperadorLogueado',$app->getOperador());
 $vm->assign('Permisos',$permisos);
 
+$Departamentos = $em->getRepository('Modelo\Departamento')->findAll();
+$vm->assign('Departamentos',$Departamentos);
+
 $vm->display('informeTicketDepartamento.tpl');

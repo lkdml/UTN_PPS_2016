@@ -6,8 +6,7 @@
         // Specify the validation rules
         rules: {
             nombre: {
-              required:true,
-              minlength:5
+              required:true
             },
             descripcion: {
               required:true,
@@ -28,12 +27,11 @@
         // Specify the validation error messages
         messages: {
              nombre: {
-                required: "(*)Por favor, ingrese un nombre.",
-                minlength: "(*)El nombre debe tener más de 4 letras."
+                required: "(*)Por favor, ingrese un nombre."
             },
             descripcion: {
                 required: "(*)Por favor, ingrese una Descripción.",
-                minlength: "(*)La Descripción debe tener más de 4 letras."
+                minlength: "(*)La Descripción debe tener más de 5 caractéres."
                 
             },
                 idDeptoPadre: {

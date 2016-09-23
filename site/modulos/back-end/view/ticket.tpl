@@ -17,7 +17,7 @@ js=''
 {/literal}
   <!-- =============================================== -->
   
-   <div class="content-wrapper">
+<div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -28,8 +28,8 @@ js=''
         <li class="active">Crear/Modificar Ticket</li>
       </ol>
     </section>
- <section class="content">
- <!-- Horizontal Form -->
+   <section class="content">
+   <!-- Horizontal Form -->
           <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">Ticket</h3>
@@ -198,10 +198,10 @@ js=''
                             </div>
                         </div>
                       </div>
-                      <br>
                   </div><!-- /.box-body Campos Custom -->
+                </div>
                 {/if}
-              </div>
+              
                 <div class="box-body"><!-- /.box-body Asunto Descripcion y Adjuntos -->
                     <div class="box">
                       <div class="box-header">
@@ -217,15 +217,19 @@ js=''
                             <input type="text" class="form-control" id="txtAsunto" name="Asunto">
                           </div>
                         </div>  
+                      </div>
+                      <div class="form-group">
                         <div class="box-body pad">
                             <label for="inputDescripcion" class="col-sm-2 control-label">Descripción</label>
-                            
                                 <div class="col-md-10">
                                   <textarea class="textarea_msg" name="Descripcion" id="txtDescripcion" style="width: 100%; height: 203px; font-size: 14px; line-height: 18px; border: 1px solid rgb(221, 221, 221); padding: 10px; margin: 0px;"></textarea>
                                 <!--  -->
                                 </div>
-                            
-                            <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
+                         </div> 
+                      </div>
+                      <div class="form-group">
+                         <div class="box-body pad">
+                           <label for="archivo" class="col-sm-2 control-label">Adjuntar</label>
                             <input class="col-sm-10" type="file" id="archivo" name="Archivos[]">
                             
                             <div class="box-footer col-sm-3 pull-right">
@@ -235,24 +239,22 @@ js=''
                               {/if}
                             </div>
                          </div> 
-              
                       </div>
-                 
+
                     </div>
                     
                     
                   </div><!-- /.box-body Asunto Descripcion y Adjuntos -->
                  
-              </div>
+              
 
             </form>
           </div>
      </section>      
-          
-           
+</div>       
+        
  <link rel="stylesheet" href="{$rutaCSS}bootstrap3-wysihtml5.min.css">
 
-</div>
 <script src="{$rutaJS}jQuery-2.2.0.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="{$rutaJS}bootstrap.min.js"></script>

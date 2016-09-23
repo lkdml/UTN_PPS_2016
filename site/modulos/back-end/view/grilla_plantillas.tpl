@@ -1,11 +1,24 @@
 {include file="header.tpl"
-css='<link rel="stylesheet" href="./modulos/back-end/css/dataTables.bootstrap.css">
-<link rel="stylesheet" type="text/css" href="./modulos/back-end/css/jquery.dataTables.css">'
+css='
+<link rel="stylesheet" href="./modulos/back-end/css/validacion.css">'
 js='' 
 }
 {include file="panelLateral.tpl"}
   <!-- =============================================== -->
 
+<style>
+li.template{
+  display: block;
+  padding: 10px 15px;
+  position: relative;
+}
+i.fa-pencil{
+    cursor: pointer;
+}
+i.fa-trash-o{
+    cursor: pointer;
+}
+</style>
  
 
   <!-- Content Wrapper. Contains page content -->
@@ -55,7 +68,7 @@ js=''
                       <ul class="nav nav-stacked">
                         {foreach from=$EmailTemplates item=$plantilla}
                           {if $plantilla->getTipo() eq 'operador'}
-                            <li><a href="#">{$plantilla->getNombre()}<span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
+                            <li class="template">{$plantilla->getNombre()}<span class="pull-right"><i class="fa fa-pencil"  id="{$plantilla->getEmailId()}"></i></span></li>
                           {/if}
                         {/foreach}
                       </ul>
@@ -73,7 +86,7 @@ js=''
                       <ul class="nav nav-stacked">
                         {foreach from=$EmailTemplates item=$plantilla}
                           {if $plantilla->getTipo() eq 'usuario'}
-                            <li><a href="#">{$plantilla->getNombre()}<span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
+                            <li class="template">{$plantilla->getNombre()}<span class="pull-right"><i class="fa fa-pencil" id="{$plantilla->getEmailId()}"></i></span></li>
                           {/if}
                         {/foreach}
                       </ul>
@@ -89,14 +102,21 @@ js=''
                       <i class="widget-user-username">Custom</i>
                       
                       
-                              <span class="pull-right"><button type="button" class="btn btn-info btn-flat"><i class="fa fa-plus"></i></button></span>
+                              <span class="pull-right"><button type="button" class="btn btn-info btn-flat" id="nuevoTemplate"><i class="fa fa-plus"></i></button></span>
                       
                     </div>
                     <div class="box-footer no-padding">
                       <ul class="nav nav-stacked">
                         {foreach from=$EmailTemplates item=$plantilla}
                           {if $plantilla->getTipo() eq 'custom'}
-                            <li><a href="#">{$plantilla->getNombre()}<span class="pull-right"><i class="fa fa-pencil"></i></span></a></li>
+                            <li class="template" >
+                              {$plantilla->getNombre()}
+                              <span class="pull-right">
+                                <i class="fa fa-pencil" id="{$plantilla->getEmailId()}"></i>
+                                <i class="fa fa-trash-o" id="{$plantilla->getEmailId()}" style="padding-left: 10px;"></i>
+                              </span>
+                              
+                            </li>
                           {/if}
                         {/foreach}
                       </ul>
@@ -110,7 +130,7 @@ js=''
       
     <div class="row">  
       <div class="col-md-12">
-          <div class="box box-default box-solid">
+          <div class="box box-default box-solid" id="edicion">
             <div class="box-header with-border">
               <h3 class="box-title">Edición</h3>
 
@@ -122,14 +142,22 @@ js=''
             </div>
             <!-- /.box-header -->
             <div style="display: block;" class="box-body">
-              <form action="{$rutaCSS}../controlador/guardarPlantillaAction.php" class="form-horizontal"> <!-- //TODO Poner vinculo jquery-->
+              <form action="{$rutaCSS}../controlador/plantillaAction.php" class="form-horizontal" id="plantillasForm" method="post"> <!-- //TODO Poner vinculo jquery-->
                   <div class="box-body">
                       <div class="box">
                           <div class="form-group">
+                             <div class="box-body pad">
+                                <label for="inputTitulo" class="col-sm-2 control-label">Nombre del Template</label>
+                                <div class="col-sm-5">
+                                  <input type="text" name="nombre" class="form-control" id="inputNombre">
+                                </div>
+                              </div>
+                              <!-- body pad end -->
                               <div class="box-body pad">
                                   <label for="inputTitulo" class="col-sm-2 control-label">Título</label>
                                   <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="inputTitulo">
+                                    <input type="text" name="asunto" class="form-control" id="inputTitulo">
+                                    <input type="hidden" name="idTemplate" id="inputId" >
                                   </div>
                               </div>
                               <!-- body pad end -->
@@ -145,7 +173,7 @@ js=''
                                   <div class="box-body pad">
                                       <div class="tab-pane" id="#descripcionAnuncio">
                                           <textarea id="editor1" name="editor1" rows="10" cols="80">
-                                              Descripción del Anuncio 
+                                              
                                           </textarea>
                                       </div>
                                   </div>
@@ -179,8 +207,7 @@ js=''
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
-</div>
-<!-- ./wrapper -->
+
 
 <!-- jQuery 2.2.0 -->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}jQuery-2.2.0.min.js"></script>
@@ -193,6 +220,8 @@ js=''
 <!-- AdminLTE App -->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}app.min.js"></script>
 <script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+<!-- Validaciones -->
+<script src="{$rutaJS}jquery-validator-min.js"></script>
 <script src="{$rutaJS}tmh-error.js"></script>
 <script>
   $(function () {
@@ -206,13 +235,99 @@ js=''
 {literal}
 
 <script>
+
 $(document).ready( function () {
-    $('#grilla').DataTable({
-  "columnDefs": [
-    { "width": "5px", "targets": 0 }
-  ]
-});
+
+   $("i.fa-pencil").click(function() { 
+    var idTemplate=this.id;
+    $.ajax({
+            url:'operador.php?modulo=plantillas',
+            type:'GET',
+            datatype:'JSON',
+            data:{plantillaId:idTemplate},
+            success: function (response){
+                  var rta= $.parseJSON(response);
+                  $('#inputNombre').val(rta.nombre);
+                  $('#inputTitulo').val(rta.titulo);
+                  $('#inputId').val(idTemplate);
+                  CKEDITOR.instances.editor1.setData(rta.body); 
+                  $('html, body').animate({
+                    scrollTop: $('#edicion').offset().top
+                }, 500);
+                }
+            })
+  });
+  
+   $("i.fa-trash-o").click(function() { 
+     var idTemplate=this.id;
+     var element=$(this);
+     $.ajax({
+            url:'operador.php?modulo=plantillas',
+            type:'GET',
+            datatype:'JSON',
+            data:{plantillaId:idTemplate,delete:true},
+            success: function (response){
+                element.parents('li.template').hide();
+                }
+            })
+   });
+  
+  $("#nuevoTemplate").click(function() {
+    $('#inputNombre').val('');
+    $('#inputTitulo').val('');
+    $('#inputId').val(null);
+    CKEDITOR.instances.editor1.setData(''); 
+    $('html, body').animate({
+                    scrollTop: $('#edicion').offset().top
+                }, 500);
+  });     
+  
+  $.validator.addMethod("cke_required", function(value, element) {
+    var idname = $(element).attr('id');
+    var editor = CKEDITOR.instances[idname];
+    $(element).val(editor.getData());
+    return $(element).val().length > 0;
+    }, "(*)Por favor, ingrese un mensaje.");
+  
+  $("#plantillasForm").validate({
+         ignore: [], 
+        // Specify the validation rules
+        rules: {
+            
+            nombre: {required:true
+            },
+            asunto: {required:true
+            },
+            editor1: {cke_required: true}
+
+        },
+        // Specify the validation error messages
+        messages: {
+             nombre: {
+                required: "(*)Por favor, ingrese el nombre."
+             },
+                
+            asunto: {
+                required: "(*)Por favor, ingrese un asunto."
+            }
+           
+        },
+        errorPlacement: function(error, element) 
+                {
+                    if (element.attr("name") == "editor1") 
+                   {
+                    error.insertBefore("textarea#editor1");
+                    } else {
+                    error.insertBefore(element);
+                    }
+                }
+    })
+  
+  
 } );
+
+
+
 </script>
 {/literal}
 

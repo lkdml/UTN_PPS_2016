@@ -182,7 +182,7 @@ js=''
                     </div>
                     <div class="box-footer pull-right">
                       <button onclick="window.location='/index.php?modulo=home';return false;" class="btn btn-danger pull-left btn-lg">Cancelar</button>
-                      <button type="submit" class="btn btn-info btn-lg pull-right">Enviar</button>
+                      <button type="submit" class="btn btn-info btn-lg pull-right" id="btnEnviar" disabled>Enviar</button>
                     </div>
                   </div><!-- /.box-body Asunto Descripcion y Adjuntos -->
               </div>
@@ -231,6 +231,8 @@ $(document).ready(function(){
         $("#ddDepartamentos").val("-1").trigger('change');
         $("#ddTipos").val("-1").trigger('change');
         $("#ddPrioridades").val("-1").trigger('change');
+        
+        $("#btnEnviar").prop("disabled", false);
        
 });
 </script>

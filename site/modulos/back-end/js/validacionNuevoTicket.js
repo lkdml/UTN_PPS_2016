@@ -1,25 +1,41 @@
  $().ready(function() {
   
+    $.validator.addMethod("valueNotEquals", function(value, element, arg){
+      return arg != value;
+     }, "(*)Por favor, seleccione un valor.");
+  
+   
+  
     // Setup form validation on the #register-form element
     $("#nuevoticketForm").validate({
-    
+        ignore: ":hidden:not(textarea)", 
         // Specify the validation rules
         rules: {
-            txtAsunto: {
+            WysiHtmlField: "required",
+            Asunto: {
               required:true,
               minlength:5
             },
-            ddDepartamentos: {
-              required:true,
+            Descripcion:{
+              required:true
             },
-             ddTipos: {
-              required:true,
+            Departamento: {
+              valueNotEquals: "-1" ,
             },
-            ddPrioridades: {
-              required:true,
+             TicketTipo: {
+              valueNotEquals: "-1" ,
             },
-             ddSLAS: {
-              required:true,
+            Prioridad: {
+               valueNotEquals: "-1" ,
+            },
+             Estado: {
+               valueNotEquals: "-1" ,
+            },
+            OperadorAsignado: {
+               valueNotEquals: "-1" ,
+            },
+            SLA: {
+               valueNotEquals: "-1" ,
             },
             Creador:{
                     required:true,
@@ -58,30 +74,17 @@
 
         // Specify the validation error messages
         messages: {
-             txtAsunto: {
+             Asunto: {
                 required: "(*)Por favor, ingresa un asunto.",
-                minlength: "(*)El asunto debe tener más de 4 letras."
+                minlength: "(*)El asunto debe tener más de 4 caractéres."
             },
-            ddDepartamentos: {
-                required: "(*)Por favor, seleccione un Departamento de la Lista.",
-                
+            Descripcion: {
+                required: "(*)Por favor, ingresa una descripción."
             },
-                ddTipos: {
-                required: "(*)Por favor, seleccione un Tipo de la Lista.",
-                
-            },
-                 ddPrioridades: {
-                required: "(*)Por favor, seleccione una Prioridad de la Lista.",
-                
-            },
-                ddSLAS: {
-                required: "(*)Por favor, seleccione un SLA de la Lista.",
-                
-            },
-                Creador:{
-                    required:"(*)Por favor, ingrese un email de usuario o operador.",
-                    remote: jQuery.validator.format("(*)El email {0} no existe.")
-                }
+            Creador:{
+                required:"(*)Por favor, ingrese un email de usuario o operador.",
+                remote: jQuery.validator.format("(*)El email {0} no existe.")
+            }
           
         }
     })

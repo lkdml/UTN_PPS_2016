@@ -6,8 +6,7 @@ $().ready(function() {
         // Specify the validation rules
         rules: {
             
-            nombre: {required:true,
-                    minlength: 5
+            nombre: {required:true
             },
             descripcion: {required:true,
                             minlength: 5
@@ -18,13 +17,12 @@ $().ready(function() {
         // Specify the validation error messages
         messages: {
              nombre: {
-                required: "(*)Por favor, ingrese el nombre.",
-                 minlength: "(*)Ingrese un nombre mayor a 4 dígitos."
+                required: "(*)Por favor, ingrese el nombre."
              },
                 
             descripcion: {
                 required: "(*)Por favor, ingrese una descripción.",
-                minlength: "(*)Ingrese una descripcion mayor a 4 dígitos."
+                minlength: "(*)Ingrese una descripcion mayor a 5 caractéres."
             },
            color: {
                 required: "(*)Por favor, ingrese un color."},
