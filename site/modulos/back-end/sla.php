@@ -14,7 +14,6 @@ $app->startSession($modoOP);
 $permisos =$app->getPermisos();
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 
-
 if (isset($_POST['condicion'])){
     $condicionID = $_POST['condicion'];
     $campo = CustomField::cargarSLACustomField($condicionID, $em);
@@ -36,7 +35,7 @@ if (isset($_POST['condicion'])){
       CustomField::createFromJson(urldecode($_GET['elementoHTML']))->crearElementoHTML();
     } else {
         $Usuarios = $em->getRepository('Modelo\Usuario')->findAll();  //TODO aca hay usuarios/operadores eliminados o no activos
-        $Condiciones = $em->getRepository('Modelo\SlaCondicion')->findAll();
+        $Condiciones = $em->getRepository('Modelo\SlaCondicion')->findAll();die;
         $Parametros =  $em->getRepository('Modelo\SlaParametro')->findAll();
         $Empresas =  $em->getRepository('Modelo\Empresa')->findAll();
         $datos = array();

@@ -22,7 +22,7 @@ if ($app->ifHayError()){
     $vm->assign('Error',$error);
 }
 
-$Estados = $em->getEntityManager()->getRepository('Modelo\TicketEstado')->findAll();
+$Estados = $em->getRepository('Modelo\TicketEstado')->findAll();
 $vm->assign('Estados',$Estados);   
 
 

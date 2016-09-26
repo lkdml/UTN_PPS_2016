@@ -4,7 +4,8 @@ require_once(__DIR__.'./../../bootstrap_orm.php');
 
 class Entity_Manager {
         
-        private static $instancia;
+        private static $instancia;        
+        private $EntityManager;
         
         /**
         * Retorna la instancia de si misma.
@@ -21,8 +22,7 @@ class Entity_Manager {
         return self::$instancia;
         }
         
-        protected function __construct()
-        {
+        protected function __construct() {
         }
         
         /**
@@ -31,8 +31,7 @@ class Entity_Manager {
         *
         * @return void
         */
-        private function __clone()
-        {
+        private function __clone() {
         }
         
         /**
@@ -40,11 +39,9 @@ class Entity_Manager {
         *
         * @return void
         */
-        private function __wakeup()
-        {
+        private function __wakeup()  {
         }
 
-        private $EntityManager;
         
         public function setEntityManager($EntityManager){
                 $this->EntityManager = $EntityManager;
