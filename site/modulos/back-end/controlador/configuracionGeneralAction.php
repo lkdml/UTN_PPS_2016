@@ -11,10 +11,6 @@ $permisos =$app->getPermisos();
 $em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 $op=$app->getOperador();
 
-$permisos =$app->getPermisos();
-$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
-
 /*
 insert into configuracion_global values ("mail_remitente","T.M.H.");
 insert into configuracion_global values ("directorio_Uploads","");

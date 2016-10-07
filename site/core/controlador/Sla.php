@@ -4,7 +4,7 @@ use \CORE\Controlador\Entity_Repository as Entity_Repository;
 use \Modelo\SlaCondicion as SlaCondicion;
 use \Modelo\SlaParametro as SlaParametro;
 use \Modelo\SlaSlasCondiciones as SlaSlasCondiciones;
-use \Modelo\Sla as Sla;
+use \Modelo\Sla as ModeloSla;
   /**
   * @author lkdml
   * @version Core 1.0
