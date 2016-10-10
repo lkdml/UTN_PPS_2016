@@ -3,6 +3,7 @@
 require_once($_SERVER["DOCUMENT_ROOT"].'/configuracion.php');  
 require_once (\CORE\Controlador\Config::getPublic('Ruta_Core_Controlador')."ViewManager.php");
 $app = \CORE\Controlador\Aplicacion::getInstancia();
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 if ($_GET["logOut"]=='1'){
   $app->logout('front');
 }
