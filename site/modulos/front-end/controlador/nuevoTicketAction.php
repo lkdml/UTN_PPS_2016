@@ -13,9 +13,10 @@ use \Modelo\LogModificacionTicket as LogTicket;
 
 $app = Aplicacion::getInstancia();
 $app->startSession(false);
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 //TODO: esta linea se debe mejorar para usar el usuario desde session o app
 $usuario = $em->getRepository('Modelo\Usuario')->find($app->getUsuario()->getUsuarioId());
-$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
+
 
 
 $Ticket = setearTicket(new Ticket(),$usuario,$em);
