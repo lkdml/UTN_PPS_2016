@@ -38,6 +38,19 @@ class CustomField implements \JsonSerializable {
   {
       $this->opciones = array();
   }
+  
+  public function addAtributos(array $opcion)
+  {
+      $this->atributos = array_merge($this->atributos,$opcion);
+  }
+  public function removeAtributos(array $opcion)
+  {
+      $this->atributos->removeElement($opcion);
+  }
+  public function clearAtributos()
+  {
+      $this->atributos = array();
+  }
 
   
   /**
@@ -79,10 +92,6 @@ public static function createFromJson($JsonCustomField)
     $instance->setOpciones($opciones);
     return $instance;
 }
-
-  public function addOptions(){
-    
-  }
   
   public function crearElementoHTML() {
     foreach ( $this->crearTagsHTML() as $key=>$value) {
@@ -129,7 +138,10 @@ public static function createFromJson($JsonCustomField)
                 $i++;
               } 
               $rta[] = array("cierre"=>"</datalist></$this->elementoHTML>");
-            }else {
+            }else if(in_array("number",$this->atributos)){
+              $rta[] = array("apertura"=>"<$this->elementoHTML ".  $this->agregarAtributosHTML($this->atributos).">");
+              $rta[] = array("cierre"=>"</$this->elementoHTML>");
+            }else  {
               $rta[] = array("apertura"=>"<$this->elementoHTML ".  $this->agregarAtributosHTML($this->atributos).">".$this->texto);
               $rta[] = array("cierre"=>"</$this->elementoHTML>");
             }
@@ -166,200 +178,7 @@ public static function createFromJson($JsonCustomField)
     return $atributosDelElementoHTML;
   }
   
-  public static function cargarSLACustomField($cond_ID, &$em, $valor=null){
-  
-    $Condicion = $em->getRepository('Modelo\SlaCondicion')->find($cond_ID);
-    $elemento =  CustomField::createFromJson($Condicion->getCustomFieldsType());
-    switch ($cond_ID) {
-      case '1': //Asignado A
-      case '13': //Asignar a
-      $valor=json_decode($valor);
-        $Operadores = $em->getRepository('Modelo\Operador')->findAll(); //TODO aca hay usuarios/operadores eliminados o no activos
-        $elemento->clearOpciones();
-        foreach ($Operadores as $operador) {
-          $setear =true;
-          if (!is_null($valor)) {
-            foreach ($valor as $value) {
-              if ($operador->getOperadorId() == (int)$value){
-                $elemento->addOpciones(array("atributos"=>array("value"=>$operador->getOperadorId(),"selected"=>null),"texto"=>$operador->getNombre().", ".$operador->getNombre()));
-                $setear=false;
-                break;
-              } 
-            }
-          }
-          if ($setear){
-            $elemento->addOpciones(array("atributos"=>array("value"=>$operador->getOperadorId()),"texto"=>$operador->getNombre().", ".$operador->getNombre()));
-          }
-        }
-        break;
-      case '2': //Origen del ticket
-        $valor=json_decode($valor);
-        if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
-        }
-        break;
-      case '3': //Departamento
-      case '16': //Cambiar Departamento
-        $valor=json_decode($valor);
-        $Departamentos = $em->getRepository('Modelo\Departamento')->findAll();
-        $elemento->clearOpciones();
-        foreach ($Departamentos as $departamento) {
-          $setear =true;
-          if (!is_null($valor)) {
-            foreach ($valor as $value) {
-              if ($departamento->getDepartamentoId() == (int)$value){
-                $elemento->addOpciones(array("atributos"=>array("value"=>$departamento->getDepartamentoId(),"selected"=>null),"texto"=>$departamento->getNombre()));
-                $setear=false;
-                break;
-              } 
-            }
-          }
-          if ($setear){
-            $elemento->addOpciones(array("atributos"=>array("value"=>$departamento->getDepartamentoId()),"texto"=>$departamento->getNombre()));
-          }
-        }
-        break;
-      case '4': //Estado
-      case '19': //Cambiar Estado
-        $valor=json_decode($valor);
-        $Estados = $em->getRepository('Modelo\TicketEstado')->findAll();
-        $elemento->clearOpciones();
-        foreach ($Estados as $estado) {
-          $setear =true;
-          if (!is_null($valor)) {
-            foreach ($valor as $value) {
-              if ($departamento->getDepartamentoId() == (int)$value){
-                $elemento->addOpciones(array("atributos"=>array("value"=>$departamento->getDepartamentoId(),"selected"=>null),"texto"=>$departamento->getNombre()));
-                $setear=false;
-                break;
-              } 
-            }
-          }
-          if ($setear){
-            $elemento->addOpciones(array("atributos"=>array("value"=>$estado->getEstadoId()),"texto"=>$estado->getNombre()));
-          }
-        }
-        break;
-      case '5': //Prioridad
-      case '17': //Cambiar Prioridad
-        $valor=json_decode($valor);
-        $Prioridades = $em->getRepository('Modelo\Prioridad')->findAll();
-        $elemento->clearOpciones();
-        foreach ($Prioridades as $prioridad) {
-          $setear =true;
-          if (!is_null($valor)) {
-            foreach ($valor as $value) {
-              if ($prioridad->getPrioridadId() == (int)$value){
-                $elemento->addOpciones(array("atributos"=>array("value"=>$prioridad->getPrioridadId(),"selected"=>null),"texto"=>$prioridad->getNombre()));
-                $setear=false;
-                break;
-              } 
-            }
-          }
-          if ($setear){
-            $elemento->addOpciones(array("atributos"=>array("value"=>$prioridad->getPrioridadId()),"texto"=>$prioridad->getNombre()));
-          }
-        }
-        break;
-      case '6': //Tipo de Ticket
-      case '18': //Cambiar Tipo de Ticket
-        $valor=json_decode($valor);
-        $TipoTickets = $em->getRepository('Modelo\TicketTipo')->findAll();
-        $elemento->clearOpciones();
-        foreach ($TipoTickets as $tipoTicket) {
-          $setear =true;
-          if (!is_null($valor)) {
-            foreach ($valor as $value) {
-              if ($tipoTicket->getTipoTicketId() == (int)$value){
-                $elemento->addOpciones(array("atributos"=>array("value"=>$tipoTicket->getTipoTicketId(),"selected"=>null),"texto"=>$tipoTicket->getNombre()));
-                $setear=false;
-                break;
-              } 
-            }
-          }
-          if ($setear){
-            $elemento->addOpciones(array("atributos"=>array("value"=>$tipoTicket->getTipoTicketId()),"texto"=>$tipoTicket->getNombre()));
-          }
-        }
-        break;
-      case '7': //El mensaje contiene
-        $valor=json_decode($valor);
-        if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
-        }
-        break;
-      case '8': //El asunto contiene
-        $valor=json_decode($valor);
-        if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
-        }
-        break;
-      case '9': //Mail de usuario
-        $valor=json_decode($valor);
-        if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
-        }
-        break;
-      case '10': //Empresa
-        $valor=json_decode($valor);
-        if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
-        }
-        break;
-      case '11': //Y
-        $valor=json_decode($valor);
-        if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
-        }
-        break;
-      case '12': //O
-        $valor=json_decode($valor);
-        if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
-        }
-        break;
-  
-      case '14': //Agregar Nota
-        $valor=json_decode($valor);
-        if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
-        }
-        break;
-      case '15': //Agregar Respuesta
-        $valor=json_decode($valor);
-        if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
-        }
-        break;
-      case '20': //Enviar Mail a usuario (templates custom)
-      case '21': //Enviar Mail a operador (templates custom)
-        $valor=json_decode($valor);
-        $Templates = $em->getRepository('Modelo\EmailTemplates')->findAll();
-        $elemento->clearOpciones();
-        foreach ($Templates as $template) {
-          $setear =true;
-          if (!is_null($valor)) {
-            foreach ($valor as $value) {
-              if ($template->getEmailId() == (int)$value){
-                $elemento->addOpciones(array("atributos"=>array("value"=>$template->getEmailId(),"selected"=>null),"texto"=>$template->getNombre()));
-                $setear=false;
-                break;
-              } 
-            }
-          }
-          if ($setear){
-            $elemento->addOpciones(array("atributos"=>array("value"=>$template->getEmailId()),"texto"=>$template->getNombre()));
-          }
-        }
-        break;
-  
-      
-      default:
-        // code...
-        break;
-    }
-    return $elemento;
-  }
+ 
   
   
 }

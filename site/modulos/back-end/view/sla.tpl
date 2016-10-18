@@ -81,50 +81,16 @@ js=''
                                 <th>Valor</th>
                               </tr>
                             </tbody>
-                              <tr>
-                                {if $slaValores}
-                                  {foreach key=$idPreCond from=$slaValores.pre item=$slaValor}
-                                    <tr id="precond-{$idPreCond}">
-                                        <td class="text-center" id="{$idPreCond}">
-                                      <button class="btn bg-olive btn-flat quitar-preCond" type="button">-</button>
-                                        </td>
-                                        <td>
-                                          <select class="form-control select2 lkdml" id="pre-cond-{$idPreCond}" style="width: 100%;" id="ddDeptos" name="preCond[{$idPreCond}]" onchange="TMH.setDataFromSelect(this)">
-                                            <option value = "-1">Seleccione opcioan</option>
-                                            {foreach key=$keyCond from=$slaCondiciones item=$preCond}
-                                              {if $preCond->getTipo() == 'pre'}
-                                              {$data=null}
-                                                {foreach from=$preCond->getSlaParametro() item=$parametro}
-                                                  {$data[] = [$parametro->getSlaParametroId()=>['descripcion'=>$parametro->getDescripcion()]]}
-                                                {/foreach}
-                                                <option value="{$preCond->getSlaCondicionId()}" data-param='{$data|@json_encode}' {if $preCond->getSlaCondicionId() == $slaValor['condicionId'] } selected {/if}>{$preCond->getNombre()}</option>
-                                              {/if}
-                                            {/foreach}
-                                          </select>
-                                        </td>
-                                        <td class="pre-param-{$idPreCond}">
-                                          {$slaParametros.0|@var_dump}
-                                          <select class="form-control select2" style="width: 100%;" id="pre-param-{$idPreCond}"  name="preParam[{$idPreCond}]" >
-                                            {foreach key=$keyParam from=$slaParametros item=$preParam}
-                                                <option value ='{$preParam->getSlaParametroId()}' {if $preParam->getSlaParametroId() == $slaValor['parametroId'] } selected {/if} >{$preCond->getNombre()}</option>
-                                            {/foreach}
-                                          </select>
-                                        </td>
-                                        <td class="pre-valor-{$idPreCond}">
-                                          {foreach key=$keyValor from=$slaValor item=$slaValorHTML}
-                                            {if $keyValor=='html'}
-                                              {$slaValorHTML}
-                                            {/if}
-                                          {/foreach}
-                                            <!-- <input type="text" class="form-control" id="pre-valor-{$idPreCond}" name ="condicionHora" required data-msg="(*)Por favor, ingrese el valor."  disabled >    -->
-                                        </td>
-                                    </tr>
+                                {if $Sla}
+                                  {foreach from=$contenidoPre item=$contenidoHtmlPre}
+                                    {$contenidoHtmlPre}
                                   {/foreach}
                                 {/if}
+                                <tr>
                                 <td class="text-center">
                                   <button class="btn bg-olive btn-flat" id="nueva-preCond" type="button">+</button>
                                 </td>
-                              </tr>
+                               </tr>
                             
                           </table>
                         </div>
@@ -145,7 +111,7 @@ js=''
                     </div>
                     <div class="form-group">
                         <div class="box-body pad">
-                          <table class="table table-condensed" id="vence">
+                          <table class="table table-condensed" id="vencimientoCond">
                             <tbody>
                               <tr class="info">
                                 <th class="text-center">+/-</th>
@@ -153,15 +119,14 @@ js=''
                                 <th>Condición</th>
                                 <th>Tiempo (horas)</th>
                               </tr>
-                              <tr>
-                                {if $slaValores}
-                                  {foreach key=$key from=$slaValores.vencimiento item=$vencimiento}
-                                    {$vencimiento}
-                                    
+                                {if $Sla}
+                                  {foreach from=$contenidoVence item=$contenidoHtmlVence}
+                                    {$contenidoHtmlVence}
                                   {/foreach}
                                 {/if}
+                                <tr>
                                 <td class="text-center">
-                                  <button class="btn bg-olive btn-flat" id="nueva-vence" type="button">+</button>
+                                  <button class="btn bg-olive btn-flat" id="nueva-vencimientoCond" type="button">+</button>
                                 </td>
                               </tr>
                             </table>
@@ -190,13 +155,12 @@ js=''
                                 <th>Parámetro</th>
                                 <th>Valor</th>
                               </tr>
-                              <tr>
-                                {if $slaValores}
-                                  {foreach key=$key from=$slaValores.post item=$postCond}
-                                    {$postCond}
-                                    
+                                {if $Sla}
+                                  {foreach from=$contenidoPost item=$contenidoHtmlPost}
+                                    {$contenidoHtmlPost}
                                   {/foreach}
                                 {/if}
+                              <tr>
                                 <td class="text-center">
                                   <button class="btn bg-olive btn-flat" id="nueva-postCond" type="button">+</button>
                                 </td>
@@ -269,7 +233,7 @@ js=''
 
 <!--PreventDefault Enter -->
 <script src="{$rutaJS}noEnter.js"></script>
-<script src="{$rutaJS}sla-nuevo.js"></script>
+<script src="{$rutaJS}sla.js"></script>
 
 <!-- DurationPicker -->
 <!-- <script src="{$rutaJS}jquery-duration-picker.js"></script> -->
