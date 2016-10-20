@@ -113,7 +113,7 @@ i.fa-trash-o{
                               {$plantilla->getNombre()}
                               <span class="pull-right">
                                 <i class="fa fa-pencil" id="{$plantilla->getEmailId()}"></i>
-                                <i class="fa fa-trash-o" id="{$plantilla->getEmailId()}" style="padding-left: 10px;"></i>
+                                <i class="fa fa-trash-o" id="{$plantilla->getEmailId()}" style="padding-left: 10px;" data-toggle="modal" data-target="#myModal"></i>
                               </span>
                               
                             </li>
@@ -208,6 +208,25 @@ i.fa-trash-o{
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
 
+  <!-- Modal para Borrar-->
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Eliminar Plantilla </h4></h4>
+          </div>
+          <div class="modal-body">
+            <p>Esta acción eliminará la plantilla seleccionada. ¿Está seguro que desea continuar?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn btn-danger" id="confirmaBorrado" data-dismiss="modal" type= submit name="accion" value="borrar">Si, estoy seguro.</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal">No, llévame a donde estaba.</button>
+          </div>
+      </div>
+    </div>
+  </div> <!-- End Modal Content -->
 
 <!-- jQuery 2.2.0 -->
 <script type="text/javascript" charset="utf8" src="{$rutaJS}jQuery-2.2.0.min.js"></script>
@@ -223,113 +242,9 @@ i.fa-trash-o{
 <!-- Validaciones -->
 <script src="{$rutaJS}jquery-validator-min.js"></script>
 <script src="{$rutaJS}tmh-error.js"></script>
-<script>
-  $(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    CKEDITOR.replace('editor1');
-  });
-</script>
 
-
-{literal}
-
-<script>
-
-$(document).ready( function () {
-
-   $("i.fa-pencil").click(function() { 
-    var idTemplate=this.id;
-    $.ajax({
-            url:'operador.php?modulo=plantillas',
-            type:'GET',
-            datatype:'JSON',
-            data:{plantillaId:idTemplate},
-            success: function (response){
-                  var rta= $.parseJSON(response);
-                  $('#inputNombre').val(rta.nombre);
-                  $('#inputTitulo').val(rta.titulo);
-                  $('#inputId').val(idTemplate);
-                  CKEDITOR.instances.editor1.setData(rta.body); 
-                  $('html, body').animate({
-                    scrollTop: $('#edicion').offset().top
-                }, 500);
-                }
-            })
-  });
-  
-   $("i.fa-trash-o").click(function() { 
-     var idTemplate=this.id;
-     var element=$(this);
-     $.ajax({
-            url:'operador.php?modulo=plantillas',
-            type:'GET',
-            datatype:'JSON',
-            data:{plantillaId:idTemplate,delete:true},
-            success: function (response){
-                element.parents('li.template').hide();
-                }
-            })
-   });
-  
-  $("#nuevoTemplate").click(function() {
-    $('#inputNombre').val('');
-    $('#inputTitulo').val('');
-    $('#inputId').val(null);
-    CKEDITOR.instances.editor1.setData(''); 
-    $('html, body').animate({
-                    scrollTop: $('#edicion').offset().top
-                }, 500);
-  });     
-  
-  $.validator.addMethod("cke_required", function(value, element) {
-    var idname = $(element).attr('id');
-    var editor = CKEDITOR.instances[idname];
-    $(element).val(editor.getData());
-    return $(element).val().length > 0;
-    }, "(*)Por favor, ingrese un mensaje.");
-  
-  $("#plantillasForm").validate({
-         ignore: [], 
-        // Specify the validation rules
-        rules: {
-            
-            nombre: {required:true
-            },
-            asunto: {required:true
-            },
-            editor1: {cke_required: true}
-
-        },
-        // Specify the validation error messages
-        messages: {
-             nombre: {
-                required: "(*)Por favor, ingrese el nombre."
-             },
-                
-            asunto: {
-                required: "(*)Por favor, ingrese un asunto."
-            }
-           
-        },
-        errorPlacement: function(error, element) 
-                {
-                    if (element.attr("name") == "editor1") 
-                   {
-                    error.insertBefore("textarea#editor1");
-                    } else {
-                    error.insertBefore(element);
-                    }
-                }
-    })
-  
-  
-} );
-
-
-
-</script>
-{/literal}
+<!-- JS funciones TPL -->
+<script src="{$rutaJS}plantillas.js"></script>
 
 <!-- AdminLTE for demo purposes -->
 <script src="{$rutaJS}demo.js"></script>

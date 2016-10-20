@@ -6,7 +6,7 @@ require_once (\CORE\Controlador\Config::getPublic('Ruta_Core_Controlador')."View
 use \CORE\Controlador\Aplicacion;
 Aplicacion::startSession($modoOP);
 $app = Aplicacion::getInstancia();
-
+$em = \CORE\Controlador\Entity_Manager::getInstancia()->getEntityManager();
 $vm = new ViewManager(\CORE\Controlador\Config::getPublic('Front_SMARTY_TemplateDir'),null);
 $vm->configPath(\CORE\Controlador\Config::getPublic('Ruta_Front').'css/',
                 \CORE\Controlador\Config::getPublic('Ruta_Front').'js/',
