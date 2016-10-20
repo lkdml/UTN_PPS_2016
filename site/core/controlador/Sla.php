@@ -28,9 +28,8 @@ class Sla {
     public function setModeloSlaCondiciones($modeloSlaCondiciones){ $this->modeloSlaCondiciones = $modeloSlaCondiciones;}
     public function setModeloSlaSlasCondiciones($modeloSlaSlasCondiciones){ $this->modeloSlaSlasCondiciones = $modeloSlaSlasCondiciones;}
     public function setModeloSlaFromSlaId($idSla){
-        $this->modeloSla = $this->er->findById($idSla,'Modelo\Sla');
-        $this->modeloSlaSlasCondiciones = $this->er->findBy(array("sla"=>$idSla),'Modelo\SlaSlasCondiciones');
-
+        $this->modeloSla = $this->em->getRepository('Modelo\Sla')->find($idSla);
+        $this->modeloSlaSlasCondiciones = $this->em->getRepository('Modelo\SlaSlasCondiciones')->findBy(array("sla"=>$idSla));
     }
     public function setVm($vm){$this->vm = $vm;}
     
@@ -54,6 +53,23 @@ class Sla {
         
       } else {
         //es un SLA existente
+        //cargo los datso y elimino todo lo existente
+        $this->setModeloSlaFromSlaId($idSlaExistente);
+        foreach ($this->modeloSlaSlasCondiciones as $condicionSLA) {
+            $this->em->remove($condicionSLA);
+        }
+        $this->em->flush();
+        $this->em->clear();
+        //requiero volver a cargar el EM con los datos del sla, para cargarle los SLAslaCondiciones
+        $this->setModeloSlaFromSlaId($idSlaExistente);
+        $this->setearSlaConDatos($nombre,$descripcion,isset($estado));
+        
+        $this->procesarPostSLA($arrayPre,$arrayPreParam,$arrayPreValor,$arrayVence,$arrayVenceParam,$arrayVenceValor,$arrayPost,$arrayPostParam,$arrayPostValor);
+        $this->em->persist($this->modeloSla);
+        foreach ($this->modeloSlaSlasCondiciones as $condicionSLA) {
+            $this->em->persist($condicionSLA);
+        }
+        $this->em->flush();
       }
       
     }
@@ -91,7 +107,7 @@ class Sla {
              if ($precondId != '-1') {
                  $SlaCondicion =  $this->em->getRepository('Modelo\SlaCondicion')->find($arrayPre[$key]);
                  $SlaParametro =  $this->em->getRepository('Modelo\SlaParametro')->find($arrayPreParam[$key]);
-                 $valor = json_encode($arrayPreValor[$key]);
+                 $valor = $arrayPreValor[$key];
                  $this->setearSlaSlasCondiciones($SlaCondicion,$SlaParametro,$valor);
              }
           }
@@ -99,7 +115,7 @@ class Sla {
              if ($venceCond != '-1') {
                  $SlaCondicion =  $this->em->getRepository('Modelo\SlaCondicion')->find($arrayVence[$key]);
                  $SlaParametro =  $this->em->getRepository('Modelo\SlaParametro')->find($arrayVenceParam[$key]);
-                 $valor = json_encode($arrayVenceValor[$key]);
+                 $valor = $arrayVenceValor[$key];
                  $this->setearSlaSlasCondiciones($SlaCondicion,$SlaParametro,$valor);
              }
           }
@@ -107,7 +123,7 @@ class Sla {
              if ($postCond != '-1') {
                   $SlaCondicion =  $this->em->getRepository('Modelo\SlaCondicion')->find($arrayPost[$key]);
                   $SlaParametro =  $this->em->getRepository('Modelo\SlaParametro')->find($arrayPostParam[$key]);;
-                  $valor = json_encode($arrayPostValor[$key]);
+                  $valor = $arrayPostValor[$key];
                   $this->setearSlaSlasCondiciones($SlaCondicion,$SlaParametro,$valor);   
              }
           }
@@ -202,7 +218,7 @@ class Sla {
       if (is_string($condicion)){
         $condicion = $this->er->findById($condicion,'Modelo\SlaCondicion');
       }
-      $valores = $this->cargarSLACustomField($condicion,$Valores);
+      $valores = $this->cargarSLACustomField($condicion,$Valores,$idIteracion);
       $this->vm->assign('valores',$valores->elementoHTMLToString());
       $this->vm->assign('tipoCond',$tipo);
       $this->vm->assign('idIteracion',$idIteracion);
@@ -257,12 +273,12 @@ class Sla {
   }
   
  
-  public function cargarSLACustomField($cond, $valor=null){ //TODO Quitar de CF class
+  public function cargarSLACustomField($cond, $valor=null, $idIteracion=null){ //TODO Quitar de CF class
     $elemento = CustomField::createFromJson($cond->getCustomFieldsType());
+    $valor = json_decode($valor);
     switch ($cond->getSlaCondicionId()) {
       case '1': //Asignado A
       case '13': //Asignar a
-      $valor=json_decode($valor);
         $Operadores = $this->er->findAll('Modelo\Operador'); //TODO aca hay usuarios/operadores eliminados o no activos
         $elemento->clearOpciones();
         foreach ($Operadores as $operador) {
@@ -270,7 +286,7 @@ class Sla {
           
           if (!is_null($valor)) {            
             if (!is_array($valor)){
-                if ($operador->getOperadorId() == (int)$value){
+                if ($operador->getOperadorId() == (int)$valor){
                   $elemento->addOpciones(array("atributos"=>array("value"=>$operador->getOperadorId(),"selected"=>null),"texto"=>$operador->getNombre().", ".$operador->getNombre()));
                 } 
             } else {
@@ -280,8 +296,9 @@ class Sla {
                   break;
                 } 
               }
+              unset($valor[$key]); //elimino el resultado ya cargado
             }
-            unset($valor[$key]); //elimino el resultado ya cargado
+            
           } else {
             $elemento->addOpciones(array("atributos"=>array("value"=>$operador->getOperadorId()),"texto"=>$operador->getNombre().", ".$operador->getNombre()));
           }
@@ -291,14 +308,12 @@ class Sla {
         }
         break;
       case '2': //Origen del ticket
-        $valor=json_decode($valor);
         if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
+          $elemento->setTexto($valor);
         }
         break;
       case '3': //Departamento
       case '16': //Cambiar Departamento
-        $valor=json_decode($valor);
         $Departamentos = $this->er->findAll('Modelo\Departamento'); 
         $elemento->clearOpciones();
         foreach ($Departamentos as $departamento) {
@@ -326,7 +341,6 @@ class Sla {
         break;
       case '4': //Estado
       case '19': //Cambiar Estado
-        $valor=json_decode($valor);
         $Estados = $this->er->findAll('Modelo\TicketEstado'); 
         $elemento->clearOpciones();
         foreach ($Estados as $estado) {
@@ -354,7 +368,6 @@ class Sla {
         break;
       case '5': //Prioridad
       case '17': //Cambiar Prioridad
-        $valor=json_decode($valor);
         $Prioridades = $this->er->findAll('Modelo\Prioridad'); 
         $elemento->clearOpciones();
         foreach ($Prioridades as $prioridad) {
@@ -382,7 +395,6 @@ class Sla {
         break;
       case '6': //Tipo de Ticket
       case '18': //Cambiar Tipo de Ticket
-        $valor=json_decode($valor);
         $TipoTickets = $this->er->findAll('Modelo\TicketTipo'); 
         $elemento->clearOpciones();
         foreach ($TipoTickets as $tipoTicket) {
@@ -409,57 +421,48 @@ class Sla {
         }
         break;
       case '7': //El mensaje contiene
-        $valor=json_decode($valor);
         if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
+          $elemento->setTexto($valor);
         }
         break;
       case '8': //El asunto contiene
-        $valor=json_decode($valor);
         if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
+          $elemento->setTexto($valor);
         }
         break;
       case '9': //Mail de usuario
-        $valor=json_decode($valor);
         if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
+          $elemento->setTexto($valor);
         }
         break;
       case '10': //Empresa
-        $valor=json_decode($valor);
         if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
+          $elemento->setTexto($valor);
         }
         break;
       case '11': //Y
-        $valor=json_decode($valor);
         if (!is_null($valor)) {
-          $elemento->addAtributos(array("value"=>$valor[0],"min"=>"0.0"));
+          $elemento->addAtributos(array("value"=>$valor,"min"=>"0.0"));
         }
         break;
       case '12': //O
-        $valor=json_decode($valor);
         if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
+          $elemento->addAtributos(array("value"=>$valor,"min"=>"0.0"));
         }
         break;
   
       case '14': //Agregar Nota
-        $valor=json_decode($valor);
         if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
+          $elemento->setTexto($valor);
         }
         break;
       case '15': //Agregar Respuesta
-        $valor=json_decode($valor);
         if (!is_null($valor)) {
-          $elemento->setTexto($valor[0]);
+          $elemento->setTexto($valor);
         }
         break;
       case '20': //Enviar Mail a usuario (templates custom)
       case '21': //Enviar Mail a operador (templates custom)
-        $valor=json_decode($valor);
         $Templates = $this->er->findAll('Modelo\EmailTemplates'); 
         $elemento->clearOpciones();
         foreach ($Templates as $template) {
